@@ -32,5 +32,15 @@ public class StoreService implements IStoreService {
 		// TODO Auto-generated method stub
 		return this.storeDao.deactivateOrActivateStore(store);
 	}
+	
+	/**
+	 * Get client by id of client
+	 * 
+	 * @param id
+	 * @return Store
+	 */
+	public Store getStore(int id) {
+		return this.storeDao.getStore(id);
+	}
 
 }

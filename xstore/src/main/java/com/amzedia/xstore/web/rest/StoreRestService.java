@@ -5,6 +5,7 @@ package com.amzedia.xstore.web.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,7 +53,14 @@ public class StoreRestService {
 	}
 
 	@RequestMapping(value = "/activateordeactivate", method = RequestMethod.POST)
-	@ResponseBody public boolean deactivateOrActivateStore(@RequestBody Store store){
+	@ResponseBody
+	public boolean deactivateOrActivateStore(@RequestBody Store store) {
 		return this.storeService.deactivateOrActivateStore(store);
+	}
+
+	@RequestMapping(value = "/findstore/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public Store getStore(@PathVariable("id") int id) {
+		return this.storeService.getStore(id);
 	}
 }

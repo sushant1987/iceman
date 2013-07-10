@@ -3,15 +3,20 @@
  */
 package com.amzedia.xstore.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Component;
 
 import com.amzedia.xstore.dao.interfaces.IStoreDao;
+import com.amzedia.xstore.model.BasicInfo;
+import com.amzedia.xstore.model.Client;
 import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.util.SqlScript;
 
@@ -74,6 +79,39 @@ public class StoreDao extends BaseDao implements IStoreDao {
 		}
 		return false;
 
+	}
+
+	/**
+	 * TODO
+	 */
+	public Store getStore(int id) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("StoreDao -->>  getStore -->> id is " + id);
+		}
+		sql = SqlScript.GET_STORE;
+		final Store store = new Store();
+		final Client client = new Client();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("ID", id);
+		return this.getNamedParameterJdbcTemplate().query(sql,
+				paramMap, new ResultSetExtractor<Store>() {
+
+					public Store extractData(ResultSet rs)
+							throws SQLException {
+						if (rs.next()) {
+							store.setName(rs.getString("NAME"));
+							store.setCurrency(rs
+									.getString("CURRENCY"));
+							store.setTimeZone(rs
+									.getString("TIME_ZONE"));
+							store.setStatus(rs
+									.getBoolean("STATUS"));
+							client.setId(rs.getInt("CLIENT_ID"));
+							store.setClient(client);
+						}
+						return store;
+					}
+				});
 	}
 
 }
