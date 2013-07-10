@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.amzedia.xstore.dao.interfaces.IStoreDao;
+import com.amzedia.xstore.model.Client;
 import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.services.interfaces.IStoreService;
 
@@ -25,6 +26,11 @@ public class StoreService implements IStoreService {
 	 */
 	public boolean addStore(Store store) {
 		return this.storeDao.addStore(store);
+	}
+	
+	public boolean deactivateOrActivateStore(Store store) {
+		// TODO Auto-generated method stub
+		return this.storeDao.deactivateOrActivateStore(store);
 	}
 
 }

@@ -70,8 +70,8 @@ public final class SqlScript {
 	* Add Store
 	* TODO
 	*/
-	public static final String ADD_STORE = "INSERT INTO store (NAME, CLIENT_ID, CURRENCY, TIME_ZONE, UPDATED_BY, CREATED_BY, " +
-			"UPDATED_DATE, CREATED_DATE) VALUES (:storeName, :clientId, :currency, :timeZone, 'admin', 'admin', sysdate()," +
+	public static final String ADD_STORE = "INSERT INTO store (NAME, CLIENT_ID, CURRENCY, TIME_ZONE, STATUS, UPDATED_BY, CREATED_BY, " +
+			"UPDATED_DATE, CREATED_DATE) VALUES (:storeName, :clientId, :currency, :timeZone, :status, 'admin', 'admin', sysdate()," +
 			"sysdate())";
 	
 	/**
@@ -79,6 +79,8 @@ public final class SqlScript {
 	 */
 	public static final String DEACTIVATE_OR_ACTIVATE_CLIENT = "UPDATE CLIENT SET STATUS = :status WHERE ID = :ID";
 	public static final String UPDATE_SOTRE = "update client set user_name= :userName where id = :ID";
+	
+	public static final String DEACTIVATE_OR_ACTIVATE_STORE = "UPDATE STORE SET STATUS = :status WHERE ID = :ID";
 	
 }
 

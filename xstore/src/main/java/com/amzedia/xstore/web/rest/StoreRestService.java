@@ -49,6 +49,10 @@ public class StoreRestService {
 		store.setCurrency("Rs.");
 		store.setClient(client);
 		return store;
+	}
 
+	@RequestMapping(value = "/activateordeactivate", method = RequestMethod.POST)
+	@ResponseBody public boolean deactivateOrActivateStore(@RequestBody Store store){
+		return this.storeService.deactivateOrActivateStore(store);
 	}
 }

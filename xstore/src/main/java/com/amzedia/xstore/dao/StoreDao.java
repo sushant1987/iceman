@@ -16,14 +16,14 @@ import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.util.SqlScript;
 
 /**
- * @author Sushant
- *
+ * @author Tarun
+ * 
  */
 @Component
 public class StoreDao extends BaseDao implements IStoreDao {
-	
+
 	private String sql;
-	
+
 	public boolean addStore(Store store) {
 		try {
 
@@ -33,7 +33,9 @@ public class StoreDao extends BaseDao implements IStoreDao {
 			values.put("clientId", store.getClient().getId());
 			values.put("currency", store.getCurrency());
 			values.put("timeZone", store.getTimeZone());
-			SqlParameterSource params = new MapSqlParameterSource(values);
+			values.put("status", store.isStatus());
+			SqlParameterSource params = new MapSqlParameterSource(
+					values);
 			this.getNamedParameterJdbcTemplate()
 					.update(sql, params);
 			return true;
@@ -43,6 +45,35 @@ public class StoreDao extends BaseDao implements IStoreDao {
 		return false;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.amzedia.xstore.dao.interfaces.IStoreDao#deactivateOrActivateStore
+	 * (com.amzedia.xstore.model.Store)
+	 * 
+	 * This api will activate or deactivate client
+	 * 
+	 * @param client
+	 * 
+	 * @return boolean TODO
+	 */
+	public boolean deactivateOrActivateStore(Store store) {
+		try {
+			sql = SqlScript.DEACTIVATE_OR_ACTIVATE_STORE;
+			Map<String, Object> values = new HashMap<String, Object>();
+			values.put("status", store.isStatus());
+			values.put("ID", store.getId());
+			SqlParameterSource paramSource = new MapSqlParameterSource(
+					values);
+			this.getNamedParameterJdbcTemplate().update(sql,
+					paramSource);
+			return true;
+		} catch (Exception e) {
+			logger.error("error in deactivateOrActivate client");
+		}
+		return false;
 
+	}
 
 }

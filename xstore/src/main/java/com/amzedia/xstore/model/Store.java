@@ -18,6 +18,7 @@ public class Store {
 	private Client client;
 	private String currency;
 	private String timeZone;
+	private boolean status;
 
 	/**
 	 * @return the id
@@ -97,5 +98,19 @@ public class Store {
 	@XmlElement
 	public void setTimeZone(String timeZone) {
 		this.timeZone = timeZone;
+	}
+
+	/**
+	 * @return the status
+	 */
+	public boolean isStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 }
