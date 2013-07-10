@@ -21,6 +21,7 @@ public class Client {
 	private String userName;
 	private String password;
 	private boolean status;
+	private String planType;
 
 	/**
 	 * @return the id
@@ -100,5 +101,19 @@ public class Client {
 	@XmlElement
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	/**
+	 * @return the planType
+	 */
+	public String getPlanType() {
+		return planType;
+	}
+
+	/**
+	 * @param planType the planType to set
+	 */
+	public void setPlanType(String planType) {
+		this.planType = planType;
 	}
 }
