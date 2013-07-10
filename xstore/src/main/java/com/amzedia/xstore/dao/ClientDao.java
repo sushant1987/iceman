@@ -62,6 +62,7 @@ public class ClientDao extends BaseDao implements IClientDao {
 									.getString("USER_NAME"));
 							client.setStatus(rs
 									.getBoolean("STATUS"));
+							client.setPlanType(rs.getString("PLAN_TYPE"));
 							basicInfo.setId(rs
 									.getInt("BID"));
 							basicInfo.setAddress(rs
@@ -110,6 +111,7 @@ public class ClientDao extends BaseDao implements IClientDao {
 			values.put("userName", client.getUserName());
 			values.put("password", client.getPassword());
 			values.put("status", client.isStatus());
+			values.put("planType", client.getPlanType());
 			SqlParameterSource params = new MapSqlParameterSource(
 					values);
 			this.getNamedParameterJdbcTemplate()
@@ -186,6 +188,7 @@ public class ClientDao extends BaseDao implements IClientDao {
 										.getString("USER_NAME"));
 								returnClient.setStatus(rs
 										.getBoolean("STATUS"));
+								returnClient.setPlanType(rs.getString("PLAN_TYPE"));
 								basicInfo.setId(rs
 										.getInt("BID"));
 								basicInfo.setAddress(rs

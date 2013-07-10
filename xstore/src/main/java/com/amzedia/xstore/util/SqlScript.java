@@ -35,8 +35,8 @@ public final class SqlScript {
 	 * Save Client
 	 */
 	public static final String SAVE_CLIENT = "INSERT INTO CLIENT (BASIC_DETAIL_ID," +
-			"USER_NAME,PASSWORD,STATUS,UPDATED_BY,CREATED_BY,UPDATED_DATE,CREATED_DATE)" +
-			"VALUES(:basicDetailId,:userName,:password,:status,'admin','admin',sysdate(),sysdate())";
+			"USER_NAME,PASSWORD,PLAN_TYPE,STATUS,UPDATED_BY,CREATED_BY,UPDATED_DATE,CREATED_DATE)" +
+			"VALUES(:basicDetailId,:userName,:password,:planType,:status,'admin','admin',sysdate(),sysdate())";
 	/**
 	 * Update Client
 	 */
@@ -53,7 +53,7 @@ public final class SqlScript {
 	/**
 	 * Get Client 
 	 */
-	public static final String GET_CLIENT = "SELECT C.ID, C.USER_NAME, C.STATUS, BD.ID BID, BD.FIRST_NAME, BD.MIDDLE_NAME, " +
+	public static final String GET_CLIENT = "SELECT C.ID, C.USER_NAME, C.STATUS, C.PLAN_TYPE, BD.ID BID, BD.FIRST_NAME, BD.MIDDLE_NAME, " +
 			"BD.LAST_NAME, BD.PHONE_NUMBER, " +
 			"BD.EMAIL, BD.ADDRESS, BD.CITY, BD.STATE, BD.COUNTRY, BD.PIN_CODE, BD.FAX " +
 			"FROM CLIENT C, BASIC_DETAIL BD WHERE C.BASIC_DETAIL_ID = BD.ID AND C.ID=:ID";
@@ -61,7 +61,7 @@ public final class SqlScript {
 	/**
 	 * TODO
 	 */
-	public static final String LOGIN_CLIENT = "SELECT C.ID, C.USER_NAME, C.STATUS, BD.ID BID, BD.FIRST_NAME, BD.MIDDLE_NAME, " +
+	public static final String LOGIN_CLIENT = "SELECT C.ID, C.USER_NAME, C.STATUS, C.PLAN_TYPE, BD.ID BID, BD.FIRST_NAME, BD.MIDDLE_NAME, " +
 			"BD.LAST_NAME, BD.PHONE_NUMBER, BD.EMAIL, BD.ADDRESS, BD.CITY, BD.STATE, BD.COUNTRY, BD.PIN_CODE," +
 			" BD.FAX FROM CLIENT C, BASIC_DETAIL BD WHERE C.USER_NAME = :userName AND C.PASSWORD = :password " +
 			"AND BD.ID = C.BASIC_DETAIL_ID";

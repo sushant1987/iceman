@@ -111,6 +111,7 @@ public class ClientRestService {
 		client.setStatus(true);
 		client.setPassword("123456");
 		client.setUserName("jonny");
+		client.setPlanType("A");
 		client.setBasicInfo(info);
 		return client;
 	}
