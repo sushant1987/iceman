@@ -60,11 +60,13 @@ public class GroupRestService {
 
 	/**
 	 * This api will update group info
+	 * 
 	 * @param Group
 	 * @return boolean
 	 */
-	@RequestMapping(value = "/updategroup", method = RequestMethod.POST )
-	@ResponseBody public boolean updaterGroup(@RequestBody Group group) {
+	@RequestMapping(value = "/updategroup", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean updaterGroup(@RequestBody Group group) {
 		return this.groupService.updateGroup(group);
 	}
 }
