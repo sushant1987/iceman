@@ -32,4 +32,12 @@ public interface IStoreDao {
 	 * @return boolean TODO
 	 */
 	boolean deactivateOrActivateStore(Store store);
+
+	/**
+	 * This api will update store info
+	 * 
+	 * @param store
+	 * @return boolean
+	 */
+	boolean updateStore(Store store);
 }

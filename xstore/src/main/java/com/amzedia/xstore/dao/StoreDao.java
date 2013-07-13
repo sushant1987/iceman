@@ -15,8 +15,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Component;
 
 import com.amzedia.xstore.dao.interfaces.IStoreDao;
-import com.amzedia.xstore.model.BasicInfo;
-import com.amzedia.xstore.model.Client;
+import com.amzedia.xstore.model.Group;
 import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.util.SqlScript;
 
@@ -35,7 +34,7 @@ public class StoreDao extends BaseDao implements IStoreDao {
 			sql = SqlScript.ADD_STORE;
 			Map<String, Object> values = new HashMap<String, Object>();
 			values.put("storeName", store.getName());
-			values.put("clientId", store.getClient().getId());
+			values.put("groupId", store.getGroup().getId());
 			values.put("currency", store.getCurrency());
 			values.put("timeZone", store.getTimeZone());
 			values.put("status", store.isStatus());
@@ -51,11 +50,6 @@ public class StoreDao extends BaseDao implements IStoreDao {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.amzedia.xstore.dao.interfaces.IStoreDao#deactivateOrActivateStore
-	 * (com.amzedia.xstore.model.Store)
 	 * 
 	 * This api will activate or deactivate client
 	 * 
@@ -90,7 +84,7 @@ public class StoreDao extends BaseDao implements IStoreDao {
 		}
 		sql = SqlScript.GET_STORE;
 		final Store store = new Store();
-		final Client client = new Client();
+		final Group group = new Group();
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("ID", id);
 		return this.getNamedParameterJdbcTemplate().query(sql,
@@ -106,12 +100,35 @@ public class StoreDao extends BaseDao implements IStoreDao {
 									.getString("TIME_ZONE"));
 							store.setStatus(rs
 									.getBoolean("STATUS"));
-							client.setId(rs.getInt("CLIENT_ID"));
-							store.setClient(client);
+							group.setId(rs.getInt("BRAND_ID"));
+							store.setGroup(group);
 						}
 						return store;
 					}
 				});
+	}
+
+	/*
+	 * this API will update the Store info
+	 */
+	public boolean updateStore(Store store) {
+		try {
+			sql = SqlScript.UPDATE_STORE;
+			Map<String, Object> values = new HashMap<String, Object>();
+			values.put("name", store.getName());
+			values.put("currency", store.getCurrency());
+			values.put("status", store.isStatus());
+			values.put("timeZone", store.getTimeZone());
+			values.put("ID", store.getId());
+			SqlParameterSource params = new MapSqlParameterSource(
+					values);
+			this.getNamedParameterJdbcTemplate()
+					.update(sql, params);
+			return true;
+		} catch (DataAccessException e) {
+			logger.error("Error in update store");
+		}
+		return false;
 	}
 
 }

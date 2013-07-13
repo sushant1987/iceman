@@ -69,39 +69,51 @@ public final class SqlScript {
 	/**
 	 * Add Store TODO
 	 */
-	public static final String ADD_STORE = "INSERT INTO store (NAME, CLIENT_ID, CURRENCY, TIME_ZONE, STATUS, UPDATED_BY, CREATED_BY, "
-			+ "UPDATED_DATE, CREATED_DATE) VALUES (:storeName, :clientId, :currency, :timeZone, :status, 'admin', 'admin', sysdate(),"
+	public static final String ADD_STORE = "INSERT INTO store (NAME, BRAND_ID, CURRENCY, TIME_ZONE, STATUS, UPDATED_BY, CREATED_BY, "
+			+ "UPDATED_DATE, CREATED_DATE) VALUES (:storeName, :groupId, :currency, :timeZone, :status, 'admin', 'admin', sysdate(),"
 			+ "sysdate())";
 
 	/**
-	 * TODO
+	 * Activate or Deactivate Client
 	 */
-	public static final String DEACTIVATE_OR_ACTIVATE_CLIENT = "UPDATE CLIENT SET STATUS = :status WHERE ID = :ID";
-	public static final String UPDATE_SOTRE = "update client set user_name= :userName where id = :ID";
 
+	public static final String DEACTIVATE_OR_ACTIVATE_CLIENT = "UPDATE CLIENT SET STATUS = :status WHERE ID = :ID";
+
+	/**
+	 * Update Store
+	 */
+	public static final String UPDATE_STORE = "UPDATE STORE SET NAME = :name, CURRENCY = :currency, TIME_ZONE = :timeZone, STATUS = :status, "
+			+ "UPDATED_DATE = sysdate() WHERE ID = :ID";
+
+	/**
+	 * Activate or Deactivate Store
+	 */
 	public static final String DEACTIVATE_OR_ACTIVATE_STORE = "UPDATE STORE SET STATUS = :status WHERE ID = :ID";
 
-	public static final String GET_STORE = "SELECT NAME, CLIENT_ID, CURRENCY, TIME_ZONE, STATUS "
+	/**
+	 * Get Store
+	 */
+	public static final String GET_STORE = "SELECT NAME, BRAND_ID, CURRENCY, TIME_ZONE, STATUS "
 			+ "FROM STORE WHERE ID = :ID";
-	
+
 	/**
 	 * Get User
-	 */	
-	public static final String GET_USER  = "SELECT U.ID, U.STORE_ID, U.USER_NAME, U.USER_TYPE, U.NEWSLETTER, U.STATUS, BD.ID, BD.FIRST_NAME, BD.MIDDLE_NAME, BD.LAST_NAME, BD.PHONE_NUMBER, "
+	 */
+	public static final String GET_USER = "SELECT U.ID, U.STORE_ID, U.USER_NAME, U.USER_TYPE, U.NEWSLETTER, U.STATUS, BD.ID, BD.FIRST_NAME, BD.MIDDLE_NAME, BD.LAST_NAME, BD.PHONE_NUMBER, "
 			+ "BD.EMAIL, BD.ADDRESS, BD.CITY, BD.STATE, BD.COUNTRY, BD.PIN_CODE, BD.FAX FROM STORE_USER U, BASIC_DETAIL BD WHERE "
 			+ "U.BASIC_DETAIL_ID = BD.ID AND U.ID=:ID";
-	
+
 	/**
 	 * Get Group
 	 */
 	public static final String GET_GROUP = "SELECT ID, NAME, CLIENT_ID, STATUS FROM BRAND WHERE ID = :ID";
-	
+
 	/**
 	 * Add Group
 	 */
 	public static final String SAVE_GROUP = "INSERT INTO BRAND (NAME, CLIENT_ID, STATUS, UPDATED_BY,CREATED_BY,UPDATED_DATE,CREATED_DATE) "
 			+ "VALUES (:groupName, :clientId, :status,'admin','admin',sysdate(),sysdate())";
-	
+
 	/**
 	 * Activate or Deactivate the Group
 	 */
@@ -111,5 +123,4 @@ public final class SqlScript {
 	 * update the group info
 	 */
 	public static final String UPDATE_GROUP = "UPDATE BRAND SET NAME = :name, STATUS = :status, UPDATED_DATE = sysdate() WHERE ID = :ID";
-}	
-
+}
