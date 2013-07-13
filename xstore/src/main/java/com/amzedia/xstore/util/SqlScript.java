@@ -90,4 +90,15 @@ public final class SqlScript {
 	public static final String GET_USER  = "SELECT U.ID, U.STORE_ID, U.USER_NAME, U.USER_TYPE, U.NEWSLETTER, U.STATUS, BD.ID, BD.FIRST_NAME, BD.MIDDLE_NAME, BD.LAST_NAME, BD.PHONE_NUMBER, "
 			+ "BD.EMAIL, BD.ADDRESS, BD.CITY, BD.STATE, BD.COUNTRY, BD.PIN_CODE, BD.FAX FROM STORE_USER U, BASIC_DETAIL BD WHERE "
 			+ "U.BASIC_DETAIL_ID = BD.ID AND U.ID=:ID";
+	
+	/**
+	 * Get Group
+	 */
+	public static final String GET_GROUP = "SELECT ID, NAME, CLIENT_ID, STATUS FROM BRAND WHERE ID = :ID";
+	
+	/**
+	 * Add Group
+	 */
+	public static final String SAVE_GROUP = "INSERT INTO BRAND (NAME, CLIENT_ID, STATUS, UPDATED_BY,CREATED_BY,UPDATED_DATE,CREATED_DATE) "
+			+ "VALUES (:groupName, :clientId, :status,'admin','admin',sysdate(),sysdate())";
 }
