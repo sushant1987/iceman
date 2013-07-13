@@ -101,4 +101,15 @@ public final class SqlScript {
 	 */
 	public static final String SAVE_GROUP = "INSERT INTO BRAND (NAME, CLIENT_ID, STATUS, UPDATED_BY,CREATED_BY,UPDATED_DATE,CREATED_DATE) "
 			+ "VALUES (:groupName, :clientId, :status,'admin','admin',sysdate(),sysdate())";
-}
+	
+	/**
+	 * Activate or Deactivate the Group
+	 */
+	public static final String DEACTIVATE_OR_ACTIVATE_GROUP = "UPDATE BRAND SET STATUS = :status WHERE ID = :ID";
+
+	/**
+	 * update the group info
+	 */
+	public static final String UPDATE_GROUP = "UPDATE BRAND SET NAME = :name, STATUS = :status, UPDATED_DATE = sysdate() WHERE ID = :ID";
+}	
+

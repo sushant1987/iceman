@@ -22,11 +22,11 @@ import com.amzedia.xstore.util.SqlScript;
 
 /**
  * @author Tarun Keswani
- *
+ * 
  */
 @Component
-public class GroupDao extends BaseDao implements IGroupDao{
-	
+public class GroupDao extends BaseDao implements IGroupDao {
+
 	private static final Logger logger = Logger.getLogger(GroupDao.class);
 	private String sql;
 
@@ -38,8 +38,7 @@ public class GroupDao extends BaseDao implements IGroupDao{
 	 */
 	public Group getGroup(int id) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("GroupDao -->>  getGroup -->> id is "
-					+ id);
+			logger.debug("GroupDao -->>  getGroup -->> id is " + id);
 		}
 		sql = SqlScript.GET_GROUP;
 		final Group group = new Group();
@@ -54,7 +53,8 @@ public class GroupDao extends BaseDao implements IGroupDao{
 						if (rs.next()) {
 							group.setId(rs.getInt("ID"));
 							group.setName(rs.getString("NAME"));
-							group.setStatus(rs.getBoolean("STATUS"));
+							group.setStatus(rs
+									.getBoolean("STATUS"));
 							client.setId(rs.getInt("CLIENT_ID"));
 							group.setClient(client);
 						}
@@ -62,13 +62,14 @@ public class GroupDao extends BaseDao implements IGroupDao{
 						return group;
 					}
 				});
-		
+
 	}
 
-	/* 
+	/*
 	 * This API will add the Group under the client
 	 * 
 	 * @param group
+	 * 
 	 * @return boolean
 	 */
 	public boolean addGroup(Group group) {
@@ -88,9 +89,52 @@ public class GroupDao extends BaseDao implements IGroupDao{
 			logger.error("error in register group");
 		}
 		return false;
-		
+
 	}
-	
-	
+
+	/**
+	 * This api will activate or deactivate group
+	 * 
+	 * @param group
+	 * @return boolean
+	 */
+	public boolean deactivateOrActivateGroup(Group group) {
+		try {
+			sql = SqlScript.DEACTIVATE_OR_ACTIVATE_GROUP;
+
+			Map<String, Object> values = new HashMap<String, Object>();
+			values.put("status", group.isStatus());
+			values.put("ID", group.getId());
+			SqlParameterSource paramSource = new MapSqlParameterSource(
+					values);
+			this.getNamedParameterJdbcTemplate().update(sql,
+					paramSource);
+			return true;
+		} catch (Exception e) {
+			logger.error("error in deactivateOrActivate group");
+		}
+		return false;
+	}
+
+	/*
+	 * this api will update the Group Info
+	 */
+	public boolean updateGroup(Group group) {
+		try {
+			sql = SqlScript.UPDATE_GROUP;
+			Map<String, Object> values = new HashMap<String, Object>();
+			values.put("name", group.getName());
+			values.put("status", group.isStatus());
+			values.put("ID",group.getId());
+			SqlParameterSource params = new MapSqlParameterSource(
+					values);
+			this.getNamedParameterJdbcTemplate()
+					.update(sql, params);
+			return true;
+		} catch (DataAccessException e) {
+			logger.error("Error in update group");
+		}
+		return false;
+	}
 
 }
