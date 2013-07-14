@@ -69,7 +69,7 @@ public class MailRestService {
 		Mail mail = new Mail();
 		mail.setHost("smtp.gmail.com");
 		mail.setPort("587");
-		mail.setSender("tarunkeswani87@gmail.com");
+		mail.setSender("sushant1887@gmail.com");
 		mail.setReciver("sushant1887@gmail.com");
 		mail.setSubject("Hi Chutiya");
 		mail.setMessage("tum chutiye ho");
