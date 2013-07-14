@@ -12,10 +12,10 @@ import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Component;
 
-import com.amzedia.xstore.dao.interfaces.IUserDao;
+import com.amzedia.xstore.dao.interfaces.ICustomerDao;
 import com.amzedia.xstore.model.BasicInfo;
 import com.amzedia.xstore.model.Store;
-import com.amzedia.xstore.model.User;
+import com.amzedia.xstore.model.Customer;
 import com.amzedia.xstore.util.SqlScript;
 
 /**
@@ -24,44 +24,44 @@ import com.amzedia.xstore.util.SqlScript;
  */
 
 @Component
-public class UserDao extends BaseDao implements IUserDao {
+public class CustomerDao extends BaseDao implements ICustomerDao {
 
-	private static final Logger logger = Logger.getLogger(UserDao.class);
+	private static final Logger logger = Logger.getLogger(CustomerDao.class);
 	private String sql;
 
 	/**
-	 * This api will bring User with user id
+	 * This api will bring Customer with customer id
 	 * 
 	 * @param id
-	 * @return User
+	 * @return Customer
 	 */
-	public User getUser(int id) {
+	public Customer getCustomer(int id) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("UserDao -->>  getUser -->> id is " + id);
+			logger.debug("CustomerDao -->>  getCustomer -->> id is " + id);
 		}
-		sql = SqlScript.GET_USER;
-		final User user = new User();
+		sql = SqlScript.GET_Customer;
+		final Customer customer = new Customer();
 		final BasicInfo basicInfo = new BasicInfo();
 		final Store store = new Store();
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("ID", id);
 		return this.getNamedParameterJdbcTemplate().query(sql,
-				paramMap, new ResultSetExtractor<User>() {
+				paramMap, new ResultSetExtractor<Customer>() {
 
-					public User extractData(ResultSet rs)
+					public Customer extractData(ResultSet rs)
 							throws SQLException {
 						if (rs.next()) {
-							user.setId(rs.getInt("ID"));
-							user.setUserName(rs
+							customer.setId(rs.getInt("ID"));
+							customer.setCustomerName(rs
 									.getString("USER_NAME"));
-							user.setUserType(rs
+							customer.setCustomerType(rs
 									.getString("USER_TYPE"));
-							user.setNewsLetter(rs
+							customer.setNewsLetter(rs
 									.getBoolean("NEWSLETTER"));
-							user.setStatus(rs
+							customer.setStatus(rs
 									.getBoolean("STATUS"));
 							store.setId(rs.getInt("STORE_ID"));
-							user.setStore(store);
+							customer.setStore(store);
 							basicInfo.setId(rs
 									.getInt("BID"));
 							basicInfo.setAddress(rs
@@ -86,9 +86,9 @@ public class UserDao extends BaseDao implements IUserDao {
 									.getString("PIN_CODE"));
 							basicInfo.setState(rs
 									.getString("STATE"));
-							user.setBasicInfo(basicInfo);
+							customer.setBasicInfo(basicInfo);
 						}
-						return user;
+						return customer;
 					}
 				});
 

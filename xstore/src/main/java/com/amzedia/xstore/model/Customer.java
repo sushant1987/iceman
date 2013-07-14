@@ -12,15 +12,15 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Sushant
  * 
  */
-//@XmlRootElement (name = "user")
-public class User {
+//@XmlRootElement (name = "customer")
+public class Customer {
 
 	private int id;
 	private BasicInfo basicInfo;
 	private Store store;
-	private String userName;
+	private String customerName;
 	private String password;
-	private String userType;
+	private String customerType;
 	private boolean newsLetter;
 	private boolean status;
 
@@ -73,19 +73,19 @@ public class User {
 	}
 
 	/**
-	 * @return the userName
+	 * @return the customerName
 	 */
-	public String getUserName() {
-		return userName;
+	public String getCustomerName() {
+		return customerName;
 	}
 
 	/**
-	 * @param userName
-	 *                the userName to set
+	 * @param customerName
+	 *                the customerName to set
 	 */
 	@XmlElement
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
 	/**
@@ -105,19 +105,19 @@ public class User {
 	}
 
 	/**
-	 * @return the userType
+	 * @return the customerType
 	 */
-	public String getUserType() {
-		return userType;
+	public String getCustomerType() {
+		return customerType;
 	}
 
 	/**
-	 * @param userType
-	 *                the userType to set
+	 * @param customerType
+	 *                the customerType to set
 	 */
 	@XmlElement
-	public void setUserType(String userType) {
-		this.userType = userType;
+	public void setCustomerType(String customerType) {
+		this.customerType = customerType;
 	}
 
 	/**

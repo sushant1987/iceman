@@ -3,15 +3,15 @@
  */
 package com.amzedia.xstore.services.interfaces;
 
-import com.amzedia.xstore.model.User;
+import com.amzedia.xstore.model.Customer;
 
 
 /**
  * @author Tarun Keswani
  *
  */
-public interface IUserService {
+public interface ICustomerService {
 	
-	User getUser(int id);
+	Customer getCustomer(int id);
 
 }

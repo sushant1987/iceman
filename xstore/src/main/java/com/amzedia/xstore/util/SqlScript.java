@@ -97,13 +97,6 @@ public final class SqlScript {
 			+ "FROM STORE WHERE ID = :ID";
 
 	/**
-	 * Get User
-	 */
-	public static final String GET_USER = "SELECT U.ID, U.STORE_ID, U.USER_NAME, U.USER_TYPE, U.NEWSLETTER, U.STATUS, BD.ID, BD.FIRST_NAME, BD.MIDDLE_NAME, BD.LAST_NAME, BD.PHONE_NUMBER, "
-			+ "BD.EMAIL, BD.ADDRESS, BD.CITY, BD.STATE, BD.COUNTRY, BD.PIN_CODE, BD.FAX FROM STORE_USER U, BASIC_DETAIL BD WHERE "
-			+ "U.BASIC_DETAIL_ID = BD.ID AND U.ID=:ID";
-
-	/**
 	 * Get Group
 	 */
 	public static final String GET_GROUP = "SELECT ID, NAME, CLIENT_ID, STATUS FROM BRAND WHERE ID = :ID";
@@ -123,4 +116,12 @@ public final class SqlScript {
 	 * update the group info
 	 */
 	public static final String UPDATE_GROUP = "UPDATE BRAND SET NAME = :name, STATUS = :status, UPDATED_DATE = sysdate() WHERE ID = :ID";
+	
+	/**
+	 * Get Customer
+	 */
+	public static final String GET_Customer = "SELECT U.ID, U.STORE_ID, U.USER_NAME, U.USER_TYPE, U.NEWSLETTER, U.STATUS, BD.ID, BD.FIRST_NAME, BD.MIDDLE_NAME, BD.LAST_NAME, BD.PHONE_NUMBER, "
+			+ "BD.EMAIL, BD.ADDRESS, BD.CITY, BD.STATE, BD.COUNTRY, BD.PIN_CODE, BD.FAX FROM STORE_USER U, BASIC_DETAIL BD WHERE "
+			+ "U.BASIC_DETAIL_ID = BD.ID AND U.ID=:ID";
+	
 }
