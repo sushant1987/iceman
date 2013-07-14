@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.BasicInfo;
 import com.amzedia.xstore.model.Client;
 import com.amzedia.xstore.model.Customer;
+import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.services.interfaces.IClientService;
 
 /**
@@ -29,26 +31,6 @@ public class ClientRestService {
 	@Autowired
 	private IClientService clientService;
 	
-	/**
-	 * This api will save client
-	 * @param Client
-	 * @return boolean
-	 */
-	@RequestMapping(value = "/registerclient", method = RequestMethod.POST )
-	@ResponseBody public boolean registerClient(@RequestBody Client client) {
-		return this.clientService.registerClient(client);
-	}
-	
-	/**
-	 * This api will update client info
-	 * @param Client TODO
-	 * @return boolean
-	 */
-	@RequestMapping(value = "/updateclient", method = RequestMethod.POST )
-	@ResponseBody public boolean updaterClient(@RequestBody Client client) {
-		return this.clientService.updateClient(client);
-	}
-	
 	//TODO update client
 	
 	/**
@@ -61,10 +43,52 @@ public class ClientRestService {
 	 */
 	
 	@RequestMapping(value="/findclient/{id}")
-	@ResponseBody public Client getClientById(@PathVariable String id) {
+	@ResponseBody public ResponseWrapper getClientById(@PathVariable String id) {
 		int clientId = Integer.parseInt(id);
-		return this.clientService.getClient(clientId);
+		try {
+			return this.clientService.getClient(clientId);
+		} catch (XstoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
+
+	/**
+	 * This api will save client
+	 * @param Client
+	 * @return boolean
+	 */
+	@RequestMapping(value = "/registerclient", method = RequestMethod.POST )
+	@ResponseBody public boolean registerClient(@RequestBody Client client) {
+		try {
+			return this.clientService.registerClient(client);
+		} catch (XstoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	/**
+	 * This api will update client info
+	 * @param Client TODO
+	 * @return boolean
+	 */
+	@RequestMapping(value = "/updateclient", method = RequestMethod.POST )
+	@ResponseBody public boolean updaterClient(@RequestBody Client client) {
+		try {
+			return this.clientService.updateClient(client);
+		} catch (XstoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	//TODO update client
+	
+	
 	
 	//TODO delete client
 	
@@ -89,8 +113,14 @@ public class ClientRestService {
 	}
 	
 	@RequestMapping(value = "/dummy", method = RequestMethod.GET )
-	@ResponseBody public boolean dummy() {
-		return this.clientService.dummy();
+	@ResponseBody public ResponseWrapper dummy() {
+		try {
+			return this.clientService.dummy();
+		} catch (XstoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	@RequestMapping(value = "/getdummyclient", method = RequestMethod.GET )
@@ -118,12 +148,24 @@ public class ClientRestService {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody public Client loginClient(@RequestBody Client client) {
-		return this.clientService.loginClient(client);
+		try {
+			return this.clientService.loginClient(client);
+		} catch (XstoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	@RequestMapping(value = "/activateordeactivate", method = RequestMethod.POST)
 	@ResponseBody public boolean deactivateOrActivateClient(@RequestBody Client client){
-		return this.clientService.deactivateOrActivateClient(client);
+		try {
+			return this.clientService.deactivateOrActivateClient(client);
+		} catch (XstoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }

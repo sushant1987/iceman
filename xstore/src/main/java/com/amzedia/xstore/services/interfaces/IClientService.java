@@ -3,25 +3,27 @@
  */
 package com.amzedia.xstore.services.interfaces;
 
+import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.Client;
+import com.amzedia.xstore.model.ResponseWrapper;
 
 /**
  * @author Sushant
- *
+ * 
  */
 public interface IClientService {
 
-	boolean registerClient(Client client);
-	
-	boolean updateClient(Client client);
-	
-	boolean dummy();
-	
-	Client getClient(int id);
-	
-	Client loginClient(Client client);
-	
-	boolean deactivateOrActivateClient(Client client);
-	
-	
+	ResponseWrapper getClient(int id) throws XstoreException;
+
+	boolean registerClient(Client client) throws XstoreException;
+
+	boolean updateClient(Client client) throws XstoreException;
+
+	ResponseWrapper dummy() throws XstoreException;
+
+	Client loginClient(Client client) throws XstoreException;
+
+	boolean deactivateOrActivateClient(Client client)
+			throws XstoreException;
+
 }

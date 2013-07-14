@@ -16,11 +16,16 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.dao.interfaces.IClientDao;
 import com.amzedia.xstore.model.BasicInfo;
 import com.amzedia.xstore.model.ChangePassword;
 import com.amzedia.xstore.model.Client;
+import com.amzedia.xstore.model.ResponseWrapper;
+import com.amzedia.xstore.util.ResponseCode;
+import com.amzedia.xstore.util.ResponseMessage;
 import com.amzedia.xstore.util.SqlScript;
 
 /**
@@ -41,58 +46,71 @@ public class ClientDao extends BaseDao implements IClientDao {
 	 * @param id
 	 * @return Client
 	 */
-	public Client getClient(int id) {
+	public ResponseWrapper getClient(int id) throws XstoreException {
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		Client returnClient = new Client();
 		if (logger.isDebugEnabled()) {
 			logger.debug("ClientDao -->>  getClient -->> id is "
 					+ id);
 		}
-		sql = SqlScript.GET_CLIENT;
-		final Client client = new Client();
-		final BasicInfo basicInfo = new BasicInfo();
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("ID", id);
-		return this.getNamedParameterJdbcTemplate().query(sql,
-				paramMap, new ResultSetExtractor<Client>() {
+		try {
+			sql = SqlScript.GET_CLIENT;
+			final Client client = new Client();
+			final BasicInfo basicInfo = new BasicInfo();
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ID", id);
+			returnClient = this.getNamedParameterJdbcTemplate().query(sql,
+					paramMap, new ResultSetExtractor<Client>() {
 
-					public Client extractData(ResultSet rs)
-							throws SQLException {
-						if (rs.next()) {
-							client.setId(rs.getInt("ID"));
-							client.setUserName(rs
-									.getString("USER_NAME"));
-							client.setStatus(rs
-									.getBoolean("STATUS"));
-							client.setPlanType(rs.getString("PLAN_TYPE"));
-							basicInfo.setId(rs
-									.getInt("BID"));
-							basicInfo.setAddress(rs
-									.getString("ADDRESS"));
-							basicInfo.setCity(rs
-									.getString("CITY"));
-							basicInfo.setCountry(rs
-									.getString("COUNTRY"));
-							basicInfo.setEmail(rs
-									.getString("EMAIL"));
-							basicInfo.setFax(rs
-									.getString("FAX"));
-							basicInfo.setFirstName(rs
-									.getString("FIRST_NAME"));
-							basicInfo.setLastName(rs
-									.getString("LAST_NAME"));
-							basicInfo.setMiddleName(rs
-									.getString("MIDDLE_NAME"));
-							basicInfo.setPhoneNumber(rs
-									.getString("PHONE_NUMBER"));
-							basicInfo.setPin(rs
-									.getString("PIN_CODE"));
-							basicInfo.setState(rs
-									.getString("STATE"));
-							client.setBasicInfo(basicInfo);
+						public Client extractData(ResultSet rs)
+								throws SQLException {
+							if (rs.next()) {
+								client.setId(rs.getInt("ID"));
+								client.setUserName(rs
+										.getString("USER_NAME"));
+								client.setStatus(rs
+										.getBoolean("STATUS"));
+								client.setPlanType(rs.getString("PLAN_TYPE"));
+								basicInfo.setId(rs
+										.getInt("BID"));
+								basicInfo.setAddress(rs
+										.getString("ADDRESS"));
+								basicInfo.setCity(rs
+										.getString("CITY"));
+								basicInfo.setCountry(rs
+										.getString("COUNTRY"));
+								basicInfo.setEmail(rs
+										.getString("EMAIL"));
+								basicInfo.setFax(rs
+										.getString("FAX"));
+								basicInfo.setFirstName(rs
+										.getString("FIRST_NAME"));
+								basicInfo.setLastName(rs
+										.getString("LAST_NAME"));
+								basicInfo.setMiddleName(rs
+										.getString("MIDDLE_NAME"));
+								basicInfo.setPhoneNumber(rs
+										.getString("PHONE_NUMBER"));
+								basicInfo.setPin(rs
+										.getString("PIN_CODE"));
+								basicInfo.setState(rs
+										.getString("STATE"));
+								client.setBasicInfo(basicInfo);
+							}
+
+							return client;
 						}
-
-						return client;
-					}
-				});
+					});
+			responseWrapper.setStatus(ResponseCode.OK);
+			responseWrapper.setMessage("success");
+			responseWrapper.setResult(returnClient);
+		} catch (DataAccessException e) {
+			logger.error("Error in client dao");
+		} catch (Exception e) {
+			logger.error("Error in client dao");
+			throw new XstoreException(e);
+		}
+		return responseWrapper;
 	}
 
 	/**
@@ -101,7 +119,7 @@ public class ClientDao extends BaseDao implements IClientDao {
 	 * @param client
 	 * @return boolean
 	 */
-	public boolean registerClient(Client client) {
+	public boolean registerClient(Client client) throws XstoreException {
 		try {
 
 			int basicInfoId = addBasic(client.getBasicInfo());
@@ -129,7 +147,7 @@ public class ClientDao extends BaseDao implements IClientDao {
 	 * @param client
 	 * @return boolean
 	 */
-	public boolean updateClient(Client client) {
+	public boolean updateClient(Client client) throws XstoreException {
 		try {
 			sql = SqlScript.UPDATE_CLIENT;
 			Map<String, Object> values = new HashMap<String, Object>();
@@ -159,7 +177,7 @@ public class ClientDao extends BaseDao implements IClientDao {
 	 * @param client
 	 * @return Client
 	 */
-	public Client loginClient(Client client) {
+	public Client loginClient(Client client) throws XstoreException{
 		try {
 			if (logger.isDebugEnabled()) {
 				logger.debug("ClientDao -->> loginClient -->> parameters are"
@@ -232,7 +250,7 @@ public class ClientDao extends BaseDao implements IClientDao {
 	 * @param changePassword
 	 * @return boolean
 	 */
-	public boolean changePassword(ChangePassword changePassword) {
+	public boolean changePassword(ChangePassword changePassword) throws XstoreException{
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -243,7 +261,7 @@ public class ClientDao extends BaseDao implements IClientDao {
 	 * @param client
 	 * @return boolean
 	 */
-	public boolean forgetPassword(Client client) {
+	public boolean forgetPassword(Client client) throws XstoreException {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -254,7 +272,7 @@ public class ClientDao extends BaseDao implements IClientDao {
 	 * @param client
 	 * @return boolean
 	 */
-	public boolean deactivateOrActivateClient(Client client) {
+	public boolean deactivateOrActivateClient(Client client) throws XstoreException {
 		try {
 			sql = SqlScript.DEACTIVATE_OR_ACTIVATE_CLIENT;
 			
@@ -271,7 +289,7 @@ public class ClientDao extends BaseDao implements IClientDao {
 		return false;
 	}
 
-	private int addBasic(BasicInfo basicInfo) {
+	private int addBasic(BasicInfo basicInfo) throws XstoreException {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		try {
 			sql = SqlScript.SAVE_BASIC_DETAILS;
@@ -299,12 +317,12 @@ public class ClientDao extends BaseDao implements IClientDao {
 		return keyHolder.getKey().intValue();
 	}
 
-	private int getBasicDetailId(int id) {
+	private int getBasicDetailId(int id) throws XstoreException {
 		return id;
 
 	}
 
-	private boolean updateBasic(BasicInfo basicInfo) {
+	private boolean updateBasic(BasicInfo basicInfo) throws XstoreException {
 		try {
 			sql = SqlScript.UPDATE_BASIC_DETAILS;
 			Map<String, Object> values = new HashMap<String, Object>();
@@ -338,17 +356,27 @@ public class ClientDao extends BaseDao implements IClientDao {
 
 	}
 
-	public boolean dummy() {
+	public ResponseWrapper dummy() throws XstoreException {
+		ResponseWrapper responseWrapper = new ResponseWrapper();
 		try {
 			sql = SqlScript.DUMMY;
 			this.getJdbcTemplate().execute(sql);
-			return true;
+			responseWrapper.setStatus(ResponseCode.OK);
+			responseWrapper.setMessage(ResponseMessage.SUCCESS);
+			responseWrapper.setResult(true);
 
-		} catch (Exception e) {
+		} catch (DataAccessException e) {
 			logger.error("exception " + e.getMessage());
-			return false;
+			responseWrapper.setStatus("fail");
+			responseWrapper.setMessage(e.getMessage());
+			responseWrapper.setResult(false);
 		}
-
+		catch (Exception e) {
+			logger.error("exception " + e.getMessage());
+			throw new XstoreException(e);
+			
+		}
+		return responseWrapper;
 	}
 
 }

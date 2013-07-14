@@ -6,8 +6,10 @@ package com.amzedia.xstore.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.dao.interfaces.IClientDao;
 import com.amzedia.xstore.model.Client;
+import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.services.interfaces.IClientService;
 
 /**
@@ -19,32 +21,34 @@ public class ClientService implements IClientService {
 
 	@Autowired
 	private IClientDao clientDao;
+
+	public ResponseWrapper getClient(int id) throws XstoreException {
+		return this.clientDao.getClient(id);
+	}
+
 	/**
+	 * @throws XstoreException 
 	 * 
 	 */
-	public boolean registerClient(Client client) {
+	public boolean registerClient(Client client) throws XstoreException {
 		return this.clientDao.registerClient(client);
 	}
 	
-	public boolean updateClient(Client client) {
+	public boolean updateClient(Client client) throws XstoreException {
 		return this.clientDao.updateClient(client);
 	}
-	public boolean dummy() {
+	public ResponseWrapper dummy() throws XstoreException {
 		return this.clientDao.dummy();
 	}
 	
-	public Client getClient(int id) {
-		return this.clientDao.getClient(id);
-	}
-	
-	public Client loginClient(Client client) {
+	public Client loginClient(Client client) throws XstoreException {
 		return this.clientDao.loginClient(client);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.amzedia.xstore.services.interfaces.IClientService#deactivateOrActivateClient(com.amzedia.xstore.model.Client)
 	 */
-	public boolean deactivateOrActivateClient(Client client) {
+	public boolean deactivateOrActivateClient(Client client) throws XstoreException {
 		// TODO Auto-generated method stub
 		return this.clientDao.deactivateOrActivateClient(client);
 	}

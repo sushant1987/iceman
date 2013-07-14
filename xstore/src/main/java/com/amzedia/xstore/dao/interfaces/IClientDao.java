@@ -3,9 +3,11 @@
  */
 package com.amzedia.xstore.dao.interfaces;
 
+import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.BasicInfo;
 import com.amzedia.xstore.model.ChangePassword;
 import com.amzedia.xstore.model.Client;
+import com.amzedia.xstore.model.ResponseWrapper;
 
 /**
  * This Class contains all the client operations methods
@@ -21,7 +23,7 @@ public interface IClientDao {
 	 * @param id
 	 * @return Client
 	 */
-	Client getClient(int id);
+	ResponseWrapper getClient(int id) throws XstoreException;
 
 	/**
 	 * This api will add new client
@@ -29,7 +31,7 @@ public interface IClientDao {
 	 * @param client
 	 * @return boolean
 	 */
-	boolean registerClient(Client client);
+	boolean registerClient(Client client) throws XstoreException;
 
 	/**
 	 * This api will update client profile
@@ -37,7 +39,7 @@ public interface IClientDao {
 	 * @param client
 	 * @return boolean
 	 */
-	boolean updateClient(Client client);
+	boolean updateClient(Client client) throws XstoreException;
 
 	/**
 	 * This will return client object on basis of correct user name and
@@ -46,7 +48,7 @@ public interface IClientDao {
 	 * @param client
 	 * @return Client
 	 */
-	Client loginClient(Client client);
+	Client loginClient(Client client)  throws XstoreException;
 
 	/**
 	 * This api will change client password
@@ -54,7 +56,7 @@ public interface IClientDao {
 	 * @param changePassword
 	 * @return boolean
 	 */
-	boolean changePassword(ChangePassword changePassword);
+	boolean changePassword(ChangePassword changePassword) throws XstoreException;
 
 	/**
 	 * This will reset the client password
@@ -62,7 +64,7 @@ public interface IClientDao {
 	 * @param client
 	 * @return boolean
 	 */
-	boolean forgetPassword(Client client);
+	boolean forgetPassword(Client client) throws XstoreException;
 
 	/**
 	 * This api will deactivate client
@@ -70,12 +72,12 @@ public interface IClientDao {
 	 * @param client
 	 * @return boolean
 	 */
-	boolean deactivateOrActivateClient(Client client);
+	boolean deactivateOrActivateClient(Client client) throws XstoreException;
 
 	/**
 	 * This api will add dummy data to db
 	 * 
-	 * @return boolean
+	 * @return ResponseWrapper
 	 */
-	boolean dummy();
+	ResponseWrapper dummy() throws XstoreException;
 }
