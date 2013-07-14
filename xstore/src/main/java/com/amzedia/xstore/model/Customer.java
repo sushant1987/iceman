@@ -18,6 +18,7 @@ public class Customer {
 	private int id;
 	private BasicInfo basicInfo;
 	private Store store;
+	private Group group;
 	private String customerName;
 	private String password;
 	private String customerType;
@@ -148,5 +149,19 @@ public class Customer {
 	 */
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	/**
+	 * @return the group
+	 */
+	public Group getGroup() {
+		return group;
+	}
+
+	/**
+	 * @param group the group to set
+	 */
+	public void setGroup(Group group) {
+		this.group = group;
 	}
 }

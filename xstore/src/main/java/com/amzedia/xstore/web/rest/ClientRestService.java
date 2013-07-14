@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.amzedia.xstore.model.BasicInfo;
 import com.amzedia.xstore.model.Client;
-import com.amzedia.xstore.model.User;
+import com.amzedia.xstore.model.Customer;
 import com.amzedia.xstore.services.interfaces.IClientService;
 
 /**
@@ -72,10 +72,10 @@ public class ClientRestService {
 		
 	@RequestMapping(value = "/test", method = RequestMethod.GET /*headers="Accept=application/xml, application/json"*/)
 	@ResponseBody public ModelAndView test() {
-		User user = new User();
-		user.setUserName("Sushant");
+		Customer user = new Customer();
+		user.setCustomerName("Sushant");
 		user.setId(0);
-		user.setUserType("Super");
+		user.setCustomerType("Super");
 		ModelAndView mav = new ModelAndView();
 		mav.addObject(user);
 		mav.setViewName("sushant0");

@@ -12,17 +12,17 @@ import com.amzedia.xstore.services.interfaces.ICustomerService;
 
 /**
  * @author Tarun Keswani
- *
+ * 
  */
 
 @Service
 public class CustomerService implements ICustomerService {
-	
+
 	@Autowired
 	private ICustomerDao customerDao;
-	
+
 	public Customer getCustomer(int id) {
-		
+
 		return this.customerDao.getCustomer(id);
 	}
 

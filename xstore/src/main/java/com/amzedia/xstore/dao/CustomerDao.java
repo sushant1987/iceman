@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import com.amzedia.xstore.dao.interfaces.ICustomerDao;
 import com.amzedia.xstore.model.BasicInfo;
+import com.amzedia.xstore.model.Group;
 import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.model.Customer;
 import com.amzedia.xstore.util.SqlScript;
@@ -26,7 +27,8 @@ import com.amzedia.xstore.util.SqlScript;
 @Component
 public class CustomerDao extends BaseDao implements ICustomerDao {
 
-	private static final Logger logger = Logger.getLogger(CustomerDao.class);
+	private static final Logger logger = Logger
+			.getLogger(CustomerDao.class);
 	private String sql;
 
 	/**
@@ -37,12 +39,14 @@ public class CustomerDao extends BaseDao implements ICustomerDao {
 	 */
 	public Customer getCustomer(int id) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("CustomerDao -->>  getCustomer -->> id is " + id);
+			logger.debug("CustomerDao -->>  getCustomer -->> id is "
+					+ id);
 		}
 		sql = SqlScript.GET_Customer;
 		final Customer customer = new Customer();
 		final BasicInfo basicInfo = new BasicInfo();
 		final Store store = new Store();
+		final Group group = new Group();
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("ID", id);
 		return this.getNamedParameterJdbcTemplate().query(sql,
@@ -51,7 +55,8 @@ public class CustomerDao extends BaseDao implements ICustomerDao {
 					public Customer extractData(ResultSet rs)
 							throws SQLException {
 						if (rs.next()) {
-							customer.setId(rs.getInt("ID"));
+							customer.setId(rs
+									.getInt("ID"));
 							customer.setCustomerName(rs
 									.getString("USER_NAME"));
 							customer.setCustomerType(rs
@@ -60,8 +65,8 @@ public class CustomerDao extends BaseDao implements ICustomerDao {
 									.getBoolean("NEWSLETTER"));
 							customer.setStatus(rs
 									.getBoolean("STATUS"));
-							store.setId(rs.getInt("STORE_ID"));
-							customer.setStore(store);
+							group.setId(rs.getInt("BRAND_ID"));
+							customer.setGroup(group);
 							basicInfo.setId(rs
 									.getInt("BID"));
 							basicInfo.setAddress(rs
