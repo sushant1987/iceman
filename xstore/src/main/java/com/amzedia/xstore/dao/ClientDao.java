@@ -16,7 +16,6 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.dao.interfaces.IClientDao;
@@ -24,6 +23,7 @@ import com.amzedia.xstore.model.BasicInfo;
 import com.amzedia.xstore.model.ChangePassword;
 import com.amzedia.xstore.model.Client;
 import com.amzedia.xstore.model.ResponseWrapper;
+import com.amzedia.xstore.util.Message;
 import com.amzedia.xstore.util.ResponseCode;
 import com.amzedia.xstore.util.ResponseMessage;
 import com.amzedia.xstore.util.SqlScript;
@@ -48,7 +48,7 @@ public class ClientDao extends BaseDao implements IClientDao {
 	 */
 	public ResponseWrapper getClient(int id) throws XstoreException {
 		ResponseWrapper responseWrapper = new ResponseWrapper();
-		Client returnClient = new Client();
+		Client returnClient;
 		if (logger.isDebugEnabled()) {
 			logger.debug("ClientDao -->>  getClient -->> id is "
 					+ id);
@@ -101,9 +101,16 @@ public class ClientDao extends BaseDao implements IClientDao {
 							return client;
 						}
 					});
-			responseWrapper.setStatus(ResponseCode.OK);
-			responseWrapper.setMessage("success");
-			responseWrapper.setResult(returnClient);
+			if(returnClient.getId() != 0) {
+				responseWrapper.setStatus(ResponseCode.OK);
+				responseWrapper.setMessage(ResponseMessage.SUCCESS);
+				responseWrapper.setResult(returnClient);
+			} else {
+				responseWrapper.setStatus(ResponseCode.FAIL);
+				responseWrapper.setMessage(ResponseMessage.UNAVAILABLE);
+				responseWrapper.setResult(Message.GET_CLIENT + id);
+			}
+			
 		} catch (DataAccessException e) {
 			logger.error("Error in client dao");
 		} catch (Exception e) {

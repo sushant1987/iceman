@@ -9,5 +9,6 @@ package com.amzedia.xstore.util;
  */
 public class ResponseMessage {
 
-	public static final String SUCCESS = "sucess";
+	public static final String SUCCESS = "success";
+	public static final String UNAVAILABLE = "Data Not Found";
 }

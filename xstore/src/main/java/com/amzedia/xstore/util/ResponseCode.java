@@ -9,5 +9,6 @@ package com.amzedia.xstore.util;
  */
 public class ResponseCode {
 
-	public static final String OK = "200";
+	public static final String OK = "2000";
+	public static final String FAIL = "4004";
 }
