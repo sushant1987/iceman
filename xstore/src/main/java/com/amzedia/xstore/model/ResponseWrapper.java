@@ -9,9 +9,9 @@ package com.amzedia.xstore.model;
  */
 public class ResponseWrapper {
 
-	public String status;
-	public String message;
-	public Object result;
+	private String status;
+	private String message;
+	private Object result;
 
 	/**
 	 * @return the status
