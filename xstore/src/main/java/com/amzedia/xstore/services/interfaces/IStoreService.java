@@ -3,6 +3,8 @@
  */
 package com.amzedia.xstore.services.interfaces;
 
+import com.amzedia.xstore.XstoreException;
+import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.model.Store;
 
 /**
@@ -11,12 +13,13 @@ import com.amzedia.xstore.model.Store;
  */
 public interface IStoreService {
 
-	boolean addStore(Store store);
+	ResponseWrapper addStore(Store store) throws XstoreException;
 
-	boolean deactivateOrActivateStore(Store store);
+	ResponseWrapper deactivateOrActivateStore(Store store)
+			throws XstoreException;
 
-	Store getStore(int id);
+	ResponseWrapper getStore(int id) throws XstoreException;
 
-	boolean updateStore(Store store);
+	ResponseWrapper updateStore(Store store) throws XstoreException;
 
 }

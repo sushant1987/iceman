@@ -23,6 +23,11 @@ public class Message {
 	public static final String GROUP_UPDATED = "Group updated successfully";
 	public static final String GROUP_DEACTIVATED = "Group deactivated successfully";
 	public static final String GROUP_NOT_DEACTIVATED = "Group deactivation fail";
-	
+	public static final String STORE_ADDED = "Store added successfully";
+	public static final String STORE_NOT_ADDED = "Unable to add store";
+	public static final String STORE_UPDATED = "Store updated successfully";
+	public static final String STORE_NOT_UPDATED = "Store updataion failed";
 	public static final String STORE_NOT_FOUND = "Store not found for store id ";
+	public static final String STORE_DEACTIVATED = "Store is successfully deactivated";
+	public static final String STORE_NOT_DEACTIVATED = "Unable to deactivated store";
 }

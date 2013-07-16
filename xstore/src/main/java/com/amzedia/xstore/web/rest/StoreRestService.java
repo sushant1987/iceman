@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.amzedia.xstore.XstoreException;
+import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.services.interfaces.IStoreService;
 
@@ -33,8 +35,14 @@ public class StoreRestService {
 	 */
 	@RequestMapping(value = "/addstore", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean addStore(@RequestBody Store store) {
-		return this.storeService.addStore(store);
+	public ResponseWrapper addStore(@RequestBody Store store) {
+		try {
+			return this.storeService.addStore(store);
+		} catch (XstoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	/*
@@ -48,14 +56,28 @@ public class StoreRestService {
 
 	@RequestMapping(value = "/activateordeactivate", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean deactivateOrActivateStore(@RequestBody Store store) {
-		return this.storeService.deactivateOrActivateStore(store);
+	public ResponseWrapper deactivateOrActivateStore(
+			@RequestBody Store store) {
+		try {
+			return this.storeService
+					.deactivateOrActivateStore(store);
+		} catch (XstoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@RequestMapping(value = "/findstore/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public Store getStore(@PathVariable("id") int id) {
-		return this.storeService.getStore(id);
+	public ResponseWrapper getStore(@PathVariable("id") int id) {
+		try {
+			return this.storeService.getStore(id);
+		} catch (XstoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	/**
@@ -66,7 +88,13 @@ public class StoreRestService {
 	 */
 	@RequestMapping(value = "/updatestore", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean updateStore(@RequestBody Store store) {
-		return this.storeService.updateStore(store);
+	public ResponseWrapper updateStore(@RequestBody Store store) {
+		try {
+			return this.storeService.updateStore(store);
+		} catch (XstoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

@@ -3,6 +3,8 @@
  */
 package com.amzedia.xstore.dao.interfaces;
 
+import com.amzedia.xstore.XstoreException;
+import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.model.Store;
 
 /**
@@ -17,13 +19,13 @@ public interface IStoreDao {
 	 * @param id
 	 * @return Client
 	 */
-	Store getStore(int id);
+	ResponseWrapper getStore(int id) throws XstoreException;
 
 	/**
 	 * @param store
 	 * @return
 	 */
-	boolean addStore(Store store);
+	ResponseWrapper addStore(Store store) throws XstoreException;
 
 	/**
 	 * This api will deactivate client
@@ -31,7 +33,8 @@ public interface IStoreDao {
 	 * @param client
 	 * @return boolean TODO
 	 */
-	boolean deactivateOrActivateStore(Store store);
+	ResponseWrapper deactivateOrActivateStore(Store store)
+			throws XstoreException;
 
 	/**
 	 * This api will update store info
@@ -39,5 +42,5 @@ public interface IStoreDao {
 	 * @param store
 	 * @return boolean
 	 */
-	boolean updateStore(Store store);
+	ResponseWrapper updateStore(Store store) throws XstoreException;
 }

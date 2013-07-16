@@ -6,7 +6,9 @@ package com.amzedia.xstore.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.dao.interfaces.IStoreDao;
+import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.services.interfaces.IStoreService;
 
@@ -21,13 +23,15 @@ public class StoreService implements IStoreService {
 	private IStoreDao storeDao;
 
 	/**
+	 * @throws XstoreException
 	 * 
 	 */
-	public boolean addStore(Store store) {
+	public ResponseWrapper addStore(Store store) throws XstoreException {
 		return this.storeDao.addStore(store);
 	}
 
-	public boolean deactivateOrActivateStore(Store store) {
+	public ResponseWrapper deactivateOrActivateStore(Store store)
+			throws XstoreException {
 		return this.storeDao.deactivateOrActivateStore(store);
 	}
 
@@ -36,15 +40,16 @@ public class StoreService implements IStoreService {
 	 * 
 	 * @param id
 	 * @return Store
+	 * @throws XstoreException
 	 */
-	public Store getStore(int id) {
+	public ResponseWrapper getStore(int id) throws XstoreException {
 		return this.storeDao.getStore(id);
 	}
 
 	/*
 	 * This API will update the Store info
 	 */
-	public boolean updateStore(Store store) {
+	public ResponseWrapper updateStore(Store store) throws XstoreException {
 
 		return this.storeDao.updateStore(store);
 	}
