@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.Customer;
+import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.services.interfaces.ICustomerService;
 
 /**
@@ -33,9 +35,15 @@ public class CustomerRestService {
 	 */
 	@RequestMapping(value = "/findcustomer/{id}")
 	@ResponseBody
-	public Customer getCustomerById(@PathVariable String id) {
+	public ResponseWrapper getCustomerById(@PathVariable String id) {
 		int customerId = Integer.parseInt(id);
-		return this.customerService.getCustomer(customerId);
+		try {
+			return this.customerService.getCustomer(customerId);
+		} catch (XstoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

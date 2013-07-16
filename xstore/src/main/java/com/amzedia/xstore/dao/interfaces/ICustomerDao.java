@@ -3,7 +3,8 @@
  */
 package com.amzedia.xstore.dao.interfaces;
 
-import com.amzedia.xstore.model.Customer;
+import com.amzedia.xstore.XstoreException;
+import com.amzedia.xstore.model.ResponseWrapper;
 
 /**
  * @author Tarun Keswani
@@ -12,11 +13,11 @@ import com.amzedia.xstore.model.Customer;
 public interface ICustomerDao {
 
 	/**
-	 * Get customer by id of customer
 	 * 
 	 * @param id
-	 * @return Customer
+	 * @return {@link ResponseWrapper}
+	 * @throws XstoreException
 	 */
-	Customer getCustomer(int id);
+	ResponseWrapper getCustomer(int id) throws XstoreException;
 
 }

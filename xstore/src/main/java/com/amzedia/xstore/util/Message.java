@@ -29,5 +29,10 @@ public class Message {
 	public static final String STORE_NOT_UPDATED = "Store updataion failed";
 	public static final String STORE_NOT_FOUND = "Store not found for store id ";
 	public static final String STORE_DEACTIVATED = "Store is successfully deactivated";
-	public static final String STORE_NOT_DEACTIVATED = "Unable to deactivated store";
+	public static final String STORE_NOT_DEACTIVATED = "Store deactivation failed";
+	public static final String CUSTOMER_ADDED = "Customer registered successfully";
+	public static final String CUSTOMER_NOT_ADDED = "Customer registration failed";
+	public static final String CUSTOMRE_NOT_FOUND = "Customer not found for id ";
+	public static final String CUSTOMER_UPDATED = "Customer updated successfully";
+	public static final String CUSTOMER_NOT_UPDATED = "Customer updation failed";
 }
