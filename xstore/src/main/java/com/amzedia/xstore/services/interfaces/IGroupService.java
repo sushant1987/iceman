@@ -3,7 +3,9 @@
  */
 package com.amzedia.xstore.services.interfaces;
 
+import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.Group;
+import com.amzedia.xstore.model.ResponseWrapper;
 
 /**
  * @author Tarun Keswani
@@ -11,12 +13,12 @@ import com.amzedia.xstore.model.Group;
  */
 public interface IGroupService {
 
-	Group getGroup(int id);
+	ResponseWrapper getGroup(int id) throws XstoreException;
 
-	boolean addGroup(Group group);
+	ResponseWrapper addGroup(Group group)  throws XstoreException;
 
-	boolean deactivateOrActivateGroup(Group group);
+	ResponseWrapper deactivateOrActivateGroup(Group group)  throws XstoreException;
 
-	boolean updateGroup(Group group);
+	ResponseWrapper updateGroup(Group group)  throws XstoreException;
 
 }

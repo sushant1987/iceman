@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.Group;
+import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.services.interfaces.IGroupService;
 
 /**
@@ -35,9 +37,15 @@ public class GroupRestService {
 
 	@RequestMapping(value = "/findgroup/{id}")
 	@ResponseBody
-	public Group getGroupById(@PathVariable String id) {
+	public ResponseWrapper getGroupById(@PathVariable String id) {
 		int groupId = Integer.parseInt(id);
-		return this.groupService.getGroup(groupId);
+		try {
+			return this.groupService.getGroup(groupId);
+		} catch (XstoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	/**
@@ -48,14 +56,26 @@ public class GroupRestService {
 	 */
 	@RequestMapping(value = "/addgroup", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean addGroup(@RequestBody Group group) {
-		return this.groupService.addGroup(group);
+	public ResponseWrapper addGroup(@RequestBody Group group) {
+		try {
+			return this.groupService.addGroup(group);
+		} catch (XstoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@RequestMapping(value = "/activateordeactivate", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean deactivateOrActivateGroup(@RequestBody Group group) {
-		return this.groupService.deactivateOrActivateGroup(group);
+	public ResponseWrapper deactivateOrActivateGroup(@RequestBody Group group) {
+		try {
+			return this.groupService.deactivateOrActivateGroup(group);
+		} catch (XstoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	/**
@@ -66,7 +86,13 @@ public class GroupRestService {
 	 */
 	@RequestMapping(value = "/updategroup", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean updaterGroup(@RequestBody Group group) {
-		return this.groupService.updateGroup(group);
+	public ResponseWrapper updaterGroup(@RequestBody Group group) {
+		try {
+			return this.groupService.updateGroup(group);
+		} catch (XstoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

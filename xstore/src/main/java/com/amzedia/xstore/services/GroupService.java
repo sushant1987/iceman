@@ -6,8 +6,10 @@ package com.amzedia.xstore.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.dao.interfaces.IGroupDao;
 import com.amzedia.xstore.model.Group;
+import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.services.interfaces.IGroupService;
 
 /**
@@ -23,14 +25,14 @@ public class GroupService implements IGroupService {
 	/*
 	 * This will return Group using GroupId
 	 */
-	public Group getGroup(int id) {
+	public ResponseWrapper getGroup(int id)  throws XstoreException {
 		return this.groupDao.getGroup(id);
 	}
 
 	/*
 	 * This api will add the group
 	 */
-	public boolean addGroup(Group group) {
+	public ResponseWrapper addGroup(Group group)  throws XstoreException{
 
 		return this.groupDao.addGroup(group);
 	}
@@ -38,14 +40,14 @@ public class GroupService implements IGroupService {
 	/*
 	 * This api will activate or deactivate the group
 	 */
-	public boolean deactivateOrActivateGroup(Group group) {
+	public ResponseWrapper deactivateOrActivateGroup(Group group)  throws XstoreException{
 		return this.groupDao.deactivateOrActivateGroup(group);
 	}
 
 	/*
 	 * This API will update the Group info
 	 */
-	public boolean updateGroup(Group group) {
+	public ResponseWrapper updateGroup(Group group)  throws XstoreException{
 		return this.groupDao.updateGroup(group);
 	}
 }

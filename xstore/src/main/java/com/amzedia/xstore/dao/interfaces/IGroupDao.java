@@ -3,7 +3,9 @@
  */
 package com.amzedia.xstore.dao.interfaces;
 
+import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.Group;
+import com.amzedia.xstore.model.ResponseWrapper;
 
 /**
  * @author Tarun Keswani
@@ -17,7 +19,7 @@ public interface IGroupDao {
 	 * @param id
 	 * @return Client
 	 */
-	Group getGroup(int id);
+	ResponseWrapper getGroup(int id) throws XstoreException;
 
 	/**
 	 * This api will add new group
@@ -25,7 +27,7 @@ public interface IGroupDao {
 	 * @param group
 	 * @return boolean
 	 */
-	boolean addGroup(Group group);
+	ResponseWrapper addGroup(Group group) throws XstoreException;
 
 	/**
 	 * This api will activate or deactivate group
@@ -33,7 +35,7 @@ public interface IGroupDao {
 	 * @param group
 	 * @return boolean
 	 */
-	boolean deactivateOrActivateGroup(Group group);
+	ResponseWrapper deactivateOrActivateGroup(Group group) throws XstoreException;
 
 	/**
 	 * This api will update group profile
@@ -41,6 +43,6 @@ public interface IGroupDao {
 	 * @param group
 	 * @return boolean
 	 */
-	boolean updateGroup(Group group);
+	ResponseWrapper updateGroup(Group group) throws XstoreException;
 
 }
