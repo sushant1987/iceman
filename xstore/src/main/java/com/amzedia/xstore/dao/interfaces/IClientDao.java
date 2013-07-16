@@ -4,7 +4,6 @@
 package com.amzedia.xstore.dao.interfaces;
 
 import com.amzedia.xstore.XstoreException;
-import com.amzedia.xstore.model.BasicInfo;
 import com.amzedia.xstore.model.ChangePassword;
 import com.amzedia.xstore.model.Client;
 import com.amzedia.xstore.model.ResponseWrapper;
@@ -39,7 +38,7 @@ public interface IClientDao {
 	 * @param client
 	 * @return boolean
 	 */
-	boolean updateClient(Client client) throws XstoreException;
+	ResponseWrapper updateClient(Client client) throws XstoreException;
 
 	/**
 	 * This will return client object on basis of correct user name and
@@ -48,7 +47,7 @@ public interface IClientDao {
 	 * @param client
 	 * @return Client
 	 */
-	Client loginClient(Client client)  throws XstoreException;
+	ResponseWrapper loginClient(Client client) throws XstoreException;
 
 	/**
 	 * This api will change client password
@@ -56,7 +55,8 @@ public interface IClientDao {
 	 * @param changePassword
 	 * @return boolean
 	 */
-	boolean changePassword(ChangePassword changePassword) throws XstoreException;
+	ResponseWrapper changePassword(ChangePassword changePassword)
+			throws XstoreException;
 
 	/**
 	 * This will reset the client password
@@ -64,7 +64,7 @@ public interface IClientDao {
 	 * @param client
 	 * @return boolean
 	 */
-	boolean forgetPassword(Client client) throws XstoreException;
+	ResponseWrapper forgetPassword(Client client) throws XstoreException;
 
 	/**
 	 * This api will deactivate client
@@ -72,7 +72,8 @@ public interface IClientDao {
 	 * @param client
 	 * @return boolean
 	 */
-	boolean deactivateOrActivateClient(Client client) throws XstoreException;
+	ResponseWrapper deactivateOrActivateClient(Client client)
+			throws XstoreException;
 
 	/**
 	 * This api will add dummy data to db

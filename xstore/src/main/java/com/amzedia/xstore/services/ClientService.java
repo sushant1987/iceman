@@ -14,7 +14,7 @@ import com.amzedia.xstore.services.interfaces.IClientService;
 
 /**
  * @author Sushant
- *
+ * 
  */
 @Service
 public class ClientService implements IClientService {
@@ -27,31 +27,31 @@ public class ClientService implements IClientService {
 	}
 
 	/**
-	 * @throws XstoreException 
+	 * @throws XstoreException
 	 * 
 	 */
-	public ResponseWrapper registerClient(Client client) throws XstoreException {
+	public ResponseWrapper registerClient(Client client)
+			throws XstoreException {
 		return this.clientDao.registerClient(client);
 	}
-	
-	public boolean updateClient(Client client) throws XstoreException {
+
+	public ResponseWrapper updateClient(Client client)
+			throws XstoreException {
 		return this.clientDao.updateClient(client);
 	}
+
 	public ResponseWrapper dummy() throws XstoreException {
 		return this.clientDao.dummy();
 	}
-	
-	public Client loginClient(Client client) throws XstoreException {
+
+	public ResponseWrapper loginClient(Client client)
+			throws XstoreException {
 		return this.clientDao.loginClient(client);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.amzedia.xstore.services.interfaces.IClientService#deactivateOrActivateClient(com.amzedia.xstore.model.Client)
-	 */
-	public boolean deactivateOrActivateClient(Client client) throws XstoreException {
-		// TODO Auto-generated method stub
+	public ResponseWrapper deactivateOrActivateClient(Client client)
+			throws XstoreException {
 		return this.clientDao.deactivateOrActivateClient(client);
 	}
-	
 
 }

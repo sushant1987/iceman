@@ -22,7 +22,7 @@ import com.amzedia.xstore.services.interfaces.IClientService;
 
 /**
  * @author Sushant
- *
+ * 
  */
 @Controller
 @RequestMapping(value = "/client")
@@ -30,20 +30,20 @@ public class ClientRestService {
 
 	@Autowired
 	private IClientService clientService;
-	
-	//TODO update client
-	
+
+	// TODO update client
+
 	/**
-	 * This api will bring the client
-	 * information by passing id of client
+	 * This api will bring the client information by passing id of client
 	 * 
 	 * @author Sushant
 	 * @param String
 	 * @return Client
 	 */
-	
-	@RequestMapping(value="/findclient/{id}")
-	@ResponseBody public ResponseWrapper getClientById(@PathVariable String id) {
+
+	@RequestMapping(value = "/findclient/{id}")
+	@ResponseBody
+	public ResponseWrapper getClientById(@PathVariable String id) {
 		int clientId = Integer.parseInt(id);
 		try {
 			return this.clientService.getClient(clientId);
@@ -56,46 +56,53 @@ public class ClientRestService {
 
 	/**
 	 * This api will save client
+	 * 
 	 * @param Client
 	 * @return boolean
 	 */
-	@RequestMapping(value = "/registerclient", method = RequestMethod.POST )
-	@ResponseBody public ResponseWrapper registerClient(@RequestBody Client client) {
+	@RequestMapping(value = "/registerclient", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseWrapper registerClient(@RequestBody Client client) {
 		try {
 			return this.clientService.registerClient(client);
 		} catch (XstoreException e) {
-			
+
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	/**
 	 * This api will update client info
-	 * @param Client TODO
+	 * 
+	 * @param Client
+	 *                TODO
 	 * @return boolean
 	 */
-	@RequestMapping(value = "/updateclient", method = RequestMethod.POST )
-	@ResponseBody public boolean updaterClient(@RequestBody Client client) {
+	@RequestMapping(value = "/updateclient", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseWrapper updaterClient(@RequestBody Client client) {
 		try {
 			return this.clientService.updateClient(client);
 		} catch (XstoreException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
+			return null;
 		}
 	}
-	
-	//TODO update client
-	
-	
-	
-	//TODO delete client
-	
-	//TODO get by user name and password
-		
-	@RequestMapping(value = "/test", method = RequestMethod.GET /*headers="Accept=application/xml, application/json"*/)
-	@ResponseBody public ModelAndView test() {
+
+	// TODO update client
+
+	// TODO delete client
+
+	// TODO get by user name and password
+
+	@RequestMapping(value = "/test", method = RequestMethod.GET /*
+								     * headers=
+								     * "Accept=application/xml, application/json"
+								     */)
+	@ResponseBody
+	public ModelAndView test() {
 		Customer user = new Customer();
 		user.setCustomerName("Sushant");
 		user.setId(0);
@@ -105,15 +112,20 @@ public class ClientRestService {
 		mav.setViewName("sushant0");
 		return mav;
 	}
-	
-	@RequestMapping(value = "/boolean", method = RequestMethod.GET /*headers="Accept=application/xml, application/json"*/)
-	@ResponseBody public Model testboolean(Model mav) {
-		mav.addAttribute("bc",true);
+
+	@RequestMapping(value = "/boolean", method = RequestMethod.GET /*
+								        * headers=
+								        * "Accept=application/xml, application/json"
+								        */)
+	@ResponseBody
+	public Model testboolean(Model mav) {
+		mav.addAttribute("bc", true);
 		return mav;
 	}
-	
-	@RequestMapping(value = "/dummy", method = RequestMethod.GET )
-	@ResponseBody public ResponseWrapper dummy() {
+
+	@RequestMapping(value = "/dummy", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseWrapper dummy() {
 		try {
 			return this.clientService.dummy();
 		} catch (XstoreException e) {
@@ -122,9 +134,10 @@ public class ClientRestService {
 			return null;
 		}
 	}
-	
-	@RequestMapping(value = "/getdummyclient", method = RequestMethod.GET )
-	@ResponseBody public Client dummyClient() {
+
+	@RequestMapping(value = "/getdummyclient", method = RequestMethod.GET)
+	@ResponseBody
+	public Client dummyClient() {
 		Client client = new Client();
 		BasicInfo info = new BasicInfo();
 		info.setAddress("na");
@@ -145,9 +158,10 @@ public class ClientRestService {
 		client.setBasicInfo(info);
 		return client;
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	@ResponseBody public Client loginClient(@RequestBody Client client) {
+	@ResponseBody
+	public ResponseWrapper loginClient(@RequestBody Client client) {
 		try {
 			return this.clientService.loginClient(client);
 		} catch (XstoreException e) {
@@ -156,15 +170,18 @@ public class ClientRestService {
 			return null;
 		}
 	}
-	
+
 	@RequestMapping(value = "/activateordeactivate", method = RequestMethod.POST)
-	@ResponseBody public boolean deactivateOrActivateClient(@RequestBody Client client){
+	@ResponseBody
+	public ResponseWrapper deactivateOrActivateClient(
+			@RequestBody Client client) {
 		try {
-			return this.clientService.deactivateOrActivateClient(client);
+			return this.clientService
+					.deactivateOrActivateClient(client);
 		} catch (XstoreException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
+			return null;
 		}
 	}
 

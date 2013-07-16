@@ -17,13 +17,13 @@ public interface IClientService {
 
 	ResponseWrapper registerClient(Client client) throws XstoreException;
 
-	boolean updateClient(Client client) throws XstoreException;
+	ResponseWrapper updateClient(Client client) throws XstoreException;
 
 	ResponseWrapper dummy() throws XstoreException;
 
-	Client loginClient(Client client) throws XstoreException;
+	ResponseWrapper loginClient(Client client) throws XstoreException;
 
-	boolean deactivateOrActivateClient(Client client)
+	ResponseWrapper deactivateOrActivateClient(Client client)
 			throws XstoreException;
 
 }

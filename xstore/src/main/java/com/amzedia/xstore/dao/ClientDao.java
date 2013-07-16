@@ -152,14 +152,15 @@ public class ClientDao extends BaseDao implements IClientDao {
 			if (rowUpdatedCount > 0) {
 				responseWrapper.setStatus(ResponseCode.OK);
 				responseWrapper.setMessage(ResponseMessage.SUCCESS);
-				responseWrapper.setResult(Message.REGISTER_CLIENT);
+				responseWrapper.setResult(Message.REGISTERED_CLIENT);
 			} else {
 				responseWrapper.setStatus(ResponseCode.FAIL);
 				responseWrapper.setMessage(ResponseMessage.FAIL);
 				responseWrapper.setResult(Message.CLIENT_REGISTRATION_FAIL);
 			}
 		} catch (DataAccessException e) {
-			logger.error("exception in register client" + e.getMessage());
+			logger.error("exception in register client"
+					+ e.getMessage());
 			responseWrapper.setStatus(ResponseCode.FAIL);
 			responseWrapper.setMessage(e.getCause().getMessage());
 			responseWrapper.setResult(Message.CLIENT_REGISTRATION_FAIL);
@@ -177,7 +178,9 @@ public class ClientDao extends BaseDao implements IClientDao {
 	 * @param client
 	 * @return boolean
 	 */
-	public boolean updateClient(Client client) throws XstoreException {
+	public ResponseWrapper updateClient(Client client)
+			throws XstoreException {
+		ResponseWrapper responseWrapper = new ResponseWrapper();
 		try {
 			sql = SqlScript.UPDATE_CLIENT;
 			Map<String, Object> values = new HashMap<String, Object>();
@@ -190,14 +193,37 @@ public class ClientDao extends BaseDao implements IClientDao {
 					.getNamedParameterJdbcTemplate()
 					.update(sql, params);
 			if (rowUpdatedCount > 0) {
-				return updateBasic(client.getBasicInfo());
+				boolean isUpdated = updateBasic(client
+						.getBasicInfo());
+				if (isUpdated) {
+					responseWrapper.setStatus(ResponseCode.OK);
+					responseWrapper.setMessage(ResponseMessage.SUCCESS);
+					responseWrapper.setResult(Message.UPDATED_CLIENT);
+				} else {
+					logger.error("Error in update client");
+					responseWrapper.setStatus(ResponseCode.FAIL);
+					responseWrapper.setMessage(ResponseMessage.FAIL);
+					responseWrapper.setResult(Message.CLIENT_UPDATION_FAIL
+							+ client.getId());
+				}
 			} else {
-				return false;
+				logger.error("Error in update client");
+				responseWrapper.setStatus(ResponseCode.FAIL);
+				responseWrapper.setMessage(ResponseMessage.FAIL);
+				responseWrapper.setResult(Message.CLIENT_UPDATION_FAIL
+						+ client.getId());
 			}
 		} catch (DataAccessException e) {
 			logger.error("Error in update client");
+			responseWrapper.setStatus(ResponseCode.FAIL);
+			responseWrapper.setMessage(e.getCause().getMessage());
+			responseWrapper.setResult(Message.CLIENT_UPDATION_FAIL
+					+ client.getId());
+		} catch (Exception e) {
+			logger.error("Error in update client");
+			throw new XstoreException();
 		}
-		return false;
+		return responseWrapper;
 	}
 
 	/**
@@ -207,7 +233,9 @@ public class ClientDao extends BaseDao implements IClientDao {
 	 * @param client
 	 * @return Client
 	 */
-	public Client loginClient(Client client) throws XstoreException {
+	public ResponseWrapper loginClient(Client client)
+			throws XstoreException {
+		ResponseWrapper responseWrapper = new ResponseWrapper();
 		try {
 			if (logger.isDebugEnabled()) {
 				logger.debug("ClientDao -->> loginClient -->> parameters are"
@@ -218,12 +246,13 @@ public class ClientDao extends BaseDao implements IClientDao {
 			}
 			sql = SqlScript.LOGIN_CLIENT;
 			final Client returnClient = new Client();
+			Client reClient;
 			final BasicInfo basicInfo = new BasicInfo();
 			Map<String, Object> values = new HashMap<String, Object>();
 			values.put("userName", client.getUserName());
 			values.put("password", client.getPassword());
-			return this.getNamedParameterJdbcTemplate().query(sql,
-					values,
+			reClient = this.getNamedParameterJdbcTemplate().query(
+					sql, values,
 					new ResultSetExtractor<Client>() {
 
 						public Client extractData(
@@ -268,11 +297,23 @@ public class ClientDao extends BaseDao implements IClientDao {
 						}
 
 					});
-
+			if (reClient.getId() > 0) {
+				responseWrapper.setStatus(ResponseCode.OK);
+				responseWrapper.setMessage(ResponseMessage.SUCCESS);
+				responseWrapper.setResult(reClient);
+			} else {
+				responseWrapper.setStatus(ResponseCode.FAIL);
+				responseWrapper.setMessage(ResponseMessage.FAIL);
+				responseWrapper.setResult(Message.CLIENT_LOGIN);
+			}
+		} catch (DataAccessException e) {
+			responseWrapper.setStatus(ResponseCode.FAIL);
+			responseWrapper.setMessage(ResponseMessage.FAIL);
+			responseWrapper.setResult(e.getCause().getMessage());
 		} catch (Exception e) {
 			logger.error("exception " + e.getMessage());
 		}
-		return client;
+		return responseWrapper;
 	}
 
 	/**
@@ -281,10 +322,10 @@ public class ClientDao extends BaseDao implements IClientDao {
 	 * @param changePassword
 	 * @return boolean
 	 */
-	public boolean changePassword(ChangePassword changePassword)
+	public ResponseWrapper changePassword(ChangePassword changePassword)
 			throws XstoreException {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 	/**
@@ -293,9 +334,10 @@ public class ClientDao extends BaseDao implements IClientDao {
 	 * @param client
 	 * @return boolean
 	 */
-	public boolean forgetPassword(Client client) throws XstoreException {
+	public ResponseWrapper forgetPassword(Client client)
+			throws XstoreException {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 	/**
@@ -304,8 +346,9 @@ public class ClientDao extends BaseDao implements IClientDao {
 	 * @param client
 	 * @return boolean
 	 */
-	public boolean deactivateOrActivateClient(Client client)
+	public ResponseWrapper deactivateOrActivateClient(Client client)
 			throws XstoreException {
+		ResponseWrapper responseWrapper = new ResponseWrapper();
 		try {
 			sql = SqlScript.DEACTIVATE_OR_ACTIVATE_CLIENT;
 
@@ -314,13 +357,26 @@ public class ClientDao extends BaseDao implements IClientDao {
 			values.put("ID", client.getId());
 			SqlParameterSource paramSource = new MapSqlParameterSource(
 					values);
-			this.getNamedParameterJdbcTemplate().update(sql,
-					paramSource);
-			return true;
+			int deactivated = this.getNamedParameterJdbcTemplate()
+					.update(sql, paramSource);
+			if (deactivated > 0) {
+				responseWrapper.setStatus(ResponseCode.OK);
+				responseWrapper.setMessage(ResponseMessage.SUCCESS);
+				responseWrapper.setResult(Message.CLIENT_DELETED);
+			} else {
+				responseWrapper.setStatus(ResponseCode.FAIL);
+				responseWrapper.setMessage(ResponseMessage.FAIL);
+				responseWrapper.setResult(Message.CLIENT_DELETION_FAIL);
+			}
+		} catch (DataAccessException e) {
+			responseWrapper.setStatus(ResponseCode.FAIL);
+			responseWrapper.setMessage(ResponseMessage.FAIL);
+			responseWrapper.setResult(e.getCause().getMessage());
+			logger.error("error in deactivateOrActivate client");
 		} catch (Exception e) {
 			logger.error("error in deactivateOrActivate client");
 		}
-		return false;
+		return responseWrapper;
 	}
 
 	private int addBasic(BasicInfo basicInfo) throws XstoreException {
