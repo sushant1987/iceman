@@ -31,7 +31,7 @@ public interface IClientDao {
 	 * @param client
 	 * @return boolean
 	 */
-	boolean registerClient(Client client) throws XstoreException;
+	ResponseWrapper registerClient(Client client) throws XstoreException;
 
 	/**
 	 * This api will update client profile

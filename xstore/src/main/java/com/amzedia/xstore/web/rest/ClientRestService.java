@@ -60,13 +60,13 @@ public class ClientRestService {
 	 * @return boolean
 	 */
 	@RequestMapping(value = "/registerclient", method = RequestMethod.POST )
-	@ResponseBody public boolean registerClient(@RequestBody Client client) {
+	@ResponseBody public ResponseWrapper registerClient(@RequestBody Client client) {
 		try {
 			return this.clientService.registerClient(client);
 		} catch (XstoreException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
-			return false;
+			return null;
 		}
 	}
 	

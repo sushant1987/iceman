@@ -59,58 +59,64 @@ public class ClientDao extends BaseDao implements IClientDao {
 			final BasicInfo basicInfo = new BasicInfo();
 			Map<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("ID", id);
-			returnClient = this.getNamedParameterJdbcTemplate().query(sql,
-					paramMap, new ResultSetExtractor<Client>() {
+			returnClient = this
+					.getNamedParameterJdbcTemplate()
+					.query(sql,
+							paramMap,
+							new ResultSetExtractor<Client>() {
 
-						public Client extractData(ResultSet rs)
-								throws SQLException {
-							if (rs.next()) {
-								client.setId(rs.getInt("ID"));
-								client.setUserName(rs
-										.getString("USER_NAME"));
-								client.setStatus(rs
-										.getBoolean("STATUS"));
-								client.setPlanType(rs.getString("PLAN_TYPE"));
-								basicInfo.setId(rs
-										.getInt("BID"));
-								basicInfo.setAddress(rs
-										.getString("ADDRESS"));
-								basicInfo.setCity(rs
-										.getString("CITY"));
-								basicInfo.setCountry(rs
-										.getString("COUNTRY"));
-								basicInfo.setEmail(rs
-										.getString("EMAIL"));
-								basicInfo.setFax(rs
-										.getString("FAX"));
-								basicInfo.setFirstName(rs
-										.getString("FIRST_NAME"));
-								basicInfo.setLastName(rs
-										.getString("LAST_NAME"));
-								basicInfo.setMiddleName(rs
-										.getString("MIDDLE_NAME"));
-								basicInfo.setPhoneNumber(rs
-										.getString("PHONE_NUMBER"));
-								basicInfo.setPin(rs
-										.getString("PIN_CODE"));
-								basicInfo.setState(rs
-										.getString("STATE"));
-								client.setBasicInfo(basicInfo);
-							}
+								public Client extractData(
+										ResultSet rs)
+										throws SQLException {
+									if (rs.next()) {
+										client.setId(rs.getInt("ID"));
+										client.setUserName(rs
+												.getString("USER_NAME"));
+										client.setStatus(rs
+												.getBoolean("STATUS"));
+										client.setPlanType(rs
+												.getString("PLAN_TYPE"));
+										basicInfo.setId(rs
+												.getInt("BID"));
+										basicInfo.setAddress(rs
+												.getString("ADDRESS"));
+										basicInfo.setCity(rs
+												.getString("CITY"));
+										basicInfo.setCountry(rs
+												.getString("COUNTRY"));
+										basicInfo.setEmail(rs
+												.getString("EMAIL"));
+										basicInfo.setFax(rs
+												.getString("FAX"));
+										basicInfo.setFirstName(rs
+												.getString("FIRST_NAME"));
+										basicInfo.setLastName(rs
+												.getString("LAST_NAME"));
+										basicInfo.setMiddleName(rs
+												.getString("MIDDLE_NAME"));
+										basicInfo.setPhoneNumber(rs
+												.getString("PHONE_NUMBER"));
+										basicInfo.setPin(rs
+												.getString("PIN_CODE"));
+										basicInfo.setState(rs
+												.getString("STATE"));
+										client.setBasicInfo(basicInfo);
+									}
 
-							return client;
-						}
-					});
-			if(returnClient.getId() != 0) {
+									return client;
+								}
+							});
+			if (returnClient.getId() != 0) {
 				responseWrapper.setStatus(ResponseCode.OK);
 				responseWrapper.setMessage(ResponseMessage.SUCCESS);
 				responseWrapper.setResult(returnClient);
 			} else {
 				responseWrapper.setStatus(ResponseCode.FAIL);
 				responseWrapper.setMessage(ResponseMessage.UNAVAILABLE);
-				responseWrapper.setResult(Message.GET_CLIENT + id);
+				responseWrapper.setResult(Message.GET_CLIENT
+						+ id);
 			}
-			
+
 		} catch (DataAccessException e) {
 			logger.error("Error in client dao");
 		} catch (Exception e) {
@@ -126,9 +132,10 @@ public class ClientDao extends BaseDao implements IClientDao {
 	 * @param client
 	 * @return boolean
 	 */
-	public boolean registerClient(Client client) throws XstoreException {
+	public ResponseWrapper registerClient(Client client)
+			throws XstoreException {
+		ResponseWrapper responseWrapper = new ResponseWrapper();
 		try {
-
 			int basicInfoId = addBasic(client.getBasicInfo());
 			sql = SqlScript.SAVE_CLIENT;
 			Map<String, Object> values = new HashMap<String, Object>();
@@ -139,13 +146,29 @@ public class ClientDao extends BaseDao implements IClientDao {
 			values.put("planType", client.getPlanType());
 			SqlParameterSource params = new MapSqlParameterSource(
 					values);
-			this.getNamedParameterJdbcTemplate()
+			int rowUpdatedCount = this
+					.getNamedParameterJdbcTemplate()
 					.update(sql, params);
-			return true;
+			if (rowUpdatedCount > 0) {
+				responseWrapper.setStatus(ResponseCode.OK);
+				responseWrapper.setMessage(ResponseMessage.SUCCESS);
+				responseWrapper.setResult(Message.REGISTER_CLIENT);
+			} else {
+				responseWrapper.setStatus(ResponseCode.FAIL);
+				responseWrapper.setMessage(ResponseMessage.FAIL);
+				responseWrapper.setResult(Message.CLIENT_REGISTRATION_FAIL);
+			}
 		} catch (DataAccessException e) {
+			logger.error("exception in register client" + e.getMessage());
+			responseWrapper.setStatus(ResponseCode.FAIL);
+			responseWrapper.setMessage(e.getCause().getMessage());
+			responseWrapper.setResult(Message.CLIENT_REGISTRATION_FAIL);
 			logger.error("error in register client");
+		} catch (Exception e) {
+			logger.error("Error in client dao");
+			throw new XstoreException(e);
 		}
-		return false;
+		return responseWrapper;
 	}
 
 	/**
@@ -184,7 +207,7 @@ public class ClientDao extends BaseDao implements IClientDao {
 	 * @param client
 	 * @return Client
 	 */
-	public Client loginClient(Client client) throws XstoreException{
+	public Client loginClient(Client client) throws XstoreException {
 		try {
 			if (logger.isDebugEnabled()) {
 				logger.debug("ClientDao -->> loginClient -->> parameters are"
@@ -213,7 +236,8 @@ public class ClientDao extends BaseDao implements IClientDao {
 										.getString("USER_NAME"));
 								returnClient.setStatus(rs
 										.getBoolean("STATUS"));
-								returnClient.setPlanType(rs.getString("PLAN_TYPE"));
+								returnClient.setPlanType(rs
+										.getString("PLAN_TYPE"));
 								basicInfo.setId(rs
 										.getInt("BID"));
 								basicInfo.setAddress(rs
@@ -257,7 +281,8 @@ public class ClientDao extends BaseDao implements IClientDao {
 	 * @param changePassword
 	 * @return boolean
 	 */
-	public boolean changePassword(ChangePassword changePassword) throws XstoreException{
+	public boolean changePassword(ChangePassword changePassword)
+			throws XstoreException {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -279,16 +304,18 @@ public class ClientDao extends BaseDao implements IClientDao {
 	 * @param client
 	 * @return boolean
 	 */
-	public boolean deactivateOrActivateClient(Client client) throws XstoreException {
+	public boolean deactivateOrActivateClient(Client client)
+			throws XstoreException {
 		try {
 			sql = SqlScript.DEACTIVATE_OR_ACTIVATE_CLIENT;
-			
+
 			Map<String, Object> values = new HashMap<String, Object>();
 			values.put("status", client.isStatus());
 			values.put("ID", client.getId());
 			SqlParameterSource paramSource = new MapSqlParameterSource(
 					values);
-			this.getNamedParameterJdbcTemplate().update(sql, paramSource);
+			this.getNamedParameterJdbcTemplate().update(sql,
+					paramSource);
 			return true;
 		} catch (Exception e) {
 			logger.error("error in deactivateOrActivate client");
@@ -322,11 +349,6 @@ public class ClientDao extends BaseDao implements IClientDao {
 			logger.error("exception " + ex.getMessage());
 		}
 		return keyHolder.getKey().intValue();
-	}
-
-	private int getBasicDetailId(int id) throws XstoreException {
-		return id;
-
 	}
 
 	private boolean updateBasic(BasicInfo basicInfo) throws XstoreException {
@@ -377,11 +399,10 @@ public class ClientDao extends BaseDao implements IClientDao {
 			responseWrapper.setStatus("fail");
 			responseWrapper.setMessage(e.getMessage());
 			responseWrapper.setResult(false);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			logger.error("exception " + e.getMessage());
 			throw new XstoreException(e);
-			
+
 		}
 		return responseWrapper;
 	}

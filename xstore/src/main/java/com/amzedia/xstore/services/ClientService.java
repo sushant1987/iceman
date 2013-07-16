@@ -30,7 +30,7 @@ public class ClientService implements IClientService {
 	 * @throws XstoreException 
 	 * 
 	 */
-	public boolean registerClient(Client client) throws XstoreException {
+	public ResponseWrapper registerClient(Client client) throws XstoreException {
 		return this.clientDao.registerClient(client);
 	}
 	
