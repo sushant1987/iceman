@@ -53,6 +53,15 @@
 	<!-- Adding data source -->
 	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/xStore" />
 
+	<!-- Transaction annotation -->
+	<tx:annotation-driven transaction-manager="txManager" />
+
+	<!-- Transaction management -->
+	<beans:bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
+
 	<!-- Enables annotations -->
 	<context:component-scan base-package="com.amzedia.xstore" />
 

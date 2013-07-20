@@ -6,6 +6,7 @@ package com.amzedia.xstore.web.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -40,7 +41,17 @@ public class CustomerRestService {
 		try {
 			return this.customerService.getCustomer(customerId);
 		} catch (XstoreException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@RequestMapping(value = "/register")
+	@ResponseBody
+	public ResponseWrapper register(@RequestBody Customer customer) {
+		try {
+			return this.customerService.registerCustomer(customer);
+		} catch (XstoreException e) {
 			e.printStackTrace();
 			return null;
 		}

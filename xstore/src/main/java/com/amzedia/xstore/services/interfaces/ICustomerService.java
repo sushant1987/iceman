@@ -4,6 +4,7 @@
 package com.amzedia.xstore.services.interfaces;
 
 import com.amzedia.xstore.XstoreException;
+import com.amzedia.xstore.model.Customer;
 import com.amzedia.xstore.model.ResponseWrapper;
 
 /**
@@ -19,5 +20,13 @@ public interface ICustomerService {
 	 * @throws XstoreException
 	 */
 	ResponseWrapper getCustomer(int id) throws XstoreException;
+	
+	/**
+	 * 
+	 * @param customer
+	 * @return
+	 * @throws XstoreException
+	 */
+	ResponseWrapper registerCustomer(Customer customer) throws XstoreException;
 
 }

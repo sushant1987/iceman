@@ -16,6 +16,8 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.dao.interfaces.IClientDao;
@@ -132,6 +134,7 @@ public class ClientDao extends BaseDao implements IClientDao {
 	 * @param client
 	 * @return boolean
 	 */
+	@Transactional(readOnly=false, propagation = Propagation.REQUIRES_NEW, rollbackFor = DataAccessException.class)
 	public ResponseWrapper registerClient(Client client)
 			throws XstoreException {
 		ResponseWrapper responseWrapper = new ResponseWrapper();
@@ -379,6 +382,7 @@ public class ClientDao extends BaseDao implements IClientDao {
 		return responseWrapper;
 	}
 
+	@Transactional
 	private int addBasic(BasicInfo basicInfo) throws XstoreException {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		try {

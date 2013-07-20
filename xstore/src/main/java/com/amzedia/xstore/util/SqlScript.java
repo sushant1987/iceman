@@ -116,12 +116,16 @@ public final class SqlScript {
 	 * update the group info
 	 */
 	public static final String UPDATE_GROUP = "UPDATE BRAND SET NAME = :name, STATUS = :status, UPDATED_DATE = sysdate() WHERE ID = :ID";
-	
+
 	/**
 	 * Get Customer
 	 */
-	public static final String GET_Customer = "SELECT U.ID, U.BRAND_ID, U.USER_NAME, U.USER_TYPE, U.NEWSLETTER, U.STATUS, BD.ID BID, BD.FIRST_NAME, BD.MIDDLE_NAME, BD.LAST_NAME, BD.PHONE_NUMBER, "
+	public static final String GET_CUSTOMER = "SELECT U.ID, U.BRAND_ID, U.USER_NAME, U.USER_TYPE, U.NEWSLETTER, U.STATUS, BD.ID BID, BD.FIRST_NAME, BD.MIDDLE_NAME, BD.LAST_NAME, BD.PHONE_NUMBER, "
 			+ "BD.EMAIL, BD.ADDRESS, BD.CITY, BD.STATE, BD.COUNTRY, BD.PIN_CODE, BD.FAX FROM CUSTOMER U, BASIC_DETAIL BD WHERE "
 			+ "U.BASIC_DETAIL_ID = BD.ID AND U.ID=:ID";
-	
+
+	public static final String ADD_CUSTOMER = "INSERT INTO CUSTOMER (BASIC_DETAIL_ID, BRAND_ID, USER_NAME, PASSWORD, USER_TYPE, NEWSLETTER, "
+			+ "STATUS, UPDATED_BY, CREATED_BY, UPDATED_DATE, CREATED_DATE) VALUES (:basicDetailId, :brandId, :userName, :password, :userType,"
+			+ ":newsletter, :status, 'admin', 'admin', sysdate(), sysdate())";
+
 }
