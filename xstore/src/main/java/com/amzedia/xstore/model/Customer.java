@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Sushant
  * 
  */
-//@XmlRootElement (name = "customer")
+// @XmlRootElement (name = "customer")
 public class Customer {
 
 	private int id;
@@ -24,6 +24,7 @@ public class Customer {
 	private String customerType;
 	private boolean newsLetter;
 	private boolean status;
+	private String username;
 
 	/**
 	 * @return the id
@@ -145,7 +146,8 @@ public class Customer {
 	}
 
 	/**
-	 * @param status the status to set
+	 * @param status
+	 *                the status to set
 	 */
 	public void setStatus(boolean status) {
 		this.status = status;
@@ -159,9 +161,25 @@ public class Customer {
 	}
 
 	/**
-	 * @param group the group to set
+	 * @param group
+	 *                the group to set
 	 */
 	public void setGroup(Group group) {
 		this.group = group;
+	}
+
+	/**
+	 * @return the username
+	 */
+	public String getUsername() {
+		return username;
+	}
+
+	/**
+	 * @param username
+	 *                the username to set
+	 */
+	public void setUsername(String username) {
+		this.username = username;
 	}
 }

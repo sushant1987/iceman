@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.dao.interfaces.ICustomerDao;
 import com.amzedia.xstore.model.BasicInfo;
+import com.amzedia.xstore.model.Client;
 import com.amzedia.xstore.model.Group;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.model.Store;
@@ -167,7 +168,8 @@ public class CustomerDao extends BaseDao implements ICustomerDao {
 	 * This api will add the customer under the group
 	 */
 	@Transactional(readOnly = false)
-	public boolean registerCustomer(Customer customer) throws RuntimeException {
+	public boolean registerCustomer(Customer customer)
+			throws RuntimeException {
 		try {
 			int basicInfoId = addBasic(customer.getBasicInfo());
 			sql = SqlScript.ADD_CUSTOMER;
@@ -193,8 +195,84 @@ public class CustomerDao extends BaseDao implements ICustomerDao {
 			logger.error("exception in register customer"
 					+ e.getMessage());
 			throw new RuntimeException(e);
-		} catch (Exception e){
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	/*
+	 * API for login for the customers
+	 */
+	public Customer loginCustomer(Customer customer) {
+		Customer reCustomer;
+		try {
+			sql = SqlScript.LOGIN_CUSTOMER;
+			final Customer returnCustomer = new Customer();
+			final BasicInfo basicInfo = new BasicInfo();
+			final Group group = new Group();
+			Map<String, Object> values = new HashMap<String, Object>();
+			values.put("userName", customer.getUsername());
+			values.put("password", customer.getPassword());
+			reCustomer = this
+					.getNamedParameterJdbcTemplate()
+					.query(sql,
+							values,
+							new ResultSetExtractor<Customer>() {
+								public Customer extractData(
+										ResultSet rs)
+										throws SQLException {
+									if (rs.next()) {
+										returnCustomer.setId(rs
+												.getInt("ID"));
+										returnCustomer.setUsername(rs
+												.getNString("USER_NAME"));
+										returnCustomer.setCustomerType(rs
+												.getString("USER_TYPE"));
+										returnCustomer.setNewsLetter(rs
+												.getBoolean("NEWSLETTER"));
+										returnCustomer.setStatus(rs
+												.getBoolean("STATUS"));
+										group.setId(rs.getInt("BRAND_ID"));
+										returnCustomer.setGroup(group);
+										basicInfo.setId(rs
+												.getInt("BID"));
+										basicInfo.setAddress(rs
+												.getString("ADDRESS"));
+										basicInfo.setCity(rs
+												.getString("CITY"));
+										basicInfo.setCountry(rs
+												.getString("COUNTRY"));
+										basicInfo.setEmail(rs
+												.getString("EMAIL"));
+										basicInfo.setFax(rs
+												.getString("FAX"));
+										basicInfo.setFirstName(rs
+												.getString("FIRST_NAME"));
+						
+										basicInfo.setLastName(rs
+												.getString("LAST_NAME"));
+										basicInfo.setMiddleName(rs
+												.getString("MIDDLE_NAME"));
+										basicInfo.setPhoneNumber(rs
+												.getString("PHONE_NUMBER"));
+										basicInfo.setPin(rs
+												.getString("PIN_CODE"));
+										basicInfo.setState(rs
+												.getString("STATE"));
+										returnCustomer.setBasicInfo(basicInfo);
+									}
+									return returnCustomer;
+								}
+							});
+
+		} catch (DataAccessException e) {
+			logger.error("exception in register customer"
+					+ e.getMessage());
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+
+		return reCustomer;
 	}
 }

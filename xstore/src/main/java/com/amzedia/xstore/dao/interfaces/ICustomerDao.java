@@ -4,6 +4,7 @@
 package com.amzedia.xstore.dao.interfaces;
 
 import com.amzedia.xstore.XstoreException;
+import com.amzedia.xstore.model.Client;
 import com.amzedia.xstore.model.Customer;
 import com.amzedia.xstore.model.ResponseWrapper;
 
@@ -22,5 +23,7 @@ public interface ICustomerDao {
 	ResponseWrapper getCustomer(int id) throws XstoreException;
 
 	boolean registerCustomer(Customer customer) throws RuntimeException;
+	
+	Customer loginCustomer(Customer customer) throws RuntimeException;
 
 }

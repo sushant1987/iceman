@@ -307,7 +307,7 @@ public class ClientDao extends BaseDao implements IClientDao {
 			} else {
 				responseWrapper.setStatus(ResponseCode.FAIL);
 				responseWrapper.setMessage(ResponseMessage.FAIL);
-				responseWrapper.setResult(Message.CLIENT_LOGIN);
+				responseWrapper.setResult(Message.LOGIN_FAILED);
 			}
 		} catch (DataAccessException e) {
 			responseWrapper.setStatus(ResponseCode.FAIL);

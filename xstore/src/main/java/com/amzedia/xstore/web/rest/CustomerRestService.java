@@ -57,4 +57,15 @@ public class CustomerRestService {
 		}
 	}
 
+	@RequestMapping(value = "/login")
+	@ResponseBody
+	public ResponseWrapper loginCustomer(@RequestBody Customer customer) {
+		try {
+			return this.customerService.loginCustomer(customer);
+		} catch (XstoreException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }

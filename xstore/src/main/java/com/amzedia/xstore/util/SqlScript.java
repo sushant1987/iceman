@@ -128,4 +128,8 @@ public final class SqlScript {
 			+ "STATUS, UPDATED_BY, CREATED_BY, UPDATED_DATE, CREATED_DATE) VALUES (:basicDetailId, :brandId, :userName, :password, :userType,"
 			+ ":newsletter, :status, 'admin', 'admin', sysdate(), sysdate())";
 
+	public static final String LOGIN_CUSTOMER = "SELECT C.ID, C.USER_NAME, C.USER_TYPE, C.NEWSLETTER, C.STATUS, C.BASIC_DETAIL_ID, "
+			+ "C.BRAND_ID, BD.ID BID, BD.FIRST_NAME, BD.MIDDLE_NAME, BD.LAST_NAME, BD.PHONE_NUMBER, BD.EMAIL, BD.ADDRESS, "
+			+ "BD.CITY, BD.STATE, BD.COUNTRY, BD.PIN_CODE, BD.FAX FROM CUSTOMER C, BASIC_DETAIL BD WHERE C.USER_NAME = "
+			+ ":userName AND C.PASSWORD = :password AND BD.ID = C.BASIC_DETAIL_ID";
 }

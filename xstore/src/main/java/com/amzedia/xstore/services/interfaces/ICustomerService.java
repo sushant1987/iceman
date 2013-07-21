@@ -20,13 +20,22 @@ public interface ICustomerService {
 	 * @throws XstoreException
 	 */
 	ResponseWrapper getCustomer(int id) throws XstoreException;
-	
+
 	/**
 	 * 
 	 * @param customer
 	 * @return
 	 * @throws XstoreException
 	 */
-	ResponseWrapper registerCustomer(Customer customer) throws XstoreException;
+	ResponseWrapper registerCustomer(Customer customer)
+			throws XstoreException;
+
+	/**
+	 * 
+	 * @param customer
+	 * @return
+	 * @throws XstoreException
+	 */
+	ResponseWrapper loginCustomer(Customer customer) throws XstoreException;
 
 }
