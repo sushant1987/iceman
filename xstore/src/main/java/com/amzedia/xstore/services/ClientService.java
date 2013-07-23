@@ -11,6 +11,8 @@ import com.amzedia.xstore.dao.interfaces.IClientDao;
 import com.amzedia.xstore.model.Client;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.services.interfaces.IClientService;
+import com.amzedia.xstore.util.ResponseCode;
+import com.amzedia.xstore.util.ResponseMessage;
 
 /**
  * @author Sushant
@@ -30,9 +32,19 @@ public class ClientService implements IClientService {
 	 * @throws XstoreException
 	 * 
 	 */
-	public ResponseWrapper registerClient(Client client)
-			throws XstoreException {
-		return this.clientDao.registerClient(client);
+	public ResponseWrapper registerClient(Client client) {
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		try {
+			responseWrapper.setStatus(ResponseCode.OK);
+			responseWrapper.setMessage(ResponseMessage.SUCCESS);
+			responseWrapper.setResult(this.clientDao.registerClient(client));
+		} catch (Exception e) {
+			responseWrapper.setStatus(ResponseCode.FAIL);
+			responseWrapper.setMessage(ResponseMessage.FAIL);
+			responseWrapper.setResult(e.getCause().getCause()
+					.getMessage());
+		}
+		return responseWrapper;
 	}
 
 	public ResponseWrapper updateClient(Client client)

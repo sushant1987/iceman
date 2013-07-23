@@ -15,7 +15,7 @@ public interface IClientService {
 
 	ResponseWrapper getClient(int id) throws XstoreException;
 
-	ResponseWrapper registerClient(Client client) throws XstoreException;
+	ResponseWrapper registerClient(Client client);
 
 	ResponseWrapper updateClient(Client client) throws XstoreException;
 

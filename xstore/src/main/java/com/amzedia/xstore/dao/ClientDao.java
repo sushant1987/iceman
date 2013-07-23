@@ -136,10 +136,9 @@ public class ClientDao extends BaseDao implements IClientDao {
 	 * @param client
 	 * @return boolean
 	 */
-	@Transactional(readOnly=false, propagation = Propagation.REQUIRES_NEW, rollbackFor = DataAccessException.class)
-	public ResponseWrapper registerClient(Client client)
-			throws XstoreException {
-		ResponseWrapper responseWrapper = new ResponseWrapper();
+	@Transactional
+	public boolean registerClient(Client client)
+			throws RuntimeException {
 		try {
 			int basicInfoId = addBasic(client.getBasicInfo());
 			sql = SqlScript.SAVE_CLIENT;
@@ -155,26 +154,18 @@ public class ClientDao extends BaseDao implements IClientDao {
 					.getNamedParameterJdbcTemplate()
 					.update(sql, params);
 			if (rowUpdatedCount > 0) {
-				responseWrapper.setStatus(ResponseCode.OK);
-				responseWrapper.setMessage(ResponseMessage.SUCCESS);
-				responseWrapper.setResult(Message.REGISTERED_CLIENT);
+				return true;
 			} else {
-				responseWrapper.setStatus(ResponseCode.FAIL);
-				responseWrapper.setMessage(ResponseMessage.FAIL);
-				responseWrapper.setResult(Message.CLIENT_REGISTRATION_FAIL);
+				return false;
 			}
 		} catch (DataAccessException e) {
 			logger.error("exception in register client"
 					+ e.getMessage());
-			responseWrapper.setStatus(ResponseCode.FAIL);
-			responseWrapper.setMessage(e.getCause().getMessage());
-			responseWrapper.setResult(Message.CLIENT_REGISTRATION_FAIL);
-			logger.error("error in register client");
+			throw new RuntimeException(e);
 		} catch (Exception e) {
 			logger.error("Error in client dao");
-			throw new XstoreException(e);
+			throw new RuntimeException(e);
 		}
-		return responseWrapper;
 	}
 
 	/**
@@ -384,7 +375,6 @@ public class ClientDao extends BaseDao implements IClientDao {
 		return responseWrapper;
 	}
 
-	@Transactional
 	private int addBasic(BasicInfo basicInfo) throws XstoreException {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		try {

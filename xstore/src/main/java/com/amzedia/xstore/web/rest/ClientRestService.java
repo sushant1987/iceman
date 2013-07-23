@@ -63,13 +63,7 @@ public class ClientRestService {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseWrapper registerClient(@RequestBody Client client) {
-		try {
-			return this.clientService.registerClient(client);
-		} catch (XstoreException e) {
-
-			e.printStackTrace();
-			return null;
-		}
+		return this.clientService.registerClient(client);
 	}
 
 	/**
