@@ -45,7 +45,7 @@ public class StoreRestService {
 	 * @param Store
 	 * @return boolean TODO
 	 */
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseWrapper addStore(@RequestBody Store store) {
 		try {
@@ -55,7 +55,7 @@ public class StoreRestService {
 			e.printStackTrace();
 			return null;
 		}
-	}
+	}*/
 
 	/*
 	 * @RequestMapping(value = "/dummy", method = RequestMethod.GET)
@@ -96,5 +96,16 @@ public class StoreRestService {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	@RequestMapping(value = "/dummy", method = RequestMethod.GET)
+	@ResponseBody
+	public Store dummy() {
+		Store store = new Store();
+		store.setName("MyStore");
+		store.setCurrency("Rs.");
+		store.setTimeZone("IST");
+		store.setStatus(true);
+		return store;
 	}
 }

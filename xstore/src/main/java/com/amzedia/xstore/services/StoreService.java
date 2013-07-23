@@ -26,9 +26,9 @@ public class StoreService implements IStoreService {
 	 * @throws XstoreException
 	 * 
 	 */
-	public ResponseWrapper addStore(Store store) throws XstoreException {
+	/*public ResponseWrapper addStore(Store store) throws XstoreException {
 		return this.storeDao.addStore(store);
-	}
+	}*/
 
 	public ResponseWrapper deactivateOrActivateStore(Store store)
 			throws XstoreException {

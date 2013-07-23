@@ -5,7 +5,9 @@ package com.amzedia.xstore.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -20,6 +22,7 @@ import com.amzedia.xstore.dao.interfaces.IGroupDao;
 import com.amzedia.xstore.model.Client;
 import com.amzedia.xstore.model.Group;
 import com.amzedia.xstore.model.ResponseWrapper;
+import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.util.Message;
 import com.amzedia.xstore.util.ResponseCode;
 import com.amzedia.xstore.util.ResponseMessage;
@@ -93,47 +96,6 @@ public class GroupDao extends BaseDao implements IGroupDao {
 		return responseWrapper;
 	}
 
-	/*
-	 * This API will add the Group under the client
-	 * 
-	 * @param group
-	 * 
-	 * @return boolean
-	 */
-	/*public ResponseWrapper addGroup(Group group) throws XstoreException {
-		ResponseWrapper responseWrapper = new ResponseWrapper();
-		try {
-			sql = SqlScript.SAVE_GROUP;
-			Map<String, Object> values = new HashMap<String, Object>();
-			values.put("groupName", group.getName());
-			values.put("clientId", group.getClient().getId());
-			values.put("status", group.isStatus());
-			SqlParameterSource params = new MapSqlParameterSource(
-					values);
-			int success = this.getNamedParameterJdbcTemplate()
-					.update(sql, params);
-			if (success > 0) {
-				responseWrapper.setStatus(ResponseCode.OK);
-				responseWrapper.setMessage(ResponseMessage.SUCCESS);
-				responseWrapper.setResult(Message.GROUP_ADDED);
-			} else {
-				responseWrapper.setStatus(ResponseCode.FAIL);
-				responseWrapper.setMessage(ResponseMessage.FAIL);
-				responseWrapper.setResult(Message.GROUP_NOT_ADDED);
-			}
-
-		} catch (DataAccessException e) {
-			responseWrapper.setStatus(ResponseCode.FAIL);
-			responseWrapper.setMessage(ResponseMessage.FAIL);
-			responseWrapper.setResult(e.getCause().getMessage());
-			logger.error("error in register group");
-		} catch (Exception e) {
-			logger.error("error in register group");
-		}
-		return responseWrapper;
-
-	}*/
-
 	/**
 	 * This api will activate or deactivate group
 	 * 
@@ -203,6 +165,127 @@ public class GroupDao extends BaseDao implements IGroupDao {
 			logger.error("Error in update group");
 		}
 		return responseWrapper;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.amzedia.xstore.dao.interfaces.IGroupDao#addStoreToGroup(int, com.amzedia.xstore.model.Store)
+	 */
+	public boolean addStoreToGroup(int id, Store store)
+			throws RuntimeException {
+		try {
+
+			sql = SqlScript.ADD_STORE;
+			Map<String, Object> values = new HashMap<String, Object>();
+			values.put("storeName", store.getName());
+			values.put("groupId", id);
+			values.put("currency", store.getCurrency());
+			values.put("timeZone", store.getTimeZone());
+			values.put("status", store.isStatus());
+			SqlParameterSource params = new MapSqlParameterSource(
+					values);
+			int success = this.getNamedParameterJdbcTemplate()
+					.update(sql, params);
+			if (success > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (DataAccessException e) {
+			logger.error("error in adding store to group id : " + id);
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			logger.error("error in adding store to group id : " + id);
+			throw new RuntimeException(e);
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see com.amzedia.xstore.dao.interfaces.IGroupDao#getStoresByGroup(int)
+	 */
+	public List<Store> getStoresByGroup(int id) throws RuntimeException {
+		List<Store> stores= new ArrayList<Store>();
+		try {
+			sql = SqlScript.GET_STORES_BY_GROUP;
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ID", id);
+			List<Map<String, Object>> list = this.getNamedParameterJdbcTemplate().queryForList(sql, paramMap);
+			for(Map<String, Object> map : list) {
+				Store store = new Store();
+				store.setId((Integer) map.get("ID"));
+				store.setName((String) map.get("NAME"));
+				store.setCurrency((String) map.get("CURRENCY"));
+				store.setStatus((Boolean) map.get("STATUS"));
+				store.setTimeZone((String) map.get("TIME_ZONE"));
+				stores.add(store);
+			}
+		}catch (DataAccessException e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		}
+		return stores;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.amzedia.xstore.dao.interfaces.IGroupDao#getActivatedStoresByGroup(int)
+	 */
+	public List<Store> getActivatedStoresByGroup(int id)
+			throws RuntimeException {
+		List<Store> stores= new ArrayList<Store>();
+		try {
+			sql = SqlScript.GET_ACTIVATED_STORES_BY_GROUP;
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ID", id);
+			List<Map<String, Object>> list = this.getNamedParameterJdbcTemplate().queryForList(sql, paramMap);
+			for(Map<String, Object> map : list) {
+				Store store = new Store();
+				store.setId((Integer) map.get("ID"));
+				store.setName((String) map.get("NAME"));
+				store.setCurrency((String) map.get("CURRENCY"));
+				store.setStatus((Boolean) map.get("STATUS"));
+				store.setTimeZone((String) map.get("TIME_ZONE"));
+				stores.add(store);
+			}
+		}catch (DataAccessException e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		}
+		return stores;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.amzedia.xstore.dao.interfaces.IGroupDao#getDeactivatedStoresByGroup(int)
+	 */
+	public List<Store> getDeactivatedStoresByGroup(int id)
+			throws RuntimeException {
+		List<Store> stores= new ArrayList<Store>();
+		try {
+			sql = SqlScript.GET_DEACTIVATED_STORES_BY_GROUP;
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ID", id);
+			List<Map<String, Object>> list = this.getNamedParameterJdbcTemplate().queryForList(sql, paramMap);
+			for(Map<String, Object> map : list) {
+				Store store = new Store();
+				store.setId((Integer) map.get("ID"));
+				store.setName((String) map.get("NAME"));
+				store.setCurrency((String) map.get("CURRENCY"));
+				store.setStatus((Boolean) map.get("STATUS"));
+				store.setTimeZone((String) map.get("TIME_ZONE"));
+				stores.add(store);
+			}
+		}catch (DataAccessException e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		}
+		return stores;
 	}
 
 }

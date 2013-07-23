@@ -33,7 +33,7 @@ public class StoreDao extends BaseDao implements IStoreDao {
 
 	private String sql;
 
-	public ResponseWrapper addStore(Store store) throws XstoreException {
+	/*public ResponseWrapper addStore(Store store) throws XstoreException {
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 		try {
 
@@ -67,7 +67,7 @@ public class StoreDao extends BaseDao implements IStoreDao {
 			throw new XstoreException();
 		}
 		return responseWrapper;
-	}
+	}*/
 
 	/*
 	 * 
@@ -123,7 +123,6 @@ public class StoreDao extends BaseDao implements IStoreDao {
 			sql = SqlScript.GET_STORE;
 			Store returnStore;
 			final Store store = new Store();
-			final Group group = new Group();
 			Map<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("ID", id);
 			returnStore = this
@@ -143,8 +142,6 @@ public class StoreDao extends BaseDao implements IStoreDao {
 												.getString("TIME_ZONE"));
 										store.setStatus(rs
 												.getBoolean("STATUS"));
-										group.setId(rs.getInt("BRAND_ID"));
-										store.setGroup(group);
 									}
 									return store;
 								}

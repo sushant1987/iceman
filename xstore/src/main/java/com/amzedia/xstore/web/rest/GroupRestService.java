@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.amzedia.xstore.XstoreException;
-import com.amzedia.xstore.model.Client;
 import com.amzedia.xstore.model.Group;
+import com.amzedia.xstore.model.ListResponseWrapper;
 import com.amzedia.xstore.model.ResponseWrapper;
+import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.services.interfaces.IGroupService;
 
 /**
@@ -50,24 +51,6 @@ public class GroupRestService {
 	}
 
 	/**
-	 * This api will add store
-	 * 
-	 * @param Store
-	 * @return boolean
-	 */
-	/*@RequestMapping(value = "/add", method = RequestMethod.POST)
-	@ResponseBody
-	public ResponseWrapper addGroup(@RequestBody Group group) {
-		try {
-			return this.groupService.addGroup(group);
-		} catch (XstoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-	}*/
-
-	/**
 	 * This api will update group info
 	 * 
 	 * @param Group
@@ -97,6 +80,14 @@ public class GroupRestService {
 		}
 	}
 
+	@RequestMapping(value = "/{id}/stores/add", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseWrapper addStoreToGroup(@PathVariable String id, @RequestBody Store store) {
+		int groupId = Integer.parseInt(id);
+		return this.groupService.addStoreToGroup(groupId, store);
+		
+	}
+
 	/**
 	 * 
 	 * @return
@@ -108,6 +99,30 @@ public class GroupRestService {
 		group.setName("MyGroup");
 		group.setStatus(true);
 		return group;
+		
+	}
+	
+	@RequestMapping(value = "/{id}/stores", method = RequestMethod.GET)
+	@ResponseBody
+	public ListResponseWrapper getStoresByGroup(@PathVariable String id) {
+		int groupId = Integer.parseInt(id);
+		return this.groupService.getStoresByGroup(groupId);
+		
+	}
+	
+	@RequestMapping(value = "/{id}/stores/deactivated", method = RequestMethod.GET)
+	@ResponseBody
+	public ListResponseWrapper getDeactivatedStoresByGroup(@PathVariable String id) {
+		int groupId = Integer.parseInt(id);
+		return this.groupService.getDeactivatedStoresByGroup(groupId);
+		
+	}
+	
+	@RequestMapping(value = "/{id}/stores/activated", method = RequestMethod.GET)
+	@ResponseBody
+	public ListResponseWrapper getActivatedStoresByGroup(@PathVariable String id) {
+		int groupId = Integer.parseInt(id);
+		return this.groupService.getActivatedStoresByGroup(groupId);
 		
 	}
 }

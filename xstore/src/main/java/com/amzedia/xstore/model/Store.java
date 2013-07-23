@@ -15,7 +15,6 @@ public class Store {
 
 	private int id;
 	private String name;
-	private Group group;
 	private String currency;
 	private String timeZone;
 	private boolean status;
@@ -96,19 +95,5 @@ public class Store {
 	 */
 	public void setStatus(boolean status) {
 		this.status = status;
-	}
-
-	/**
-	 * @return the group
-	 */
-	public Group getGroup() {
-		return group;
-	}
-
-	/**
-	 * @param group the group to set
-	 */
-	public void setGroup(Group group) {
-		this.group = group;
 	}
 }

@@ -13,7 +13,7 @@ import com.amzedia.xstore.model.Store;
  */
 public interface IStoreService {
 
-	ResponseWrapper addStore(Store store) throws XstoreException;
+	/*ResponseWrapper addStore(Store store) throws XstoreException;*/
 
 	ResponseWrapper deactivateOrActivateStore(Store store)
 			throws XstoreException;

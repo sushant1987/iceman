@@ -25,7 +25,7 @@ public interface IStoreDao {
 	 * @param store
 	 * @return
 	 */
-	ResponseWrapper addStore(Store store) throws XstoreException;
+	/*ResponseWrapper addStore(Store store) throws XstoreException;*/
 
 	/**
 	 * This api will deactivate client

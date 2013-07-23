@@ -1,32 +1,32 @@
 Client URL
-http://local.mhhe.com:8989/clients(Later)
-http://local.mhhe.com:8989/client/{id}
-http://local.mhhe.com:8989/client/register
-http://local.mhhe.com:8989/client/update
-http://local.mhhe.com:8989/client/login
-http://local.mhhe.com:8989/client/activateordeactivate
-http://local.mhhe.com:8989/client/{id}/groups
-http://local.mhhe.com:8989/client/{id}/groups/add
-http://local.mhhe.com:8989/client/{id}/groups/activated
-http://local.mhhe.com:8989/client/{id}/groups/deactivated
+http://local.mhhe.com:8989/xstore/clients(Later)
+http://local.mhhe.com:8989/xstore/client/{id}
+http://local.mhhe.com:8989/xstore/client/register
+http://local.mhhe.com:8989/xstore/client/update
+http://local.mhhe.com:8989/xstore/client/login
+http://local.mhhe.com:8989/xstore/client/activateordeactivate
+http://local.mhhe.com:8989/xstore/client/{id}/groups
+http://local.mhhe.com:8989/xstore/client/{id}/groups/add
+http://local.mhhe.com:8989/xstore/client/{id}/groups/activated
+http://local.mhhe.com:8989/xstore/client/{id}/groups/deactivated
 
 Group URL
-http://local.mhhe.com:8989/groups (Later)
-http://local.mhhe.com:8989/group/{id}
-http://local.mhhe.com:8989/group/update
-http://local.mhhe.com:8989/group/activateordeactivate
-http://local.mhhe.com:8989/group/{id}/stores
-http://local.mhhe.com:8989/group/{id}/stores/add
-http://local.mhhe.com:8989/group/{id}/activatedstores
-http://local.mhhe.com:8989/group/{id}/deactivatedstores
+http://local.mhhe.com:8989/xstore/groups (Later)
+http://local.mhhe.com:8989/xstore/group/{id}
+http://local.mhhe.com:8989/xstore/group/update
+http://local.mhhe.com:8989/xstore/group/activateordeactivate
+http://local.mhhe.com:8989/xstore/group/{id}/stores
+http://local.mhhe.com:8989/xstore/group/{id}/stores/add
+http://local.mhhe.com:8989/xstore/group/{id}/stores/activated
+http://local.mhhe.com:8989/xstore/group/{id}/stores/deactivated
 
 
 Store URL
-http://local.mhhe.com:8989/stores (Later)
-http://local.mhhe.com:8989/store/id
-http://local.mhhe.com:8989/store/add
-http://local.mhhe.com:8989/store/update
-http://local.mhhe.com:8989/store/activateordeactivate
-http://local.mhhe.com:8989/store/customers
-http://local.mhhe.com:8989/store/activatedcustomers
-http://local.mhhe.com:8989/store/deactivatedcustomers
+http://local.mhhe.com:8989/xstore/stores (Later)
+http://local.mhhe.com:8989/xstore/store/id
+http://local.mhhe.com:8989/xstore/store/add
+http://local.mhhe.com:8989/xstore/store/update
+http://local.mhhe.com:8989/xstore/store/activateordeactivate
+http://local.mhhe.com:8989/xstore/store/customers
+http://local.mhhe.com:8989/xstore/store/activatedcustomers
+http://local.mhhe.com:8989/xstore/store/deactivatedcustomers
