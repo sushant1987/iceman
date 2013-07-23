@@ -6,6 +6,7 @@ package com.amzedia.xstore.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -24,6 +25,7 @@ import com.amzedia.xstore.dao.interfaces.IClientDao;
 import com.amzedia.xstore.model.BasicInfo;
 import com.amzedia.xstore.model.ChangePassword;
 import com.amzedia.xstore.model.Client;
+import com.amzedia.xstore.model.Group;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.util.Message;
 import com.amzedia.xstore.util.ResponseCode;
@@ -465,6 +467,14 @@ public class ClientDao extends BaseDao implements IClientDao {
 
 		}
 		return responseWrapper;
+	}
+
+	/**
+	 * 
+	 */
+	public List<Group> getAllGroupByClient(int id) throws RuntimeException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

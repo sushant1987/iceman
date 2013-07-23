@@ -17,7 +17,6 @@ public class Customer {
 
 	private int id;
 	private BasicInfo basicInfo;
-	private Store store;
 	private Group group;
 	private String customerName;
 	private String password;
@@ -56,22 +55,6 @@ public class Customer {
 	@XmlElement
 	public void setBasicInfo(BasicInfo basicInfo) {
 		this.basicInfo = basicInfo;
-	}
-
-	/**
-	 * @return the store
-	 */
-	public Store getStore() {
-		return store;
-	}
-
-	/**
-	 * @param store
-	 *                the store to set
-	 */
-	@XmlElement
-	public void setStore(Store store) {
-		this.store = store;
 	}
 
 	/**

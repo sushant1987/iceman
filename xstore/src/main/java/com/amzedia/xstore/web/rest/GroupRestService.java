@@ -23,7 +23,7 @@ import com.amzedia.xstore.services.interfaces.IGroupService;
  */
 
 @Controller
-@RequestMapping(value = "/group")
+@RequestMapping(value = "/groups")
 public class GroupRestService {
 
 	@Autowired
@@ -36,7 +36,7 @@ public class GroupRestService {
 	 * @return Group
 	 */
 
-	@RequestMapping(value = "/{id}")
+	@RequestMapping(value = "/find/{id}")
 	@ResponseBody
 	public ResponseWrapper getGroupById(@PathVariable String id) {
 		int groupId = Integer.parseInt(id);

@@ -3,9 +3,12 @@
  */
 package com.amzedia.xstore.dao.interfaces;
 
+import java.util.List;
+
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.ChangePassword;
 import com.amzedia.xstore.model.Client;
+import com.amzedia.xstore.model.Group;
 import com.amzedia.xstore.model.ResponseWrapper;
 
 /**
@@ -81,4 +84,12 @@ public interface IClientDao {
 	 * @return ResponseWrapper
 	 */
 	ResponseWrapper dummy() throws XstoreException;
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws RuntimeException
+	 */
+	List<Group> getAllGroupByClient(int id) throws RuntimeException;
 }

@@ -97,6 +97,32 @@ public class ClientRestService {
 
 	// TODO get by user name and password
 
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseWrapper loginClient(@RequestBody Client client) {
+		try {
+			return this.clientService.loginClient(client);
+		} catch (XstoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@RequestMapping(value = "/activateordeactivate", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseWrapper deactivateOrActivateClient(
+			@RequestBody Client client) {
+		try {
+			return this.clientService
+					.deactivateOrActivateClient(client);
+		} catch (XstoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	@RequestMapping(value = "/test", method = RequestMethod.GET /*
 								     * headers=
 								     * "Accept=application/xml, application/json"
@@ -157,32 +183,6 @@ public class ClientRestService {
 		client.setPlanType("A");
 		client.setBasicInfo(info);
 		return client;
-	}
-
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	@ResponseBody
-	public ResponseWrapper loginClient(@RequestBody Client client) {
-		try {
-			return this.clientService.loginClient(client);
-		} catch (XstoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	@RequestMapping(value = "/activateordeactivate", method = RequestMethod.POST)
-	@ResponseBody
-	public ResponseWrapper deactivateOrActivateClient(
-			@RequestBody Client client) {
-		try {
-			return this.clientService
-					.deactivateOrActivateClient(client);
-		} catch (XstoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 }
