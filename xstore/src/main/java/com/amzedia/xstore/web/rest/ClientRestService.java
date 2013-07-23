@@ -41,7 +41,7 @@ public class ClientRestService {
 	 * @return Client
 	 */
 
-	@RequestMapping(value = "/findclient/{id}")
+	@RequestMapping(value = "/{id}")
 	@ResponseBody
 	public ResponseWrapper getClientById(@PathVariable String id) {
 		int clientId = Integer.parseInt(id);
@@ -60,7 +60,7 @@ public class ClientRestService {
 	 * @param Client
 	 * @return boolean
 	 */
-	@RequestMapping(value = "/registerclient", method = RequestMethod.POST)
+	@RequestMapping(value = "", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseWrapper registerClient(@RequestBody Client client) {
 		try {
@@ -79,7 +79,7 @@ public class ClientRestService {
 	 *                TODO
 	 * @return boolean
 	 */
-	@RequestMapping(value = "/updateclient", method = RequestMethod.POST)
+	@RequestMapping(value = "", method = RequestMethod.PUT)
 	@ResponseBody
 	public ResponseWrapper updaterClient(@RequestBody Client client) {
 		try {
@@ -90,12 +90,6 @@ public class ClientRestService {
 			return null;
 		}
 	}
-
-	// TODO update client
-
-	// TODO delete client
-
-	// TODO get by user name and password
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
