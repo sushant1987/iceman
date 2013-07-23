@@ -33,7 +33,7 @@ public class StoreRestService {
 	 * @param Store
 	 * @return boolean TODO
 	 */
-	@RequestMapping(value = "/addstore", method = RequestMethod.POST)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseWrapper addStore(@RequestBody Store store) {
 		try {
@@ -68,7 +68,7 @@ public class StoreRestService {
 		}
 	}
 
-	@RequestMapping(value = "/findstore/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseWrapper getStore(@PathVariable("id") int id) {
 		try {
@@ -86,7 +86,7 @@ public class StoreRestService {
 	 * @param Store
 	 * @return boolean
 	 */
-	@RequestMapping(value = "/updatestore", method = RequestMethod.POST)
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseWrapper updateStore(@RequestBody Store store) {
 		try {
