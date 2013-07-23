@@ -96,4 +96,54 @@ public class ClientService implements IClientService {
 		return responseWrapper;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.amzedia.xstore.services.interfaces.IClientService#getDeactivatedGroupByClient(int)
+	 */
+	public ListResponseWrapper getDeactivatedGroupByClient(int id) {
+		ListResponseWrapper responseWrapper = new ListResponseWrapper();
+		List<Object> objects = new ArrayList<Object>();
+		try {
+			List<Group> groups = this.clientDao.getDeactivatedGroupByClient(id);
+			
+			for(Group group : groups) {
+				objects.add(group);
+			}
+			responseWrapper.setStatus(ResponseCode.OK);
+			responseWrapper.setMessage(ResponseMessage.SUCCESS);
+			responseWrapper.setResult(objects);
+		} catch (Exception e) {
+			objects.add(e.getCause().getCause().getMessage());
+			responseWrapper.setStatus(ResponseCode.FAIL);
+			responseWrapper.setMessage(ResponseMessage.FAIL);
+			responseWrapper.setResult(objects);
+		}
+		// TODO Auto-generated method stub
+		return responseWrapper;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.amzedia.xstore.services.interfaces.IClientService#getActivatedGroupByClient(int)
+	 */
+	public ListResponseWrapper getActivatedGroupByClient(int id) {
+		ListResponseWrapper responseWrapper = new ListResponseWrapper();
+		List<Object> objects = new ArrayList<Object>();
+		try {
+			List<Group> groups = this.clientDao.getActivatedGroupByClient(id);
+			
+			for(Group group : groups) {
+				objects.add(group);
+			}
+			responseWrapper.setStatus(ResponseCode.OK);
+			responseWrapper.setMessage(ResponseMessage.SUCCESS);
+			responseWrapper.setResult(objects);
+		} catch (Exception e) {
+			objects.add(e.getCause().getCause().getMessage());
+			responseWrapper.setStatus(ResponseCode.FAIL);
+			responseWrapper.setMessage(ResponseMessage.FAIL);
+			responseWrapper.setResult(objects);
+		}
+		// TODO Auto-generated method stub
+		return responseWrapper;
+	}
+
 }

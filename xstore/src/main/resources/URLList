@@ -1,0 +1,30 @@
+Client URL
+http://local.mhhe.com:8989/clients(Later)
+http://local.mhhe.com:8989/client/id
+http://local.mhhe.com:8989/client/register
+http://local.mhhe.com:8989/client/update
+http://local.mhhe.com:8989/client/login
+http://local.mhhe.com:8989/client/activateordeactivate
+http://local.mhhe.com:8989/client/{id}/groups
+http://local.mhhe.com:8989/client/{id}/groups/activated
+http://local.mhhe.com:8989/client/{id}/groups/deactivated
+
+Group URL
+http://local.mhhe.com:8989/groups (Later)
+http://local.mhhe.com:8989/group/id
+http://local.mhhe.com:8989/group/add
+http://local.mhhe.com:8989/group/update
+http://local.mhhe.com:8989/group/activateordeactivate
+http://local.mhhe.com:8989/group/stores
+http://local.mhhe.com:8989/group/activatedstores
+http://local.mhhe.com:8989/group/deactivatedstores
+
+Store URL
+http://local.mhhe.com:8989/stores (Later)
+http://local.mhhe.com:8989/store/id
+http://local.mhhe.com:8989/store/add
+http://local.mhhe.com:8989/store/update
+http://local.mhhe.com:8989/store/activateordeactivate
+http://local.mhhe.com:8989/store/customers
+http://local.mhhe.com:8989/store/activatedcustomers
+http://local.mhhe.com:8989/store/deactivatedcustomers

@@ -468,6 +468,70 @@ public class ClientDao extends BaseDao implements IClientDao {
 		try {
 			Group group = new Group();
 			Client client = new Client();
+			sql = SqlScript.GET_ACTIVATED_GROUPS_BY_CLIENT;
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ID", id);
+			List<Map<String, Object>> list = this.getNamedParameterJdbcTemplate().queryForList(sql, paramMap);
+			for(Map<String, Object> map : list) {
+				group.setId((Integer) map.get("BID"));
+				group.setName((String) map.get("NAME"));
+				group.setStatus((Boolean) map.get("STATUS"));
+				client.setId((Integer) map.get("CID"));
+				group.setClient(client);
+				groups.add(group);
+				
+			}
+		} catch (DataAccessException e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		}
+		return groups;
+	}
+
+	/**
+	 * 
+	 */
+	public List<Group> getDeactivatedGroupByClient(int id)
+			throws RuntimeException {
+		List<Group> groups = new ArrayList<Group>();
+		try {
+			Group group = new Group();
+			Client client = new Client();
+			sql = SqlScript.GET_DEACTIVATED_GROUPS_BY_CLIENT;
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ID", id);
+			List<Map<String, Object>> list = this.getNamedParameterJdbcTemplate().queryForList(sql, paramMap);
+			for(Map<String, Object> map : list) {
+				group.setId((Integer) map.get("BID"));
+				group.setName((String) map.get("NAME"));
+				group.setStatus((Boolean) map.get("STATUS"));
+				client.setId((Integer) map.get("CID"));
+				group.setClient(client);
+				groups.add(group);
+				
+			}
+		} catch (DataAccessException e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		}
+		return groups;
+	}
+
+	/**
+	 * 
+	 */
+	public List<Group> getActivatedGroupByClient(int id)
+			throws RuntimeException {
+		List<Group> groups = new ArrayList<Group>();
+		try {
+			Group group = new Group();
+			Client client = new Client();
 			sql = SqlScript.GET_GROUPS_BY_CLIENT;
 			Map<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("ID", id);

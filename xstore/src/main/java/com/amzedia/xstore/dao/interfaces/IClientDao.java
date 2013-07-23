@@ -79,6 +79,14 @@ public interface IClientDao {
 			throws XstoreException;
 
 	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws RuntimeException
+	 */
+	List<Group> getAllGroupByClient(int id) throws RuntimeException;
+
+	/**
 	 * This api will add dummy data to db
 	 * 
 	 * @return ResponseWrapper
@@ -91,5 +99,13 @@ public interface IClientDao {
 	 * @return
 	 * @throws RuntimeException
 	 */
-	List<Group> getAllGroupByClient(int id) throws RuntimeException;
+	List<Group> getDeactivatedGroupByClient(int id) throws RuntimeException;
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws RuntimeException
+	 */
+	List<Group> getActivatedGroupByClient(int id) throws RuntimeException;
 }

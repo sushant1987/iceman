@@ -3,8 +3,11 @@
  */
 package com.amzedia.xstore.services.interfaces;
 
+import java.util.List;
+
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.Client;
+import com.amzedia.xstore.model.Group;
 import com.amzedia.xstore.model.ListResponseWrapper;
 import com.amzedia.xstore.model.ResponseWrapper;
 
@@ -28,5 +31,9 @@ public interface IClientService {
 			throws XstoreException;
 	
 	ListResponseWrapper getAllGroupByClient(int id);
+	
+	ListResponseWrapper getDeactivatedGroupByClient(int id);
+	
+	ListResponseWrapper getActivatedGroupByClient(int id);
 
 }
