@@ -3,23 +3,16 @@
  */
 package com.amzedia.xstore.web.rest;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.BasicInfo;
 import com.amzedia.xstore.model.Client;
-import com.amzedia.xstore.model.Customer;
-import com.amzedia.xstore.model.Group;
 import com.amzedia.xstore.model.ListResponseWrapper;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.services.interfaces.IClientService;
