@@ -117,22 +117,22 @@ public class ClientRestService {
 		
 	}
 	
-	@RequestMapping(value = "/{id}/groups/deactivated", method = RequestMethod.GET)
-	@ResponseBody
-	public ListResponseWrapper getDeactivatedGroupByClient(@PathVariable String id) {
-		int clientId = Integer.parseInt(id);
-		ListResponseWrapper listResponseWrapper = new ListResponseWrapper();
-		listResponseWrapper = this.clientService.getDeactivatedGroupByClient(clientId);
-		return listResponseWrapper;
-		
-	}
-	
 	@RequestMapping(value = "/{id}/groups/activated", method = RequestMethod.GET)
 	@ResponseBody
 	public ListResponseWrapper getActivatedGroupByClient(@PathVariable String id) {
 		int clientId = Integer.parseInt(id);
 		ListResponseWrapper listResponseWrapper = new ListResponseWrapper();
 		listResponseWrapper = this.clientService.getActivatedGroupByClient(clientId);
+		return listResponseWrapper;
+		
+	}
+
+	@RequestMapping(value = "/{id}/groups/deactivated", method = RequestMethod.GET)
+	@ResponseBody
+	public ListResponseWrapper getDeactivatedGroupByClient(@PathVariable String id) {
+		int clientId = Integer.parseInt(id);
+		ListResponseWrapper listResponseWrapper = new ListResponseWrapper();
+		listResponseWrapper = this.clientService.getDeactivatedGroupByClient(clientId);
 		return listResponseWrapper;
 		
 	}

@@ -99,7 +99,6 @@ public class GroupRestService {
 		group.setName("MyGroup");
 		group.setStatus(true);
 		return group;
-		
 	}
 	
 	@RequestMapping(value = "/{id}/stores", method = RequestMethod.GET)
@@ -107,7 +106,6 @@ public class GroupRestService {
 	public ListResponseWrapper getStoresByGroup(@PathVariable String id) {
 		int groupId = Integer.parseInt(id);
 		return this.groupService.getStoresByGroup(groupId);
-		
 	}
 	
 	@RequestMapping(value = "/{id}/stores/deactivated", method = RequestMethod.GET)
@@ -115,7 +113,6 @@ public class GroupRestService {
 	public ListResponseWrapper getDeactivatedStoresByGroup(@PathVariable String id) {
 		int groupId = Integer.parseInt(id);
 		return this.groupService.getDeactivatedStoresByGroup(groupId);
-		
 	}
 	
 	@RequestMapping(value = "/{id}/stores/activated", method = RequestMethod.GET)
@@ -123,6 +120,5 @@ public class GroupRestService {
 	public ListResponseWrapper getActivatedStoresByGroup(@PathVariable String id) {
 		int groupId = Integer.parseInt(id);
 		return this.groupService.getActivatedStoresByGroup(groupId);
-		
 	}
 }

@@ -466,17 +466,16 @@ public class ClientDao extends BaseDao implements IClientDao {
 	public List<Group> getAllGroupByClient(int id) throws RuntimeException {
 		List<Group> groups = new ArrayList<Group>();
 		try {
-			Group group = new Group();
-			sql = SqlScript.GET_ACTIVATED_GROUPS_BY_CLIENT;
+			sql = SqlScript.GET_GROUPS_BY_CLIENT;
 			Map<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("ID", id);
 			List<Map<String, Object>> list = this.getNamedParameterJdbcTemplate().queryForList(sql, paramMap);
 			for(Map<String, Object> map : list) {
+				Group group = new Group();
 				group.setId((Integer) map.get("BID"));
 				group.setName((String) map.get("NAME"));
 				group.setStatus((Boolean) map.get("STATUS"));
 				groups.add(group);
-				
 			}
 		} catch (DataAccessException e) {
 			logger.error("exception " + e.getMessage());
@@ -495,12 +494,12 @@ public class ClientDao extends BaseDao implements IClientDao {
 			throws RuntimeException {
 		List<Group> groups = new ArrayList<Group>();
 		try {
-			Group group = new Group();
 			sql = SqlScript.GET_DEACTIVATED_GROUPS_BY_CLIENT;
 			Map<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("ID", id);
 			List<Map<String, Object>> list = this.getNamedParameterJdbcTemplate().queryForList(sql, paramMap);
 			for(Map<String, Object> map : list) {
+				Group group = new Group();
 				group.setId((Integer) map.get("BID"));
 				group.setName((String) map.get("NAME"));
 				group.setStatus((Boolean) map.get("STATUS"));
@@ -524,17 +523,16 @@ public class ClientDao extends BaseDao implements IClientDao {
 			throws RuntimeException {
 		List<Group> groups = new ArrayList<Group>();
 		try {
-			Group group = new Group();
-			sql = SqlScript.GET_GROUPS_BY_CLIENT;
+			sql = SqlScript.GET_ACTIVATED_GROUPS_BY_CLIENT;
 			Map<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("ID", id);
 			List<Map<String, Object>> list = this.getNamedParameterJdbcTemplate().queryForList(sql, paramMap);
 			for(Map<String, Object> map : list) {
+				Group group = new Group();
 				group.setId((Integer) map.get("BID"));
 				group.setName((String) map.get("NAME"));
 				group.setStatus((Boolean) map.get("STATUS"));
 				groups.add(group);
-				
 			}
 		} catch (DataAccessException e) {
 			logger.error("exception " + e.getMessage());

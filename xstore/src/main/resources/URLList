@@ -19,6 +19,10 @@ http://local.mhhe.com:8989/xstore/group/{id}/stores
 http://local.mhhe.com:8989/xstore/group/{id}/stores/add
 http://local.mhhe.com:8989/xstore/group/{id}/stores/activated
 http://local.mhhe.com:8989/xstore/group/{id}/stores/deactivated
+http://local.mhhe.com:8989/xstore/group/{id}/customers
+http://local.mhhe.com:8989/xstore/group/{id}/customers/activated
+http://local.mhhe.com:8989/xstore/group/{id}/customers/deactivated
+
 
 
 Store URL
@@ -27,6 +31,3 @@ http://local.mhhe.com:8989/xstore/store/id
 http://local.mhhe.com:8989/xstore/store/add
 http://local.mhhe.com:8989/xstore/store/update
 http://local.mhhe.com:8989/xstore/store/activateordeactivate
-http://local.mhhe.com:8989/xstore/store/customers
-http://local.mhhe.com:8989/xstore/store/activatedcustomers
-http://local.mhhe.com:8989/xstore/store/deactivatedcustomers
