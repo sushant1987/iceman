@@ -5,6 +5,7 @@ package com.amzedia.xstore.services.interfaces;
 
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.Client;
+import com.amzedia.xstore.model.ListResponseWrapper;
 import com.amzedia.xstore.model.ResponseWrapper;
 
 /**
@@ -25,5 +26,7 @@ public interface IClientService {
 
 	ResponseWrapper deactivateOrActivateClient(Client client)
 			throws XstoreException;
+	
+	ListResponseWrapper getAllGroupByClient(int id);
 
 }

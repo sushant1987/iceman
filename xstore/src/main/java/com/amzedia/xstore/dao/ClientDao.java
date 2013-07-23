@@ -5,6 +5,7 @@ package com.amzedia.xstore.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -463,8 +464,31 @@ public class ClientDao extends BaseDao implements IClientDao {
 	 * 
 	 */
 	public List<Group> getAllGroupByClient(int id) throws RuntimeException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Group> groups = new ArrayList<Group>();
+		try {
+			Group group = new Group();
+			Client client = new Client();
+			sql = SqlScript.GET_GROUPS_BY_CLIENT;
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ID", id);
+			List<Map<String, Object>> list = this.getNamedParameterJdbcTemplate().queryForList(sql, paramMap);
+			for(Map<String, Object> map : list) {
+				group.setId((Integer) map.get("BID"));
+				group.setName((String) map.get("NAME"));
+				group.setStatus((Boolean) map.get("STATUS"));
+				client.setId((Integer) map.get("CID"));
+				group.setClient(client);
+				groups.add(group);
+				
+			}
+		} catch (DataAccessException e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		}
+		return groups;
 	}
 
 }

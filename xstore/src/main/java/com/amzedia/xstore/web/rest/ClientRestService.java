@@ -3,6 +3,8 @@
  */
 package com.amzedia.xstore.web.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,8 @@ import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.BasicInfo;
 import com.amzedia.xstore.model.Client;
 import com.amzedia.xstore.model.Customer;
+import com.amzedia.xstore.model.Group;
+import com.amzedia.xstore.model.ListResponseWrapper;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.services.interfaces.IClientService;
 
@@ -171,6 +175,16 @@ public class ClientRestService {
 		client.setPlanType("A");
 		client.setBasicInfo(info);
 		return client;
+	}
+	
+	@RequestMapping(value = "/groups/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public ListResponseWrapper getAllGroupsByClient(@PathVariable String id) {
+		int clientId = Integer.parseInt(id);
+		ListResponseWrapper listResponseWrapper = new ListResponseWrapper();
+		listResponseWrapper = this.clientService.getAllGroupByClient(clientId);
+		return listResponseWrapper;
+		
 	}
 
 }

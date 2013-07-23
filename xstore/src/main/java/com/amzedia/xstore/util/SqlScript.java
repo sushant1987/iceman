@@ -124,12 +124,23 @@ public final class SqlScript {
 			+ "BD.EMAIL, BD.ADDRESS, BD.CITY, BD.STATE, BD.COUNTRY, BD.PIN_CODE, BD.FAX FROM CUSTOMER U, BASIC_DETAIL BD WHERE "
 			+ "U.BASIC_DETAIL_ID = BD.ID AND U.ID=:ID";
 
+	/**
+	 * 
+	 */
 	public static final String ADD_CUSTOMER = "INSERT INTO CUSTOMER (BASIC_DETAIL_ID, BRAND_ID, USER_NAME, PASSWORD, USER_TYPE, NEWSLETTER, "
 			+ "STATUS, UPDATED_BY, CREATED_BY, UPDATED_DATE, CREATED_DATE) VALUES (:basicDetailId, :brandId, :userName, :password, :userType,"
 			+ ":newsletter, :status, 'admin', 'admin', sysdate(), sysdate())";
 
+	/**
+	 * 
+	 */
 	public static final String LOGIN_CUSTOMER = "SELECT C.ID, C.USER_NAME, C.USER_TYPE, C.NEWSLETTER, C.STATUS, C.BASIC_DETAIL_ID, "
 			+ "C.BRAND_ID, BD.ID BID, BD.FIRST_NAME, BD.MIDDLE_NAME, BD.LAST_NAME, BD.PHONE_NUMBER, BD.EMAIL, BD.ADDRESS, "
 			+ "BD.CITY, BD.STATE, BD.COUNTRY, BD.PIN_CODE, BD.FAX FROM CUSTOMER C, BASIC_DETAIL BD WHERE C.USER_NAME = "
 			+ ":userName AND C.PASSWORD = :password AND BD.ID = C.BASIC_DETAIL_ID";
+	
+	/**
+	 * 
+	 */
+	public static final String GET_GROUPS_BY_CLIENT = "SELECT B.ID BID, B.NAME, B.STATUS, C.ID CID FROM BRAND B, CLIENT C WHERE B.CLIENT_ID = C.ID AND C.ID = :ID";
 }
