@@ -32,10 +32,10 @@ public class GroupService implements IGroupService {
 	/*
 	 * This api will add the group
 	 */
-	public ResponseWrapper addGroup(Group group)  throws XstoreException{
+	/*public ResponseWrapper addGroup(Group group)  throws XstoreException{
 
 		return this.groupDao.addGroup(group);
-	}
+	}*/
 
 	/*
 	 * This api will activate or deactivate the group

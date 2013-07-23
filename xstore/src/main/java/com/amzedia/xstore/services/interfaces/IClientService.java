@@ -35,5 +35,7 @@ public interface IClientService {
 	ListResponseWrapper getDeactivatedGroupByClient(int id);
 	
 	ListResponseWrapper getActivatedGroupByClient(int id);
+	
+	ResponseWrapper addGroupToClient(int id, Group group);
 
 }

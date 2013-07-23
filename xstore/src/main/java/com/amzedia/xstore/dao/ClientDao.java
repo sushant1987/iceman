@@ -467,7 +467,6 @@ public class ClientDao extends BaseDao implements IClientDao {
 		List<Group> groups = new ArrayList<Group>();
 		try {
 			Group group = new Group();
-			Client client = new Client();
 			sql = SqlScript.GET_ACTIVATED_GROUPS_BY_CLIENT;
 			Map<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("ID", id);
@@ -476,8 +475,6 @@ public class ClientDao extends BaseDao implements IClientDao {
 				group.setId((Integer) map.get("BID"));
 				group.setName((String) map.get("NAME"));
 				group.setStatus((Boolean) map.get("STATUS"));
-				client.setId((Integer) map.get("CID"));
-				group.setClient(client);
 				groups.add(group);
 				
 			}
@@ -499,7 +496,6 @@ public class ClientDao extends BaseDao implements IClientDao {
 		List<Group> groups = new ArrayList<Group>();
 		try {
 			Group group = new Group();
-			Client client = new Client();
 			sql = SqlScript.GET_DEACTIVATED_GROUPS_BY_CLIENT;
 			Map<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("ID", id);
@@ -508,8 +504,6 @@ public class ClientDao extends BaseDao implements IClientDao {
 				group.setId((Integer) map.get("BID"));
 				group.setName((String) map.get("NAME"));
 				group.setStatus((Boolean) map.get("STATUS"));
-				client.setId((Integer) map.get("CID"));
-				group.setClient(client);
 				groups.add(group);
 				
 			}
@@ -531,7 +525,6 @@ public class ClientDao extends BaseDao implements IClientDao {
 		List<Group> groups = new ArrayList<Group>();
 		try {
 			Group group = new Group();
-			Client client = new Client();
 			sql = SqlScript.GET_GROUPS_BY_CLIENT;
 			Map<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("ID", id);
@@ -540,8 +533,6 @@ public class ClientDao extends BaseDao implements IClientDao {
 				group.setId((Integer) map.get("BID"));
 				group.setName((String) map.get("NAME"));
 				group.setStatus((Boolean) map.get("STATUS"));
-				client.setId((Integer) map.get("CID"));
-				group.setClient(client);
 				groups.add(group);
 				
 			}
@@ -553,6 +544,33 @@ public class ClientDao extends BaseDao implements IClientDao {
 			throw new RuntimeException(e);
 		}
 		return groups;
+	}
+	
+	public boolean addGroupToClient(int id, Group group) throws RuntimeException {
+		try {
+			sql = SqlScript.SAVE_GROUP;
+			Map<String, Object> values = new HashMap<String, Object>();
+			values.put("groupName", group.getName());
+			values.put("clientId", id);
+			values.put("status", group.isStatus());
+			SqlParameterSource params = new MapSqlParameterSource(
+					values);
+			int success = this.getNamedParameterJdbcTemplate()
+					.update(sql, params);
+			if (success > 0) {
+				return true;
+			} else {
+				return false;
+			}
+
+		} catch (DataAccessException e) {
+			logger.error("error in add group to client with id : " + id);
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			logger.error("error in add group to client with id : " + id);
+			throw new RuntimeException(e);
+		}
+		
 	}
 
 }

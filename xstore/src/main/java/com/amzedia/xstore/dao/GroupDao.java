@@ -50,7 +50,6 @@ public class GroupDao extends BaseDao implements IGroupDao {
 			sql = SqlScript.GET_GROUP;
 			Group returnGroup;
 			final Group group = new Group();
-			final Client client = new Client();
 			Map<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("ID", id);
 			returnGroup = this
@@ -67,8 +66,6 @@ public class GroupDao extends BaseDao implements IGroupDao {
 										group.setName(rs.getString("NAME"));
 										group.setStatus(rs
 												.getBoolean("STATUS"));
-										client.setId(rs.getInt("CLIENT_ID"));
-										group.setClient(client);
 									}
 
 									return group;
@@ -103,7 +100,7 @@ public class GroupDao extends BaseDao implements IGroupDao {
 	 * 
 	 * @return boolean
 	 */
-	public ResponseWrapper addGroup(Group group) throws XstoreException {
+	/*public ResponseWrapper addGroup(Group group) throws XstoreException {
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 		try {
 			sql = SqlScript.SAVE_GROUP;
@@ -135,7 +132,7 @@ public class GroupDao extends BaseDao implements IGroupDao {
 		}
 		return responseWrapper;
 
-	}
+	}*/
 
 	/**
 	 * This api will activate or deactivate group

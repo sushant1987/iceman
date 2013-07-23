@@ -27,7 +27,7 @@ public interface IGroupDao {
 	 * @param group
 	 * @return boolean
 	 */
-	ResponseWrapper addGroup(Group group) throws XstoreException;
+	/*ResponseWrapper addGroup(Group group) throws XstoreException;*/
 
 	/**
 	 * This api will activate or deactivate group

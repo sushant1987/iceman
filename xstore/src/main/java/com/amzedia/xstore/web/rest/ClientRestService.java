@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.BasicInfo;
 import com.amzedia.xstore.model.Client;
+import com.amzedia.xstore.model.Group;
 import com.amzedia.xstore.model.ListResponseWrapper;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.services.interfaces.IClientService;
@@ -133,6 +134,16 @@ public class ClientRestService {
 		ListResponseWrapper listResponseWrapper = new ListResponseWrapper();
 		listResponseWrapper = this.clientService.getActivatedGroupByClient(clientId);
 		return listResponseWrapper;
+		
+	}
+	
+	@RequestMapping(value = "/{id}/groups/add", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseWrapper addGroupToClient(@PathVariable String id, @RequestBody Group group) {
+		int clientId = Integer.parseInt(id);
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		responseWrapper = this.clientService.addGroupToClient(clientId, group);
+		return responseWrapper;
 		
 	}
 

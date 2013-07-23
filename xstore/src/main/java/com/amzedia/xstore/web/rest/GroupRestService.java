@@ -55,7 +55,7 @@ public class GroupRestService {
 	 * @param Store
 	 * @return boolean
 	 */
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseWrapper addGroup(@RequestBody Group group) {
 		try {
@@ -65,7 +65,7 @@ public class GroupRestService {
 			e.printStackTrace();
 			return null;
 		}
-	}
+	}*/
 
 	/**
 	 * This api will update group info
@@ -105,11 +105,8 @@ public class GroupRestService {
 	@ResponseBody
 	public Group getDummmyGroup() {
 		Group group = new Group();
-		Client client = new Client();
 		group.setName("MyGroup");
 		group.setStatus(true);
-		client.setId(1);
-		group.setClient(client);
 		return group;
 		
 	}

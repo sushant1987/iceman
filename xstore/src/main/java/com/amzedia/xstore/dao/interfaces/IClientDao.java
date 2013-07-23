@@ -108,4 +108,13 @@ public interface IClientDao {
 	 * @throws RuntimeException
 	 */
 	List<Group> getActivatedGroupByClient(int id) throws RuntimeException;
+	
+	/**
+	 * 
+	 * @param id
+	 * @param group
+	 * @return boolean
+	 * @throws RuntimeException
+	 */
+	boolean addGroupToClient(int id, Group group) throws RuntimeException;
 }

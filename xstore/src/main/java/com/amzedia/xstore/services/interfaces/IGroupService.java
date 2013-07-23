@@ -15,7 +15,7 @@ public interface IGroupService {
 
 	ResponseWrapper getGroup(int id) throws XstoreException;
 
-	ResponseWrapper addGroup(Group group)  throws XstoreException;
+	/*ResponseWrapper addGroup(Group group)  throws XstoreException;*/
 
 	ResponseWrapper deactivateOrActivateGroup(Group group)  throws XstoreException;
 

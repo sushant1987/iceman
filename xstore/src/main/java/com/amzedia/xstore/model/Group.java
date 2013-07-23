@@ -11,7 +11,6 @@ public class Group {
 	
 	private int id;
 	private String name;
-	private Client client;
 	private boolean status;
 	/**
 	 * @return the id
@@ -37,18 +36,7 @@ public class Group {
 	public void setName(String name) {
 		this.name = name;
 	}
-	/**
-	 * @return the client
-	 */
-	public Client getClient() {
-		return client;
-	}
-	/**
-	 * @param client the client to set
-	 */
-	public void setClient(Client client) {
-		this.client = client;
-	}
+	
 	/**
 	 * @return the status
 	 */

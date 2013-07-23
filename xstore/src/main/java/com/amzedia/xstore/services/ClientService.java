@@ -16,6 +16,7 @@ import com.amzedia.xstore.model.Group;
 import com.amzedia.xstore.model.ListResponseWrapper;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.services.interfaces.IClientService;
+import com.amzedia.xstore.util.Message;
 import com.amzedia.xstore.util.ResponseCode;
 import com.amzedia.xstore.util.ResponseMessage;
 
@@ -141,6 +142,31 @@ public class ClientService implements IClientService {
 			responseWrapper.setStatus(ResponseCode.FAIL);
 			responseWrapper.setMessage(ResponseMessage.FAIL);
 			responseWrapper.setResult(objects);
+		}
+		// TODO Auto-generated method stub
+		return responseWrapper;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.amzedia.xstore.services.interfaces.IClientService#addGroupToClient(int, com.amzedia.xstore.model.Group)
+	 */
+	public ResponseWrapper addGroupToClient(int id, Group group) {
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		try {
+			boolean status = this.clientDao.addGroupToClient(id, group);
+			if(status == true ) {
+				responseWrapper.setStatus(ResponseCode.OK);
+				responseWrapper.setMessage(ResponseMessage.SUCCESS);
+				responseWrapper.setResult(Message.GROUP_ADDED);
+			} else {
+				responseWrapper.setStatus(ResponseCode.FAIL);
+				responseWrapper.setMessage(ResponseMessage.FAIL);
+				responseWrapper.setResult(Message.GROUP_NOT_ADDED);
+			}
+		} catch (Exception e) {
+			responseWrapper.setStatus(ResponseCode.FAIL);
+			responseWrapper.setMessage(ResponseMessage.FAIL);
+			responseWrapper.setResult(e.getCause().getCause().getMessage());
 		}
 		// TODO Auto-generated method stub
 		return responseWrapper;
