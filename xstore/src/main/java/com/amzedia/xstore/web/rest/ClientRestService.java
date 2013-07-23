@@ -35,8 +35,6 @@ public class ClientRestService {
 	@Autowired
 	private IClientService clientService;
 
-	// TODO update client
-
 	/**
 	 * This api will bring the client information by passing id of client
 	 * 
@@ -115,30 +113,14 @@ public class ClientRestService {
 		}
 	}
 
-	@RequestMapping(value = "/test", method = RequestMethod.GET /*
-								     * headers=
-								     * "Accept=application/xml, application/json"
-								     */)
+	@RequestMapping(value = "/groups/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public ModelAndView test() {
-		Customer user = new Customer();
-		user.setCustomerName("Sushant");
-		user.setId(0);
-		user.setCustomerType("Super");
-		ModelAndView mav = new ModelAndView();
-		mav.addObject(user);
-		mav.setViewName("sushant0");
-		return mav;
-	}
-
-	@RequestMapping(value = "/boolean", method = RequestMethod.GET /*
-								        * headers=
-								        * "Accept=application/xml, application/json"
-								        */)
-	@ResponseBody
-	public Model testboolean(Model mav) {
-		mav.addAttribute("bc", true);
-		return mav;
+	public ListResponseWrapper getAllGroupsByClient(@PathVariable String id) {
+		int clientId = Integer.parseInt(id);
+		ListResponseWrapper listResponseWrapper = new ListResponseWrapper();
+		listResponseWrapper = this.clientService.getAllGroupByClient(clientId);
+		return listResponseWrapper;
+		
 	}
 
 	@RequestMapping(value = "/dummy", method = RequestMethod.GET)
@@ -175,16 +157,6 @@ public class ClientRestService {
 		client.setPlanType("A");
 		client.setBasicInfo(info);
 		return client;
-	}
-	
-	@RequestMapping(value = "/groups/{id}", method = RequestMethod.GET)
-	@ResponseBody
-	public ListResponseWrapper getAllGroupsByClient(@PathVariable String id) {
-		int clientId = Integer.parseInt(id);
-		ListResponseWrapper listResponseWrapper = new ListResponseWrapper();
-		listResponseWrapper = this.clientService.getAllGroupByClient(clientId);
-		return listResponseWrapper;
-		
 	}
 
 }

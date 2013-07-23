@@ -27,6 +27,18 @@ public class StoreRestService {
 	@Autowired
 	private IStoreService storeService;
 
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseWrapper getStore(@PathVariable("id") int id) {
+		try {
+			return this.storeService.getStore(id);
+		} catch (XstoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	/**
 	 * This api will add new store
 	 * 
@@ -54,32 +66,6 @@ public class StoreRestService {
 	 * store.setCurrency("Rs."); store.setClient(client); return store; }
 	 */
 
-	@RequestMapping(value = "/activateordeactivate", method = RequestMethod.POST)
-	@ResponseBody
-	public ResponseWrapper deactivateOrActivateStore(
-			@RequestBody Store store) {
-		try {
-			return this.storeService
-					.deactivateOrActivateStore(store);
-		} catch (XstoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	@ResponseBody
-	public ResponseWrapper getStore(@PathVariable("id") int id) {
-		try {
-			return this.storeService.getStore(id);
-		} catch (XstoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-	}
-
 	/**
 	 * This api will update store info
 	 * 
@@ -91,6 +77,20 @@ public class StoreRestService {
 	public ResponseWrapper updateStore(@RequestBody Store store) {
 		try {
 			return this.storeService.updateStore(store);
+		} catch (XstoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@RequestMapping(value = "/activateordeactivate", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseWrapper deactivateOrActivateStore(
+			@RequestBody Store store) {
+		try {
+			return this.storeService
+					.deactivateOrActivateStore(store);
 		} catch (XstoreException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

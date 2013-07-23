@@ -23,7 +23,7 @@ import com.amzedia.xstore.services.interfaces.IGroupService;
  */
 
 @Controller
-@RequestMapping(value = "/groups")
+@RequestMapping(value = "/group")
 public class GroupRestService {
 
 	@Autowired
@@ -36,7 +36,7 @@ public class GroupRestService {
 	 * @return Group
 	 */
 
-	@RequestMapping(value = "/find/{id}")
+	@RequestMapping(value = "/{id}")
 	@ResponseBody
 	public ResponseWrapper getGroupById(@PathVariable String id) {
 		int groupId = Integer.parseInt(id);
@@ -67,18 +67,6 @@ public class GroupRestService {
 		}
 	}
 
-	@RequestMapping(value = "/activateordeactivate", method = RequestMethod.POST)
-	@ResponseBody
-	public ResponseWrapper deactivateOrActivateGroup(@RequestBody Group group) {
-		try {
-			return this.groupService.deactivateOrActivateGroup(group);
-		} catch (XstoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-	}
-
 	/**
 	 * This api will update group info
 	 * 
@@ -96,7 +84,19 @@ public class GroupRestService {
 			return null;
 		}
 	}
-	
+
+	@RequestMapping(value = "/activateordeactivate", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseWrapper deactivateOrActivateGroup(@RequestBody Group group) {
+		try {
+			return this.groupService.deactivateOrActivateGroup(group);
+		} catch (XstoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	/**
 	 * 
 	 * @return
