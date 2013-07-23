@@ -23,8 +23,6 @@ http://local.mhhe.com:8989/xstore/group/{id}/customers
 http://local.mhhe.com:8989/xstore/group/{id}/customers/activated
 http://local.mhhe.com:8989/xstore/group/{id}/customers/deactivated
 
-
-
 Store URL
 http://local.mhhe.com:8989/xstore/stores (Later)
 http://local.mhhe.com:8989/xstore/store/id
