@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.amzedia.xstore.XstoreException;
+import com.amzedia.xstore.model.Client;
 import com.amzedia.xstore.model.Group;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.services.interfaces.IGroupService;
@@ -35,7 +36,7 @@ public class GroupRestService {
 	 * @return Group
 	 */
 
-	@RequestMapping(value = "/findgroup/{id}")
+	@RequestMapping(value = "/{id}")
 	@ResponseBody
 	public ResponseWrapper getGroupById(@PathVariable String id) {
 		int groupId = Integer.parseInt(id);
@@ -54,7 +55,7 @@ public class GroupRestService {
 	 * @param Store
 	 * @return boolean
 	 */
-	@RequestMapping(value = "/addgroup", method = RequestMethod.POST)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseWrapper addGroup(@RequestBody Group group) {
 		try {
@@ -84,7 +85,7 @@ public class GroupRestService {
 	 * @param Group
 	 * @return boolean
 	 */
-	@RequestMapping(value = "/updategroup", method = RequestMethod.POST)
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseWrapper updaterGroup(@RequestBody Group group) {
 		try {
@@ -94,5 +95,22 @@ public class GroupRestService {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/dummy", method = RequestMethod.GET)
+	@ResponseBody
+	public Group getDummmyGroup() {
+		Group group = new Group();
+		Client client = new Client();
+		group.setName("MyGroup");
+		group.setStatus(true);
+		client.setId(1);
+		group.setClient(client);
+		return group;
+		
 	}
 }
