@@ -15,11 +15,16 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.dao.interfaces.IGroupDao;
+import com.amzedia.xstore.model.BasicInfo;
 import com.amzedia.xstore.model.Client;
+import com.amzedia.xstore.model.Customer;
 import com.amzedia.xstore.model.Group;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.model.Store;
@@ -286,6 +291,199 @@ public class GroupDao extends BaseDao implements IGroupDao {
 			throw new RuntimeException(e);
 		}
 		return stores;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.amzedia.xstore.dao.interfaces.IGroupDao#registerCustomerToGroup(int, com.amzedia.xstore.model.Customer)
+	 */
+	@Transactional
+	public boolean registerCustomerToGroup(int id, Customer customer)
+			throws RuntimeException {
+		try {
+			int basicInfoId = addBasic(customer.getBasicInfo());
+			sql = SqlScript.ADD_CUSTOMER;
+			Map<String, Object> values = new HashMap<String, Object>();
+			values.put("basicDetailId", basicInfoId);
+			values.put("brandId", id);
+			values.put("userName", customer.getUsername());
+			values.put("password", customer.getPassword());
+			values.put("userType", customer.getCustomerType());
+			values.put("newsletter", customer.isNewsLetter());
+			values.put("status", customer.isStatus());
+			SqlParameterSource params = new MapSqlParameterSource(
+					values);
+			int rowUpdatedCount = this
+					.getNamedParameterJdbcTemplate()
+					.update(sql, params);
+			if (rowUpdatedCount > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (DataAccessException e) {
+			logger.error("exception in register customer"
+					+ e.getMessage());
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see com.amzedia.xstore.dao.interfaces.IGroupDao#getCustomersByGroup(int)
+	 */
+	public List<Customer> getCustomersByGroup(int id)
+			throws RuntimeException {
+		List<Customer> customers = new ArrayList<Customer>();
+		try {
+			sql = SqlScript.GET_CUSTOMERS_BY_GROUP;
+			Map<String, Object> values = new HashMap<String, Object>();
+			values.put("ID", id);
+			List<Map<String, Object>> list = this.getNamedParameterJdbcTemplate().queryForList(sql, values);
+			for(Map<String, Object> map : list) {
+				Customer customer = new Customer();
+				BasicInfo basicInfo = new BasicInfo();
+				basicInfo.setFirstName((String) map.get("FIRST_NAME"));
+				basicInfo.setMiddleName((String) map.get("MIDDLE_NAME"));
+				basicInfo.setLastName((String) map.get("LAST_NAME"));
+				basicInfo.setPhoneNumber((String) map.get("PHONE_NUMBER"));
+				basicInfo.setEmail((String) map.get("EMAIL"));
+				basicInfo.setAddress((String) map.get("ADDRESS"));
+				basicInfo.setCity((String) map.get("CITY"));
+				basicInfo.setState((String) map.get("STATE"));
+				basicInfo.setCountry((String) map.get("COUNTRY"));
+				basicInfo.setPin((String) map.get("PIN_CODE"));
+				basicInfo.setFax((String) map.get("FAX"));
+				customer.setBasicInfo(basicInfo);
+				customer.setId((Integer) map.get("ID"));
+				customer.setUsername((String) map.get("USER_NAME"));
+				customer.setCustomerType((String) map.get("USER_TYPE"));
+				customer.setNewsLetter((Boolean) map.get("NEWSLETTER"));
+				customer.setStatus((Boolean) map.get("STATUS"));
+				customers.add(customer);
+			}
+		} catch (DataAccessException e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		}
+		return customers;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.amzedia.xstore.dao.interfaces.IGroupDao#getActivatedCustomersByGroup(int)
+	 */
+	public List<Customer> getActivatedCustomersByGroup(int id)
+			throws RuntimeException {
+		List<Customer> customers = new ArrayList<Customer>();
+		try {
+			sql = SqlScript.GET_ACTIVATED_CUSTOMERS_BY_GROUP;
+			Map<String, Object> values = new HashMap<String, Object>();
+			values.put("ID", id);
+			List<Map<String, Object>> list = this.getNamedParameterJdbcTemplate().queryForList(sql, values);
+			for(Map<String, Object> map : list) {
+				Customer customer = new Customer();
+				BasicInfo basicInfo = new BasicInfo();
+				basicInfo.setFirstName((String) map.get("FIRST_NAME"));
+				basicInfo.setMiddleName((String) map.get("MIDDLE_NAME"));
+				basicInfo.setLastName((String) map.get("LAST_NAME"));
+				basicInfo.setPhoneNumber((String) map.get("PHONE_NUMBER"));
+				basicInfo.setEmail((String) map.get("EMAIL"));
+				basicInfo.setAddress((String) map.get("ADDRESS"));
+				basicInfo.setCity((String) map.get("CITY"));
+				basicInfo.setState((String) map.get("STATE"));
+				basicInfo.setCountry((String) map.get("COUNTRY"));
+				basicInfo.setPin((String) map.get("PIN_CODE"));
+				basicInfo.setFax((String) map.get("FAX"));
+				customer.setBasicInfo(basicInfo);
+				customer.setId((Integer) map.get("ID"));
+				customer.setUsername((String) map.get("USER_NAME"));
+				customer.setCustomerType((String) map.get("USER_TYPE"));
+				customer.setNewsLetter((Boolean) map.get("NEWSLETTER"));
+				customer.setStatus((Boolean) map.get("STATUS"));
+				customers.add(customer);
+			}
+		} catch (DataAccessException e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		}
+		return customers;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.amzedia.xstore.dao.interfaces.IGroupDao#getDeavtivatedCustomersByGroup(int)
+	 */
+	public List<Customer> getDeavtivatedCustomersByGroup(int id)
+			throws RuntimeException {
+		List<Customer> customers = new ArrayList<Customer>();
+		try {
+			sql = SqlScript.GET_DEACTIVATED_CUSTOMERS_BY_GROUP;
+			Map<String, Object> values = new HashMap<String, Object>();
+			values.put("ID", id);
+			List<Map<String, Object>> list = this.getNamedParameterJdbcTemplate().queryForList(sql, values);
+			for(Map<String, Object> map : list) {
+				Customer customer = new Customer();
+				BasicInfo basicInfo = new BasicInfo();
+				basicInfo.setFirstName((String) map.get("FIRST_NAME"));
+				basicInfo.setMiddleName((String) map.get("MIDDLE_NAME"));
+				basicInfo.setLastName((String) map.get("LAST_NAME"));
+				basicInfo.setPhoneNumber((String) map.get("PHONE_NUMBER"));
+				basicInfo.setEmail((String) map.get("EMAIL"));
+				basicInfo.setAddress((String) map.get("ADDRESS"));
+				basicInfo.setCity((String) map.get("CITY"));
+				basicInfo.setState((String) map.get("STATE"));
+				basicInfo.setCountry((String) map.get("COUNTRY"));
+				basicInfo.setPin((String) map.get("PIN_CODE"));
+				basicInfo.setFax((String) map.get("FAX"));
+				customer.setBasicInfo(basicInfo);
+				customer.setId((Integer) map.get("ID"));
+				customer.setUsername((String) map.get("USER_NAME"));
+				customer.setCustomerType((String) map.get("USER_TYPE"));
+				customer.setNewsLetter((Boolean) map.get("NEWSLETTER"));
+				customer.setStatus((Boolean) map.get("STATUS"));
+				customers.add(customer);
+			}
+		} catch (DataAccessException e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		}
+		return customers;
+	}
+	
+	private int addBasic(BasicInfo basicInfo) {
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		try {
+			sql = SqlScript.SAVE_BASIC_DETAILS;
+
+			Map<String, Object> values = new HashMap<String, Object>();
+			values.put("firstName", basicInfo.getFirstName());
+			values.put("middleName", basicInfo.getMiddleName());
+			values.put("lastName", basicInfo.getLastName());
+			values.put("phoneNumber", basicInfo.getPhoneNumber());
+			values.put("email", basicInfo.getEmail());
+			values.put("address", basicInfo.getAddress());
+			values.put("city", basicInfo.getCity());
+			values.put("state", basicInfo.getState());
+			values.put("country", basicInfo.getCountry());
+			values.put("pin", basicInfo.getPin());
+			values.put("fax", basicInfo.getFax());
+			SqlParameterSource paramSource = new MapSqlParameterSource(
+					values);
+			this.getNamedParameterJdbcTemplate().update(sql,
+					paramSource, keyHolder);
+		} catch (DataAccessException e) {
+			logger.error("exception in register Basic Info"
+					+ e.getMessage());
+		}
+		return keyHolder.getKey().intValue();
 	}
 
 }

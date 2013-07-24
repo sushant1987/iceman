@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.amzedia.xstore.XstoreException;
+import com.amzedia.xstore.model.Customer;
 import com.amzedia.xstore.model.Group;
 import com.amzedia.xstore.model.ListResponseWrapper;
 import com.amzedia.xstore.model.ResponseWrapper;
@@ -120,5 +121,42 @@ public class GroupRestService {
 	public ListResponseWrapper getActivatedStoresByGroup(@PathVariable String id) {
 		int groupId = Integer.parseInt(id);
 		return this.groupService.getActivatedStoresByGroup(groupId);
+	}
+	
+	@RequestMapping(value = "/{id}/customers/register", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseWrapper registerCustomerToGroup(@PathVariable String id, @RequestBody Customer customer) {
+		int groupId = Integer.parseInt(id);
+		return this.groupService.registerCustomerToGroup(groupId, customer);
+	}
+	
+	/**
+	 * 
+	 */
+	@RequestMapping(value = "/{id}/customers", method = RequestMethod.GET)
+	@ResponseBody
+	public ListResponseWrapper getCustomersByGroup(@PathVariable String id) {
+		int groupId = Integer.parseInt(id);
+		return this.groupService.getCustomersByGroup(groupId);
+	}
+
+	/**
+	 * 
+	 */
+	@RequestMapping(value = "/{id}/customers/activated", method = RequestMethod.GET)
+	@ResponseBody
+	public ListResponseWrapper getActivatedCustomersByGroup(@PathVariable String id) {
+		int groupId = Integer.parseInt(id);
+		return this.groupService.getActivatedCustomersByGroup(groupId);
+	}
+
+	/**
+	 * 
+	 */
+	@RequestMapping(value = "/{id}/customers/deactivated", method = RequestMethod.GET)
+	@ResponseBody
+	public ListResponseWrapper getDeavtivatedCustomersByGroup(@PathVariable String id) {
+		int groupId = Integer.parseInt(id);
+		return this.groupService.getDeavtivatedCustomersByGroup(groupId);
 	}
 }

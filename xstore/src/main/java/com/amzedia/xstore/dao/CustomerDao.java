@@ -76,7 +76,7 @@ public class CustomerDao extends BaseDao implements ICustomerDao {
 									if (rs.next()) {
 										customer.setId(rs
 												.getInt("ID"));
-										customer.setCustomerName(rs
+										customer.setUsername(rs
 												.getString("USER_NAME"));
 										customer.setCustomerType(rs
 												.getString("USER_TYPE"));
@@ -84,8 +84,6 @@ public class CustomerDao extends BaseDao implements ICustomerDao {
 												.getBoolean("NEWSLETTER"));
 										customer.setStatus(rs
 												.getBoolean("STATUS"));
-										group.setId(rs.getInt("BRAND_ID"));
-										customer.setGroup(group);
 										basicInfo.setId(rs
 												.getInt("BID"));
 										basicInfo.setAddress(rs
@@ -136,69 +134,6 @@ public class CustomerDao extends BaseDao implements ICustomerDao {
 
 	}
 
-	private int addBasic(BasicInfo basicInfo) {
-		KeyHolder keyHolder = new GeneratedKeyHolder();
-		try {
-			sql = SqlScript.SAVE_BASIC_DETAILS;
-
-			Map<String, Object> values = new HashMap<String, Object>();
-			values.put("firstName", basicInfo.getFirstName());
-			values.put("middleName", basicInfo.getMiddleName());
-			values.put("lastName", basicInfo.getLastName());
-			values.put("phoneNumber", basicInfo.getPhoneNumber());
-			values.put("email", basicInfo.getEmail());
-			values.put("address", basicInfo.getAddress());
-			values.put("city", basicInfo.getCity());
-			values.put("state", basicInfo.getState());
-			values.put("country", basicInfo.getCountry());
-			values.put("pin", basicInfo.getPin());
-			values.put("fax", basicInfo.getFax());
-			SqlParameterSource paramSource = new MapSqlParameterSource(
-					values);
-			this.getNamedParameterJdbcTemplate().update(sql,
-					paramSource, keyHolder);
-		} catch (DataAccessException e) {
-			logger.error("exception in register Basic Info"
-					+ e.getMessage());
-		}
-		return keyHolder.getKey().intValue();
-	}
-
-	/*
-	 * This api will add the customer under the group
-	 */
-	@Transactional(readOnly = false)
-	public boolean registerCustomer(Customer customer)
-			throws RuntimeException {
-		try {
-			int basicInfoId = addBasic(customer.getBasicInfo());
-			sql = SqlScript.ADD_CUSTOMER;
-			Map<String, Object> values = new HashMap<String, Object>();
-			values.put("basicDetailId", basicInfoId);
-			values.put("brandId", customer.getGroup().getId());
-			values.put("userName", customer.getCustomerName());
-			values.put("password", customer.getPassword());
-			values.put("userType", customer.getCustomerType());
-			values.put("newsletter", customer.isNewsLetter());
-			values.put("status", customer.isStatus());
-			SqlParameterSource params = new MapSqlParameterSource(
-					values);
-			int rowUpdatedCount = this
-					.getNamedParameterJdbcTemplate()
-					.update(sql, params);
-			if (rowUpdatedCount > 0) {
-				return true;
-			} else {
-				return false;
-			}
-		} catch (DataAccessException e) {
-			logger.error("exception in register customer"
-					+ e.getMessage());
-			throw new RuntimeException(e);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
 
 	/*
 	 * API for login for the customers
@@ -209,7 +144,6 @@ public class CustomerDao extends BaseDao implements ICustomerDao {
 			sql = SqlScript.LOGIN_CUSTOMER;
 			final Customer returnCustomer = new Customer();
 			final BasicInfo basicInfo = new BasicInfo();
-			final Group group = new Group();
 			Map<String, Object> values = new HashMap<String, Object>();
 			values.put("userName", customer.getUsername());
 			values.put("password", customer.getPassword());
@@ -232,8 +166,6 @@ public class CustomerDao extends BaseDao implements ICustomerDao {
 												.getBoolean("NEWSLETTER"));
 										returnCustomer.setStatus(rs
 												.getBoolean("STATUS"));
-										group.setId(rs.getInt("BRAND_ID"));
-										returnCustomer.setGroup(group);
 										basicInfo.setId(rs
 												.getInt("BID"));
 										basicInfo.setAddress(rs

@@ -34,24 +34,6 @@ public class CustomerService implements ICustomerService {
 		return this.customerDao.getCustomer(id);
 	}
 
-	public ResponseWrapper registerCustomer(Customer customer)
-			throws XstoreException {
-		ResponseWrapper responseWrapper = new ResponseWrapper();
-		try {
-			responseWrapper.setStatus(ResponseCode.OK);
-			responseWrapper.setMessage(ResponseMessage.SUCCESS);
-			responseWrapper.setResult(this.customerDao
-					.registerCustomer(customer));
-		} catch (Exception e) {
-			responseWrapper.setStatus(ResponseCode.FAIL);
-			responseWrapper.setMessage(ResponseMessage.FAIL);
-			responseWrapper.setResult(e.getCause().getCause()
-					.getMessage());
-		}
-		return responseWrapper;
-
-	}
-
 	/*
 	 * API for Login Customer
 	 */

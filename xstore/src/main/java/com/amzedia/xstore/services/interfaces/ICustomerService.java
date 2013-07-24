@@ -27,15 +27,6 @@ public interface ICustomerService {
 	 * @return
 	 * @throws XstoreException
 	 */
-	ResponseWrapper registerCustomer(Customer customer)
-			throws XstoreException;
-
-	/**
-	 * 
-	 * @param customer
-	 * @return
-	 * @throws XstoreException
-	 */
 	ResponseWrapper loginCustomer(Customer customer) throws XstoreException;
 
 }

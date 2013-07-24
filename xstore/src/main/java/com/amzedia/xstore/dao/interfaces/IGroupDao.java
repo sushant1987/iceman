@@ -6,6 +6,7 @@ package com.amzedia.xstore.dao.interfaces;
 import java.util.List;
 
 import com.amzedia.xstore.XstoreException;
+import com.amzedia.xstore.model.Customer;
 import com.amzedia.xstore.model.Group;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.model.Store;
@@ -54,5 +55,13 @@ public interface IGroupDao {
 	List<Store> getActivatedStoresByGroup(int id) throws RuntimeException;
 	
 	List<Store> getDeactivatedStoresByGroup(int id) throws RuntimeException;
+	
+	boolean registerCustomerToGroup(int id, Customer customer) throws RuntimeException;
+	
+	List<Customer> getCustomersByGroup(int id) throws RuntimeException;
+	
+	List<Customer> getActivatedCustomersByGroup(int id) throws RuntimeException;
+	
+	List<Customer> getDeavtivatedCustomersByGroup(int id) throws RuntimeException;
 
 }

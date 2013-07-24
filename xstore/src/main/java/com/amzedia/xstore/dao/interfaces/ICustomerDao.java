@@ -22,8 +22,6 @@ public interface ICustomerDao {
 	 */
 	ResponseWrapper getCustomer(int id) throws XstoreException;
 
-	boolean registerCustomer(Customer customer) throws RuntimeException;
-	
 	Customer loginCustomer(Customer customer) throws RuntimeException;
 
 }

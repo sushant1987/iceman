@@ -4,6 +4,7 @@
 package com.amzedia.xstore.services.interfaces;
 
 import com.amzedia.xstore.XstoreException;
+import com.amzedia.xstore.model.Customer;
 import com.amzedia.xstore.model.Group;
 import com.amzedia.xstore.model.ListResponseWrapper;
 import com.amzedia.xstore.model.ResponseWrapper;
@@ -28,5 +29,13 @@ public interface IGroupService {
 	ListResponseWrapper getActivatedStoresByGroup(int id);
 	
 	ListResponseWrapper getDeactivatedStoresByGroup(int id);
+	
+	ResponseWrapper registerCustomerToGroup(int id, Customer customer);
+	
+	ListResponseWrapper getCustomersByGroup(int id);
+	
+	ListResponseWrapper getActivatedCustomersByGroup(int id);
+	
+	ListResponseWrapper getDeavtivatedCustomersByGroup(int id);
 
 }

@@ -17,8 +17,6 @@ public class Customer {
 
 	private int id;
 	private BasicInfo basicInfo;
-	private Group group;
-	private String customerName;
 	private String password;
 	private String customerType;
 	private boolean newsLetter;
@@ -55,22 +53,6 @@ public class Customer {
 	@XmlElement
 	public void setBasicInfo(BasicInfo basicInfo) {
 		this.basicInfo = basicInfo;
-	}
-
-	/**
-	 * @return the customerName
-	 */
-	public String getCustomerName() {
-		return customerName;
-	}
-
-	/**
-	 * @param customerName
-	 *                the customerName to set
-	 */
-	@XmlElement
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
 	}
 
 	/**
@@ -134,21 +116,6 @@ public class Customer {
 	 */
 	public void setStatus(boolean status) {
 		this.status = status;
-	}
-
-	/**
-	 * @return the group
-	 */
-	public Group getGroup() {
-		return group;
-	}
-
-	/**
-	 * @param group
-	 *                the group to set
-	 */
-	public void setGroup(Group group) {
-		this.group = group;
 	}
 
 	/**
