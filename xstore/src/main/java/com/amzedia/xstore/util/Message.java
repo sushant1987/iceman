@@ -5,7 +5,7 @@ package com.amzedia.xstore.util;
 
 /**
  * @author Sushant
- *
+ * 
  */
 public class Message {
 
@@ -35,4 +35,6 @@ public class Message {
 	public static final String CUSTOMRE_NOT_FOUND = "Customer not found for id ";
 	public static final String CUSTOMER_UPDATED = "Customer updated successfully";
 	public static final String CUSTOMER_NOT_UPDATED = "Customer updation failed";
+	public static final String PRODUCT_ADDED = "Product added successfully";
+	public static final String PRODUCT_NOT_ADDED = "Unable to add product";
 }

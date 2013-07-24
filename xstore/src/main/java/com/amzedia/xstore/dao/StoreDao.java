@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.dao.interfaces.IStoreDao;
 import com.amzedia.xstore.model.Group;
+import com.amzedia.xstore.model.Product;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.util.Message;
@@ -33,41 +34,31 @@ public class StoreDao extends BaseDao implements IStoreDao {
 
 	private String sql;
 
-	/*public ResponseWrapper addStore(Store store) throws XstoreException {
-		ResponseWrapper responseWrapper = new ResponseWrapper();
-		try {
-
-			sql = SqlScript.ADD_STORE;
-			Map<String, Object> values = new HashMap<String, Object>();
-			values.put("storeName", store.getName());
-			values.put("groupId", store.getGroup().getId());
-			values.put("currency", store.getCurrency());
-			values.put("timeZone", store.getTimeZone());
-			values.put("status", store.isStatus());
-			SqlParameterSource params = new MapSqlParameterSource(
-					values);
-			int success = this.getNamedParameterJdbcTemplate()
-					.update(sql, params);
-			if (success > 0) {
-				responseWrapper.setStatus(ResponseCode.OK);
-				responseWrapper.setMessage(ResponseMessage.SUCCESS);
-				responseWrapper.setResult(Message.STORE_ADDED);
-			} else {
-				responseWrapper.setStatus(ResponseCode.OK);
-				responseWrapper.setMessage(ResponseMessage.SUCCESS);
-				responseWrapper.setResult(Message.STORE_NOT_ADDED);
-			}
-		} catch (DataAccessException e) {
-			responseWrapper.setStatus(ResponseCode.FAIL);
-			responseWrapper.setMessage(ResponseMessage.FAIL);
-			responseWrapper.setResult(e.getCause().getMessage());
-			logger.error("error in adding store");
-		} catch (Exception e) {
-			logger.error("error in adding store");
-			throw new XstoreException();
-		}
-		return responseWrapper;
-	}*/
+	/*
+	 * public ResponseWrapper addStore(Store store) throws XstoreException {
+	 * ResponseWrapper responseWrapper = new ResponseWrapper(); try {
+	 * 
+	 * sql = SqlScript.ADD_STORE; Map<String, Object> values = new
+	 * HashMap<String, Object>(); values.put("storeName", store.getName());
+	 * values.put("groupId", store.getGroup().getId());
+	 * values.put("currency", store.getCurrency()); values.put("timeZone",
+	 * store.getTimeZone()); values.put("status", store.isStatus());
+	 * SqlParameterSource params = new MapSqlParameterSource( values); int
+	 * success = this.getNamedParameterJdbcTemplate() .update(sql, params);
+	 * if (success > 0) { responseWrapper.setStatus(ResponseCode.OK);
+	 * responseWrapper.setMessage(ResponseMessage.SUCCESS);
+	 * responseWrapper.setResult(Message.STORE_ADDED); } else {
+	 * responseWrapper.setStatus(ResponseCode.OK);
+	 * responseWrapper.setMessage(ResponseMessage.SUCCESS);
+	 * responseWrapper.setResult(Message.STORE_NOT_ADDED); } } catch
+	 * (DataAccessException e) {
+	 * responseWrapper.setStatus(ResponseCode.FAIL);
+	 * responseWrapper.setMessage(ResponseMessage.FAIL);
+	 * responseWrapper.setResult(e.getCause().getMessage());
+	 * logger.error("error in adding store"); } catch (Exception e) {
+	 * logger.error("error in adding store"); throw new XstoreException(); }
+	 * return responseWrapper; }
+	 */
 
 	/*
 	 * 
@@ -205,6 +196,39 @@ public class StoreDao extends BaseDao implements IStoreDao {
 			throw new XstoreException();
 		}
 		return responseWrapper;
+	}
+
+	/*
+	 * API to add the product
+	 */
+	public boolean addProductToStore(int id, Product product)
+			throws RuntimeException {
+		try {
+			sql = SqlScript.ADD_PRODUCT;
+			Map<String, Object> values = new HashMap<String, Object>();
+			values.put("productName", product.getProductName());
+			values.put("productDescription",
+					product.getProductDescription());
+			values.put("storeId", id);
+			SqlParameterSource params = new MapSqlParameterSource(
+					values);
+			int success = this.getNamedParameterJdbcTemplate()
+					.update(sql, params);
+			if (success > 0) {
+				return true;
+			} else {
+				return false;
+			}
+
+		} catch (DataAccessException e) {
+			logger.error("error in adding product to store id : "
+					+ id);
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			logger.error("error in adding product to store id : "
+					+ id);
+			throw new RuntimeException(e);
+		}
 	}
 
 }
