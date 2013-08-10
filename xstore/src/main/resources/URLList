@@ -37,6 +37,10 @@ http://local.mhhe.com:8989/xstore/store/{id}/products/add
 http://local.mhhe.com:8989/xstore/store/{id}/products
 http://local.mhhe.com:8989/xstore/store/{id}/products/activated
 http://local.mhhe.com:8989/xstore/store/{id}/products/deactivated
+http://local.mhhe.com:8989/xstore/store/{id}/category/{id}/products/add
+http://local.mhhe.com:8989/xstore/store/{id}/category/{id}/products
+http://local.mhhe.com:8989/xstore/store/{id}/category/{id}/products/activated
+http://local.mhhe.com:8989/xstore/store/{id}/category/{id}/products/deactivated
 
 Customer URL
 http://local.mhhe.com:8989/xstore/customers (Later)
@@ -51,15 +55,15 @@ http://local.mhhe.com:8989/xstore/category/{id}
 http://local.mhhe.com:8989/xstore/category/{id}/add
 http://local.mhhe.com:8989/xstore/category/{id}/activated
 http://local.mhhe.com:8989/xstore/category/{id}/deactivated
-http://local.mhhe.com:8989/xstore/category/{id}/products
-http://local.mhhe.com:8989/xstore/category/{id}/products/activated
-http://local.mhhe.com:8989/xstore/category/{id}/products/deactivated
+http://local.mhhe.com:8989/xstore/category/{id}/products(later)
+http://local.mhhe.com:8989/xstore/category/{id}/products/activated(later)
+http://local.mhhe.com:8989/xstore/category/{id}/products/deactivated(later)
 http://local.mhhe.com:8989/xstore/category/update
-http://local.mhhe.com:8989/xstore/category/login
 http://local.mhhe.com:8989/xstore/category/activateordeactivate
 
 Product URL
-http://local.mhhe.com:8989/xstore/products
+http://local.mhhe.com:8989/xstore/products(Later)
 http://local.mhhe.com:8989/xstore/product/{id}
 http://local.mhhe.com:8989/xstore/product/edit
 http://local.mhhe.com:8989/xstore/product/activateordeactivate
+http://local.mhhe.com:8989/xstore/product/link
