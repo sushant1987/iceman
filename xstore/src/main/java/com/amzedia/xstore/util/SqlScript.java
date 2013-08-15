@@ -93,7 +93,7 @@ public final class SqlScript {
 	/**
 	 * Get Store
 	 */
-	public static final String GET_STORE = "SELECT NAME, CURRENCY, TIME_ZONE, STATUS "
+	public static final String GET_STORE = "SELECT ID, NAME, CURRENCY, TIME_ZONE, STATUS "
 			+ "FROM STORE WHERE ID = :ID";
 
 	/**

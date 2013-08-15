@@ -126,6 +126,7 @@ public class StoreDao extends BaseDao implements IStoreDao {
 										ResultSet rs)
 										throws SQLException {
 									if (rs.next()) {
+										store.setId(rs.getInt("ID"));
 										store.setName(rs.getString("NAME"));
 										store.setCurrency(rs
 												.getString("CURRENCY"));

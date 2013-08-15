@@ -17,7 +17,7 @@ import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.services.interfaces.IStoreService;
 
 /**
- * @author Tarun/Kirti
+ * @author Tarun
  * 
  */
 @Controller
