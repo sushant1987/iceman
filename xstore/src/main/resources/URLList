@@ -1,69 +1,69 @@
 Client URL
-http://local.mhhe.com:8989/xstore/clients (Later)
-http://local.mhhe.com:8989/xstore/client/{id}
-http://local.mhhe.com:8989/xstore/client/register
-http://local.mhhe.com:8989/xstore/client/update
-http://local.mhhe.com:8989/xstore/client/login
-http://local.mhhe.com:8989/xstore/client/activateordeactivate
-http://local.mhhe.com:8989/xstore/client/{id}/groups
-http://local.mhhe.com:8989/xstore/client/{id}/groups/add
-http://local.mhhe.com:8989/xstore/client/{id}/groups/activated
-http://local.mhhe.com:8989/xstore/client/{id}/groups/deactivated
+http://local.xstoreit.com:8989/xstore/clients (Later)
+http://local.xstoreit.com:8989/xstore/client/{id}
+http://local.xstoreit.com:8989/xstore/client/register
+http://local.xstoreit.com:8989/xstore/client/update
+http://local.xstoreit.com:8989/xstore/client/login
+http://local.xstoreit.com:8989/xstore/client/activateordeactivate
+http://local.xstoreit.com:8989/xstore/client/{id}/groups
+http://local.xstoreit.com:8989/xstore/client/{id}/groups/add
+http://local.xstoreit.com:8989/xstore/client/{id}/groups/activated
+http://local.xstoreit.com:8989/xstore/client/{id}/groups/deactivated
 
 Group URL
-http://local.mhhe.com:8989/xstore/groups (Later)
-http://local.mhhe.com:8989/xstore/group/{id}
-http://local.mhhe.com:8989/xstore/group/update
-http://local.mhhe.com:8989/xstore/group/activateordeactivate
-http://local.mhhe.com:8989/xstore/group/{id}/stores
-http://local.mhhe.com:8989/xstore/group/{id}/stores/add
-http://local.mhhe.com:8989/xstore/group/{id}/stores/activated
-http://local.mhhe.com:8989/xstore/group/{id}/stores/deactivated
-http://local.mhhe.com:8989/xstore/group/{id}/customers
-http://local.mhhe.com:8989/xstore/group/{id}/customers/register
-http://local.mhhe.com:8989/xstore/group/{id}/customers/activated
-http://local.mhhe.com:8989/xstore/group/{id}/customers/deactivated
+http://local.xstoreit.com:8989/xstore/groups (Later)
+http://local.xstoreit.com:8989/xstore/group/{id}
+http://local.xstoreit.com:8989/xstore/group/update
+http://local.xstoreit.com:8989/xstore/group/activateordeactivate
+http://local.xstoreit.com:8989/xstore/group/{id}/stores
+http://local.xstoreit.com:8989/xstore/group/{id}/stores/add
+http://local.xstoreit.com:8989/xstore/group/{id}/stores/activated
+http://local.xstoreit.com:8989/xstore/group/{id}/stores/deactivated
+http://local.xstoreit.com:8989/xstore/group/{id}/customers
+http://local.xstoreit.com:8989/xstore/group/{id}/customers/register
+http://local.xstoreit.com:8989/xstore/group/{id}/customers/activated
+http://local.xstoreit.com:8989/xstore/group/{id}/customers/deactivated
 
 Store URL
-http://local.mhhe.com:8989/xstore/stores (Later)
-http://local.mhhe.com:8989/xstore/store/{id}
-http://local.mhhe.com:8989/xstore/store/update
-http://local.mhhe.com:8989/xstore/store/activateordeactivate
-http://local.mhhe.com:8989/xstore/store/{id}/categories
-http://local.mhhe.com:8989/xstore/store/{id}/category/add
-http://local.mhhe.com:8989/xstore/store/{id}/category/activated
-http://local.mhhe.com:8989/xstore/store/{id}/category/deactivated
-http://local.mhhe.com:8989/xstore/store/{id}/products/add
-http://local.mhhe.com:8989/xstore/store/{id}/products
-http://local.mhhe.com:8989/xstore/store/{id}/products/activated
-http://local.mhhe.com:8989/xstore/store/{id}/products/deactivated
-http://local.mhhe.com:8989/xstore/store/{id}/category/{id}/products/add
-http://local.mhhe.com:8989/xstore/store/{id}/category/{id}/products
-http://local.mhhe.com:8989/xstore/store/{id}/category/{id}/products/activated
-http://local.mhhe.com:8989/xstore/store/{id}/category/{id}/products/deactivated
+http://local.xstoreit.com:8989/xstore/stores (Later)
+http://local.xstoreit.com:8989/xstore/store/{id}
+http://local.xstoreit.com:8989/xstore/store/update
+http://local.xstoreit.com:8989/xstore/store/activateordeactivate
+http://local.xstoreit.com:8989/xstore/store/{id}/categories
+http://local.xstoreit.com:8989/xstore/store/{id}/category/add
+http://local.xstoreit.com:8989/xstore/store/{id}/category/activated
+http://local.xstoreit.com:8989/xstore/store/{id}/category/deactivated
+http://local.xstoreit.com:8989/xstore/store/{id}/products/add
+http://local.xstoreit.com:8989/xstore/store/{id}/products
+http://local.xstoreit.com:8989/xstore/store/{id}/products/activated
+http://local.xstoreit.com:8989/xstore/store/{id}/products/deactivated
+http://local.xstoreit.com:8989/xstore/store/{id}/category/{id}/products/add
+http://local.xstoreit.com:8989/xstore/store/{id}/category/{id}/products
+http://local.xstoreit.com:8989/xstore/store/{id}/category/{id}/products/activated
+http://local.xstoreit.com:8989/xstore/store/{id}/category/{id}/products/deactivated
 
 Customer URL
-http://local.mhhe.com:8989/xstore/customers (Later)
-http://local.mhhe.com:8989/xstore/customer/{id}
-http://local.mhhe.com:8989/xstore/customer/update
-http://local.mhhe.com:8989/xstore/customer/login
-http://local.mhhe.com:8989/xstore/customer/activateordeactivate
+http://local.xstoreit.com:8989/xstore/customers (Later)
+http://local.xstoreit.com:8989/xstore/customer/{id}
+http://local.xstoreit.com:8989/xstore/customer/update
+http://local.xstoreit.com:8989/xstore/customer/login
+http://local.xstoreit.com:8989/xstore/customer/activateordeactivate
 
 Category Url
-http://local.mhhe.com:8989/xstore/category (Later)
-http://local.mhhe.com:8989/xstore/category/{id}
-http://local.mhhe.com:8989/xstore/category/{id}/add
-http://local.mhhe.com:8989/xstore/category/{id}/activated
-http://local.mhhe.com:8989/xstore/category/{id}/deactivated
-http://local.mhhe.com:8989/xstore/category/{id}/products(later)
-http://local.mhhe.com:8989/xstore/category/{id}/products/activated(later)
-http://local.mhhe.com:8989/xstore/category/{id}/products/deactivated(later)
-http://local.mhhe.com:8989/xstore/category/update
-http://local.mhhe.com:8989/xstore/category/activateordeactivate
+http://local.xstoreit.com:8989/xstore/category (Later)
+http://local.xstoreit.com:8989/xstore/category/{id}
+http://local.xstoreit.com:8989/xstore/category/{id}/add
+http://local.xstoreit.com:8989/xstore/category/{id}/activated
+http://local.xstoreit.com:8989/xstore/category/{id}/deactivated
+http://local.xstoreit.com:8989/xstore/category/{id}/products(later)
+http://local.xstoreit.com:8989/xstore/category/{id}/products/activated(later)
+http://local.xstoreit.com:8989/xstore/category/{id}/products/deactivated(later)
+http://local.xstoreit.com:8989/xstore/category/update
+http://local.xstoreit.com:8989/xstore/category/activateordeactivate
 
 Product URL
-http://local.mhhe.com:8989/xstore/products(Later)
-http://local.mhhe.com:8989/xstore/product/{id}
-http://local.mhhe.com:8989/xstore/product/edit
-http://local.mhhe.com:8989/xstore/product/activateordeactivate
-http://local.mhhe.com:8989/xstore/product/link
+http://local.xstoreit.com:8989/xstore/products(Later)
+http://local.xstoreit.com:8989/xstore/product/{id}
+http://local.xstoreit.com:8989/xstore/product/edit
+http://local.xstoreit.com:8989/xstore/product/activateordeactivate
+http://local.xstoreit.com:8989/xstore/product/link
