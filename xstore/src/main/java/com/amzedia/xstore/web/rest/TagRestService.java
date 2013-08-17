@@ -6,11 +6,15 @@ package com.amzedia.xstore.web.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.ResponseWrapper;
+import com.amzedia.xstore.model.Store;
+import com.amzedia.xstore.model.Tag;
 import com.amzedia.xstore.services.interfaces.ITagService;
 
 /**
@@ -19,7 +23,7 @@ import com.amzedia.xstore.services.interfaces.ITagService;
  */
 
 @Controller
-@RequestMapping(value = "/tag")
+@RequestMapping(value = "/category")
 public class TagRestService {
 
 	@Autowired
@@ -37,4 +41,12 @@ public class TagRestService {
 		}
 	}
 
+	@RequestMapping(value = "/{id}/add", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseWrapper addTagToParentTag(@PathVariable String id,
+			@RequestBody Tag tag) {
+		int tagId = Integer.parseInt(id);
+		return this.tagService.addTagToParentTag(tagId, tag);
+
+	}
 }
