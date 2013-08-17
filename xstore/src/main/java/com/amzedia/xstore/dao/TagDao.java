@@ -49,7 +49,6 @@ public class TagDao extends BaseDao implements ITagDao {
 			Tag returnTag;
 			final Tag tag = new Tag();
 			Map<String, Object> paramMap = new HashMap<String, Object>();
-			final Store store = new Store();
 			paramMap.put("ID", id);
 			returnTag = this.getNamedParameterJdbcTemplate().query(
 					sql, paramMap,
@@ -61,10 +60,10 @@ public class TagDao extends BaseDao implements ITagDao {
 							if (rs.next()) {
 								tag.setId(rs.getInt("ID"));
 								tag.setName(rs.getString("NAME"));
-								store.setId(rs.getInt("STORE_ID"));
 								tag.setLevel(rs.getInt("LEVEL"));
-								tag.setParent_id(rs
+								tag.setParentId(rs
 										.getInt("PARENT_ID"));
+								tag.setStatus(rs.getBoolean("STATUS"));
 							}
 
 							return tag;
@@ -94,37 +93,25 @@ public class TagDao extends BaseDao implements ITagDao {
 	}
 
 	/*
-	 * Adding the child tag
+	 * Adding the child tag TODO
 	 */
-	public boolean addTagToParentTag(int id, Tag tag)
-			throws RuntimeException {
-
-		try {
-			sql = SqlScript.ADD_CHILD_TAG;
-			Map<String, Object> values = new HashMap<String, Object>();
-			final Store store = new Store();
-			values.put("tagName", tag.getName());
-			values.put("storeId", store.getId());
-			values.put("level", tag.getLevel());
-			values.put("parentId", tag.getParent_id());
-			SqlParameterSource params = new MapSqlParameterSource(
-					values);
-			int success = this.getNamedParameterJdbcTemplate()
-					.update(sql, params);
-			if (success > 0) {
-				return true;
-			} else {
-				return false;
-			}
-
-		} catch (DataAccessException e) {
-			logger.error("error in adding tag to parent tag id : "
-					+ id);
-			throw new RuntimeException(e);
-		} catch (Exception e) {
-			logger.error("error in adding tag to parent tag id : "
-					+ id);
-			throw new RuntimeException(e);
-		}
-	}
+	/*
+	 * public boolean addTagToParentTag(int id, Tag tag) throws
+	 * RuntimeException {
+	 * 
+	 * try { sql = SqlScript.ADD_CHILD_TAG; Map<String, Object> values = new
+	 * HashMap<String, Object>(); final Store store = new Store();
+	 * values.put("tagName", tag.getName()); values.put("storeId",
+	 * store.getId()); values.put("level", tag.getLevel());
+	 * values.put("parentId", id); SqlParameterSource params = new
+	 * MapSqlParameterSource( values); int success =
+	 * this.getNamedParameterJdbcTemplate() .update(sql, params); if
+	 * (success > 0) { return true; } else { return false; }
+	 * 
+	 * } catch (DataAccessException e) {
+	 * logger.error("error in adding tag to parent tag id : " + id); throw
+	 * new RuntimeException(e); } catch (Exception e) {
+	 * logger.error("error in adding tag to parent tag id : " + id); throw
+	 * new RuntimeException(e); } }
+	 */
 }
