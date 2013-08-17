@@ -52,7 +52,7 @@ http://local.xstoreit.com:8989/xstore/customer/activateordeactivate
 Category Url
 http://local.xstoreit.com:8989/xstore/category (Later)
 http://local.xstoreit.com:8989/xstore/category/{id}
-http://local.xstoreit.com:8989/xstore/category/{id}/add
+http://local.xstoreit.com:8989/xstore/category/{id}/add (Later)
 http://local.xstoreit.com:8989/xstore/category/{id}/activated
 http://local.xstoreit.com:8989/xstore/category/{id}/deactivated
 http://local.xstoreit.com:8989/xstore/category/{id}/products(later)
