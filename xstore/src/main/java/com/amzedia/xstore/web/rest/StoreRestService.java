@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.model.Store;
+import com.amzedia.xstore.model.Tag;
 import com.amzedia.xstore.services.interfaces.IStoreService;
 
 /**
@@ -96,6 +97,13 @@ public class StoreRestService {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	@RequestMapping(value = "/{id}/category/add", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseWrapper addTagToStore(@PathVariable String id, @RequestBody Tag tag) {
+		int storeId = Integer.parseInt(id);
+		return  this.storeService.addTagToStore(storeId, tag);
 	}
 	
 	@RequestMapping(value = "/dummy", method = RequestMethod.GET)

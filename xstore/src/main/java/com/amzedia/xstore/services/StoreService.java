@@ -11,6 +11,7 @@ import com.amzedia.xstore.dao.interfaces.IStoreDao;
 import com.amzedia.xstore.model.Product;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.model.Store;
+import com.amzedia.xstore.model.Tag;
 import com.amzedia.xstore.services.interfaces.IStoreService;
 import com.amzedia.xstore.util.Message;
 import com.amzedia.xstore.util.ResponseCode;
@@ -77,6 +78,31 @@ public class StoreService implements IStoreService {
 				responseWrapper.setResult(Message.PRODUCT_NOT_ADDED);
 			}
 
+		} catch (Exception e) {
+			responseWrapper.setStatus(ResponseCode.FAIL);
+			responseWrapper.setMessage(ResponseMessage.FAIL);
+			responseWrapper.setResult(e.getCause().getCause()
+					.getMessage());
+		}
+		return responseWrapper;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.amzedia.xstore.services.interfaces.IStoreService#addTagToStore(int, com.amzedia.xstore.model.Tag)
+	 */
+	public ResponseWrapper addTagToStore(int id, Tag tag) {
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		try {
+			boolean status = this.storeDao.addTagToStore(id, tag);
+			if (status) {
+				responseWrapper.setStatus(ResponseCode.OK);
+				responseWrapper.setMessage(ResponseMessage.SUCCESS);
+				responseWrapper.setResult(Message.TAG_ADDED);
+			} else {
+				responseWrapper.setStatus(ResponseCode.FAIL);
+				responseWrapper.setMessage(ResponseMessage.FAIL);
+				responseWrapper.setResult(Message.TAG_NOT_ADDED);
+			}
 		} catch (Exception e) {
 			responseWrapper.setStatus(ResponseCode.FAIL);
 			responseWrapper.setMessage(ResponseMessage.FAIL);

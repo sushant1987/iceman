@@ -7,6 +7,7 @@ import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.Product;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.model.Store;
+import com.amzedia.xstore.model.Tag;
 
 /**
  * @author Tarun
@@ -24,5 +25,7 @@ public interface IStoreService {
 	ResponseWrapper updateStore(Store store) throws XstoreException;
 	
 	ResponseWrapper addProductToStore(int id, Product product);
+	
+	ResponseWrapper addTagToStore(int id, Tag tag);
 
 }

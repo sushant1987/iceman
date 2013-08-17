@@ -165,6 +165,9 @@ public final class SqlScript {
 
 	public static final String ADD_PRODUCT = "INSERT INTO PRODUCT (PRODUCT_NAME, DESCRIPTION, STORE_ID, UPDATED_BY, CREATED_BY, UPDATED_DATE, CREATED_DATE) VALUES (:productName, :productDescription, :storeId, 'admin', 'admin', "
 			+ "sysdate(), sysdate())";
+	
+	public static final String ADD_CATEGORY = "INSERT INTO TAG (NAME, STORE_ID, LEVEL, PARENT_ID, STATUS, UPDATED_BY, CREATED_BY, UPDATED_DATE, CREATED_DATE) " +
+			"VALUES (:tagName, :storeId, :level, :parentId, :status, 'admin', 'admin', sysdate(), sysdate())";
 
 	/**
 	 * Get Tag

@@ -7,6 +7,7 @@ import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.Product;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.model.Store;
+import com.amzedia.xstore.model.Tag;
 
 /**
  * @author Tarun
@@ -45,6 +46,11 @@ public interface IStoreDao {
 	 */
 	ResponseWrapper updateStore(Store store) throws XstoreException;
 
+	/**
+	 * 
+	 */
+	boolean addTagToStore(int id, Tag tag) throws RuntimeException;
+	
 	/**
 	 * 
 	 * @param id

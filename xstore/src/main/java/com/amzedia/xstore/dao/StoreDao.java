@@ -16,10 +16,10 @@ import org.springframework.stereotype.Component;
 
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.dao.interfaces.IStoreDao;
-import com.amzedia.xstore.model.Group;
 import com.amzedia.xstore.model.Product;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.model.Store;
+import com.amzedia.xstore.model.Tag;
 import com.amzedia.xstore.util.Message;
 import com.amzedia.xstore.util.ResponseCode;
 import com.amzedia.xstore.util.ResponseMessage;
@@ -227,6 +227,38 @@ public class StoreDao extends BaseDao implements IStoreDao {
 			throw new RuntimeException(e);
 		} catch (Exception e) {
 			logger.error("error in adding product to store id : "
+					+ id);
+			throw new RuntimeException(e);
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see com.amzedia.xstore.dao.interfaces.IStoreDao#addTagToStore(int, com.amzedia.xstore.model.Tag)
+	 */
+	public boolean addTagToStore(int id, Tag tag) throws RuntimeException {
+		try {
+			sql = SqlScript.ADD_CATEGORY;
+			Map<String, Object> values = new HashMap<String, Object>();
+			values.put("tagName", tag.getName());
+			values.put("storeId", id);
+			values.put("level", tag.getLevel());
+			values.put("parentId", tag.getParentId());
+			values.put("status", tag.isStatus());
+			SqlParameterSource params = new MapSqlParameterSource(
+					values);
+			int success = this.getNamedParameterJdbcTemplate()
+					.update(sql, params);
+			if (success > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}catch (DataAccessException e) {
+			logger.error("error in adding tag to store id : "
+					+ id);
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			logger.error("error in adding tag to store id : "
 					+ id);
 			throw new RuntimeException(e);
 		}
