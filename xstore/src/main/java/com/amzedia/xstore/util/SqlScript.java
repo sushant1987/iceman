@@ -169,5 +169,11 @@ public final class SqlScript {
 	/**
 	 * Get Tag
 	 */
-	public static final String GET_TAG = "SELECT ID, NAME, LEVEL, PARENT_ID FROM TAG WHERE ID = :ID";
+	public static final String GET_TAG = "SELECT ID, NAME, STORE_ID, LEVEL, PARENT_ID FROM TAG WHERE ID = :ID";
+
+	/**
+	 * Add Child Tag
+	 */
+	public static final String ADD_CHILD_TAG = "INSERT INTO TAG (NAME, STORE_ID, LEVEL, PARENT_ID, "
+			+ "UPDATED_BY, CREATED_BY, UPDATED_DATE, CREATED_DATE) values (:tagName, :storeId, :level, :parentId, 'admin', 'admin', sysdate(), sysdate())";
 }
