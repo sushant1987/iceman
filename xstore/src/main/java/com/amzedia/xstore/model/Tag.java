@@ -11,7 +11,36 @@ public class Tag {
 	private int id;
 	private String name;
 	private int level;
-	private int parent_id;
+	private int parentId;
+	private int status;
+
+	/**
+	 * @return the parentId
+	 */
+	public int getParentId() {
+		return parentId;
+	}
+
+	/**
+	 * @param parentId the parentId to set
+	 */
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
+	}
+
+	/**
+	 * @return the status
+	 */
+	public int getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
 	/**
 	 * @return the id
@@ -56,21 +85,6 @@ public class Tag {
 	 */
 	public void setLevel(int level) {
 		this.level = level;
-	}
-
-	/**
-	 * @return the parent_id
-	 */
-	public int getParent_id() {
-		return parent_id;
-	}
-
-	/**
-	 * @param parent_id
-	 *                the parent_id to set
-	 */
-	public void setParent_id(int parent_id) {
-		this.parent_id = parent_id;
 	}
 
 }
