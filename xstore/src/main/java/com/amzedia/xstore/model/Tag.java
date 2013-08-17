@@ -12,7 +12,7 @@ public class Tag {
 	private String name;
 	private int level;
 	private int parentId;
-	private int status;
+	private boolean status;
 
 	/**
 	 * @return the parentId
@@ -22,7 +22,8 @@ public class Tag {
 	}
 
 	/**
-	 * @param parentId the parentId to set
+	 * @param parentId
+	 *                the parentId to set
 	 */
 	public void setParentId(int parentId) {
 		this.parentId = parentId;
@@ -31,16 +32,11 @@ public class Tag {
 	/**
 	 * @return the status
 	 */
-	public int getStatus() {
-		return status;
-	}
 
 	/**
-	 * @param status the status to set
+	 * @param status
+	 *                the status to set
 	 */
-	public void setStatus(int status) {
-		this.status = status;
-	}
 
 	/**
 	 * @return the id
@@ -85,6 +81,20 @@ public class Tag {
 	 */
 	public void setLevel(int level) {
 		this.level = level;
+	}
+
+	/**
+	 * @return the status
+	 */
+	public boolean isStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 }

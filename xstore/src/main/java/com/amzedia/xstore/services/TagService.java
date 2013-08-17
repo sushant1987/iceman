@@ -35,29 +35,22 @@ public class TagService implements ITagService {
 	}
 
 	/*
-	 * adding tag to its parent tag
+	 * adding tag to its parent tag TODO
 	 */
-	public ResponseWrapper addTagToParentTag(int id, Tag tag) {
-		ResponseWrapper responseWrapper = new ResponseWrapper();
-		try {
-			boolean status = this.tagDao.addTagToParentTag(id,
-					tag);
-			if (status) {
-				responseWrapper.setStatus(ResponseCode.OK);
-				responseWrapper.setMessage(ResponseMessage.SUCCESS);
-				responseWrapper.setResult(Message.TAG_NOT_ADDED);
-			} else {
-				responseWrapper.setStatus(ResponseCode.FAIL);
-				responseWrapper.setMessage(ResponseMessage.FAIL);
-				responseWrapper.setResult(Message.TAG_NOT_ADDED);
-			}
-		} catch (Exception e) {
-			responseWrapper.setStatus(ResponseCode.FAIL);
-			responseWrapper.setMessage(ResponseMessage.FAIL);
-			responseWrapper.setResult(e.getCause().getCause()
-					.getMessage());
-		}
-		return responseWrapper;
-	}
+	/*
+	 * public ResponseWrapper addTagToParentTag(int id, Tag tag) {
+	 * ResponseWrapper responseWrapper = new ResponseWrapper(); try {
+	 * boolean status = this.tagDao.addTagToParentTag(id, tag); if (status)
+	 * { responseWrapper.setStatus(ResponseCode.OK);
+	 * responseWrapper.setMessage(ResponseMessage.SUCCESS);
+	 * responseWrapper.setResult(Message.TAG_NOT_ADDED); } else {
+	 * responseWrapper.setStatus(ResponseCode.FAIL);
+	 * responseWrapper.setMessage(ResponseMessage.FAIL);
+	 * responseWrapper.setResult(Message.TAG_NOT_ADDED); } } catch
+	 * (Exception e) { responseWrapper.setStatus(ResponseCode.FAIL);
+	 * responseWrapper.setMessage(ResponseMessage.FAIL);
+	 * responseWrapper.setResult(e.getCause().getCause() .getMessage()); }
+	 * return responseWrapper; }
+	 */
 
 }

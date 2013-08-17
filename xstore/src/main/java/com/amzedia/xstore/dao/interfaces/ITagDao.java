@@ -5,6 +5,7 @@ package com.amzedia.xstore.dao.interfaces;
 
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.ResponseWrapper;
+import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.model.Tag;
 
 /**
@@ -27,7 +28,8 @@ public interface ITagDao {
 	 * @param tag
 	 * @return boolean
 	 * @throws RuntimeException
+	 *                 TODO
 	 */
-	boolean addTagToParentTag(int id, Tag tag) throws RuntimeException;
+	// boolean addTagToParentTag(int id, Tag tag) throws RuntimeException;
 
 }

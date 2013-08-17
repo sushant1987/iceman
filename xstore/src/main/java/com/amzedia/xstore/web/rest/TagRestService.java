@@ -41,12 +41,17 @@ public class TagRestService {
 		}
 	}
 
-	@RequestMapping(value = "/{id}/add", method = RequestMethod.POST)
-	@ResponseBody
-	public ResponseWrapper addTagToParentTag(@PathVariable String id,
-			@RequestBody Tag tag) {
-		int tagId = Integer.parseInt(id);
-		return this.tagService.addTagToParentTag(tagId, tag);
+	/**
+	 * Adding Tag to its parent tag TODO
+	 */
 
-	}
+	/*
+	 * @RequestMapping(value = "/{id}/add", method = RequestMethod.POST)
+	 * 
+	 * @ResponseBody public ResponseWrapper addTagToParentTag(@PathVariable
+	 * String id,
+	 * 
+	 * @RequestBody Tag tag) { int tagId = Integer.parseInt(id); return
+	 * this.tagService.addTagToParentTag(tagId, tag); }
+	 */
 }

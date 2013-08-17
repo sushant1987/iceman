@@ -169,7 +169,7 @@ public final class SqlScript {
 	/**
 	 * Get Tag
 	 */
-	public static final String GET_TAG = "SELECT ID, NAME, STORE_ID, LEVEL, PARENT_ID FROM TAG WHERE ID = :ID";
+	public static final String GET_TAG = "SELECT ID, NAME, LEVEL, PARENT_ID, STATUS FROM TAG WHERE ID = :ID";
 
 	/**
 	 * Add Child Tag
