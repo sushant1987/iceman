@@ -5,7 +5,9 @@ package com.amzedia.xstore.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.dao.interfaces.ITagDao;
+import com.amzedia.xstore.model.Customer;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.model.Tag;
@@ -90,6 +93,70 @@ public class TagDao extends BaseDao implements ITagDao {
 			throw new XstoreException(e.getCause().getMessage());
 		}
 		return responseWrapper;
+	}
+
+	/*
+	 * getting activated tags under the parent tag
+	 */
+	public List<Tag> getActivatedTagByParentTag(int id)
+			throws RuntimeException {
+		List<Tag> tags = new ArrayList<Tag>();
+		try {
+			sql = SqlScript.GET_ACTIVATED_TAGS_BY_PARENT_TAG;
+			Map<String, Object> values = new HashMap<String, Object>();
+			values.put("ID", id);
+			List<Map<String, Object>> list = this
+					.getNamedParameterJdbcTemplate()
+					.queryForList(sql, values);
+			for (Map<String, Object> map : list) {
+				Tag tag = new Tag();
+				tag.setId((Integer) map.get("ID"));
+				tag.setName((String) map.get("NAME"));
+				tag.setLevel((Integer) map.get("LEVEL"));
+				tag.setParentId((Integer) map.get("PARENT_ID"));
+				tag.setStatus((Boolean) map.get("STATUS"));
+				tags.add(tag);
+			}
+		} catch (DataAccessException e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		}
+		return tags;
+	}
+	
+	/*
+	 * getting deactivated tags under the parent tag
+	 */
+	public List<Tag> getDeActivatedTagByParentTag(int id)
+			throws RuntimeException {
+		List<Tag> tags = new ArrayList<Tag>();
+		try {
+			sql = SqlScript.GET_DEACTIVATED_TAGS_BY_PARENT_TAG;
+			Map<String, Object> values = new HashMap<String, Object>();
+			values.put("ID", id);
+			List<Map<String, Object>> list = this
+					.getNamedParameterJdbcTemplate()
+					.queryForList(sql, values);
+			for (Map<String, Object> map : list) {
+				Tag tag = new Tag();
+				tag.setId((Integer) map.get("ID"));
+				tag.setName((String) map.get("NAME"));
+				tag.setLevel((Integer) map.get("LEVEL"));
+				tag.setParentId((Integer) map.get("PARENT_ID"));
+				tag.setStatus((Boolean) map.get("STATUS"));
+				tags.add(tag);
+			}
+		} catch (DataAccessException e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			logger.error("exception " + e.getMessage());
+			throw new RuntimeException(e);
+		}
+		return tags;
 	}
 
 	/*
