@@ -5,7 +5,9 @@ package com.amzedia.xstore.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
@@ -262,6 +264,35 @@ public class StoreDao extends BaseDao implements IStoreDao {
 					+ id);
 			throw new RuntimeException(e);
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see com.amzedia.xstore.dao.interfaces.IStoreDao#getTagsByStore(int)
+	 */
+	public List<Tag> getTagsByStore(int id) throws RuntimeException {
+		List<Tag> tags= new ArrayList<Tag>();
+		try {
+			sql = SqlScript.GET_CATEGORIES_BY_STORE;
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ID", id);
+			List<Map<String, Object>> list = this.getNamedParameterJdbcTemplate().queryForList(sql, paramMap);
+			for(Map<String, Object> map : list) {
+				Tag tag = new Tag();
+				tag.setId((Integer) map.get("ID"));
+				tag.setName((String) map.get("NAME"));
+				tag.setLevel((Integer) map.get("LEVEL"));
+				tag.setStatus((Boolean) map.get("STATUS"));
+				tag.setParentId((Integer) map.get("PARENT_ID"));
+				tags.add(tag);
+			}
+		}catch (DataAccessException e) {
+			logger.error("exception " + e.getCause().getMessage());
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			logger.error("exception " + e.getCause().getMessage());
+			throw new RuntimeException(e);
+		}
+		return tags;
 	}
 
 }

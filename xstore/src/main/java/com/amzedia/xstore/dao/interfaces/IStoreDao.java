@@ -3,6 +3,8 @@
  */
 package com.amzedia.xstore.dao.interfaces;
 
+import java.util.List;
+
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.Product;
 import com.amzedia.xstore.model.ResponseWrapper;
@@ -24,12 +26,6 @@ public interface IStoreDao {
 	ResponseWrapper getStore(int id) throws XstoreException;
 
 	/**
-	 * @param store
-	 * @return
-	 */
-	/* ResponseWrapper addStore(Store store) throws XstoreException; */
-
-	/**
 	 * This api will deactivate client
 	 * 
 	 * @param client
@@ -48,8 +44,20 @@ public interface IStoreDao {
 
 	/**
 	 * 
+	 * @param id
+	 * @param tag
+	 * @return
+	 * @throws RuntimeException
 	 */
 	boolean addTagToStore(int id, Tag tag) throws RuntimeException;
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws RuntimeException
+	 */
+	List<Tag> getTagsByStore(int id) throws RuntimeException;
 	
 	/**
 	 * 

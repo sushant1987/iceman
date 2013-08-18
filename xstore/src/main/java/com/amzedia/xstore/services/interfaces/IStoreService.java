@@ -4,6 +4,7 @@
 package com.amzedia.xstore.services.interfaces;
 
 import com.amzedia.xstore.XstoreException;
+import com.amzedia.xstore.model.ListResponseWrapper;
 import com.amzedia.xstore.model.Product;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.model.Store;
@@ -27,5 +28,7 @@ public interface IStoreService {
 	ResponseWrapper addProductToStore(int id, Product product);
 	
 	ResponseWrapper addTagToStore(int id, Tag tag);
+	
+	ListResponseWrapper getTagsByStore(int id);
 
 }

@@ -168,6 +168,8 @@ public final class SqlScript {
 	
 	public static final String ADD_CATEGORY = "INSERT INTO TAG (NAME, STORE_ID, LEVEL, PARENT_ID, STATUS, UPDATED_BY, CREATED_BY, UPDATED_DATE, CREATED_DATE) " +
 			"VALUES (:tagName, :storeId, :level, :parentId, :status, 'admin', 'admin', sysdate(), sysdate())";
+	
+	public static final String GET_CATEGORIES_BY_STORE = "SELECT ID, NAME, LEVEL, PARENT_ID, STATUS FROM TAG";
 
 	/**
 	 * Get Tag

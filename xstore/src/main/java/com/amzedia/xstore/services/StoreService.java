@@ -3,11 +3,16 @@
  */
 package com.amzedia.xstore.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.dao.interfaces.IStoreDao;
+import com.amzedia.xstore.model.Customer;
+import com.amzedia.xstore.model.ListResponseWrapper;
 import com.amzedia.xstore.model.Product;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.model.Store;
@@ -87,8 +92,12 @@ public class StoreService implements IStoreService {
 		return responseWrapper;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.amzedia.xstore.services.interfaces.IStoreService#addTagToStore(int, com.amzedia.xstore.model.Tag)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.amzedia.xstore.services.interfaces.IStoreService#addTagToStore
+	 * (int, com.amzedia.xstore.model.Tag)
 	 */
 	public ResponseWrapper addTagToStore(int id, Tag tag) {
 		ResponseWrapper responseWrapper = new ResponseWrapper();
@@ -110,6 +119,34 @@ public class StoreService implements IStoreService {
 					.getMessage());
 		}
 		return responseWrapper;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.amzedia.xstore.services.interfaces.IStoreService#getTagsByStore
+	 * (int)
+	 */
+	public ListResponseWrapper getTagsByStore(int id) {
+		ListResponseWrapper listResponseWrapper = new ListResponseWrapper();
+		List<Object> objects = new ArrayList<Object>();
+		try {
+			List<Tag> tags = this.storeDao.getTagsByStore(id);
+
+			for (Tag tag : tags) {
+				objects.add(tag);
+			}
+			listResponseWrapper.setStatus(ResponseCode.OK);
+			listResponseWrapper.setMessage(ResponseMessage.SUCCESS);
+			listResponseWrapper.setResult(objects);
+		} catch (Exception e) {
+			objects.add(e.getCause().getCause().getMessage());
+			listResponseWrapper.setStatus(ResponseCode.FAIL);
+			listResponseWrapper.setMessage(ResponseMessage.FAIL);
+			listResponseWrapper.setResult(objects);
+		}
+		return listResponseWrapper;
 	}
 
 }
