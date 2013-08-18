@@ -40,4 +40,5 @@ public class Message {
 	public static final String TAG_NOT_FOUND = "Tag not found for tag id ";
 	public static final String TAG_ADDED = "Category added successfully";
 	public static final String TAG_NOT_ADDED = "Unable to add catageory";
+	public static final String TAG_UPDATED = "Category updated successfully";
 }
