@@ -19,9 +19,7 @@ import org.springframework.stereotype.Component;
 
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.dao.interfaces.ITagDao;
-import com.amzedia.xstore.model.Customer;
 import com.amzedia.xstore.model.ResponseWrapper;
-import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.model.Tag;
 import com.amzedia.xstore.util.Message;
 import com.amzedia.xstore.util.ResponseCode;
@@ -126,7 +124,7 @@ public class TagDao extends BaseDao implements ITagDao {
 		}
 		return tags;
 	}
-	
+
 	/*
 	 * getting deactivated tags under the parent tag
 	 */
@@ -157,6 +155,40 @@ public class TagDao extends BaseDao implements ITagDao {
 			throw new RuntimeException(e);
 		}
 		return tags;
+	}
+
+	/*
+	 * 
+	 * Udating the tag
+	 */
+	public ResponseWrapper updateTag(Tag tag) throws XstoreException {
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		try {
+			sql = SqlScript.UPDATE_TAG;
+			Map<String, Object> values = new HashMap<String, Object>();
+			values.put("name", tag.getName());
+			values.put("ID", tag.getId());
+			SqlParameterSource params = new MapSqlParameterSource(
+					values);
+			int success = this.getNamedParameterJdbcTemplate()
+					.update(sql, params);
+			if (success > 0) {
+				responseWrapper.setStatus(ResponseCode.OK);
+				responseWrapper.setMessage(ResponseMessage.SUCCESS);
+				responseWrapper.setResult(Message.TAG_UPDATED);
+			} else {
+				responseWrapper.setStatus(ResponseCode.FAIL);
+				responseWrapper.setMessage(ResponseMessage.FAIL);
+				responseWrapper.setResult(Message.TAG_NOT_FOUND);
+			}
+
+		} catch (DataAccessException e) {
+			responseWrapper.setStatus(ResponseCode.FAIL);
+			responseWrapper.setMessage(ResponseMessage.FAIL);
+			responseWrapper.setResult(e.getCause().getMessage());
+			logger.error("Error in update tag");
+		}
+		return responseWrapper;
 	}
 
 	/*
