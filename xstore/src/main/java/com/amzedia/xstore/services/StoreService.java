@@ -149,4 +149,52 @@ public class StoreService implements IStoreService {
 		return listResponseWrapper;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.amzedia.xstore.services.interfaces.IStoreService#getActivatedTagsByStore(int)
+	 */
+	public ListResponseWrapper getActivatedTagsByStore(int id) {
+		ListResponseWrapper listResponseWrapper = new ListResponseWrapper();
+		List<Object> objects = new ArrayList<Object>();
+		try {
+			List<Tag> tags = this.storeDao.getActivatedTagsByStore(id);
+
+			for (Tag tag : tags) {
+				objects.add(tag);
+			}
+			listResponseWrapper.setStatus(ResponseCode.OK);
+			listResponseWrapper.setMessage(ResponseMessage.SUCCESS);
+			listResponseWrapper.setResult(objects);
+		} catch (Exception e) {
+			objects.add(e.getCause().getCause().getMessage());
+			listResponseWrapper.setStatus(ResponseCode.FAIL);
+			listResponseWrapper.setMessage(ResponseMessage.FAIL);
+			listResponseWrapper.setResult(objects);
+		}
+		return listResponseWrapper;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.amzedia.xstore.services.interfaces.IStoreService#getDeactivatedTagsByStore(int)
+	 */
+	public ListResponseWrapper getDeactivatedTagsByStore(int id) {
+		ListResponseWrapper listResponseWrapper = new ListResponseWrapper();
+		List<Object> objects = new ArrayList<Object>();
+		try {
+			List<Tag> tags = this.storeDao.getDeactivatedTagsByStore(id);
+
+			for (Tag tag : tags) {
+				objects.add(tag);
+			}
+			listResponseWrapper.setStatus(ResponseCode.OK);
+			listResponseWrapper.setMessage(ResponseMessage.SUCCESS);
+			listResponseWrapper.setResult(objects);
+		} catch (Exception e) {
+			objects.add(e.getCause().getCause().getMessage());
+			listResponseWrapper.setStatus(ResponseCode.FAIL);
+			listResponseWrapper.setMessage(ResponseMessage.FAIL);
+			listResponseWrapper.setResult(objects);
+		}
+		return listResponseWrapper;
+	}
+
 }

@@ -114,6 +114,20 @@ public class StoreRestService {
 		return this.storeService.getTagsByStore(storeId);
 	}
 	
+	@RequestMapping(value = "/{id}/categories/activated", method = RequestMethod.GET)
+	@ResponseBody
+	public ListResponseWrapper getActivatedTagsByStore(@PathVariable String id) {
+		int storeId = Integer.parseInt(id);
+		return this.storeService.getActivatedTagsByStore(storeId);
+	}
+	
+	@RequestMapping(value = "/{id}/categories/deactivated", method = RequestMethod.GET)
+	@ResponseBody
+	public ListResponseWrapper getDeactivatedTagsByStore(@PathVariable String id) {
+		int storeId = Integer.parseInt(id);
+		return this.storeService.getDeactivatedTagsByStore(storeId);
+	}
+	
 	@RequestMapping(value = "/dummy", method = RequestMethod.GET)
 	@ResponseBody
 	public Store dummy() {

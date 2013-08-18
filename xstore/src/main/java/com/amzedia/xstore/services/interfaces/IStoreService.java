@@ -30,5 +30,9 @@ public interface IStoreService {
 	ResponseWrapper addTagToStore(int id, Tag tag);
 	
 	ListResponseWrapper getTagsByStore(int id);
+	
+	ListResponseWrapper getActivatedTagsByStore(int id);
+	
+	ListResponseWrapper getDeactivatedTagsByStore(int id);
 
 }

@@ -295,4 +295,64 @@ public class StoreDao extends BaseDao implements IStoreDao {
 		return tags;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.amzedia.xstore.dao.interfaces.IStoreDao#getActivatedTagsByStore(int)
+	 */
+	public List<Tag> getActivatedTagsByStore(int id)
+			throws RuntimeException {
+		List<Tag> tags= new ArrayList<Tag>();
+		try {
+			sql = SqlScript.GET_ACTIVATED_CATEGORIES_BY_STORE;
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ID", id);
+			List<Map<String, Object>> list = this.getNamedParameterJdbcTemplate().queryForList(sql, paramMap);
+			for(Map<String, Object> map : list) {
+				Tag tag = new Tag();
+				tag.setId((Integer) map.get("ID"));
+				tag.setName((String) map.get("NAME"));
+				tag.setLevel((Integer) map.get("LEVEL"));
+				tag.setStatus((Boolean) map.get("STATUS"));
+				tag.setParentId((Integer) map.get("PARENT_ID"));
+				tags.add(tag);
+			}
+		}catch (DataAccessException e) {
+			logger.error("exception " + e.getCause().getMessage());
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			logger.error("exception " + e.getCause().getMessage());
+			throw new RuntimeException(e);
+		}
+		return tags;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.amzedia.xstore.dao.interfaces.IStoreDao#getDeactivatedTagsByStore(int)
+	 */
+	public List<Tag> getDeactivatedTagsByStore(int id)
+			throws RuntimeException {
+		List<Tag> tags= new ArrayList<Tag>();
+		try {
+			sql = SqlScript.GET_DEACTIVATED_CATEGORIES_BY_STORE;
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("ID", id);
+			List<Map<String, Object>> list = this.getNamedParameterJdbcTemplate().queryForList(sql, paramMap);
+			for(Map<String, Object> map : list) {
+				Tag tag = new Tag();
+				tag.setId((Integer) map.get("ID"));
+				tag.setName((String) map.get("NAME"));
+				tag.setLevel((Integer) map.get("LEVEL"));
+				tag.setStatus((Boolean) map.get("STATUS"));
+				tag.setParentId((Integer) map.get("PARENT_ID"));
+				tags.add(tag);
+			}
+		}catch (DataAccessException e) {
+			logger.error("exception " + e.getCause().getMessage());
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			logger.error("exception " + e.getCause().getMessage());
+			throw new RuntimeException(e);
+		}
+		return tags;
+	}
+
 }

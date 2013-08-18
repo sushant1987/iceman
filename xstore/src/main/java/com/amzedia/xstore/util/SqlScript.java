@@ -170,6 +170,10 @@ public final class SqlScript {
 			"VALUES (:tagName, :storeId, :level, :parentId, :status, 'admin', 'admin', sysdate(), sysdate())";
 	
 	public static final String GET_CATEGORIES_BY_STORE = "SELECT ID, NAME, LEVEL, PARENT_ID, STATUS FROM TAG";
+	
+	public static final String GET_ACTIVATED_CATEGORIES_BY_STORE = "SELECT ID, NAME, LEVEL, PARENT_ID, STATUS FROM TAG WHERE STATUS = TRUE";
+	
+	public static final String GET_DEACTIVATED_CATEGORIES_BY_STORE = "SELECT ID, NAME, LEVEL, PARENT_ID, STATUS FROM TAG WHERE STATUS = FALSE";
 
 	/**
 	 * Get Tag

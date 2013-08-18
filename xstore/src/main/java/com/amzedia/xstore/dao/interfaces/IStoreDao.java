@@ -62,6 +62,22 @@ public interface IStoreDao {
 	/**
 	 * 
 	 * @param id
+	 * @return
+	 * @throws RuntimeException
+	 */
+	List<Tag> getActivatedTagsByStore(int id) throws RuntimeException;
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws RuntimeException
+	 */
+	List<Tag> getDeactivatedTagsByStore(int id) throws RuntimeException;
+	
+	/**
+	 * 
+	 * @param id
 	 * @param product
 	 * @return
 	 * @throws XstoreException
