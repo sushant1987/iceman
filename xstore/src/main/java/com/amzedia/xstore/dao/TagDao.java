@@ -15,10 +15,13 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.dao.interfaces.ITagDao;
+import com.amzedia.xstore.model.BasicInfo;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.model.Tag;
 import com.amzedia.xstore.util.Message;
@@ -187,6 +190,43 @@ public class TagDao extends BaseDao implements ITagDao {
 			responseWrapper.setMessage(ResponseMessage.FAIL);
 			responseWrapper.setResult(e.getCause().getMessage());
 			logger.error("Error in update tag");
+		}
+		return responseWrapper;
+	}
+
+	/*
+	 * 
+	 */
+	public ResponseWrapper deactivateOrActivateTag(Tag tag)
+			throws XstoreException {
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		try {
+			sql = SqlScript.DEACTIVATE_OR_ACTIVATE_TAG;
+			Map<String, Object> values = new HashMap<String, Object>();
+			values.put("status", tag.isStatus());
+			values.put("ID", tag.getId());
+			SqlParameterSource paramSource = new MapSqlParameterSource(
+					values);
+			int success = this.getNamedParameterJdbcTemplate()
+					.update(sql, paramSource);
+			if (success > 0) {
+				responseWrapper.setStatus(ResponseCode.OK);
+				responseWrapper.setMessage(ResponseMessage.SUCCESS);
+				responseWrapper.setResult(Message.STORE_DEACTIVATED);
+			} else {
+				responseWrapper.setStatus(ResponseCode.FAIL);
+				responseWrapper.setMessage(ResponseMessage.FAIL);
+				responseWrapper.setResult(Message.STORE_NOT_DEACTIVATED);
+			}
+
+		} catch (DataAccessException e) {
+			logger.error("error in deactivateOrActivate tag");
+			responseWrapper.setStatus(ResponseCode.FAIL);
+			responseWrapper.setMessage(ResponseMessage.FAIL);
+			responseWrapper.setResult(e.getCause().getMessage());
+		} catch (Exception e) {
+			logger.error("error in deactivateOrActivate");
+			throw new XstoreException();
 		}
 		return responseWrapper;
 	}

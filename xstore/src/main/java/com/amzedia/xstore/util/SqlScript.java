@@ -165,14 +165,14 @@ public final class SqlScript {
 
 	public static final String ADD_PRODUCT = "INSERT INTO PRODUCT (PRODUCT_NAME, DESCRIPTION, STORE_ID, UPDATED_BY, CREATED_BY, UPDATED_DATE, CREATED_DATE) VALUES (:productName, :productDescription, :storeId, 'admin', 'admin', "
 			+ "sysdate(), sysdate())";
-	
-	public static final String ADD_CATEGORY = "INSERT INTO TAG (NAME, STORE_ID, LEVEL, PARENT_ID, STATUS, UPDATED_BY, CREATED_BY, UPDATED_DATE, CREATED_DATE) " +
-			"VALUES (:tagName, :storeId, :level, :parentId, :status, 'admin', 'admin', sysdate(), sysdate())";
-	
+
+	public static final String ADD_CATEGORY = "INSERT INTO TAG (NAME, STORE_ID, LEVEL, PARENT_ID, STATUS, UPDATED_BY, CREATED_BY, UPDATED_DATE, CREATED_DATE) "
+			+ "VALUES (:tagName, :storeId, :level, :parentId, :status, 'admin', 'admin', sysdate(), sysdate())";
+
 	public static final String GET_CATEGORIES_BY_STORE = "SELECT ID, NAME, LEVEL, PARENT_ID, STATUS FROM TAG";
-	
+
 	public static final String GET_ACTIVATED_CATEGORIES_BY_STORE = "SELECT ID, NAME, LEVEL, PARENT_ID, STATUS FROM TAG WHERE STATUS = TRUE";
-	
+
 	public static final String GET_DEACTIVATED_CATEGORIES_BY_STORE = "SELECT ID, NAME, LEVEL, PARENT_ID, STATUS FROM TAG WHERE STATUS = FALSE";
 
 	/**
@@ -189,4 +189,12 @@ public final class SqlScript {
 	public static final String GET_ACTIVATED_TAGS_BY_PARENT_TAG = "SELECT ID, NAME, STORE_ID, LEVEL, STATUS, PARENT_ID FROM TAG WHERE PARENT_ID = :ID AND STATUS = 1";
 
 	public static final String GET_DEACTIVATED_TAGS_BY_PARENT_TAG = "SELECT ID, NAME, STORE_ID, LEVEL, PARENT_ID, STATUS FROM TAG WHERE PARENT_ID = :ID AND STATUS = 0";
+
+	public static final String UPDATE_TAG = "UPDATE TAG SET NAME = :name, UPDATED_DATE = sysdate() WHERE ID = :ID";
+
+	/**
+	 * Activate or Deactivate Tag
+	 */
+	public static final String DEACTIVATE_OR_ACTIVATE_TAG = "UPDATE TAG SET STATUS = :status WHERE (ID = :ID OR PARENT_ID = :ID)";
+
 }

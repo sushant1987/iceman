@@ -6,6 +6,7 @@ package com.amzedia.xstore.services.interfaces;
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.ListResponseWrapper;
 import com.amzedia.xstore.model.ResponseWrapper;
+import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.model.Tag;
 
 /**
@@ -24,5 +25,7 @@ public interface ITagService {
 	ListResponseWrapper getDeActivatedTagByParentTag(int id);
 
 	ResponseWrapper updateTag(Tag tag) throws XstoreException;
+
+	ResponseWrapper deactivateOrActivateTag(Tag tag) throws XstoreException;
 
 }

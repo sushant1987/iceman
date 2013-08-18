@@ -15,6 +15,7 @@ import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.Group;
 import com.amzedia.xstore.model.ListResponseWrapper;
 import com.amzedia.xstore.model.ResponseWrapper;
+import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.model.Tag;
 import com.amzedia.xstore.services.interfaces.ITagService;
 
@@ -69,6 +70,17 @@ public class TagRestService {
 	public ResponseWrapper updateTag(@RequestBody Tag tag) {
 		try {
 			return this.tagService.updateTag(tag);
+		} catch (XstoreException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@RequestMapping(value = "/activateordeactivate", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseWrapper deactivateOrActivateTag(@RequestBody Tag tag) {
+		try {
+			return this.tagService.deactivateOrActivateTag(tag);
 		} catch (XstoreException e) {
 			e.printStackTrace();
 			return null;

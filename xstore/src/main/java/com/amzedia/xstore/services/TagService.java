@@ -98,6 +98,14 @@ public class TagService implements ITagService {
 	}
 
 	/*
+	 * activating or deactivating tags
+	 */
+	public ResponseWrapper deactivateOrActivateTag(Tag tag)
+			throws XstoreException {
+		return this.tagDao.deactivateOrActivateTag(tag);
+	}
+
+	/*
 	 * adding tag to its parent tag TODO
 	 */
 	/*

@@ -8,6 +8,7 @@ import java.util.List;
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.model.Group;
 import com.amzedia.xstore.model.ResponseWrapper;
+import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.model.Tag;
 
 /**
@@ -39,4 +40,6 @@ public interface ITagDao {
 	List<Tag> getDeActivatedTagByParentTag(int id) throws RuntimeException;
 
 	ResponseWrapper updateTag(Tag tag) throws XstoreException;
+
+	ResponseWrapper deactivateOrActivateTag(Tag tag) throws XstoreException;
 }
