@@ -6,9 +6,8 @@ package com.amzedia.xstore.dao.interfaces;
 import java.util.List;
 
 import com.amzedia.xstore.XstoreException;
-import com.amzedia.xstore.model.Customer;
+import com.amzedia.xstore.model.Group;
 import com.amzedia.xstore.model.ResponseWrapper;
-import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.model.Tag;
 
 /**
@@ -36,7 +35,8 @@ public interface ITagDao {
 	// boolean addTagToParentTag(int id, Tag tag) throws RuntimeException;
 
 	List<Tag> getActivatedTagByParentTag(int id) throws RuntimeException;
-	
+
 	List<Tag> getDeActivatedTagByParentTag(int id) throws RuntimeException;
 
+	ResponseWrapper updateTag(Tag tag) throws XstoreException;
 }

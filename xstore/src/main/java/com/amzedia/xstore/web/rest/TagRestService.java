@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.amzedia.xstore.XstoreException;
+import com.amzedia.xstore.model.Group;
 import com.amzedia.xstore.model.ListResponseWrapper;
 import com.amzedia.xstore.model.ResponseWrapper;
-import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.model.Tag;
 import com.amzedia.xstore.services.interfaces.ITagService;
 
@@ -56,6 +56,23 @@ public class TagRestService {
 			@PathVariable String id) {
 		int tagId = Integer.parseInt(id);
 		return this.tagService.getDeActivatedTagByParentTag(tagId);
+	}
+
+	/**
+	 * This api will update tag info
+	 * 
+	 * @param Tag
+	 * @return boolean
+	 */
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseWrapper updateTag(@RequestBody Tag tag) {
+		try {
+			return this.tagService.updateTag(tag);
+		} catch (XstoreException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	/**

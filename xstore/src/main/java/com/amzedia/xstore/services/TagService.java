@@ -11,13 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.amzedia.xstore.XstoreException;
 import com.amzedia.xstore.dao.interfaces.ITagDao;
-import com.amzedia.xstore.model.Customer;
 import com.amzedia.xstore.model.ListResponseWrapper;
 import com.amzedia.xstore.model.ResponseWrapper;
-import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.model.Tag;
 import com.amzedia.xstore.services.interfaces.ITagService;
-import com.amzedia.xstore.util.Message;
 import com.amzedia.xstore.util.ResponseCode;
 import com.amzedia.xstore.util.ResponseMessage;
 
@@ -91,6 +88,13 @@ public class TagService implements ITagService {
 		}
 
 		return responseWrapper;
+	}
+
+	/*
+	 * update tag
+	 */
+	public ResponseWrapper updateTag(Tag tag) throws XstoreException {
+		return this.tagDao.updateTag(tag);
 	}
 
 	/*
