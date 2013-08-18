@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.amzedia.xstore.XstoreException;
+import com.amzedia.xstore.model.ListResponseWrapper;
 import com.amzedia.xstore.model.ResponseWrapper;
 import com.amzedia.xstore.model.Store;
 import com.amzedia.xstore.model.Tag;
@@ -39,6 +40,22 @@ public class TagRestService {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	@RequestMapping(value = "/{id}/activated", method = RequestMethod.GET)
+	@ResponseBody
+	public ListResponseWrapper getActivatedTagByParentTag(
+			@PathVariable String id) {
+		int tagId = Integer.parseInt(id);
+		return this.tagService.getActivatedTagByParentTag(tagId);
+	}
+
+	@RequestMapping(value = "/{id}/deactivated", method = RequestMethod.GET)
+	@ResponseBody
+	public ListResponseWrapper getDeActivatedTagByParentTag(
+			@PathVariable String id) {
+		int tagId = Integer.parseInt(id);
+		return this.tagService.getDeActivatedTagByParentTag(tagId);
 	}
 
 	/**

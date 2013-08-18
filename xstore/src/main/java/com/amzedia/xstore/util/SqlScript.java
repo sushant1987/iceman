@@ -181,4 +181,8 @@ public final class SqlScript {
 	 */
 	public static final String ADD_CHILD_TAG = "INSERT INTO TAG (NAME, STORE_ID, LEVEL, PARENT_ID, "
 			+ "UPDATED_BY, CREATED_BY, UPDATED_DATE, CREATED_DATE) values (:tagName, :storeId, :level, :parentId, 'admin', 'admin', sysdate(), sysdate())";
+
+	public static final String GET_ACTIVATED_TAGS_BY_PARENT_TAG = "SELECT ID, NAME, STORE_ID, LEVEL, STATUS, PARENT_ID FROM TAG WHERE PARENT_ID = :ID AND STATUS = 1";
+
+	public static final String GET_DEACTIVATED_TAGS_BY_PARENT_TAG = "SELECT ID, NAME, STORE_ID, LEVEL, PARENT_ID, STATUS FROM TAG WHERE PARENT_ID = :ID AND STATUS = 0";
 }
