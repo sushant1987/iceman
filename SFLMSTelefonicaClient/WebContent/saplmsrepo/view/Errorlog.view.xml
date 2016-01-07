@@ -1,0 +1,55 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable" xmlns="sap.ui.table" controllerName="LMS_ODATA3.view.Errorlog">
+	<m:Page id="detailPage" navButtonPress="onNavBack" showNavButton="{device&gt;/isPhone}" title="{i18n&gt;detailTitle}">
+		<m:content>
+			<m:Panel id="__panel0">
+				<m:content>
+					<m:Panel id="__panel1" headerText="{i18n>OfferingStatus}">
+						<m:customData>
+							<core:CustomData id="errorId" key="sap-ui-fastnavgroup" value="true" writeToDom="true"/>
+						</m:customData>
+						<m:content>
+							<!--<m:Select items="{ path: '/OfferingScheduledNewSet' }" press= "onSelect">-->
+							<m:Select items="item" change= "onSelect" includeItemInSelection="true" id="ErrorID" selectedItem="">
+								<core:Item key="" text="" />
+								<core:Item key="04" text="Instructor not defined" />
+								<core:Item key="05" text="Center not defined" />
+								<core:Item key="06" text="Facility not defined" />
+								<core:Item key="07" text="Offering duration not equal Item Length" />
+								<core:Item key="08" text= "Undefined error when generating New Offering XML File" />
+								<core:Item key="09" text="SCHEDULED ONLY + ONSITE Completed Offering with over 25 participants" />
+								<core:Item key="10" text="Undefined error when generating Completed Offering XML File" />
+							</m:Select>
+						</m:content>
+					</m:Panel>
+					<m:Toolbar width="100%" id="__toolbar0">
+					    <m:customData>
+					        <core:CustomData key="sap-ui-fastnavgroup" value="true" writeToDom="true" id="__data6"/>
+					    </m:customData>
+					</m:Toolbar>
+					<Table id="overviewTable" rows="{/}" selectionMode="MultiToggle" title="{i18n>OfferingDetails}" visibleRowCount="4">
+						<columns>
+							<Column sortProperty="offeringCode">
+								<m:Label text="{i18n>OfferingScheduledNewID}"/>
+								<template>
+									<m:Text text="{offeringCode}"/>
+								</template>
+							</Column>
+							<Column>
+								<m:Label text="{i18n>ItemsCode}"/>
+								<template>
+									<m:Text text="{itemCode}"/>
+								</template>
+							</Column>
+							<!-- <Column>	
+								<m:Label text="{i18n>ItemTitle}"/>
+								<template>
+									<m:Text text="{itemTitle}"/>
+								</template>
+							</Column> -->
+						</columns>
+					</Table>
+				</m:content>
+			</m:Panel>
+		</m:content>
+	</m:Page>
+</mvc:View>

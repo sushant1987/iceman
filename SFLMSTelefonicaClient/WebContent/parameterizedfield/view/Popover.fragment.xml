@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns="sap.m">
+	<ResponsivePopover class="sapUiPopupWithPadding" placement="Left" title="Audit Details">
+		<endButton>
+			<Button press="handleCloseButton" text="Close"/>
+		</endButton>
+		<content>
+			<form:SimpleForm editable="false" layout="ResponsiveGridLayout">
+			    <form:content>
+					<Label text="Created By"/>
+					<Text text="{CreatedBy} (user {CreatedByUser})"/>
+					<Label text="Created On"/>
+					<Text text="{CreatedOn}"/>
+					<Label text="Modified By"/>
+					<Text text="{ModifiedBy} (user {ModifiedByUser})"/>
+					<Label text="Modified On"/>
+					<Text text="{ModifiedOn}"/>
+				</form:content>
+			</form:SimpleForm>
+		</content>
+	</ResponsivePopover>
+	
+</core:FragmentDefinition>

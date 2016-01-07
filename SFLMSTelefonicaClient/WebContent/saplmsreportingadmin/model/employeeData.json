@@ -1,0 +1,46 @@
+{
+    "totalCount":2023,
+    "basicData": [{
+        "id": 2,
+        "companyCode": "lms2",
+        "employeeId": "2",
+        "hireDate": "2009-02-27T20:00:00Z",
+        "firstName": "Kally",
+        "lastName": "Kumar",
+        "nickName": "Noha",
+        "email": "kumar@sf.com",
+        "dateOfBirth": "2009-02-27T20:00:00Z"
+    },
+   {
+        "id": 1,
+        "companyCode": "lms2",
+        "employeeId": "2",
+        "hireDate": "2009-02-27T20:00:00Z",
+        "firstName": "Sushant",
+        "lastName": "Kumar",
+        "nickName": "Singh",
+        "email": "haha@lala.com",
+        "dateOfBirth": "2009-02-27T20:00:00Z"
+    }],
+    
+    "customData":[
+    	{
+        	"id":1,
+            "CompanyCode": "123",
+            "SSNID":"456785322X",
+            "EmployeeID":"i1022",
+            "ContGrp":"grp001",
+            "ProfCat":"002",
+			"CAP":"898"
+    	},
+    	{
+        	"id":2,
+            "CompanyCode": "567",
+            "SSNID":"456785322X",
+            "EmployeeID":"i234",
+            "ContGrp":"grp001",
+            "ProfCat":"002",
+			"CAP":"898"
+    	}
+    ]
+}

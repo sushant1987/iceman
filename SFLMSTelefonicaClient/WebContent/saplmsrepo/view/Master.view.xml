@@ -1,0 +1,61 @@
+<mvc:View controllerName="LMS_ODATA3.view.Master" xmlns:core="sap.ui.core" xmlns:footerbar="sap.ushell.ui.footerbar"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Page id="masterPage" title="{i18n>masterTitle}">
+		<headerContent>
+				<Button icon="sap-icon://home" id="homeButton" tap="onGoHome"/>
+			</headerContent>
+		<subHeader id="masterSubHeader">
+			<!--<Bar id="searchBar">-->
+			<!--	<contentMiddle>-->
+			<!--		<SearchField id="searchField" placeholder="{i18n>masterSearchPlaceholder}" search="onSearch" showRefreshButton="{device>/isNoTouch}"-->
+			<!--			tooltip="{i18n>masterSearchTooltip}" width="100%"></SearchField>-->
+			<!--	</contentMiddle>-->
+			<!--</Bar>-->
+		</subHeader>
+		<content>
+			<List growing="true" growingScrollToLoad="true" id="list" mode="{device>/listMode}"
+				noDataText="{i18n>masterListNoDataText}" select="onSelect">
+				<items id="masterList">
+					<ObjectListItem counter="0" id="mainListItem1" markFavorite="false" markFlagged="false" number="" numberUnit=""
+						press="onSelect" showMarkers="false" title="{i18n>Items}" type="{device>/listItemType}">
+						<core:ExtensionPoint name="extListItemInfo"/>
+					</ObjectListItem>
+			<!--	</items>-->
+			<!--</List>-->
+				<!--<List growing="true" growingScrollToLoad="true" id="list" items="{/OverviewScreenSet23}" mode="{device>/listMode}"-->
+				<!--noDataText="{i18n>masterListNoDataText}" select="onSelect">-->
+				<!--<items id="masterList1">-->
+					<ObjectListItem counter="0" id="mainListItem2" markFavorite="false" markFlagged="false" number="" numberUnit=""
+						press="onSelect" showMarkers="false" title="{i18n>NewOfferings}" type="{device>/listItemType}">
+						<core:ExtensionPoint name="extListItemInfo"/>
+					</ObjectListItem>
+			<!--	</items>-->
+			<!--</List>-->
+					<ObjectListItem counter="0" id="mainListItem3" markFavorite="false" markFlagged="false" number="" numberUnit=""
+						press="onSelectOffering" showMarkers="false" title="{i18n>CompletedOfferings}" type="{device>/listItemType}">
+						<core:ExtensionPoint name="extListItemInfo"/>
+					</ObjectListItem>
+					<ObjectListItem counter="0" id="mainListItem4" markFavorite="false" markFlagged="false" number="" numberUnit=""
+						press="onSelectOffering" showMarkers="false"  title="{i18n>Participants}" type="{device>/listItemType}">
+						<core:ExtensionPoint name="extListItemInfo"/>
+					</ObjectListItem>
+					<ObjectListItem counter="0" id="mainListItem5" markFavorite="false" markFlagged="false" number="" numberUnit=""
+						press="onSelectOffering" showMarkers="false" title="{i18n>OfferingStatus}" type="{device>/listItemType}">
+						<core:ExtensionPoint name="extListItemInfo"/>
+					</ObjectListItem>
+					<ObjectListItem counter="0" id="mainListItem6" markFavorite="false" markFlagged="false" number="" numberUnit=""
+						press="onSelectRunID" showMarkers="false" title="{i18n>ReportHistory}" type="{device>/listItemType}">
+						<core:ExtensionPoint name="extListItemInfo"/>
+					</ObjectListItem>
+				</items>
+			</List>
+		</content>
+		<!--<footer id="masterFooter">-->
+		<!--	<Toolbar id="masterToolbar">-->
+		<!--		<content>-->
+		<!--			<footerbar:SettingsButton icon="sap-icon://action-settings" id="settingsButton" tooltip="Help"></footerbar:SettingsButton>-->
+		<!--		</content>-->
+		<!--	</Toolbar>-->
+		<!--</footer>-->
+	</Page>
+</mvc:View>

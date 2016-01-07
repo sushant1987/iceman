@@ -1,0 +1,99 @@
+<mvc:View
+       xmlns="sap.ui.table"
+       xmlns:mvc="sap.ui.core.mvc"
+       xmlns:u="sap.ui.unified"
+       xmlns:c="sap.ui.core"
+       xmlns:m="sap.m"
+       xmlns:ui="sap.ca.ui"
+       controllerName="LMS_ODATA3.view.Participants">
+
+       <m:Page id="detailPage" navButtonPress="onNavBack" showNavButton="true" title="{i18n>Participantheader}">
+       <m:content>
+       <m:IconTabBar
+              id="idIconTabBarStretchContent"
+              stretchContentHeight="true"
+              backgroundDesign="Transparent"
+              applyContentPadding="false"
+              expanded="{device>/isNoPhone}"
+              class="sapUiResponsiveContentPadding">
+       <m:items>            
+       <m:IconTabFilter
+                           text="{i18n>ParticipantDetails}">
+                           <m:ScrollContainer
+                                         height="100%"
+                                         width="100%"
+                                         horizontal="false"
+                                         vertical="true">     
+       
+              <Table
+                           rows="{/}"
+                           selectionMode="MultiToggle"
+                           id="ParticipantSet"
+                           visibleRowCount="7"> 
+              
+                           <columns>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>ParticipantID}"/>
+                                         <template>
+                                                <m:Text text="{empId}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>TypeDocument}"/>
+                                         <template>
+                                                <m:Text text="{documentType}"/>
+                                         </template>
+                                  </Column>                  
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>ParticipantName}"/>
+                                         <template>
+                                                <m:Text text="{username}"/>
+                                         </template>
+                                  </Column>                  
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>ParticipantFSurName}"/>
+                                         <template>
+                                                <m:Text text="{firstName}"/>
+                                         </template>
+                                  </Column>                  
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>ParticipantSSurName}"/>
+                                         <template>
+                                                <m:Text text="{lastName}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>SSNID}"/>
+                                         <template>
+                                                <m:Text text="{ssnid}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>Gender}"/>
+                                         <template>
+                                                <m:Text text="{gender}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>DOB}"/>
+                                         <template>
+                                                <m:Text text="{custom12}"/>
+                                         </template>
+                                  </Column>                                
+                           </columns>
+                           
+              </Table>
+              </m:ScrollContainer>
+              </m:IconTabFilter>         
+              
+              </m:items>
+</m:IconTabBar>                   
+       </m:content>
+              <m:footer>
+            <m:OverflowToolbar id="otbFooter">
+                <m:ToolbarSpacer/>
+                <m:Button type="Accept" text="{i18n>DownloadXML}" press="onPress"/>
+                     </m:OverflowToolbar>                
+         </m:footer>
+       </m:Page>
+       </mvc:View>

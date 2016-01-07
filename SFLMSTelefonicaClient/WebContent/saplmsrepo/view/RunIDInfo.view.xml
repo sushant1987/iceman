@@ -1,0 +1,96 @@
+<mvc:View controllerName="LMS_ODATA3.view.RunIDInfo" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:m="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns="sap.ui.table">
+	<m:Page id="detailPage" navButtonPress="onNavBack" showNavButton="{device&gt;/isPhone}" title="{i18n&gt;detailTitle}">
+		<m:content>
+			<f:SimpleForm editable="false" id="selOptionForm" layout="ResponsiveGridLayout">
+				<f:content>
+					<core:Title id="__title0" text="{i18n>detailText}"/>
+					<m:Label class="selectionLabel" id="__label0" text="{i18n>LegalEntity}"/>
+					<m:Input id="i_legalEntity" value="{/legalEntity}" width="49%" maxLength='5'/>
+					<m:Label class="selectionLabel" id="__labe11" text="{i18n>RunIdInfoID}"/>
+					<m:Input id="i_RunIdInfoID" value="{/id}" width="49%" maxLength='15'/>
+					<m:Label class="selectionLabel" id="__label1" text="{i18n>DatetimeStmp}"/>
+					<m:DateRangeSelection change="handleChange" class="sapUiMediumMarginBottom" value="{/date}"/>
+					<m:Button activeIcon="sap-icon://search" icon="sap-icon://search" id="__button0" press="onSearch" text="{i18n>Search}" width="100px"/>
+				</f:content>
+			</f:SimpleForm>
+			<m:Panel id="__panel0">
+				<m:Table id="overviewTable" itemPress="onNavOfferring" items="{/}" selectionMode="Single">
+					<m:columns>
+						<m:Column>
+							<m:header>
+								<m:Label text="{i18n>RunId}"/>
+							</m:header>
+						</m:Column>
+						<m:Column>
+							<m:header>
+								<m:Label text="{i18n>DatetimeStmp}"/>
+							</m:header>
+						</m:Column>
+						<m:Column>
+							<m:header>
+								<m:Label text="{i18n>ReportTypeID}"/>
+							</m:header>
+						</m:Column>
+						<m:Column>
+							<m:header>
+								<m:Label text="{i18n>LegalEntity}"/>
+							</m:header>
+						</m:Column>
+					</m:columns>
+					<m:items>
+						<m:ColumnListItem type="Navigation">
+							<m:cells>
+								<!--<m:Text text="{RunId}"/>-->
+								<!--<m:Text text="{DatetimeStmp} "/>-->
+								<!--<m:Text text="{XMLType} "/>-->
+								<!--<m:Text text="{LegalEntity} "/>-->
+								<m:Text text="{id}"/>
+								<m:Text text="{createdDate} "/>
+								<m:Text text="{reportType} "/>
+								<m:Text text="{legalEntity} "/>
+							</m:cells>
+						</m:ColumnListItem>
+					</m:items>
+				</m:Table>
+				<!--<Table id="overviewTable" itemPress="onNavOfferring" selectionMode="MultiToggle" title="{i18n>RunIDInfo}" visibleRowCount="4">-->
+				<!--	<columns>-->
+				<!--		<Column >-->
+				<!--			<m:Label text="{i18n>RunId}"/>-->
+				<!--			<template>-->
+				<!--				<m:Text text="{id}"/>-->
+				<!--			</template>-->
+				<!--		</Column>-->
+				<!--		<Column>-->
+				<!--			<m:Label text="{i18n>DatetimeStmp}"/>-->
+				<!--			<template>-->
+				<!--				<m:Text text="{createdDate}"/>-->
+				<!--			</template>-->
+				<!--		</Column>-->
+				<!--		<Column>-->
+				<!--			<m:Label text="{i18n>XMLType}"/>-->
+				<!--			<template>-->
+				<!--				<m:Text text="{reportType}"/>-->
+				<!--			</template>-->
+				<!--		</Column>-->
+				<!--		<Column>-->
+				<!--			<m:Label text="{i18n>LegalEntity}"/>-->
+				<!--			<template>-->
+				<!--				<m:Text text="{legalEntity}"/>-->
+				<!--			</template>-->
+				<!--		</Column>-->
+				<!--	</columns>-->
+				<!--<items>-->
+				<!--	<ColumnListItem>-->
+				<!--		<cells>-->
+				<!--<ObjectIdentifier text="RunId" title="Report"/>-->
+				<!--			<Text text="1234"/>-->
+				<!--		</cells>-->
+				<!--	</ColumnListItem>-->
+				<!--</items>-->
+				<!--</Table>-->
+			</m:Panel>
+		</m:content>
+	</m:Page>
+</mvc:View>

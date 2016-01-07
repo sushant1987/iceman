@@ -1,0 +1,140 @@
+<core:View controllerName="LMS_ADMIN.view.employeeData" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:table="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:my="LMS_ADMIN">
+	<html:style>
+		.formLabel{
+			line-height:3rem;
+		}
+	</html:style>
+	<Page id="page" title="Maintain Employees' Custom Data"
+		enableScrolling="true">
+		<headerContent>
+             <Button icon="sap-icon://home" id="homeButton" tap="onGoHome"/>
+        </headerContent>
+        <content>
+		<f:SimpleForm editable="false" layout="ResponsiveGridLayout" id="selOptionForm">
+			    
+			        <core:Title text="{i18n>detailText}" id="__title0"/>
+			        <Label text="{i18n>compcod}" class="formLabel selectionLabel" id="__label0"/> 
+			        <Input width="49%" id="CompCod" maxLength='5' /> 
+			        <Button text="{i18n>Search}" width="100px" id="__button0" icon="sap-icon://search" activeIcon="sap-icon://search" press="onSearch"/>
+			     
+		</f:SimpleForm>			        
+		</content>	        
+		<IconTabBar id="idIconTabBar" select="handleIconTabBarSelect">
+			<items>
+				<IconTabFilter icon="sap-icon://message-information" key="Standard" text="Standard Data">
+					<my:JSONList id="idParticipantsTable"
+						inset="false"
+						totalCount="{/count}"
+						width="100%"
+						growing="true"
+						growingScrollToLoad="true"
+						growingThreshold="100"
+						updateStarted=".updateStarted"
+						items="{
+							path: '/data',
+							sorter: {
+								path: 'Id'
+							}
+						}">
+						<my:headerToolbar>
+							<Toolbar>
+								<Title text="Standard Data"></Title>
+							</Toolbar>
+						</my:headerToolbar>
+						<my:columns>
+							<Column>
+									<Text text="ID" />
+							</Column>
+							<Column
+								minScreenWidth="Tablet"
+								demandPopin="true"
+								hAlign="Center">
+									<Text text="First Name" />
+							</Column>
+							<Column
+								minScreenWidth="Tablet"
+								demandPopin="true"
+								hAlign="Center">
+								
+									<Text text="Last Name" />
+							</Column>
+							<Column
+								minScreenWidth="Tablet"
+								demandPopin="true"
+								hAlign="Center">
+									<Text text="Gender" />
+							</Column>
+							<Column
+								minScreenWidth="Tablet"
+								demandPopin="true"
+								hAlign="Center">
+									<Text text="Job Title" />
+							</Column>
+							<Column
+								minScreenWidth="Tablet"
+								demandPopin="true"
+								hAlign="Center">
+									<Text text="Email" />
+							</Column>
+						</my:columns>
+						<my:items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{Id}" />
+									<Text text="{FirstName}" />
+									<Text text="{LastName}" />
+									<Text text="{Gender}"/>
+									<Text text="{JobTitle}" />
+									<Text text="{Email}" />
+								</cells>
+							</ColumnListItem>
+						</my:items>
+					</my:JSONList>
+			</IconTabFilter>
+			<IconTabFilter icon="sap-icon://customer" key="Custom" text="Custom Data">
+				<my:JSONList
+					id="idCustomDataTable"
+						selectionMode="None"
+						inset="false"
+						totalCount="{/count}"
+						width="100%"
+						growing="true"
+						growingScrollToLoad="true"
+						growingThreshold="100"
+						updateStarted=".updateStarted"
+						columns="{config>/}"
+						>
+					<my:headerToolbar>
+						<Toolbar>
+							<Title text="Custom Data"></Title>
+							<ToolbarSpacer/>
+							<Link id="linkDownload" text="download csv template" title="allow you to download custom data csv for later upload" />
+							<u:FileUploader
+								id="fileUploader"
+								name="customDataFileUpload"
+								uploadUrl="/SFLMSTelefonicaClient/a/uploadEMPCSV"
+								width="400px"
+								fileType="csv"
+								sameFilenameAllowed="true"
+								uploadOnChange="true"
+								buttonText="Upload and Save"
+								uploadStart="uploadStart"
+								change="uploadChange"
+								uploadComplete="uploadComplete"
+								placeholder="select the custom data csv to upload..."
+								tooltip="Upload your custom data from csv file"
+								/>
+						</Toolbar>
+					</my:headerToolbar>
+					<my:columns>
+						<Column>
+							<Text text="{config>shortDesc}" />
+						</Column>
+					</my:columns>
+				</my:JSONList>
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+	</Page>
+</core:View>

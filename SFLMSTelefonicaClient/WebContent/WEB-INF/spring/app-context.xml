@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans			http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/context		http://www.springframework.org/schema/context/spring-context-3.1.xsd
+        http://www.springframework.org/schema/data/jpa		http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+        http://www.springframework.org/schema/aop			http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+        http://www.springframework.org/schema/jee           http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
+        http://www.springframework.org/schema/task			http://www.springframework.org/schema/task/spring-task.xsd
+        http://cxf.apache.org/jaxrs 				http://cxf.apache.org/schemas/jaxrs.xsd
+        http://www.springframework.org/schema/tx    http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<context:component-scan base-package="com.sap.hcp.successfactors.lms.extensionfw" />
+
+	<context:annotation-config />
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- async support -->
+	<task:annotation-driven />
+	
+	<!-- support Spring annotation -->
+	<context:annotation-config />
+
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+		<property name="jpaDialect" ref="jpaDialect" />
+	</bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+		<property name="jpaDialect">
+			<bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect" />
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="eclipselink.ddl-generation">create-or-extend-tables</prop>
+				<prop key="eclipselink.logging.level">INFO</prop>
+				<prop key="eclipselink.logging.level.sql">INFO</prop>
+				<prop key="eclipselink.logging.exceptions">true</prop>
+				<prop key="eclipselink.weaving">false</prop>
+				<prop key="eclipselink.deploy-on-startup">true</prop>
+			</props>
+		</property>
+		<property name="packagesToScan">
+		    <list>
+		        <value>com.sap.hcp.successfactors.lms.extensionfw.pojo</value>
+		    </list>
+		</property>
+	</bean>
+
+	<bean id="jpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
+		<property name="generateDdl" value="false" />
+		<property name="showSql" value="true" />
+	</bean>
+
+	<bean id="jpaDialect"
+		class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect" />
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
+
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames" value="i18n/messages" />
+	</bean>
+
+	<beans profile="dev, prod">
+		<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/DefaultDB" />
+	</beans>
+</beans>

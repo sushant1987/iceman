@@ -1,0 +1,68 @@
+{
+  "run": [
+    {
+      "filePath": "/parameterizedfield/index.html",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": null,
+      "ui5VerSource": null,
+      "isDefaultVersion": 0,
+      "urlParameters": [],
+      "hashParameter": "",
+      "backendSystem": [],
+      "_metadata": {
+        "runnerId": "webapprunner",
+        "id": 8424738,
+        "displayName": "New Web Application 2"
+      }
+    },
+    {
+      "filePath": "/ParameterizedField/index.html",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": null,
+      "ui5VerSource": null,
+      "isDefaultVersion": 0,
+      "urlParameters": [],
+      "hashParameter": "",
+      "backendSystem": [],
+      "destBackendSystem": [],
+      "_metadata": {
+        "runnerId": "webapprunner",
+        "id": 6754902,
+        "displayName": "New Web Application 9"
+      }
+    },
+    {
+      "filePath": "/SFLMSExtCustomFieldConfig/index.html",
+      "previewMode": 1,
+      "dataMode": 0,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": null,
+      "ui5VerSource": null,
+      "isDefaultVersion": 0,
+      "urlParameters": [
+        {
+          "paramName": "",
+          "paramValue": "",
+          "paramActive": false
+        },
+        {
+          "paramName": "",
+          "paramValue": "",
+          "paramActive": false
+        }
+      ],
+      "hashParameter": "",
+      "backendSystem": [],
+      "destBackendSystem": [],
+      "_metadata": {
+        "id": 5890283,
+        "runnerId": "webapprunner",
+        "displayName": "New Web Application 1 2"
+      }
+    }
+  ]
+}

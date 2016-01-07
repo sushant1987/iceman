@@ -1,0 +1,104 @@
+{
+  "run": [
+    {
+      "filePath": "/saplmsrepo-5/index.html",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": null,
+      "ui5VerSource": null,
+      "isDefaultVersion": 0,
+      "urlParameters": [],
+      "hashParameter": "",
+      "backendSystem": [],
+      "_metadata": {
+        "runnerId": "webapprunner",
+        "id": 3583106,
+        "displayName": "New Web Application 12"
+      }
+    },
+    {
+      "filePath": "/saplmsrepo-4/index.html",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": null,
+      "ui5VerSource": null,
+      "isDefaultVersion": 0,
+      "urlParameters": [],
+      "hashParameter": "",
+      "backendSystem": [],
+      "_metadata": {
+        "runnerId": "webapprunner",
+        "id": 6052319,
+        "displayName": "New Web Application 11"
+      }
+    },
+    {
+      "filePath": "/saplmsrepo/index.html",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": null,
+      "ui5VerSource": null,
+      "isDefaultVersion": 0,
+      "urlParameters": [],
+      "hashParameter": "",
+      "backendSystem": [],
+      "destBackendSystem": [],
+      "_metadata": {
+        "runnerId": "webapprunner",
+        "id": 6517522,
+        "displayName": "New Web Application"
+      }
+    },
+    {
+      "filePath": "/LMS_ODATA3/index.html",
+      "previewMode": 1,
+      "dataMode": 0,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": null,
+      "ui5VerSource": null,
+      "isDefaultVersion": 0,
+      "urlParameters": [
+        {
+          "paramName": "",
+          "paramValue": "",
+          "paramActive": false
+        },
+        {
+          "paramName": "",
+          "paramValue": "",
+          "paramActive": false
+        }
+      ],
+      "hashParameter": "",
+      "backendSystem": [],
+      "destBackendSystem": [],
+      "_metadata": {
+        "id": 6445084,
+        "runnerId": "webapprunner",
+        "displayName": "New Web Application 2",
+        "hasIssues": true
+      }
+    },
+    {
+      "filePath": "/LMS_ODATA3/Component.js",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": null,
+      "ui5VerSource": null,
+      "isDefaultVersion": 0,
+      "urlParameters": [],
+      "hashParameter": "",
+      "backendSystem": [],
+      "destBackendSystem": [],
+      "_metadata": {
+        "id": 9869865,
+        "runnerId": "fiorirunner",
+        "displayName": "New SAP Fiori Component on Sandbox 1"
+      }
+    }
+  ]
+}

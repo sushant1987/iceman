@@ -1,0 +1,3 @@
+<mvc:View controllerName="LMS_ADMIN.view.App" displayBlock="true" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<App id="idAppControl"/>
+</mvc:View>

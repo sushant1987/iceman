@@ -1,0 +1,530 @@
+<mvc:View
+       xmlns="sap.ui.table"
+       xmlns:mvc="sap.ui.core.mvc"
+       xmlns:u="sap.ui.unified"
+       xmlns:c="sap.ui.core"
+       xmlns:m="sap.m"
+       xmlns:ui="sap.ca.ui"
+       controllerName="LMS_ODATA3.view.ScheduledOffering">
+
+       <m:Page id="detailPage" navButtonPress="onNavBack" showNavButton="true" title="{i18n>ScheduledOfferingheader}">
+       <m:content>
+       <m:IconTabBar
+              id="idIconTabBarStretchContent"
+              stretchContentHeight="true"
+              backgroundDesign="Transparent"
+              applyContentPadding="false"
+              expanded="{device>/isNoPhone}"
+              class="sapUiResponsiveContentPadding">
+       <m:items>            
+       <m:IconTabFilter
+                           text="{i18n>ScheduledOffering}">
+                           <m:ScrollContainer
+                                         height="100%"
+                                         width="100%"
+                                         horizontal="false"
+                                         vertical="true">     
+       
+              <Table
+                           rows="{/}"
+                           id="ScheduledOffering"
+                           selectionMode="MultiToggle"
+                           visibleRowCount="7"> 
+
+                           <columns>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>ItemSecondaryID}"/>
+                                         <template>
+                                                <m:Text text="{itemCode1}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>OfferingScheduledNewID}"/>
+                                         <template>
+                                                <m:Text text="{offeringid}"/>
+                                         </template>
+                                  </Column>                  
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>Description}"/>
+                                         <template>
+                                                <m:Text text="{scheduleDesc}"/>
+                                         </template>
+                                  </Column>                  
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>StartDate}"/>
+                                         <template>
+                                                <m:Text text="{offeringStartDate}"/>
+                                         </template>
+                                  </Column>                  
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>EndDate}"/>
+                                         <template>
+                                                <m:Text text="{offeringEndDate}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>PrivateContribution}"/>
+                                         <template>
+                                                <m:Text text="{PrivateContribution}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>NoParticipants}"/>
+                                         <template>
+                                                <m:Text text="{numberOfParticipants}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>TrainingOrgEnt}"/>
+                                         <template>
+                                                <m:Text text="{TrainingOrgEnt}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>InterExtIndicator}"/>
+                                         <template>
+                                                <m:Text text="{interInsIndicator}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>IntExtInstructor}"/>
+                                         <template>
+                                               <m:Text text="{interInstructor}"/>
+                                         </template>
+                                  </Column>                                 
+                           </columns>
+                           
+              </Table>
+              </m:ScrollContainer>
+              </m:IconTabFilter>         
+              
+       <m:IconTabFilter
+                           text="{i18n>Facitlity}">
+                           <m:ScrollContainer
+                                         height="100%"
+                                         width="100%"
+                                         horizontal="false"
+                                         vertical="true">
+              <Table
+                           rows="{/}"
+                           id="Facility"
+                           selectionMode="MultiToggle"
+                           visibleRowCount="7">
+                           <columns>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>ItemSecondaryID}"/>
+                                         <template>
+                                                <m:Text text="{itemCode1}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>OfferingScheduledNewID}"/>
+                                         <template>
+                                                <m:Text text="{offeringid}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>ResponsiblePerson}"/>
+                                         <template>
+                                                <m:Text text="{scheduleOfferingContact}"/>
+                                         </template>
+                                  </Column>                  
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>ContactNumber}"/>
+                                         <template>
+                                                <m:Text text="{ContactNumber}"/>
+                                         </template>
+                                  </Column>            
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>OnsiteTaxIDFacility}"/>
+                                         <template>
+                                         
+                                                <m:Text text="{onsiteTaxIDFacility}"/>
+                                         </template>
+                                  </Column>                  
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>OnsiteFacility}"/>
+                                         <template>
+                                                <m:Text text="{onsiteFacility}"/>
+                                         </template>
+                                  </Column>            
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>OnSiteTaxIDCodeLoc}"/>
+                                         <template>
+                                                <m:Text text="{onSiteTaxIDCodeLoc}"/>
+                                         </template>
+                                  </Column>     
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>OnsiteLocation}"/>
+                                         <template>
+                                                <m:Text text="{facilityName}"/>
+                                         </template>
+                                  </Column>     
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>OnsiteFacilityAdd}"/>
+                                         <template>
+                                                <m:Text text="{facilityAddress}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>OnsiteFacilityPCode}"/>
+                                         <template>
+                                                <m:Text text="{facilityPostal}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>OnsiteFacilityCity}"/>
+                                         <template>
+                                                <m:Text text="{facilityCity}"/>
+                                         </template>
+                                  </Column>            
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>OnsiteFacilityCountry}"/>
+                                         <template>
+                                                <m:Text text="{facilityCountry}"/>
+                                         </template>
+                                  </Column>                                       
+                           </columns>                               
+              </Table>                          
+              </m:ScrollContainer>
+              </m:IconTabFilter>                                     
+              
+       <m:IconTabFilter
+                           text="{i18n>Duration}">
+                           <m:ScrollContainer
+                                         height="100%"
+                                         width="100%"
+                                         horizontal="false"
+                                         vertical="true">
+              <Table
+                           rows="{/}"
+                           id="Duration"
+                           selectionMode="MultiToggle"
+                           visibleRowCount="7">
+                           <columns>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>ItemSecondaryID}"/>
+                                         <template>
+                                                <m:Text text="{itemCode1}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>OfferingScheduledNewID}"/>
+                                         <template>
+                                                <m:Text text="{offeringid}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>ItemHours}"/>
+                                         <template>
+                                                <m:Text text="{creditHours}"/>
+                                         </template>
+                                  </Column>                  
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>StarttimeMorning}"/>
+                                         <template>
+                                                <m:Text text="{firstDayMorningStartDateTime}"/>
+                                         </template>
+                                  </Column>     
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>EndTimeMorning}"/>
+                                         <template>
+                                                <m:Text text="{firstDayMorningEndDateTime}"/>
+                                         </template>
+                                  </Column>                  
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>StarttimeAfternoon}"/>
+                                         <template>
+                                                <m:Text text="{firstDayAfternoonStartDateTime}"/>
+                                         </template>
+                                  </Column>     
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>EndTimeAfternoon}"/>
+                                         <template>
+                                                <m:Text text="{firstDayAfternoonEndDateTime}"/>
+                                         </template>
+                                  </Column>     
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>DaysTeaching}"/>
+                                         <template>
+                                                <m:Text text="{daysOfTeaching}"/>
+                                         </template>
+                                  </Column>                                
+                           </columns>                               
+              </Table>                          
+              </m:ScrollContainer>
+              </m:IconTabFilter>   
+              
+       <m:IconTabFilter
+                           text="{i18n>OnlinePlatform}">
+                           <m:ScrollContainer
+                                         height="100%"
+                                         width="100%"
+                                         horizontal="false"
+                                         vertical="true">
+              <Table
+                           rows="{/}"
+                           id="OnlinePlatform"
+                           selectionMode="MultiToggle"
+                           visibleRowCount="7">
+                           <columns>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>ItemSecondaryID}"/>
+                                         <template>
+                                                <m:Text text="{itemCode1}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>OfferingScheduledNewID}"/>
+                                         <template>
+                                                <m:Text text="{offeringid}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>TaxIdPlatform}"/>
+                                         <template>
+                                                <m:Text text="{taxIdPlatform}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>ResPersonNamePf}"/>
+                                         <template>
+                                                <m:Text text="{ResPersonNamePf}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>AddressFacitilyPf}"/>
+                                         <template>
+                                                <m:Text text="{AddressFacilityPf}"/>
+                                         </template>
+                                  </Column>     
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>AddressPFPOCoder}"/>
+                                         <template>
+                                                <m:Text text="{AddressPFPOCode}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>AddressPFCity}"/>
+                                         <template>
+                                                <m:Text text="{AddressPFCity}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>AddressPFCountry}"/>
+                                         <template>
+                                                <m:Text text="{AddressPFCountry}"/>
+                                         </template>
+                                  </Column>
+                                  <!-- <Column width="11rem">
+                                         <m:Label text="{i18n>AddressPFState}"/>
+                                         <template>
+                                                <m:Text text="{AddressPFState}"/>
+                                         </template>
+                                  </Column> -->
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>AddressPFTelephone}"/>
+                                         <template>
+                                                <m:Text text="{AddressPFTelephone}"/>
+                                         </template>
+                                  </Column>
+                           </columns>                               
+              </Table>                          
+              </m:ScrollContainer>
+              </m:IconTabFilter>                
+              
+              
+       <m:IconTabFilter
+                           text="{i18n>OnlineDuration}">
+                           <m:ScrollContainer
+                                         height="100%"
+                                         width="100%"
+                                         horizontal="false"
+                                         vertical="true">
+              <Table
+                           rows="{/}"
+                           id="OnlineDuartion"
+                           selectionMode="MultiToggle"
+                           visibleRowCount="7">	
+                           <columns>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>ItemSecondaryID}"/>
+                                         <template>
+                                                <m:Text text="{itemCode1}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>OfferingScheduledNewID}"/>
+                                         <template>
+                                                <m:Text text="{offeringid}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>OnlineCPEHourse}"/>
+                                         <template>
+                                                <m:Text text="{cpeHours}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>OnlineStarttimeMorning}"/>
+                                         <template>
+                                                <m:Text text="{onlineFirstDayMorningStartDateTime}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>OnlineEndtimeMorning}"/>
+                                         <template>
+                                                <m:Text text="{onlineFirstDayMorningEndDateTime}"/>
+                                         </template>
+                                  </Column>     
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>OnlineStarttimeAfternoon}"/>
+                                         <template>
+                                                <m:Text text="{onlineFirstDayAfternoonStartDateTime}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>OnlineEndtimeAfternoon}"/>
+                                         <template>
+                                                <m:Text text="{onlineFirstDayAfternoonEndDateTime}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>DaysOfteachingInd}"/>
+                                         <template>
+                                                <m:Text text="{onlineDaysOfTeaching}"/>
+                                         </template>
+                                  </Column>
+                           </columns>                               
+              </Table>                          
+              </m:ScrollContainer>
+              </m:IconTabFilter>   
+              
+        <m:IconTabFilter
+                           text="{i18n>Instructor}">
+                           <m:ScrollContainer
+                                         height="100%"
+                                         width="100%"
+                                         horizontal="false"
+                                         vertical="true">
+                 <Table
+                           rows="{/}"
+                           id="Instructor"
+                           rowSelectionChange="handleSelectionChange"
+                           selectionMode="Single"
+                           visibleRowCount="7">
+                           <columns>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>ItemSecondaryID}"/>
+                                         <template>
+                                                <m:Text text="{itemCode1}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>OfferingScheduledNewID}"/>
+                                         <template>
+                                                <m:Text text="{offeringid}"/>
+                                         </template>
+                                  </Column>
+                                  <!--<Column width="11rem">-->
+                                  <!--       <m:Label text="{i18n>NationalId}"/>-->
+                                  <!--       <template>-->
+                                  <!--              <m:Text text="{instructorID}"/>-->
+                                  <!--       </template>-->
+                                  <!--</Column>-->
+                                  <!--<Column width="11rem">-->
+                                  <!--       <m:Label text="{i18n>InstructorFname}"/>-->
+                                  <!--       <template>-->
+                                  <!--              <m:Text text="{instructorFName}"/>-->
+                                  <!--       </template>-->
+                                  <!--</Column>-->
+                                  <!--<Column width="11rem">-->
+                                  <!--       <m:Label text="{i18n>InstructorLname}"/>-->
+                                  <!--       <template>-->
+                                  <!--              <m:Text text="{instructorLName}"/>-->
+                                  <!--       </template>-->
+                                  <!--</Column>     -->
+                                  <!--<Column width="11rem">-->
+                                  <!--       <m:Label text="{i18n>InstructorMname}"/>-->
+                                  <!--       <template>-->
+                                  <!--              <m:Text text="{instructorMName}"/>-->
+                                  <!--       </template>-->
+                                  <!--</Column>-->
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>Comments}"/>
+                                         <template>
+                                                <m:Text text="{observations}"/>
+                                         </template>
+                                  </Column>
+                                  <!--<Column width="11rem">-->
+                                  <!--       <m:Label text="{i18n>HoursPerInstructor}"/>-->
+                                  <!--       <template>-->
+                                  <!--              <m:Text text="{hoursPerInstructor}"/>-->
+                                  <!--       </template>-->
+                                  <!--</Column>-->
+                                  <!-- <Column width="11rem">
+                                         <m:Label text="{i18n>AddressPFTelephone}"/>
+                                         <template>
+                                                <m:Text text="{AddressPFTelephone}"/>
+                                         </template>
+                                  </Column> -->
+                           </columns>      
+              </Table>  
+              			<Table
+                           rows="{/}"
+                           id="instsecondary"
+						   title="Instructor Details"
+                           selectionMode="MultiToggle"
+                           visibleRowCount="7">
+                           <columns>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>NationalId}"/>
+                                         <template>
+                                                <m:Text text="{instructorID}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>InstructorFname}"/>
+                                         <template>
+                                                <m:Text text="{instructorFName}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>InstructorLname}"/>
+                                         <template>
+                                                <m:Text text="{instructorLName}"/>
+                                         </template>
+                                  </Column>     
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>InstructorMname}"/>
+                                         <template>
+                                                <m:Text text="{instructorMName}"/>
+                                         </template>
+                                  </Column>
+                                  <Column width="11rem">
+                                         <m:Label text="{i18n>HoursPerInstructor}"/>
+                                         <template>
+                                                <m:Text text="{hoursPerInstructor}"/>
+                                         </template>
+                                  </Column>
+                                  <!-- <Column width="11rem">
+                                         <m:Label text="{i18n>AddressPFTelephone}"/>
+                                         <template>
+                                                <m:Text text="{AddressPFTelephone}"/>
+                                         </template>
+                                  </Column> -->
+                           </columns>                               
+              </Table>                          
+              </m:ScrollContainer>
+              </m:IconTabFilter>                
+              </m:items>
+</m:IconTabBar>                   
+       </m:content>
+              <m:footer>
+            <m:OverflowToolbar id="otbFooter">
+                <m:ToolbarSpacer/>
+                <m:Button type="Accept" text="{i18n>DownloadXML}" press="onPress"/>
+                     </m:OverflowToolbar>                
+         </m:footer>
+       </m:Page>
+       </mvc:View>

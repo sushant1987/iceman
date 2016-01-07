@@ -1,0 +1,154 @@
+<mvc:View 
+xmlns:core="sap.ui.core"
+xmlns:f="sap.ui.layout.form"
+xmlns:l="sap.ui.layout"
+xmlns:mvc="sap.ui.core.mvc"
+xmlns="sap.ui.table"
+xmlns:m="sap.m"
+xmlns:html="http://www.w3.org/1999/xhtml"
+xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+xmlns:smartTable="sap.ui.comp.smarttable"
+controllerName="LMS_ODATA3.view.Detail">
+	<html:style>
+		.selectionLabel{
+			line-height:2.5rem;
+		}
+	</html:style>
+	<m:Page id="detailPage" navButtonPress="onNavBack" showNavButton="{device&gt;/isPhone}" title="{i18n&gt;detailTitle}">
+		<m:content>
+			<f:SimpleForm editable="false" layout="ResponsiveGridLayout" id="selOptionForm">
+			    <f:content>
+			        <core:Title text="{i18n>detailText}" id="__title0"/>
+			        <m:Label text="{i18n>LegalEntity}" id="__label0" class="selectionLabel"/>
+			        <m:Input width="49%" id="i_legalEntity" value="{/legalEntity}" maxLength='5' /> 
+			        <m:Label text="{i18n>Itemcode}" visible="{/itemIdVisisble}" class="selectionLabel"/>
+			        <m:Input width="49%" id="i_itemId" value="{/itemId}" visible="{/itemIdVisisble}" maxLength='20'/>
+			        <m:Label text="{i18n>ScheduledOfferingid}" visible="{/offerIdVisible}" class="selectionLabel"/>
+			        <m:Input width="49%" id="i_offerId" value="{/offerId}" visible="{/offerIdVisible}" maxLength='20'/>
+			        <m:Label text="{i18n>NumOfDays}" visible="{/numOfDaysVisible}" class="selectionLabel"/>
+					<m:Input width="49%" id="i_numOfDays" value="{/numOfDays}" visible="{/numOfDaysVisible}" maxLength='4'/>
+			        <m:Label text="{i18n>DatetimeStmp}" id="__label1" class="selectionLabel"/>
+			        <m:DateRangeSelection
+			        		value="{/dateSelection}"
+			        		valueFormat="dd/MM/yyyy"
+							class="sapUiMediumMarginBottom"
+					/>
+			        <m:Button text="{i18n>Search}" width="100px" id="__button0" icon="sap-icon://search" activeIcon="sap-icon://search" press=".onSearch"/>
+			     </f:content>
+			</f:SimpleForm>
+			<m:Panel id="__panel0">
+
+			        <Table id="overviewTable" selectionMode="Single" visibleRowCount="5" title="{i18n>Overview}">
+					<columns>
+						<Column width="11rem">
+							<m:Label text="{i18n>ReportTypeID}"/>
+							<template>
+								<m:Text text="{reportType}"/>
+							</template>  
+						</Column>
+						<Column width="11rem">
+						<m:Label text="{i18n>NoUnRepRec}"/>
+						<template>
+								<m:Text text="{noUnRepRec}"/>
+						</template> 
+						</Column>
+						<Column width="11rem">
+							<m:Label text="{i18n>LegalEntity}"/>
+							<template>
+								<m:Text text="{legalEntity}"/>
+							</template>   
+						</Column>	
+			      </columns> 
+			 
+ <!--				<m:ColumnListItem class="navTableItemLayout" id="columnListItem2" vAlign="Middle">
+					<m:cells id="columnListItem_cells">
+						<m:Text id="columnListItem_cell2_1" maxLines="2" text="{ReportTypeID}"></m:Text>
+						<m:Text id="columnListItem_cell2_2" maxLines="2" text=" {NoUnReprec}"></m:Text>
+						<m:Text id="columnListItem_cell2_3" maxLines="2" text="{LegalEntity}"></m:Text>
+					</m:cells>
+				</m:ColumnListItem> -->
+			                	
+			                	
+			 </Table> 
+		  </m:Panel>
+<!--			<m:Panel id="__panel0">
+			<smartFilterBar:SmartFilterBar id="smartFilterBar" entityType="Items" persistencyKey="SmartFilter_Explored">
+				<smartFilterBar:controlConfiguration>						
+					<smartFilterBar:ControlConfiguration key="LegalEntity">
+					<smartFilterBar:defaultFilterValues>
+							<smartFilterBar:SelectOption low="0001">
+							</smartFilterBar:SelectOption>
+						</smartFilterBar:defaultFilterValues>
+					</smartFilterBar:ControlConfiguration>					
+					<smartFilterBar:ControlConfiguration key="CreationDate">
+						</smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>					
+				</smartFilterBar:SmartFilterBar>
+			<smartTable:SmartTable entitySet="ItemsSet" smartFilterId="smartFilterBar" tableType="ResponsiveTable" useExportToExcel="true" 
+			useVariantManagement="false" useTablePersonalisation="false" 
+			header="Line Items" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" demandPopin="true"/>
+		  </m:Panel>-->
+		  
+			<core:ExtensionPoint name="extDetail"/>
+		</m:content>
+		<m:content>
+			<!--<m:Panel id="tablecomponent_panel" width="auto" class="sapUiResponsiveMargin" >	-->
+<!--			<m:Table selectionChange="onLineItemPressed" id="catalogTableRun" items="{path:'RunIdInfoSet'}" fixedLayout='false'>-->
+<!--				<m:columns id="catalogTable_columns">-->
+<!--						<m:Column width="11rem">-->
+<!--						<m:header>	-->
+<!--							<m:Label id="catalogTable_col1_label1" text="{i18n>RunIdInfoID}"/>-->
+<!--						</m:header>-->
+								<!--<m:template>  -->
+								<!--<m:Text text="{RunIdInfoID}"/>-->
+ 							<!--	</m:template>   -->
+<!--						</m:Column>-->
+<!--						<m:Column width="11rem">-->
+<!--						<m:header>							-->
+<!--							<m:Label  id="catalogTable_col1_label2" text="{i18n>DatetimeStmp}"/>-->
+<!--						</m:header>-->
+ 	 					<!--		<m:template>  -->
+								<!--<m:Text text="{DatetimeStmp}"/>-->
+ 							<!--</m:template>  -->
+<!--						</m:Column>-->
+<!--						<m:Column width="11rem">-->
+<!--						<m:header>						-->
+<!--							<m:Label  id="catalogTable_col1_label3" text="{i18n>XMLType}"/>-->
+<!--						</m:header>-->
+						
+ 							<!--<m:template>  -->
+								<!--<m:Text text="{XMLType}"/>-->
+ 							<!--</m:template>  -->
+<!--						</m:Column>	-->
+<!--				</m:columns>-->
+<!--				<m:items>-->
+<!--				<m:ColumnListItem class="navTableItemLayout" id="columnListItem1" type="Active" itemsPress="onLineItemPressed"  vAlign="Middle">-->
+				
+<!--					<m:cells id="columnListItem_cells">-->
+<!--						<m:ObjectIdentifier  text="{/RunIdInfoID}"-->
+<!--						title="{i18n>RunIdInfoID}"/> 					-->
+<!--						<m:Text id="columnListItem_cell1_1" text="{RunIdInfoID}"></m:Text>-->
+<!--						<m:Text id="columnListItem_cell1_2" text="{DatetimeStmp}"></m:Text>-->
+<!--						<m:Text id="columnListItem_cell1_3" text="{XMLType}"></m:Text>-->
+<!--					</m:cells>-->
+<!--				</m:ColumnListItem>-->
+<!--				</m:items> -->
+
+<!--</m:Table>  -->
+	
+	<l:VerticalLayout id='tablecomponent' class="tablecomponent"/>  
+
+
+<!--</m:Panel>-->
+		</m:content>
+		<m:footer id="detailFooter">
+			<m:Toolbar id="detailToolbar">
+				<m:content>
+					<m:ToolbarSpacer id="toolbarSpacer"/>
+					<!--<m:Button icon="sap-icon://action" id="actionButton" press="onGenerateReport" text="{i18n>GenerateReport}"/>-->
+					<m:Button icon="sap-icon://action" id="showReport" press="onDisplayRecord" text="{i18n>DisplayRecords}"/>
+				</m:content>
+			</m:Toolbar>
+		</m:footer>
+	</m:Page>
+</mvc:View>

@@ -1,0 +1,10 @@
+[
+	{
+		"ID":"1",
+		"tenant":"abc",
+		"__metadata": {
+			"uri": "TagMapping('1')",
+			"type": "MODEL_ODATA.TagMapping"
+		}
+	}
+]

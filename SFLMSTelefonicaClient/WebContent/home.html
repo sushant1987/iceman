@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+
+<title>LMS Reporting</title>
+
+<script id="sap-ui-bootstrap" type='text/javascript'
+	src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+	data-sap-ui-libs="sap.m , sap.ui.commons, sap.me, sap.ushell"
+	data-sap-ui-theme="sap_bluecrystal" data-sap-ui-compatVersion="1.30"
+	data-sap-ui-resourceroots='{"com.sap": "./"}'>
+	
+</script>
+
+<script>
+	sap.ui.localResources("Overview");
+	var app = new sap.m.App({
+		initialPage : "idinitial1"
+	});
+	var page = sap.ui.view({
+		id : "idinitial1",
+		viewName : "Overview.home",
+		type : sap.ui.core.mvc.ViewType.JS
+	});
+	app.addPage(page);
+	app.placeAt('content');
+
+	sap.ui.getCore().attachInit(function() {
+		new sap.m.Shell({
+			app : app
+		}).placeAt("content");
+	});
+</script>
+</head>
+	<body class="sapUiBody" id="content">
+</body>
+</html>

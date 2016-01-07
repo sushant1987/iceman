@@ -1,0 +1,259 @@
+<!--<mvc:View xmlns:core="sap.ui.core" 
+xmlns="sap.ui.table"
+xmlns:f="sap.ui.layout.form" 
+xmlns:l="sap.ui.layout"
+xmlns:mvc="sap.ui.core.mvc"
+xmlns:u="sap.ui.unified"
+xmlns:ui="sap.ca.ui"
+xmlns="sap.m"-->
+<mvc:View
+	xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core"
+	xmlns:m="sap.m"
+	xmlns:ui="sap.ca.ui"
+	controllerName="LMS_ODATA3.view.Items">
+	
+	<m:Page id="detailPage" navButtonPress="onNavBack" showNavButton="true" title="{i18n>Itemheader}">
+	<m:content>
+	<m:IconTabBar
+		id="idIconTabBarStretchContent"
+		stretchContentHeight="true"
+		backgroundDesign="Transparent"
+		applyContentPadding="false"
+		expanded="{device>/isNoPhone}"
+		class="sapUiResponsiveContentPadding">
+	<m:items>		
+	<m:IconTabFilter
+				text="{i18n>Items}">
+				<m:ScrollContainer
+						height="100%"
+						width="100%"
+						horizontal="false"
+						vertical="true">	
+	 
+		<Table	
+				id="itemTable"
+				rows="{/}"
+				selectionMode="MultiToggle"
+				sort="sortItemCode"
+				visibleRowCount="7">	
+
+				<columns> 
+					<Column id="itemcode" width="11rem" sortProperty="itemCode1">
+						<m:Label text="{i18n>ItemsCode}"/>
+						<template>
+							<m:Text text="{itemCode1}"/>
+						</template>
+					</Column>
+					<!-- <Column width="11rem">
+						<m:Label text="{i18n>CreationDate}"/>
+						<template>
+							<m:Text text="{path:'CreationDate', formatter:'.formatDate'}"/>
+						</template>
+					</Column>		 -->	
+					<Column width="11rem">
+						<m:Label text="{i18n>ItemTitle}"/>
+						<template>
+							<m:Text text="{itemTitle}"/>
+						</template>
+					</Column>			
+					<Column width="11rem">
+						<m:Label text="{i18n>ContentIndex}"/>
+						<template>
+							<m:Text text="{conIndex}"/>
+							
+						</template>
+					</Column>			
+<!--  					<Column width="11rem">
+						<m:Label text="{i18n>LegalEntity}"/>
+						<template>
+							<m:Text text="{legalEntity}"/>
+						</template>
+					</Column> -->
+				</columns> 
+				
+		</Table>
+		</m:ScrollContainer>
+		</m:IconTabFilter>		
+		
+	<m:IconTabFilter
+				text="{i18n>Duration}">
+				<m:ScrollContainer
+						height="100%"
+						width="100%"
+						horizontal="false"
+						vertical="true">
+		<Table	
+				id="durationTable"
+				rows="{/}"
+				selectionMode="MultiToggle"
+				visibleRowCount="7">
+				<columns>
+					<Column width="11rem">
+						<m:Label text="{i18n>ItemsCode}"/>
+						<template>
+							<m:Text text="{itemCode1}"/>
+						</template>
+					</Column>			
+					<Column width="11rem">
+						<m:Label text="{i18n>CreditHours}"/>
+						<template>
+							<m:Text text="{itemLength}"/>
+						</template>
+					</Column>		
+					<Column width="11rem">
+						<m:Label text="{i18n>DeliveryMethods}"/>
+						<template>
+							<m:Text text="{delMethod}"/>
+						</template>
+					</Column>			
+					<Column width="11rem">
+						<m:Label text="{i18n>BCreditHrsSch}"/>
+						<template>
+							<m:Text text="{creditHoursScheduled}"/>
+						</template>
+					</Column>		
+					<Column width="11rem">
+						<m:Label text="{i18n>BCreditHrsOn}"/>
+						<template>
+							<m:Text text="{creditHoursOnline}"/>
+						</template>
+					</Column>						
+				</columns>					
+		</Table>				
+		</m:ScrollContainer>
+		</m:IconTabFilter>						
+		
+	<m:IconTabFilter
+				text="{i18n>Observations}">
+				<m:ScrollContainer
+						height="100%"
+						width="100%"
+						horizontal="false"
+						vertical="true">
+		<Table
+				id="observationTable"
+				rows="{/}"
+				selectionMode="MultiToggle"
+				visibleRowCount="7">
+				<columns>
+					<Column width="11rem">
+						<m:Label text="{i18n>ItemsCode}"/>
+						<template>
+							<m:Text text="{itemCode1}"/>
+						</template>
+					</Column>			
+					<Column width="11rem">
+						<m:Label text="{i18n>TrainingObjectives}"/>
+						<template>
+							<m:Text text="{objectives}"/>
+						</template>
+					</Column>	
+					<Column width="11rem">
+						<m:Label text="{i18n>DifficultyLevel}"/>
+						<template>
+							<m:Text text="{difficultyLevel}"/>
+						</template>
+					</Column>			
+					<!--<Column width="11rem">-->
+					<!--	<m:Label text="{i18n>Property}"/>-->
+					<!--	<template>-->
+					<!--		<m:Text text="{Property}"/>-->
+					<!--	</template>-->
+					<!--</Column>	-->
+					<Column width="11rem">
+						<m:Label text="{i18n>Observations}"/>
+						<template>
+							<m:Text text="{observations}"/>
+						</template>
+					</Column>					
+				</columns>					
+		</Table>				
+		</m:ScrollContainer>
+		</m:IconTabFilter>	
+		
+	<m:IconTabFilter
+				text="{i18n>Parameterized}">
+				<m:ScrollContainer
+						height="100%"
+						width="100%"
+						horizontal="false"
+						vertical="true">
+		<Table
+				rows="{/}"
+				id="parameterizedTable"
+				selectionMode="MultiToggle"
+				visibleRowCount="7">
+				<columns>
+					<Column width="11rem">
+						<m:Label text="{i18n>ItemsCode}"/>
+						<template>
+							<m:Text text="{itemCode1}"/>
+						</template>
+					</Column>
+					<Column width="11rem">
+						<m:Label text="{i18n>OfferingCode}"/>
+						<template>
+							<m:Text text="{OfferingCode}"/>
+						</template>
+					</Column>
+					<Column width="11rem">
+						<m:Label text="{i18n>URISSF}"/>
+						<template>
+							<m:Text text="{URISSF}"/>
+						</template>
+					</Column>
+					<Column width="11rem">
+						<m:Label text="{i18n>SSFUname}"/>
+						<template>
+							<m:Text text="{SSFUname}"/>
+						</template>
+					</Column>
+					<Column width="11rem">
+						<m:Label text="{i18n>SSFPassword}"/>
+						<template>
+							<m:Text text="{SSFPassword}"/>
+						</template>
+					</Column>	
+					<Column width="11rem">
+						<m:Label text="{i18n>TypeOfItem}"/>
+						<template>
+							<m:Text text="{TypeOfItem}"/>
+						</template>
+					</Column>
+					<Column width="11rem">
+						<m:Label text="{i18n>TaxIdEmpr}"/>
+						<template>
+							<m:Text text="{taxId}"/>
+						</template>
+					</Column>
+					<Column width="11rem">
+						<m:Label text="{i18n>TradeUnionAgr}"/>
+						<template>
+							<m:Text text="{TradeUnionAgr}"/>
+						</template>
+					</Column>
+					<Column width="11rem">
+						<m:Label text="{i18n>TradeUnionRep}"/>
+						<template>
+							<m:Text text="{TradeUnionRep}"/>
+						</template>
+					</Column>					
+				</columns>					
+		</Table>				
+		</m:ScrollContainer>
+		</m:IconTabFilter>			
+		
+		</m:items>
+</m:IconTabBar>			
+	</m:content>
+		<m:footer>
+            <m:OverflowToolbar id="otbFooter">
+                <m:ToolbarSpacer/>
+                <m:Button type="Accept" text="{i18n>DownloadXML}" press="onPress"/>
+			</m:OverflowToolbar>                
+         </m:footer>
+	</m:Page>
+	</mvc:View>

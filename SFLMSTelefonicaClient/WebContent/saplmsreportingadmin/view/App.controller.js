@@ -1,0 +1,1 @@
+sap.ui.core.mvc.Controller.extend("LMS_ADMIN.view.App", {});

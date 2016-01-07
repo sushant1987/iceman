@@ -1,0 +1,57 @@
+<mvc:View controllerName="LMS_ODATA3.view.DetailParticipant" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable" xmlns="sap.ui.table">
+	<html:style>
+		.selectionLabel{ line-height:2.5rem; }
+	</html:style>
+	<m:Page id="detailPage" navButtonPress="onNavBack" showNavButton="{device&gt;/isPhone}" title="{i18n&gt;detailTitle}">
+		<m:content>
+			<f:SimpleForm editable="false" id="selOptionForm" layout="ResponsiveGridLayout">
+				<f:content>
+					<core:Title id="__title0" text="{i18n>detailText}"/>
+					<m:Label class="selectionLabel" text="{i18n>CompanyCode}" visible="{/comCodeVisible}"/>
+					<m:Input id="i_comCode" maxLength='20' value="{/custom03}" visible="{/comCodeVisible}" width="49%"/>
+					<m:Label text="{i18n>Employeeid}" visible="{/employeeIdVisible}" class="selectionLabel"/>
+			        <m:Input width="49%" id="i_employeeId" value="{/employeeId}" visible="{/employeeIdVisible}" maxLength='20'/>
+					<m:Label class="selectionLabel" id="__label1" text="{i18n>DatetimeStmp}"/>
+					<m:DateRangeSelection class="sapUiMediumMarginBottom" value="{/dateSelection}" valueFormat="dd/MM/yyyy"/>
+					<m:Button activeIcon="sap-icon://search" icon="sap-icon://search" id="__button0" press=".onSearch" text="{i18n>Search}" width="100px"/>
+				</f:content>
+			</f:SimpleForm>
+			<m:Panel id="__panel0">
+				<Table id="overviewTable" rowSelectionChange="overviewSelectionChange" selectionMode="Single" title="{i18n>Overview}" visibleRowCount="5">
+					<columns>
+						<Column width="11rem">
+							<m:Label text="{i18n>ReportTypeID}"/>
+							<template>
+								<m:Text text="{reportType}"/>
+							</template>
+						</Column>
+						<Column width="11rem">
+							<m:Label text="{i18n>NoUnRepRec}"/>
+							<template>
+								<m:Text text="{noUnRepRec}"/>
+							</template>
+						</Column>
+						<Column width="11rem">
+							<m:Label text="{i18n>CompanyCode}"/>
+							<template>
+								<m:Text text="{legalEntity}"/>
+							</template>
+						</Column>
+					</columns>
+				</Table>
+			</m:Panel>
+				<l:VerticalLayout id='tablecomponent' class="tablecomponent"/>  
+		</m:content>
+		<m:footer id="detailFooter">
+			<m:Toolbar id="detailToolbar">
+				<m:content>
+					<m:ToolbarSpacer id="toolbarSpacer"/>
+					<!--<m:Button icon="sap-icon://action" id="actionButton" press="onGenerateReport" text="{i18n>GenerateReport}"/>-->
+					<m:Button icon="sap-icon://action" id="showReport" press="onDisplayRecord" text="{i18n>DisplayRecords}"/>
+				</m:content>
+			</m:Toolbar>
+		</m:footer>
+	</m:Page>
+</mvc:View>

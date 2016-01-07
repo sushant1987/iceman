@@ -1,0 +1,267 @@
+<mvc:View
+	xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core"
+	xmlns:m="sap.m"
+	xmlns:ui="sap.ca.ui"
+	controllerName="LMS_ODATA3.view.CompletedOffering">
+
+	<m:Page id="detailPage" navButtonPress="onNavBack" showNavButton="true" title="{i18n>CompletedOfferingheader}">
+	<m:content>
+	<m:IconTabBar
+		id="idIconTabBarStretchContent"
+		stretchContentHeight="true"
+		backgroundDesign="Transparent"
+		applyContentPadding="false"
+		expanded="{device>/isNoPhone}"
+		class="sapUiResponsiveContentPadding">
+	<m:items>		
+	<m:IconTabFilter
+				text="{i18n>ScheduledOffering}">
+				<m:ScrollContainer
+						height="100%"
+						width="100%"
+						horizontal="false"
+						vertical="true">	
+	
+		<Table
+				rows="{/}"
+				selectionMode="MultiToggle"
+				id="Scheduledofferingset"
+				visibleRowCount="7">	
+				
+				<columns>
+					<Column width="11rem">
+						<m:Label text="{i18n>OfferingScheduledCompletedID}"/>
+						<template>
+							<m:Text text="{OfferingScheduledCompletedID}"/>
+						</template>
+					</Column>
+					<Column width="11rem">
+						<m:Label text="{i18n>ItemSecondaryID}"/>
+						<template>
+							<m:Text text="{ItemSecondaryID}"/>
+						</template>
+					</Column>			
+					<Column width="11rem">
+						<m:Label text="{i18n>DirectCost}"/>
+						<template>
+							<m:Text text="{DirectCost}"/>
+						</template>
+					</Column>			
+					<Column width="11rem">
+						<m:Label text="{i18n>AssociatedCost}"/>
+						<template>
+							<m:Text text="{AssociatedCost}"/>
+						</template>
+					</Column>			
+					<Column width="11rem">
+						<m:Label text="{i18n>WageCost}"/>
+						<template>
+							<m:Text text="{WageCost}"/>
+						</template>
+					</Column>
+					<Column width="11rem">
+						<m:Label text="{i18n>PeriodMes}"/>
+						<template>
+							<m:Text text="{PeriodMes}"/>
+						</template>
+					</Column>
+					<Column width="11rem">
+						<m:Label text="{i18n>PeriodCostImport}"/>
+						<template>
+							<m:Text text="{PeriodCostImport}"/>
+						</template>
+					</Column>
+				</columns>
+				
+		</Table>
+		</m:ScrollContainer>
+		</m:IconTabFilter>		
+		
+	<m:IconTabFilter
+				text="{i18n>ParticipantDetails}">
+				<m:ScrollContainer
+						height="100%"
+						width="100%"
+						horizontal="false"
+						vertical="true">
+		<Table
+				rows="{/}"
+				selectionMode="MultiToggle"
+				id="ParitipantDetails"
+				visibleRowCount="7">
+				<columns>
+					<Column width="11rem">
+						<m:Label text="{i18n>IdParticipantPassed}"/>
+						<template>
+							<m:Text text="{IdParticipantPassed}"/>
+						</template>
+					</Column>			
+					<Column width="11rem">
+						<m:Label text="{i18n>TypeOfDoc}"/>
+						<template>
+							<m:Text text="{TypeOfDoc}"/>
+						</template>
+					</Column>		
+					<Column width="11rem">
+						<m:Label text="{i18n>ParticipantName}"/>
+						<template>
+							<m:Text text="{ParticipantName}"/>
+						</template>
+					</Column>			
+					<Column width="11rem">
+						<m:Label text="{i18n>ParticipantSurname}"/>
+						<template>
+							<m:Text text="{ParticipantSurname}"/>
+						</template>
+					</Column>		
+					<Column width="11rem">
+						<m:Label text="{i18n>ParticipantSecondSurname}"/>
+						<template>
+							<m:Text text="{ParticipantSecondSurname}"/>
+						</template>
+					</Column>	
+					<Column width="11rem">
+						<m:Label text="{i18n>SSNParticipant}"/>
+						<template>
+							<m:Text text="{SSNParticipant}"/>
+						</template>
+					</Column>	
+					<Column width="11rem">
+						<m:Label text="{i18n>TaxIDEmpr}"/>
+						<template>
+							<m:Text text="{TaxIDEmpr}"/>
+						</template>
+					</Column>
+					<Column width="11rem">
+						<m:Label text="{i18n>TaxAccount}"/>
+						<template>
+							<m:Text text="{TaxAccount}"/>
+						</template>
+					</Column>
+				</columns>					
+		</Table>				
+		</m:ScrollContainer>
+		</m:IconTabFilter>						
+		
+	<m:IconTabFilter
+				text="{i18n>ParticipantPersonal}">
+				<m:ScrollContainer
+						height="100%"
+						width="100%"
+						horizontal="false"
+						vertical="true">
+		<Table
+				rows="{/}"
+				selectionMode="MultiToggle"
+				id="ParticipantPersonal"
+				visibleRowCount="7">
+				<columns>			
+					<Column width="11rem">
+						<m:Label text="{i18n>IdParticipantPassed}"/>
+						<template>
+							<m:Text text="{IdParticipantPassed}"/>
+						</template>
+					</Column>			
+					<Column width="11rem">
+						<m:Label text="{i18n>ParticipantDOB}"/>
+						<template>
+							<m:Text text="{ParticipantDOB}"/>
+						</template>
+					</Column>	
+					<Column width="11rem">
+						<m:Label text="{i18n>ParticipantGender}"/>
+						<template>
+							<m:Text text="{ParticipantGender}"/>
+						</template>
+					</Column>			
+					<Column width="11rem">
+						<m:Label text="{i18n>ParticipantEmail}"/>
+						<template>
+							<m:Text text="{ParticipantEmail}"/>
+						</template>
+					</Column>	
+					<Column width="11rem">
+						<m:Label text="{i18n>ParticipantPhoneNumber}"/>
+						<template>
+							<m:Text text="{ParticipantPhoneNumber}"/>
+						</template>
+					</Column>	
+					<Column width="11rem">
+						<m:Label text="{i18n>ParticipantDisability}"/>
+						<template>
+							<m:Text text="{ParticipantDisability}"/>
+						</template>
+					</Column>	
+					<Column width="11rem">
+						<m:Label text="{i18n>ParticipantAffTerrorism}"/>
+						<template>
+							<m:Text text="{ParticipantAffTerrorism}"/>
+						</template>
+					</Column>	
+					<Column width="11rem">
+						<m:Label text="{i18n>ParticipantGenderBasedViolence}"/>
+						<template>	
+							<m:Text text="{ParticipantGenderBasedViolence}"/>
+						</template>
+					</Column>						
+				</columns>					
+		</Table>				
+		</m:ScrollContainer>
+		</m:IconTabFilter>	
+		
+	<m:IconTabFilter
+				text="{i18n>ProfessionalContritbution}">
+				<m:ScrollContainer
+						height="100%"
+						width="100%"
+						horizontal="false"
+						vertical="true">
+		<Table
+				rows="{/}"
+				selectionMode="MultiToggle"
+				id="ProfessionalContribution"
+				visibleRowCount="7">
+				<columns>
+					<Column width="11rem">
+						<m:Label text="{i18n>IdParticipantPassed}"/>
+						<template>
+							<m:Text text="{IdParticipantPassed}"/>
+						</template>
+					</Column>
+					<Column width="11rem">
+						<m:Label text="{i18n>ParticipantProfCategory}"/>
+						<template>
+							<m:Text text="{ParticipantProfCategory}"/>
+						</template>
+					</Column>
+					<Column width="11rem">
+						<m:Label text="{i18n>PariticipantContrGrp}"/>
+						<template>
+							<m:Text text="{PariticipantContrGrp}"/>
+						</template>
+					</Column>	
+					<Column width="11rem">
+						<m:Label text="{i18n>ParticipantStudyLevel}"/>
+						<template>
+							<m:Text text="{ParticipantStudyLevel}"/>
+						</template>
+					</Column>
+				</columns>					
+		</Table>				
+		</m:ScrollContainer>
+		</m:IconTabFilter>			
+
+		</m:items>
+</m:IconTabBar>			
+	</m:content>
+		<m:footer>
+            <m:OverflowToolbar id="otbFooter">
+                <m:ToolbarSpacer/>
+                <m:Button type="Accept" text="{i18n>GenerateReport}" press="onPress"/>
+			</m:OverflowToolbar>                
+         </m:footer>
+	</m:Page>
+	</mvc:View>

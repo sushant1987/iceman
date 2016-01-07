@@ -1,0 +1,121 @@
+[{
+	"ReportTypeID": "Items",
+	"NoUnReprec": "NoUnReprec 1",
+	"__metadata": {
+		"uri": "ReportTypeSet('ReportTypeID 1')",
+		"type": "MODEL_ODATA.ReportType"
+	},
+	"OverviewScreenSet": {
+		"__deferred": {
+			"uri": "ReportTypeSet('ReportTypeID 1')/OverviewScreenSet"
+		}
+	}
+}, {
+	"ReportTypeID": "New Offerings",
+	"NoUnReprec": "NoUnReprec 2",
+	"__metadata": {
+		"uri": "ReportTypeSet('ReportTypeID 2')",
+		"type": "MODEL_ODATA.ReportType"
+	},
+	"OverviewScreenSet": {
+		"__deferred": {
+			"uri": "ReportTypeSet('ReportTypeID 2')/OverviewScreenSet"
+		}
+	}
+}, {
+	"ReportTypeID": "Completed Offerings",
+	"NoUnReprec": "NoUnReprec 3",
+	"__metadata": {
+		"uri": "ReportTypeSet('ReportTypeID 3')",
+		"type": "MODEL_ODATA.ReportType"
+	},
+	"OverviewScreenSet": {
+		"__deferred": {
+			"uri": "ReportTypeSet('ReportTypeID 3')/OverviewScreenSet"
+		}
+	}
+}, {
+	"ReportTypeID": "Participants",
+	"NoUnReprec": "NoUnReprec 4",
+	"__metadata": {
+		"uri": "ReportTypeSet('ReportTypeID 4')",
+		"type": "MODEL_ODATA.ReportType"
+	},
+	"OverviewScreenSet": {
+		"__deferred": {
+			"uri": "ReportTypeSet('ReportTypeID 4')/OverviewScreenSet"
+		}
+	}
+}, {
+	"ReportTypeID": "Items",
+	"NoUnReprec": "NoUnReprec 5",
+	"__metadata": {
+		"uri": "ReportTypeSet('ReportTypeID 5')",
+		"type": "MODEL_ODATA.ReportType"
+	},
+	"OverviewScreenSet": {
+		"__deferred": {
+			"uri": "ReportTypeSet('ReportTypeID 5')/OverviewScreenSet"
+		}
+	}
+}, {
+	"ReportTypeID": "ReportTypeID 6",
+	"NoUnReprec": "NoUnReprec 6",
+	"__metadata": {
+		"uri": "ReportTypeSet('ReportTypeID 6')",
+		"type": "MODEL_ODATA.ReportType"
+	},
+	"OverviewScreenSet": {
+		"__deferred": {
+			"uri": "ReportTypeSet('ReportTypeID 6')/OverviewScreenSet"
+		}
+	}
+}, {
+	"ReportTypeID": "ReportTypeID 7",
+	"NoUnReprec": "NoUnReprec 7",
+	"__metadata": {
+		"uri": "ReportTypeSet('ReportTypeID 7')",
+		"type": "MODEL_ODATA.ReportType"
+	},
+	"OverviewScreenSet": {
+		"__deferred": {
+			"uri": "ReportTypeSet('ReportTypeID 7')/OverviewScreenSet"
+		}
+	}
+}, {
+	"ReportTypeID": "ReportTypeID 8",
+	"NoUnReprec": "NoUnReprec 8",
+	"__metadata": {
+		"uri": "ReportTypeSet('ReportTypeID 8')",
+		"type": "MODEL_ODATA.ReportType"
+	},
+	"OverviewScreenSet": {
+		"__deferred": {
+			"uri": "ReportTypeSet('ReportTypeID 8')/OverviewScreenSet"
+		}
+	}
+}, {
+	"ReportTypeID": "ReportTypeID 9",
+	"NoUnReprec": "NoUnReprec 9",
+	"__metadata": {
+		"uri": "ReportTypeSet('ReportTypeID 9')",
+		"type": "MODEL_ODATA.ReportType"
+	},
+	"OverviewScreenSet": {
+		"__deferred": {
+			"uri": "ReportTypeSet('ReportTypeID 9')/OverviewScreenSet"
+		}
+	}
+}, {
+	"ReportTypeID": "ReportTypeID 10",
+	"NoUnReprec": "NoUnReprec 10",
+	"__metadata": {
+		"uri": "ReportTypeSet('ReportTypeID 10')",
+		"type": "MODEL_ODATA.ReportType"
+	},
+	"OverviewScreenSet": {
+		"__deferred": {
+			"uri": "ReportTypeSet('ReportTypeID 10')/OverviewScreenSet"
+		}
+	}
+}]

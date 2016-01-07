@@ -1,0 +1,117 @@
+[{
+	"RunId": "1",
+	"DatetimeStmp": "/Date(1543203946000)/",
+	"XMLType": "Items",
+	"LegalEntity": "Tsol",
+	"__metadata": {
+		"uri": "RunIdInfoSet('RunId 1')",
+		"type": "MODEL_ODATA.RunIdInfo"
+	},
+	"ItemsSet": {
+		"__deferred": {
+			"uri": "RunIdInfoSet('RunId 1')/ItemsSet"
+		}
+	},
+	"OfferingScheduledCompletedSet": {
+		"__deferred": {
+			"uri": "RunIdInfoSet('RunId 1')/OfferingScheduledCompletedSet"
+		}
+	},
+	"OfferingScheduledNewSet": {
+		"__deferred": {
+			"uri": "RunIdInfoSet('RunId 1')/OfferingScheduledNewSet"
+		}
+	},
+	"ParticipantSet": {
+		"__deferred": {
+			"uri": "RunIdInfoSet('RunId 1')/ParticipantSet"
+		}
+	}
+}, {
+	"RunId": "2",
+	"DatetimeStmp": "/Date(1067917546000)/",
+	"XMLType": "New Offerings",
+	"LegalEntity": "Tsol",
+	"__metadata": {
+		"uri": "RunIdInfoSet('RunId 2')",
+		"type": "MODEL_ODATA.RunIdInfo"
+	},
+	"ItemsSet": {
+		"__deferred": {
+			"uri": "RunIdInfoSet('RunId 2')/ItemsSet"
+		}
+	},
+	"OfferingScheduledCompletedSet": {
+		"__deferred": {
+			"uri": "RunIdInfoSet('RunId 2')/OfferingScheduledCompletedSet"
+		}
+	},
+	"OfferingScheduledNewSet": {
+		"__deferred": {
+			"uri": "RunIdInfoSet('RunId 2')/OfferingScheduledNewSet"
+		}
+	},
+	"ParticipantSet": {
+		"__deferred": {
+			"uri": "RunIdInfoSet('RunId 2')/ParticipantSet"
+		}
+	}
+}, {
+	"RunId": "3",
+	"DatetimeStmp": "/Date(1536119146000)/",
+	"XMLType": "Completed Offering",
+	"LegalEntity": "TdE",
+	"__metadata": {
+		"uri": "RunIdInfoSet('RunId 3')",
+		"type": "MODEL_ODATA.RunIdInfo"
+	},
+	"ItemsSet": {
+		"__deferred": {
+			"uri": "RunIdInfoSet('RunId 3')/ItemsSet"
+		}
+	},
+	"OfferingScheduledCompletedSet": {
+		"__deferred": {
+			"uri": "RunIdInfoSet('RunId 3')/OfferingScheduledCompletedSet"
+		}
+	},
+	"OfferingScheduledNewSet": {
+		"__deferred": {
+			"uri": "RunIdInfoSet('RunId 3')/OfferingScheduledNewSet"
+		}
+	},
+	"ParticipantSet": {
+		"__deferred": {
+			"uri": "RunIdInfoSet('RunId 3')/ParticipantSet"
+		}
+	}
+}, {
+	"RunId": "4",
+	"DatetimeStmp": "/Date(1123645546000)/",
+	"XMLType": "Participants",
+	"LegalEntity": "TdE",
+	"__metadata": {
+		"uri": "RunIdInfoSet('RunId 4')",
+		"type": "MODEL_ODATA.RunIdInfo"
+	},
+	"ItemsSet": {
+		"__deferred": {
+			"uri": "RunIdInfoSet('RunId 4')/ItemsSet"
+		}
+	},
+	"OfferingScheduledCompletedSet": {
+		"__deferred": {
+			"uri": "RunIdInfoSet('RunId 4')/OfferingScheduledCompletedSet"
+		}
+	},
+	"OfferingScheduledNewSet": {
+		"__deferred": {
+			"uri": "RunIdInfoSet('RunId 4')/OfferingScheduledNewSet"
+		}
+	},
+	"ParticipantSet": {
+		"__deferred": {
+			"uri": "RunIdInfoSet('RunId 4')/ParticipantSet"
+		}
+	}
+}]

@@ -1,0 +1,10 @@
+[
+	{
+		"ID":"1",
+		"TenantId":"abc",
+		"__metadata": {
+			"uri": "ItemSet('1')",
+			"type": "MODEL_ODATA.ItemSet"
+		}
+	}
+]

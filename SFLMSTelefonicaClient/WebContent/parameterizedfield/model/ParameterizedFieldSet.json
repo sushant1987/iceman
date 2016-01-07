@@ -1,0 +1,111 @@
+[{
+	"id": "codGrupoAccion",
+	"paramName": "codGrupoAccion",
+	"startDate": "2015-01-01",
+	"endDate": "2015-12-31",
+	"paramValue": "168-00",
+	"paramType": "Items",
+	"createdDate": "2015-01-01",
+	"createdByUser": "Lala 1",
+	"modifiedOn": "2015-01-01",
+	"modifiedByUser": "modifiedByUser 1"
+}, {
+	"id": "tipoAccion",
+	"paramName": "tipoAccion",
+	"startDate": "2015-01-01",
+	"endDate": "2015-10-31",
+	"paramValue": "1",
+	"paramType": "Items",
+	"createdDate": "2015-01-01",
+	"createdByUser": "createdByUser 2",
+	"modifiedOn": "2015-01-01",
+	"modifiedByUser": "modifiedByUser 2"
+}, {
+	"id": "empParticipantes-CIF-TdE",
+	"paramName": "empParticipantes-CIF-TdE",
+	"startDate": "2015-01-01",
+	"endDate": "2015-09-31",
+	"paramValue": "A82018474",
+	"paramType": "Items",
+	"createdDate": "2015-01-01",
+	"createdByUser": "createdByUser 3",
+	"modifiedOn": "2015-10-31",
+	"modifiedByUser": "modifiedByUser 3"
+}, {
+	"id": "empParticipantes-CIF-TME",
+	"paramName": "empParticipantes-CIF-TME",
+	"startDate": "2015-01-01",
+	"endDate": "2015-08-31",
+	"paramValue": "A78923125",
+	"paramType": "Items",
+	"createdDate": "2015-01-01",
+	"createdByUser": "createdByUser 4",
+	"modifiedOn": "2015-10-31",
+	"modifiedByUser": "modifiedByUser 4"
+}, {
+	"id": "empParticipantes-CIF-TSOL",
+	"paramName": "empParticipantes-CIF-TSOL",
+	"startDate": "2015-01-01",
+	"endDate": "2015-10-31",
+	"paramValue": "A78053147",
+	"paramType": "Items",
+	"createdDate": "2015-01-01",
+	"createdByUser": "createdByUser 5",
+	"modifiedOn": "2015-10-31",
+	"modifiedByUser": "modifiedByUser 5"
+}, {
+	"id": "cumAportPrivada",
+	"paramName": "cumAportPrivada",
+	"startDate": "2015-01-01",
+	"endDate": "2015-10-31",
+	"paramValue": "False",
+	"paramType": "New Offering",
+	"createdDate": "2015-01-01",
+	"createdByUser": "createdByUser 6",
+	"modifiedOn": "2015-10-31",
+	"modifiedByUser": "modifiedByUser 6"
+}, {
+	"id": "tipoFormacion-mediosEntidadOrganizadora",
+	"paramName": "tipoFormacion-mediosEntidadOrganizadora",
+	"startDate": "2015-01-01",
+	"endDate": "2015-10-31",
+	"paramValue": "False",
+	"paramType": "New Offering",
+	"createdDate": "2015-01-01",
+	"createdByUser": "createdByUser 7",
+	"modifiedOn": "2015-10-31",
+	"modifiedByUser": "modifiedByUser 7"
+}, {
+	"id": "telefonocontacto",
+	"paramName": "telefonocontacto",
+	"startDate": "2015-10-31",
+	"endDate": "2015-10-31",
+	"paramValue": "914820997",
+	"paramType": "New offering",
+	"createdDate": "2015-01-01",
+	"createdByUser": "createdByUser 8",
+	"modifiedOn": "2015-10-31",
+	"modifiedByUser": "modifiedByUser 8"
+}, {
+	"id": "empParticipantes-CIF-TdE",
+	"paramName": "empParticipantes-CIF-TdE",
+	"startDate": "2015-01-01",
+	"endDate": "2015-01-01",
+	"paramValue": "281280108",
+	"paramType": "Completed Offering",
+	"createdDate": "2015-01-01",
+	"createdByUser": "createdByUser 9",
+	"modifiedOn": "2015-01-01",
+	"modifiedByUser": "modifiedByUser 9"
+}, {
+	"id": "empParticipantes-CIF-TME",
+	"paramName": "empParticipantes-CIF-TME",
+	"startDate": "2015-01-01",
+	"endDate": "2015-10-31",
+	"paramValue": "280423499",
+	"paramType": "Completed Offering",
+	"createdDate": "2015-01-01",
+	"createdByUser": "createdByUser 10",
+	"modifiedOn": "2015-10-31",
+	"modifiedByUser": "modifiedByUser 10"
+}]

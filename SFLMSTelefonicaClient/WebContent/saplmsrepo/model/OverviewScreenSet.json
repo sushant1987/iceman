@@ -1,0 +1,141 @@
+[{
+	"ReportTypeID": "Items",
+	"NoUnRepRec": 10,
+	"DateofCreation": "/Date(1222746344000)/",
+	"LegalEntity": "Tsol",
+	"__metadata": {
+		"uri": "OverviewScreenSet('Items')",
+		"type": "MODEL_ODATA.OverviewScreen"
+	},
+	"RunIdInfoSet": {
+		"__deferred": {
+			"uri": "OverviewScreenSet('Items')/RunIdInfoSet"
+		}
+	}
+}, {
+	"ReportTypeID": "New Offerings",
+	"NoUnRepRec": 16,
+	"DateofCreation": "/Date(1212723944000)/",
+	"LegalEntity": "TdE",
+	"__metadata": {
+		"uri": "OverviewScreenSet('New Offerings')",
+		"type": "MODEL_ODATA.OverviewScreen"
+	},
+	"RunIdInfoSet": {
+		"__deferred": {
+			"uri": "OverviewScreenSet('New Offerings')/RunIdInfoSet"
+		}
+	}
+}, {
+	"ReportTypeID": "Completed Offerings",
+	"NoUnRepRec": 20,
+	"DateofCreation": "/Date(1193629544000)/",
+	"LegalEntity": "TdE",
+	"__metadata": {
+		"uri": "OverviewScreenSet('Items')",
+		"type": "MODEL_ODATA.OverviewScreen"
+	},
+	"RunIdInfoSet": {
+		"__deferred": {
+			"uri": "OverviewScreenSet('Items')/RunIdInfoSet"
+		}
+	}
+}, {
+	"ReportTypeID": "Participants",
+	"NoUnRepRec": 35,
+	"DateofCreation": "/Date(1124336744000)/",
+	"LegalEntity": "Tsol",
+	"__metadata": {
+		"uri": "OverviewScreenSet('ReportTypeID 4')",
+		"type": "MODEL_ODATA.OverviewScreen"
+	},
+	"RunIdInfoSet": {
+		"__deferred": {
+			"uri": "OverviewScreenSet('ReportTypeID 4')/RunIdInfoSet"
+		}
+	}
+}, {
+	"ReportTypeID": "Offering Status",
+	"NoUnRepRec": 12,
+	"DateofCreation": "/Date(1239162344000)/",
+	"LegalEntity": "Tsol",
+	"__metadata": {
+		"uri": "OverviewScreenSet('ReportTypeID 5')",
+		"type": "MODEL_ODATA.OverviewScreen"
+	},
+	"RunIdInfoSet": {
+		"__deferred": {
+			"uri": "OverviewScreenSet('ReportTypeID 5')/RunIdInfoSet"
+		}
+	}
+}, {
+	"ReportTypeID": "Report Histroy",
+	"NoUnRepRec": 9,
+	"DateofCreation": "/Date(1396410344000)/",
+	"LegalEntity": "TME",
+	"__metadata": {
+		"uri": "OverviewScreenSet('ReportTypeID 6')",
+		"type": "MODEL_ODATA.OverviewScreen"
+	},
+	"RunIdInfoSet": {
+		"__deferred": {
+			"uri": "OverviewScreenSet('ReportTypeID 6')/RunIdInfoSet"
+		}
+	}
+}, {
+	"ReportTypeID": "ReportTypeID 7",
+	"NoUnRepRec": 3917,
+	"DateofCreation": "/Date(1506656744000)/",
+	"LegalEntity": "LegalEntity 7",
+	"__metadata": {
+		"uri": "OverviewScreenSet('ReportTypeID 7')",
+		"type": "MODEL_ODATA.OverviewScreen"
+	},
+	"RunIdInfoSet": {
+		"__deferred": {
+			"uri": "OverviewScreenSet('ReportTypeID 7')/RunIdInfoSet"
+		}
+	}
+}, {
+	"ReportTypeID": "ReportTypeID 8",
+	"NoUnRepRec": 9624,
+	"DateofCreation": "/Date(1129002344000)/",
+	"LegalEntity": "LegalEntity 8",
+	"__metadata": {
+		"uri": "OverviewScreenSet('ReportTypeID 8')",
+		"type": "MODEL_ODATA.OverviewScreen"
+	},
+	"RunIdInfoSet": {
+		"__deferred": {
+			"uri": "OverviewScreenSet('ReportTypeID 8')/RunIdInfoSet"
+		}
+	}
+}, {
+	"ReportTypeID": "ReportTypeID 9",
+	"NoUnRepRec": 724,
+	"DateofCreation": "/Date(993095144000)/",
+	"LegalEntity": "LegalEntity 9",
+	"__metadata": {
+		"uri": "OverviewScreenSet('ReportTypeID 9')",
+		"type": "MODEL_ODATA.OverviewScreen"
+	},
+	"RunIdInfoSet": {
+		"__deferred": {
+			"uri": "OverviewScreenSet('ReportTypeID 9')/RunIdInfoSet"
+		}
+	}
+}, {
+	"ReportTypeID": "ReportTypeID 10",
+	"NoUnRepRec": 4643,
+	"DateofCreation": "/Date(1122090344000)/",
+	"LegalEntity": "LegalEntity 10",
+	"__metadata": {
+		"uri": "OverviewScreenSet('ReportTypeID 10')",
+		"type": "MODEL_ODATA.OverviewScreen"
+	},
+	"RunIdInfoSet": {
+		"__deferred": {
+			"uri": "OverviewScreenSet('ReportTypeID 10')/RunIdInfoSet"
+		}
+	}
+}]

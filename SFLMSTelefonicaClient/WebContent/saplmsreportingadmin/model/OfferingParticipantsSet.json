@@ -1,0 +1,56 @@
+[
+	{
+		"ID":"1",
+		"tenant":"abc",
+		"offering":"offering 1",
+		"item":"item 1",
+		"participantId":"participant 1",
+		"name":"ryan",
+		"firstSurname":"R",
+		"secondSurname":"H",
+		"sex":"male",
+		"dateOfBirth":"1988-01-01",
+		"createdDate":"2015-01-01",
+		"email":"ryan@sap.com",
+		"phoneNumber":"12223",
+		"customDataId":"11",
+		"LegalEntity":"abc",
+		"EmployeeId":"123",
+		"SSIN":"123444",
+		"ContrGrp":"233",
+		"IProfCat":"",
+		"CAP":"",
+		"GrossSal":"11",
+		"__metadata": {
+			"uri": "OfferingParticipants('1')",
+			"type": "MODEL_ODATA.OfferingParticipants"
+		}
+	},
+	{
+		"ID":"2",
+		"tenant":"edf",
+		"offering":"offering 1",
+		"item":"item 1",
+		"participantId":"participant 1",
+		"name":"Lucy",
+		"firstSurname":"L",
+		"secondSurname":"J",
+		"sex":"female",
+		"dateOfBirth":"1990-01-01",
+		"createdDate":"2015-01-01",
+		"email":"ryan@sap.com",
+		"phoneNumber":"12223",
+		"customDataId":"11",
+		"LegalEntity":"abc",
+		"EmployeeId":"123",
+		"SSIN":"123444",
+		"ContrGrp":"233",
+		"IProfCat":"",
+		"CAP":"",
+		"GrossSal":"11",
+		"__metadata": {
+			"uri": "OfferingParticipants('1')",
+			"type": "MODEL_ODATA.OfferingParticipants"
+		}
+	}
+]

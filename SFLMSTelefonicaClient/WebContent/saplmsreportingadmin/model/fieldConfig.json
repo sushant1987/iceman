@@ -1,0 +1,32 @@
+[
+	{
+	    "dataType": "string",
+	    "name": "ID",
+	    "shortDesc":"ID"
+	},
+	{
+	    "dataType": "string",
+	    "name": "CompanyCode",
+	    "shortDesc":"Company Code"
+	},
+	{
+	    "dataType": "string",
+	    "name": "EmployeeID",
+	    "shortDesc":"Employee ID"
+	},
+	{
+	    "dataType": "string",
+	    "name": "SSNID",
+	    "shortDesc":"SSNID"
+	},
+	{
+	    "dataType": "string",
+	    "name": "ContGrp",
+	    "shortDesc":"Contribution Group"
+	},
+	{
+	    "dataType": "string",
+	    "name": "ProfCat",
+	    "shortDesc":"Profit Category"
+	}
+]
