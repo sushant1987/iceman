@@ -145,6 +145,7 @@ public class NewOfferingServlet {
 			bool = mp.get(offering.getItemCode());
 			if (bool != null && "true".equals(bool))
 				offering.setItemCode1(mayankkamap.get(offering.getItemCode()).getItemCode1());
+			offering.setItemTitle(mayankkamap.get(offering.getItemCode()).getItemTitle());
 				finalDataList.add(offering);
 		}
 		dataList = null;
@@ -399,6 +400,7 @@ public class NewOfferingServlet {
 			jsonobject.addProperty("legalEntity", offer.getLegalEntity());
 			jsonobject.addProperty("itemCode", offer.getItemCode());
 			jsonobject.addProperty("itemCode1", offer.getItemCode1());
+			jsonobject.addProperty("itemTitle", offer.getItemTitle());
 			if (offer.getOfferingStartDate() != null) {
 				meraCalendar.setTime(offer.getOfferingStartDate());
 				int year = meraCalendar.get(Calendar.YEAR);

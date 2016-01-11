@@ -14,6 +14,7 @@ public class Offering {
 	private String legalEntity;
 	private String itemCode;
 	private String itemCode1;
+	private String itemTitle;
 	private Integer offeringCode;
 	private String offeringId;
 	private String itemSecondaryID;
@@ -470,6 +471,14 @@ public class Offering {
 
 	public void setExternalInstructorID(String externalInstructorID) {
 		this.externalInstructorID = externalInstructorID;
+	}
+
+	public String getItemTitle() {
+		return itemTitle;
+	}
+
+	public void setItemTitle(String itemTitle) {
+		this.itemTitle = itemTitle;
 	}
 
 	
