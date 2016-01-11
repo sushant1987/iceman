@@ -100,7 +100,7 @@ public class GenerateReportForNewOffering {
 		//come from item
 		if(entry.getScheduleDesc() != null) {
 			Element descElement = document.createElement("descripcion");
-			descElement.appendChild(document.createTextNode(entry.getScheduleDesc()));
+			descElement.appendChild(document.createTextNode(entry.getItemCode()));
 			group.appendChild(descElement);
 		}
 		
