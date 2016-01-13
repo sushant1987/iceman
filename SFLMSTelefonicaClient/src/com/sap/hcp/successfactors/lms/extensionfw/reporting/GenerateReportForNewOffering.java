@@ -280,7 +280,7 @@ public class GenerateReportForNewOffering {
 		schedule.appendChild(daysOfTeach);*/
 		
 		
-		if(!"ONSITE".equals(entry.getDeliveryMethod())) {
+		if("ONLINE".equals(entry.getDeliveryMethod()) || "BLENDED".equals(entry.getDeliveryMethod())) {
 			Element onlineCourses = document.createElement("distanciaTeleformacion");
 			group.appendChild(onlineCourses);
 			Element teleassistance = document.createElement("asistenciaTeleformacion");
@@ -300,7 +300,7 @@ public class GenerateReportForNewOffering {
 				centre.appendChild(centreName);
 			}
 			
-			if(parameter.get("AddressFacitilyPf") != null) {
+			if(parameter.get("AddressFacilityPf") != null) {
 				Element addressOnline = document.createElement("direccionDetallada");
 				addressOnline.appendChild(document.createTextNode(parameter.get("AddressFacilityPf")));
 				centre.appendChild(addressOnline);
@@ -416,6 +416,12 @@ public class GenerateReportForNewOffering {
 				}
 			}
 			
+			if(entry.getObservations() != null ) {
+				Element obeservation = document.createElement("Observaciones");
+				obeservation.appendChild(document.createTextNode(entry.getObservations()));
+				group.appendChild(obeservation);
+			}
+			
 		}
 		
 		
@@ -466,13 +472,7 @@ public class GenerateReportForNewOffering {
 		//
 		
 		
-		if(!"ONSITE".equals(entry.getDeliveryMethod())) {
-			if(entry.getObservations() != null ) {
-				Element obeservation = document.createElement("Observaciones");
-				obeservation.appendChild(document.createTextNode(entry.getObservations()));
-				group.appendChild(obeservation);
-			}
-		}
+		
 		}
 		
 		

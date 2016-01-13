@@ -51,6 +51,10 @@ public class NewOfferingServlet {
 	
 	private static final String ONLINE = "ONLINE";
 	
+	private static final String ONSITE = "ONSITE";
+	
+	private static final String VIRTUAL = "VIRTUAL";
+	
 	private static final String NEW_OFFERING_LIST = "newOfferingList";
 	
 	private static final String TAX_ID_PLATFORM = "taxIdPlatform";
@@ -459,7 +463,7 @@ public class NewOfferingServlet {
 				}
 				jsonobject.addProperty("daysOfTeaching", offer.getDaysOfTeaching());
 			}
-			if(!"ONSITE".equals(offer.getDeliveryMethod())) {
+			if("ONLINE".equals(offer.getDeliveryMethod()) || "BLENDED".equals(offer.getDeliveryMethod())) {
 				JsonElement element=gson.toJsonTree(offer.getInstructor());
 				jsonobject.add("instructors", element);
 				if (offer.getFirstDayMorningStartDateTime() != null) {
@@ -546,7 +550,7 @@ public class NewOfferingServlet {
 				.getParametrisedDataByType(NEW_OFFERING);
 
 		for (Parametrised parameter : parameterizedList) {
-			if ("ResPersonNamePf".equals(parameter.getParamName()) || "AddressFacitilyPf".equals(parameter.getParamName())
+			if ("ResPersonNamePf".equals(parameter.getParamName()) || "AddressFacilityPf".equals(parameter.getParamName())
 					|| "AddressPFPOCode".equals(parameter.getParamName()) || "AddressPFCity".equals(parameter.getParamName())
 					|| "AddressPFCountry".equals(parameter.getParamName()) || "AddressPFTelephone".equals(parameter.getParamName())) {
 				if(ONLINE.equals(offer.getDeliveryMethod()) || "BLENDED".equals(offer.getDeliveryMethod())) {
@@ -572,16 +576,18 @@ public class NewOfferingServlet {
 					jsonObject.addProperty(ONSITE_TAX_ID_CODE_LOC, parameter.getParamValue());
 				} else if("TME".equals(legalEntity) && "TaxIDCodeLocTME".equals(parameter.getParamName())) {
 					jsonObject.addProperty(ONSITE_TAX_ID_CODE_LOC, parameter.getParamValue());
-				} else if("Tsol".equals(legalEntity) && "TaxIdPlatformTsol".equals(parameter.getParamName())) {
+				} else {
+					jsonObject.addProperty(parameter.getParamName(), parameter.getParamValue());
+				}
+			} else if (ONLINE.equals(offer.getDeliveryMethod()) || "BLENDED".equals(offer.getDeliveryMethod())) {
+				if("Tsol".equals(legalEntity) && "TaxIdPlatformTsol".equals(parameter.getParamName())) {
 					jsonObject.addProperty(TAX_ID_PLATFORM, parameter.getParamValue());
 				} else if("TdE".equals(legalEntity) && "TaxIdPlatformTdE".equals(parameter.getParamName())) {
 					jsonObject.addProperty(TAX_ID_PLATFORM, parameter.getParamValue());
 				} else if("TME".equals(legalEntity) && "TaxIdPlatformTME".equals(parameter.getParamName())) {
 					jsonObject.addProperty(TAX_ID_PLATFORM, parameter.getParamValue());
-				} else {
-					jsonObject.addProperty(parameter.getParamName(), parameter.getParamValue());
 				}
-			} 
+			}
 		}
 
 	}
