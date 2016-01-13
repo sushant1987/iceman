@@ -190,7 +190,7 @@ public class GenerateReportForNewOffering {
 				trainingLocation.appendChild(taxIdLocation);
 			}
 			
-			if(entry.getLocationName() != null) {
+			if(entry.getFacilityName() != null) {
 				Element location = document.createElement("nombreCentro");
 				location.appendChild(document.createTextNode(entry.getFacilityName()));
 				trainingLocation.appendChild(location);
