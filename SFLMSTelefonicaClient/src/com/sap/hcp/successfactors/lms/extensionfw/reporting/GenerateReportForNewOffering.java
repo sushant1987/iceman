@@ -192,7 +192,7 @@ public class GenerateReportForNewOffering {
 			
 			if(entry.getLocationName() != null) {
 				Element location = document.createElement("nombreCentro");
-				location.appendChild(document.createTextNode(entry.getLocationName()));
+				location.appendChild(document.createTextNode(entry.getFacilityName()));
 				trainingLocation.appendChild(location);
 			}
 			
