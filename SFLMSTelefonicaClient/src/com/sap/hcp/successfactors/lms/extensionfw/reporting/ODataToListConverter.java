@@ -132,16 +132,19 @@ public class ODataToListConverter {
 		if(entryDetails.get("ScheduleOfferingContact") != null)
 		offeringData.setScheduleOfferingContact((String) entryDetails.get("ScheduleOfferingContact"));
 		if(afterNoonEndDate!= null) {
+			//afterNoonEndDate.add(Calendar.HOUR, 2);
 			offeringData.setFirstDayAfternoonEndDateTime(afterNoonEndDate.getTime());
 		}
 		if(afterNoonStartDate!= null){
-			
+			//afterNoonStartDate.add(Calendar.HOUR, 2);
 			offeringData.setFirstDayAfternoonStartDateTime(afterNoonStartDate.getTime());
 		}
 		if(morningEndDate!= null) {
+			//morningEndDate.add(Calendar.HOUR, 2);
 			offeringData.setFirstDayMorningEndDateTime(morningEndDate.getTime());
 		}
 		if(morningStartDate!= null) {
+			//morningStartDate.add(Calendar.HOUR, 2);
 			offeringData.setFirstDayMorningStartDateTime(morningStartDate.getTime());
 		}
 		if("ONLINE".equals(offeringData.getDeliveryMethod())){

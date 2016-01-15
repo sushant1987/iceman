@@ -113,12 +113,17 @@ public class GenerateReportForNewOffering {
 		Element trainingInfo = document.createElement("tipoFormacion");
 		group.appendChild(trainingInfo);
 		
-		if(entry.getInterInsIndicator() != null){
+		/*if(entry.getInterInsIndicator() != null){
 			Element intInst = document.createElement("mediosPropios");
 			intInst.appendChild(document.createTextNode(entry.getInterInsIndicator()));
 			trainingInfo.appendChild(intInst);
+		}*/
+		if(entry.getInterInsIndicator() != null){
+			Element intInst = document.createElement("medios");
+			intInst.appendChild(document.createTextNode("Propios"));
+			trainingInfo.appendChild(intInst);
 		}
-		if(parameter.get("PrivateContribution") != null) {
+		/*if(parameter.get("PrivateContribution") != null) {
 			Element organizingEntity = document.createElement("mediosEntidadOrganizadora");
 			organizingEntity.appendChild(document.createTextNode(parameter.get("PrivateContribution")));
 			trainingInfo.appendChild(organizingEntity);
@@ -127,7 +132,7 @@ public class GenerateReportForNewOffering {
 			Element extInst = document.createElement("mediosCentro");
 			extInst.appendChild(document.createTextNode(entry.getExtInsIndicator()));
 			trainingInfo.appendChild(extInst);
-		}
+		}*/
 		
 		Element noOfParticipant = document.createElement("NumeroParticipante");
 		if("ONLINE".equals(entry.getDeliveryMethod())) {

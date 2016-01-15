@@ -77,7 +77,7 @@
                                   <Column width="11rem">
                                          <m:Label text="{i18n>TrainingOrgEnt}"/>
                                          <template>
-                                                <m:Text text="{TrainingOrgEnt}"/>
+                                                <m:Text text="{TrainingOrgEnt_}"/>
                                          </template>
                                   </Column>
                                   <Column width="11rem">

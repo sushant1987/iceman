@@ -532,8 +532,8 @@ public class NewOfferingServlet {
 			jsonobject.addProperty("contactHours", offer.getContactHours());
 			jsonobject.addProperty("offeringid", offer.getOfferingId());
 			jsonobject.addProperty("itemSecondaryID", offer.getItemSecondaryID());
-			jsonobject.addProperty("interInsIndicator", offer.getInterInsIndicator());
-			jsonobject.addProperty("interInstructor", offer.getExtInsIndicator());
+			jsonobject.addProperty("interInsIndicator", "Propios");
+			//jsonobject.addProperty("interInstructor", offer.getExtInsIndicator());
 			
 			if (offer.getUpdatedOn() != null) {
 				String dte=formatter.format(offer.getUpdatedOn());
