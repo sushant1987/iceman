@@ -72,8 +72,9 @@ public class NewOfferingServiceImpl implements NewOfferingService {
 				feed = oDataAccess.readFeed(XS_OFFERING_TABLE, "InstructorDetails", filter,
 						null);
 			} else {
+				filter = "LegalEntity eq 'FT'";
 				feed = oDataAccess
-						.readFeed(XS_OFFERING_TABLE, "InstructorDetails", null, null);
+						.readFeed(XS_OFFERING_TABLE, "InstructorDetails", filter, null);
 			}
 			List<Offering> offeringDataList = removeDuplicates(feed);
 			if (offeringDataList != null && offeringDataList.size() != 0) {
@@ -224,20 +225,11 @@ public class NewOfferingServiceImpl implements NewOfferingService {
 
 	private boolean validate(String id, String legalEntity, String date,
 			Offering offeringData) {
-		if (!"none".equals(id) && !"none".equals(legalEntity)) {
-			if (legalEntity.equals(offeringData.getLegalEntity())) {
-				return validateDate(date, offeringData);
-			} else {
-				return false;
-			}
-		} else if (!"none".equals(id)) {
-			return validateDate(date, offeringData);
-		} else if (!"none".equals(legalEntity)) {
+		if (legalEntity.equals(offeringData.getLegalEntity())) {
 			return validateDate(date, offeringData);
 		} else {
-			return validateDate(date, offeringData);
+			return false;
 		}
-
 	}
 
 	private boolean validateDate(String date, Offering offeringData) {
