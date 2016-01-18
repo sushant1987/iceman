@@ -74,24 +74,24 @@
                                                 <m:Text text="{numberOfParticipants}"/>
                                          </template>
                                   </Column>
-                                  <Column width="11rem">
+                                 <!--  <Column width="11rem">
                                          <m:Label text="{i18n>TrainingOrgEnt}"/>
                                          <template>
                                                 <m:Text text="{TrainingOrgEnt_}"/>
                                          </template>
-                                  </Column>
+                                  </Column> -->
                                   <Column width="11rem">
                                          <m:Label text="{i18n>InterExtIndicator}"/>
                                          <template>
                                                 <m:Text text="{interInsIndicator}"/>
                                          </template>
                                   </Column>
-                                  <Column width="11rem">
+                                  <!-- <Column width="11rem">
                                          <m:Label text="{i18n>IntExtInstructor}"/>
                                          <template>
                                                <m:Text text="{interInstructor}"/>
                                          </template>
-                                  </Column>                                 
+                                  </Column> -->                                 
                            </columns>
                            
               </Table>
