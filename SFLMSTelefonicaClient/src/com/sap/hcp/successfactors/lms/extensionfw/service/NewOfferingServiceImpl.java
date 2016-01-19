@@ -225,7 +225,7 @@ public class NewOfferingServiceImpl implements NewOfferingService {
 
 	private boolean validate(String id, String legalEntity, String date,
 			Offering offeringData) {
-		if (legalEntity.equals(offeringData.getLegalEntity())) {
+		if ("FT".equals(offeringData.getLegalEntity())) {
 			return validateDate(date, offeringData);
 		} else {
 			return false;
@@ -320,8 +320,8 @@ public class NewOfferingServiceImpl implements NewOfferingService {
 		try {
 			ODataClientService oDataAccess = getODataService();
 			ODataFeed feed;
-
-			feed = oDataAccess.readFeed(XS_OFFERING_TABLE, null, null, null);
+			String filter = "LegalEntity eq 'FT'";
+			feed = oDataAccess.readFeed(XS_OFFERING_TABLE, null, filter, null);
 
 			if (feed != null) {
 				for (ODataEntry entry : feed.getEntries()) {
