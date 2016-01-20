@@ -139,7 +139,17 @@ public class NewOfferingServlet {
 		}
 		else{
 			ReportInfo obj = reportInfoService.getById(Long.parseLong(runId));
-			dataList = newofferingservice.getOfferingData(obj.getCriteriaId(), obj.getLegalEntity(), obj.getDate(), runId, true);
+			if(!date.equalsIgnoreCase("none") && date!= null){
+				dataList = newofferingservice.getOfferingData(obj.getCriteriaId(), obj.getLegalEntity(), obj.getDate(), runId, true);
+			}
+			else{
+				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+				String date2 = formatter.format(obj.getCreatedDate());
+				StringBuilder sb = new StringBuilder();
+				sb.append("15/08/1947");
+				sb.append(date2);
+				dataList = newofferingservice.getOfferingData(obj.getCriteriaId(), obj.getLegalEntity(), sb.toString(), runId, true);
+			}
 		}
 		Map<String, String> mp = new HashMap<String, String>();
 		mp = getItemOfferingListData();
@@ -233,7 +243,17 @@ public class NewOfferingServlet {
 		}
 		else{
 			ReportInfo obj = reportInfoService.getById(Long.parseLong(runId));
-			dataList = newofferingservice.getOfferingData(obj.getCriteriaId(), obj.getLegalEntity(), obj.getDate(), runId, true);
+			if(!date.equalsIgnoreCase("none") && date!= null){
+				dataList = newofferingservice.getOfferingData(obj.getCriteriaId(), obj.getLegalEntity(), obj.getDate(), runId, true);
+			}
+			else{
+				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+				String date2 = formatter.format(obj.getCreatedDate());
+				StringBuilder sb = new StringBuilder();
+				sb.append("15/08/1947");
+				sb.append(date2);
+				dataList = newofferingservice.getOfferingData(obj.getCriteriaId(), obj.getLegalEntity(), sb.toString(), runId, true);
+			}
 		}
 		Map<String, String> mp = new HashMap<String, String>();
 		mp = getItemOfferingListData();
@@ -289,6 +309,7 @@ public class NewOfferingServlet {
 		offeringlistidservice.save(saveList);
 
 		ReportInfo rinfo = new ReportInfo();
+		rinfo.setDate(date);
 		rinfo.setCreatedDate(new Date(System.currentTimeMillis()));
 		if (id != null)
 			rinfo.setCriteriaId(id);

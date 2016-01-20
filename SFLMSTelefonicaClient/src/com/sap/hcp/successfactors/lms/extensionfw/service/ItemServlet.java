@@ -112,8 +112,18 @@ public class ItemServlet {
 			}
 		} else {
 			ReportInfo obj = reportInfoService.getById(Long.parseLong(runId));
-			itemList = itemservice.getItemData(obj.getCriteriaId(),
-					obj.getLegalEntity(), obj.getDate(), runId);
+			if(!date.equalsIgnoreCase("none") && date!= null){
+				itemList = itemservice.getItemData(obj.getCriteriaId(), obj.getLegalEntity(), obj.getDate(), runId);
+			}
+			else{
+				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+				String date2 = formatter.format(obj.getCreatedDate());
+				StringBuilder sb = new StringBuilder();
+				sb.append("15/08/1947");
+				sb.append(date2);
+				itemList = itemservice.getItemData(obj.getCriteriaId(), obj.getLegalEntity(), sb.toString(), runId);
+			}
+		
 			itemList = getListData(itemList);
 			itemList = getListFinalData(itemList);
 		}
@@ -216,8 +226,18 @@ public class ItemServlet {
 			}
 		} else {
 			ReportInfo obj = reportInfoService.getById(Long.parseLong(runId));
-			itemDataList = itemservice.getItemData(obj.getCriteriaId(),
-					obj.getLegalEntity(), obj.getDate(), runId);
+			if(!date.equalsIgnoreCase("none") && date!= null){
+				itemDataList = itemservice.getItemData(obj.getCriteriaId(), obj.getLegalEntity(), obj.getDate(), runId);
+			}
+			else{
+				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+				String date2 = formatter.format(obj.getCreatedDate());
+				StringBuilder sb = new StringBuilder();
+				sb.append("15/08/1947");
+				sb.append(date2);
+				itemDataList = itemservice.getItemData(obj.getCriteriaId(), obj.getLegalEntity(), sb.toString(), runId);
+			}
+		
 			itemDataList = getListData(itemDataList);
 			itemDataList = getListFinalData(itemDataList);
 		}
