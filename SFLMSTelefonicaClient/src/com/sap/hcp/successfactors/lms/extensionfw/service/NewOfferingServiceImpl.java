@@ -237,6 +237,7 @@ public class NewOfferingServiceImpl implements NewOfferingService {
 			try {
 				Date startDate = changeDateFormat(date.substring(0, 10));
 				Date endDate = changeDateFormat(date.substring(11));
+				endDate = new Date(endDate.getTime() + 1000 * 60 * 60 * 24);
 				if (startDate.before(offeringData.getOfferingStartDate())
 						|| startDate
 								.equals(offeringData.getOfferingStartDate())) {
