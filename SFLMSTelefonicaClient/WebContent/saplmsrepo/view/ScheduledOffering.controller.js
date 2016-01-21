@@ -20,14 +20,15 @@ sap.ui.core.mvc.Controller.extend("LMS_ODATA3.view.ScheduledOffering", {
 		this._queryInfo = {
 			legalEntity: legalEntity,
 			offerId: query.offerId,
+			nodays: query.nodays,
 			dateSel: query.dateSel,
-			runid: query.runid
+			runid: query.runId
 		};
 
 		var newOfferingServiceUrl = this.getOwnerComponent().getMetadata().getConfig().serviceConfig.newOfferingServiceUrl;
 
 		newOfferingServiceUrl = this.getOwnerComponent().setURLParameters(newOfferingServiceUrl, [this._queryInfo.legalEntity,
-			this._queryInfo.offerId, this._queryInfo.dateSel, this._queryInfo.runid
+			this._queryInfo.offerId, this._queryInfo.nodays,this._queryInfo.dateSel, this._queryInfo.runid
 		]);
 
 		oJsonModel.loadData(newOfferingServiceUrl);

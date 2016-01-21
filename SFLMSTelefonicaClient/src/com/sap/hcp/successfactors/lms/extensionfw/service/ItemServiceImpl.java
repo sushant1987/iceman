@@ -151,8 +151,9 @@ public class ItemServiceImpl implements ItemService{
 			try {
 				Date startDate = changeDateFormat(date.substring(0, 10));
 				Date endDate = changeDateFormat(date.substring(11));
-				if(startDate.before(itemData.getStartDate()) || startDate.equals(itemData.getStartDate())) {
-					if(endDate.after(itemData.getStartDate()) || endDate.equals(itemData.getStartDate())) {
+				endDate = new Date(endDate.getTime() + 1000 * 60 * 60 * 24);
+				if(startDate.before(itemData.getItemCreatedOn()) || startDate.equals(itemData.getItemCreatedOn())) {
+					if(endDate.after(itemData.getItemCreatedOn()) || endDate.equals(itemData.getItemCreatedOn())) {
 						return true;	
 					}
 					else {

@@ -143,10 +143,10 @@ public class NewOfferingServlet {
 				dataList = newofferingservice.getOfferingData(obj.getCriteriaId(), obj.getLegalEntity(), obj.getDate(), runId, true);
 			}
 			else{
-				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 				String date2 = formatter.format(obj.getCreatedDate());
 				StringBuilder sb = new StringBuilder();
-				sb.append("15/08/1947");
+				sb.append("15-08-1947-");
 				sb.append(date2);
 				dataList = newofferingservice.getOfferingData(obj.getCriteriaId(), obj.getLegalEntity(), sb.toString(), runId, true);
 			}
@@ -157,9 +157,10 @@ public class NewOfferingServlet {
 		for (Offering offering : dataList) {
 			String bool = null;
 			bool = mp.get(offering.getItemCode());
-			if (bool != null && "true".equals(bool))
+			if (bool != null && "true".equals(bool)){
 				offering.setItemCode1(mayankkamap.get(offering.getItemCode()).getItemCode1());
-			offering.setItemTitle(mayankkamap.get(offering.getItemCode()).getItemTitle());
+				offering.setItemTitle(mayankkamap.get(offering.getItemCode()).getItemTitle());
+			}
 				finalDataList.add(offering);
 		}
 		dataList = null;
@@ -247,10 +248,10 @@ public class NewOfferingServlet {
 				dataList = newofferingservice.getOfferingData(obj.getCriteriaId(), obj.getLegalEntity(), obj.getDate(), runId, true);
 			}
 			else{
-				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 				String date2 = formatter.format(obj.getCreatedDate());
 				StringBuilder sb = new StringBuilder();
-				sb.append("15/08/1947");
+				sb.append("15-08-1947-");
 				sb.append(date2);
 				dataList = newofferingservice.getOfferingData(obj.getCriteriaId(), obj.getLegalEntity(), sb.toString(), runId, true);
 			}
@@ -445,7 +446,7 @@ public class NewOfferingServlet {
 				jsonobject.addProperty("offeringEndDate",sb.toString());
 			}
 			jsonobject.addProperty("deliveryMethod", offer.getDeliveryMethod());
-			jsonobject.addProperty("scheduleDesc", offer.getScheduleDesc());
+			jsonobject.addProperty("scheduleDesc", offer.getItemTitle());
 			jsonobject.addProperty("numberOfParticipants",offer.getNumberOfParticipants());
 			jsonobject.addProperty("scheduleOfferingContact",
 					offer.getScheduleOfferingContact());
