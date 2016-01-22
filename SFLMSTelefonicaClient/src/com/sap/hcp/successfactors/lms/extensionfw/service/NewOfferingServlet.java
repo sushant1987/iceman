@@ -410,6 +410,19 @@ public class NewOfferingServlet {
 		List<Parametrised> param = parameterised.getAllParametrisedData();
 		List<Offering> dataList;
 		dataList = newofferingservice.getInvalidOfferingData(code, param);
+		Map<String, String> mp = new HashMap<String, String>();
+		mp = getItemOfferingListData();
+		List<Offering> finalDataList = new ArrayList<Offering>();
+		for (Offering offering : dataList) {
+			String bool = null;
+			bool = mp.get(offering.getItemCode());
+			if (bool != null && "true".equals(bool)){
+				offering.setItemCode1(mayankkamap.get(offering.getItemCode()).getItemCode1());
+				offering.setItemTitle(mayankkamap.get(offering.getItemCode()).getItemTitle());
+			}
+				finalDataList.add(offering);
+		}
+		dataList = null;
 		response.setContentType("application/json; charset=utf-8");
 		return gson.toJson(dataList);
 	}

@@ -31,13 +31,13 @@
 							<Column sortProperty="offeringCode">
 								<m:Label text="{i18n>OfferingScheduledNewID}"/>
 								<template>
-									<m:Text text="{offeringCode}"/>
+									<m:Text text="{offeringId}"/>
 								</template>
 							</Column>
 							<Column>
-								<m:Label text="{i18n>ItemsCode}"/>
+								<m:Label text="{i18n>ItemSecondaryID}"/>
 								<template>
-									<m:Text text="{itemCode}"/>
+									<m:Text text="{itemCode1}"/>
 								</template>
 							</Column>
 							<!-- <Column>	
