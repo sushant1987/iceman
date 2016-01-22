@@ -454,6 +454,8 @@ public class NewOfferingServlet {
 			formt.setTimeZone(TimeZone.getTimeZone("CET"));
 
 			jsonobject.addProperty("id", offer.getId());
+			jsonobject.addProperty("facilityDesc", offer.getFacilityDesc());
+			jsonobject.addProperty("facilityComments", offer.getFacilityComments());
 			jsonobject.addProperty("legalEntity", offer.getLegalEntity());
 			jsonobject.addProperty("itemCode", offer.getItemCode());
 			jsonobject.addProperty("itemCode1", offer.getItemCode1());
