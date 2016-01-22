@@ -253,7 +253,23 @@ public class GenerateReportForNewOffering {
 			
 			if(entry.getFirstDayMorningEndDateTime() != null){
 				Element endtime = document.createElement("horaFinMañana");
-				endtime.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getFirstDayMorningEndDateTime())));
+				if(entry.getFirstDayAfternoonStartDateTime() != null) {
+					endtime.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getFirstDayMorningEndDateTime())));
+				} else {
+					String dte = ItemUtil.dateConvertCet(entry.getFirstDayMorningEndDateTime());
+					
+					if("04:00".equals(dte)) {
+						Element startAfter = document.createElement("horaInicioTarde");  
+						startAfter.appendChild(document.createTextNode("03:01"));
+						schedule.appendChild(startAfter);
+						Element endAfter = document.createElement("horaFinTarde");
+						endAfter.appendChild(document.createTextNode("04:00"));
+						schedule.appendChild(endAfter);
+						dte = "03:00";
+					}
+					endtime.appendChild(document.createTextNode(dte));
+					
+				}
 				schedule.appendChild(endtime);
 			}
 			
@@ -361,7 +377,11 @@ public class GenerateReportForNewOffering {
 			
 			if(entry.getFirstDayMorningEndDateTime() != null){
 			Element endtime = document.createElement("horaFinMañana");
-			endtime.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getFirstDayMorningEndDateTime())));
+			if(entry.getFirstDayAfternoonStartDateTime() != null) {
+				endtime.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getFirstDayMorningEndDateTime())));
+			} else {
+				endtime.appendChild(document.createTextNode(ItemUtil.dateConvertCet(entry.getFirstDayMorningEndDateTime())));
+			}
 			schedule.appendChild(endtime);
 			}
 			

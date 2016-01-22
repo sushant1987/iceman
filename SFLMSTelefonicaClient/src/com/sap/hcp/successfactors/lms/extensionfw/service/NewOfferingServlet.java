@@ -500,8 +500,20 @@ public class NewOfferingServlet {
 					jsonobject.addProperty("firstDayMorningStartDateTime",dte);
 				}
 				if (offer.getFirstDayMorningEndDateTime() != null) {
-					String dte=formt
-							.format(offer.getFirstDayMorningEndDateTime());
+					String dte;
+					if(offer.getFirstDayAfternoonStartDateTime() != null) {
+						dte=formt
+								.format(offer.getFirstDayMorningEndDateTime());
+					} else {
+						dte=formtCet
+								.format(offer.getFirstDayMorningEndDateTime());
+						if("04:00".equals(dte)) {
+							jsonobject.addProperty("firstDayAfternoonStartDateTime","03:01");
+							jsonobject.addProperty("firstDayAfternoonEndDateTime",
+									"04:00");
+							dte = "03:00";
+						}
+					}
 					jsonobject
 							.addProperty("firstDayMorningEndDateTime", dte);
 				}
@@ -527,10 +539,22 @@ public class NewOfferingServlet {
 					jsonobject.addProperty("onlineFirstDayMorningStartDateTime",dte);
 				}
 				if (offer.getFirstDayMorningEndDateTime() != null) {
-					String dte=formt
-							.format(offer.getFirstDayMorningEndDateTime());
+					String dte;
+					if(offer.getFirstDayAfternoonStartDateTime() != null) {
+						dte=formt
+								.format(offer.getFirstDayMorningEndDateTime());
+					} else {
+						dte=formtCet
+								.format(offer.getFirstDayMorningEndDateTime());
+						if("04:00".equals(dte)) {
+							jsonobject.addProperty("onlineFirstDayAfternoonStartDateTime","03:01");
+							jsonobject.addProperty("onlineFirstDayAfternoonEndDateTime",
+									"04:00");
+							dte = "03:00";
+						}
+					}
 					jsonobject
-							.addProperty("onlineFirstDayMorningEndDateTime", dte);
+							.addProperty("firstDayMorningEndDateTime", dte);
 				}
 				if (offer.getFirstDayAfternoonStartDateTime() != null) {
 					String dte=formt.format(offer
