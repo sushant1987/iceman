@@ -455,8 +455,6 @@ public class NewOfferingServlet {
 			DateFormat formt=new SimpleDateFormat("HH:mm");
 
 			jsonobject.addProperty("id", offer.getId());
-			jsonobject.addProperty("facilityDesc", offer.getFacilityDesc());
-			jsonobject.addProperty("facilityComments", offer.getFacilityComments());
 			jsonobject.addProperty("legalEntity", offer.getLegalEntity());
 			jsonobject.addProperty("itemCode", offer.getItemCode());
 			jsonobject.addProperty("itemCode1", offer.getItemCode1());
@@ -486,6 +484,8 @@ public class NewOfferingServlet {
 					offer.getScheduleOfferingContact());
 			if(!ONLINE.equals(offer.getDeliveryMethod())) {
 				jsonobject.addProperty("facilityName", offer.getFacilityName());
+				jsonobject.addProperty("facilityComments", offer.getFacilityComments());
+				jsonobject.addProperty("facilityDesc", offer.getFacilityDesc());
 				jsonobject.addProperty("locationName", offer.getLocationName());
 				jsonobject.addProperty("facilityAddress",
 						offer.getFacilityAddress());
