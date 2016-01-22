@@ -20,7 +20,6 @@ public class ListToSet {
 			p.setEmail(obj.getEmail());
 			p.setPhoneNumber(obj.getPhoneNumber());
 			p.setSex(obj.getSex());
-			
 			set.add(p);
 			
 		}
