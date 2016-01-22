@@ -395,7 +395,6 @@ public class GenerateReportForNewOffering {
 			}
 			schedule.appendChild(endtime);
 			}
-			
 			if(entry.getOnlineFirstDayAfternoonStartDateTime() != null){
 				Element startAfter = document.createElement("horaInicioTarde");
 				startAfter.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getOnlineFirstDayAfternoonStartDateTime())));
