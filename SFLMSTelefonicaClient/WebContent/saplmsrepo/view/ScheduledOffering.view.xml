@@ -148,18 +148,18 @@
                                                 <m:Text text="{onsiteFacility}"/>
                                          </template>
                                   </Column>            
-                                  <Column width="11rem">
+                                 <Column width="11rem">
                                          <m:Label text="{i18n>OnSiteTaxIDCodeLoc}"/>
                                          <template>
-                                                <m:Text text="{onSiteTaxIDCodeLoc}"/>
+                                                <m:Text text="{facilityComments}"/>
                                          </template>
                                   </Column>     
                                   <Column width="11rem">
                                          <m:Label text="{i18n>OnsiteLocation}"/>
                                          <template>
-                                                <m:Text text="{facilityName}"/>
+                                                <m:Text text="{facilityDesc}"/>
                                          </template>
-                                  </Column>     
+                                  </Column>      
                                   <Column width="11rem">
                                          <m:Label text="{i18n>OnsiteFacilityAdd}"/>
                                          <template>
