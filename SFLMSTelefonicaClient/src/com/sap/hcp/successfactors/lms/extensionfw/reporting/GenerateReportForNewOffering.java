@@ -369,31 +369,42 @@ public class GenerateReportForNewOffering {
 				}
 			}
 			
-			if(entry.getFirstDayMorningStartDateTime() != null){
+			if(entry.getOnlineFirstDayMorningStartDateTime() != null){
 			Element startTime = document.createElement("horaInicioMañana");
-			startTime.appendChild(document.createTextNode(ItemUtil.dateConvertCet(entry.getFirstDayMorningStartDateTime())));
+			startTime.appendChild(document.createTextNode(ItemUtil.dateConvertCet(entry.getOnlineFirstDayMorningStartDateTime())));
 			schedule.appendChild(startTime);
 			}
 			
-			if(entry.getFirstDayMorningEndDateTime() != null){
+			if(entry.getOnlineFirstDayMorningEndDateTime() != null){
 			Element endtime = document.createElement("horaFinMañana");
 			if(entry.getFirstDayAfternoonStartDateTime() != null) {
-				endtime.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getFirstDayMorningEndDateTime())));
+				endtime.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getOnlineFirstDayMorningEndDateTime())));
 			} else {
-				endtime.appendChild(document.createTextNode(ItemUtil.dateConvertCet(entry.getFirstDayMorningEndDateTime())));
+				String dte = ItemUtil.dateConvertCet(entry.getOnlineFirstDayMorningEndDateTime());
+				
+				if("04:00".equals(dte)) {
+					Element startAfter = document.createElement("horaInicioTarde");  
+					startAfter.appendChild(document.createTextNode("03:01"));
+					schedule.appendChild(startAfter);
+					Element endAfter = document.createElement("horaFinTarde");
+					endAfter.appendChild(document.createTextNode("04:00"));
+					schedule.appendChild(endAfter);
+					dte = "03:00";
+				}
+				endtime.appendChild(document.createTextNode(dte));
 			}
 			schedule.appendChild(endtime);
 			}
 			
-			if(entry.getFirstDayAfternoonStartDateTime() != null){
+			if(entry.getOnlineFirstDayAfternoonStartDateTime() != null){
 				Element startAfter = document.createElement("horaInicioTarde");
-				startAfter.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getFirstDayAfternoonStartDateTime())));
+				startAfter.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getOnlineFirstDayAfternoonStartDateTime())));
 				schedule.appendChild(startAfter);
 			}
 			
-			if(entry.getFirstDayAfternoonEndDateTime() != null){
+			if(entry.getOnlineFirstDayAfternoonEndDateTime() != null){
 				Element endAfter = document.createElement("horaFinTarde");
-				endAfter.appendChild(document.createTextNode(ItemUtil.dateConvertCet(entry.getFirstDayAfternoonEndDateTime())));
+				endAfter.appendChild(document.createTextNode(ItemUtil.dateConvertCet(entry.getOnlineFirstDayAfternoonEndDateTime())));
 				schedule.appendChild(endAfter);
 			}
 			
