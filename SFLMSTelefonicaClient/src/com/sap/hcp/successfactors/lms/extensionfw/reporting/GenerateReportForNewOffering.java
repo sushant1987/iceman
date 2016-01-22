@@ -189,13 +189,13 @@ public class GenerateReportForNewOffering {
 			Element trainingLocation = document.createElement("lugarImparticion");
 			facilityDetail.appendChild(trainingLocation);
 			
-			if(taxIdLoc != null) {
+			if(entry.getFacilityComments() != null) {
 				Element taxIdLocation = document.createElement("cif");
 				taxIdLocation.appendChild(document.createTextNode(entry.getFacilityComments()));
 				trainingLocation.appendChild(taxIdLocation);
 			}
 			
-			if(entry.getFacilityName() != null) {
+			if(entry.getFacilityDesc() != null) {
 				Element location = document.createElement("nombreCentro");
 				location.appendChild(document.createTextNode(entry.getFacilityDesc()));
 				trainingLocation.appendChild(location);
