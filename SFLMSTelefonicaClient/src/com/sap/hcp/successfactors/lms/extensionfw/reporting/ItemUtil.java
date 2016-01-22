@@ -3,9 +3,11 @@
  */
 package com.sap.hcp.successfactors.lms.extensionfw.reporting;
 
+import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * @author I319792
@@ -44,7 +46,8 @@ public class ItemUtil {
 	}
 	
 	public static String dateConvert(Date date){
-		Format formatter=new SimpleDateFormat("HH:mm");
+		DateFormat formatter=new SimpleDateFormat("HH:mm");
+		formatter.setTimeZone(TimeZone.getTimeZone("CET"));
 		return formatter.format(date);
 	}
 	

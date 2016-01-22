@@ -1,6 +1,7 @@
 package com.sap.hcp.successfactors.lms.extensionfw.service;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -435,7 +437,8 @@ public class NewOfferingServlet {
 			setParameters(jsonobject, offer, legalEntity);
 			Calendar meraCalendar = Calendar.getInstance();
 			Format formatter = new SimpleDateFormat("dd/MM/yyyy");  
-			Format formt=new SimpleDateFormat("HH:mm");
+			DateFormat formt=new SimpleDateFormat("HH:mm");
+			formt.setTimeZone(TimeZone.getTimeZone("CET"));
 
 			jsonobject.addProperty("id", offer.getId());
 			jsonobject.addProperty("legalEntity", offer.getLegalEntity());
