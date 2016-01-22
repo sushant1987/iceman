@@ -32,6 +32,8 @@ public class Offering {
 	private String facilityPostal;
 	private String facilityCity;
 	private String facilityCountry;
+	private String facilityDesc;
+	private String facilityComments;
 	private Date firstDayMorningStartDateTime;
 	private Date firstDayMorningEndDateTime;
 	private Date firstDayAfternoonStartDateTime;
@@ -156,6 +158,22 @@ public class Offering {
 		this.facilityName = facilityName;
 	}
 
+	public String getFacilityDesc() {
+		return facilityDesc;
+	}
+
+	public void setFacilityDesc(String facilityDesc) {
+		this.facilityDesc = facilityDesc;
+	}
+
+	public String getFacilityComments() {
+		return facilityComments;
+	}
+
+	public void setFacilityComments(String facilityComments) {
+		this.facilityComments = facilityComments;
+	}
+	
 	public String getLocationName() {
 		return locationName;
 	}

@@ -129,6 +129,8 @@ public class ODataToListConverter {
 		offeringData.setFacilityCountry((String) entryDetails.get("FacilityCountry"));
 		offeringData.setFacilityName((String) entryDetails.get("FacilityName"));
 		offeringData.setFacilityPostal((String) entryDetails.get("FacilityPostal"));
+		offeringData.setFacilityDesc((String) entryDetails.get("FacilityDesc"));
+		offeringData.setFacilityComments((String) entryDetails.get("FacilityComments"));
 		if(entryDetails.get("ScheduleOfferingContact") != null)
 		offeringData.setScheduleOfferingContact((String) entryDetails.get("ScheduleOfferingContact"));
 		if(afterNoonEndDate!= null) {
