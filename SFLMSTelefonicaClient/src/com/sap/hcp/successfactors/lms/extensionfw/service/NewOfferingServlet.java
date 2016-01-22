@@ -450,8 +450,9 @@ public class NewOfferingServlet {
 			setParameters(jsonobject, offer, legalEntity);
 			Calendar meraCalendar = Calendar.getInstance();
 			Format formatter = new SimpleDateFormat("dd/MM/yyyy");  
+			DateFormat formtCet=new SimpleDateFormat("HH:mm");
+			formtCet.setTimeZone(TimeZone.getTimeZone("CET"));
 			DateFormat formt=new SimpleDateFormat("HH:mm");
-			formt.setTimeZone(TimeZone.getTimeZone("CET"));
 
 			jsonobject.addProperty("id", offer.getId());
 			jsonobject.addProperty("facilityDesc", offer.getFacilityDesc());
@@ -495,7 +496,7 @@ public class NewOfferingServlet {
 				
 				jsonobject.addProperty("creditHours", offer.getCreditHours());
 				if (offer.getFirstDayMorningStartDateTime() != null) {
-					String dte=formt.format(offer.getFirstDayMorningStartDateTime());
+					String dte=formtCet.format(offer.getFirstDayMorningStartDateTime());
 					jsonobject.addProperty("firstDayMorningStartDateTime",dte);
 				}
 				if (offer.getFirstDayMorningEndDateTime() != null) {
@@ -511,7 +512,7 @@ public class NewOfferingServlet {
 				}
 
 				if (offer.getFirstDayAfternoonEndDateTime() != null) {
-					String dte=formt.format(offer
+					String dte=formtCet.format(offer
 							.getFirstDayAfternoonEndDateTime());
 					jsonobject.addProperty("firstDayAfternoonEndDateTime",
 							dte);
@@ -522,7 +523,7 @@ public class NewOfferingServlet {
 				JsonElement element=gson.toJsonTree(offer.getInstructor());
 				jsonobject.add("instructors", element);
 				if (offer.getFirstDayMorningStartDateTime() != null) {
-					String dte=formt.format(offer.getFirstDayMorningStartDateTime());
+					String dte=formtCet.format(offer.getFirstDayMorningStartDateTime());
 					jsonobject.addProperty("onlineFirstDayMorningStartDateTime",dte);
 				}
 				if (offer.getFirstDayMorningEndDateTime() != null) {
@@ -538,7 +539,7 @@ public class NewOfferingServlet {
 				}
 
 				if (offer.getFirstDayAfternoonEndDateTime() != null) {
-					String dte=formt.format(offer
+					String dte=formtCet.format(offer
 							.getFirstDayAfternoonEndDateTime());
 					jsonobject.addProperty("onlineFirstDayAfternoonEndDateTime",
 							dte);

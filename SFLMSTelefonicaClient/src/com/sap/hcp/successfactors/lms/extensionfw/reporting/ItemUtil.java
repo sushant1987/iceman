@@ -45,9 +45,14 @@ public class ItemUtil {
 		return methodCode;
 	}
 	
-	public static String dateConvert(Date date){
+	public static String dateConvertCet(Date date){
 		DateFormat formatter=new SimpleDateFormat("HH:mm");
 		formatter.setTimeZone(TimeZone.getTimeZone("CET"));
+		return formatter.format(date);
+	}
+	
+	public static String dateConvert(Date date){
+		DateFormat formatter=new SimpleDateFormat("HH:mm");
 		return formatter.format(date);
 	}
 	

@@ -247,7 +247,7 @@ public class GenerateReportForNewOffering {
 			
 			if(entry.getFirstDayMorningStartDateTime() != null){
 				Element startTime = document.createElement("horaInicioMañana");
-				startTime.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getFirstDayMorningStartDateTime())));
+				startTime.appendChild(document.createTextNode(ItemUtil.dateConvertCet(entry.getFirstDayMorningStartDateTime())));
 				schedule.appendChild(startTime);
 			}
 			
@@ -265,7 +265,7 @@ public class GenerateReportForNewOffering {
 			
 			if(entry.getFirstDayAfternoonEndDateTime() != null){
 				Element endAfter = document.createElement("horaFinTarde");
-				endAfter.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getFirstDayAfternoonEndDateTime())));
+				endAfter.appendChild(document.createTextNode(ItemUtil.dateConvertCet(entry.getFirstDayAfternoonEndDateTime())));
 				schedule.appendChild(endAfter);
 			}
 			
@@ -355,7 +355,7 @@ public class GenerateReportForNewOffering {
 			
 			if(entry.getFirstDayMorningStartDateTime() != null){
 			Element startTime = document.createElement("horaInicioMañana");
-			startTime.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getFirstDayMorningStartDateTime())));
+			startTime.appendChild(document.createTextNode(ItemUtil.dateConvertCet(entry.getFirstDayMorningStartDateTime())));
 			schedule.appendChild(startTime);
 			}
 			
@@ -373,7 +373,7 @@ public class GenerateReportForNewOffering {
 			
 			if(entry.getFirstDayAfternoonEndDateTime() != null){
 				Element endAfter = document.createElement("horaFinTarde");
-				endAfter.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getFirstDayAfternoonEndDateTime())));
+				endAfter.appendChild(document.createTextNode(ItemUtil.dateConvertCet(entry.getFirstDayAfternoonEndDateTime())));
 				schedule.appendChild(endAfter);
 			}
 			
