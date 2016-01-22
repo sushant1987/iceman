@@ -138,7 +138,13 @@ public class NewOfferingServlet {
 			tempList = null;
 		}
 		else{
-			ReportInfo obj = reportInfoService.getById(Long.parseLong(runId));
+			List<OfferingListId> offeringListIds = offeringlistidservice.getByReportId(Long.parseLong(runId));
+			List<Long> offringIds = new ArrayList<Long>();
+			for(OfferingListId offeringListId : offeringListIds) {
+				offringIds.add(offeringListId.getOfferingId());
+			}
+			dataList = newofferingservice.getOfferingByOfferingIds(offringIds);
+			/*ReportInfo obj = reportInfoService.getById(Long.parseLong(runId));
 			if(!date.equalsIgnoreCase("none") && date!= null){
 				dataList = newofferingservice.getOfferingData(obj.getCriteriaId(), obj.getLegalEntity(), obj.getDate(), runId, true);
 			}
@@ -149,7 +155,7 @@ public class NewOfferingServlet {
 				sb.append("15-08-1947-");
 				sb.append(date2);
 				dataList = newofferingservice.getOfferingData(obj.getCriteriaId(), obj.getLegalEntity(), sb.toString(), runId, true);
-			}
+			}*/
 		}
 		Map<String, String> mp = new HashMap<String, String>();
 		mp = getItemOfferingListData();
@@ -243,8 +249,14 @@ public class NewOfferingServlet {
 			tempList = null;
 		}
 		else{
-			ReportInfo obj = reportInfoService.getById(Long.parseLong(runId));
-			if(!date.equalsIgnoreCase("none") && date!= null){
+			//ReportInfo obj = reportInfoService.getById(Long.parseLong(runId));
+			List<OfferingListId> offeringListIds = offeringlistidservice.getByReportId(Long.parseLong(runId));
+			List<Long> offringIds = new ArrayList<Long>();
+			for(OfferingListId offeringListId : offeringListIds) {
+				offringIds.add(offeringListId.getOfferingId());
+			}
+			dataList = newofferingservice.getOfferingByOfferingIds(offringIds);
+			/*if(!date.equalsIgnoreCase("none") && date!= null){
 				dataList = newofferingservice.getOfferingData(obj.getCriteriaId(), obj.getLegalEntity(), obj.getDate(), runId, true);
 			}
 			else{
@@ -254,7 +266,7 @@ public class NewOfferingServlet {
 				sb.append("15-08-1947-");
 				sb.append(date2);
 				dataList = newofferingservice.getOfferingData(obj.getCriteriaId(), obj.getLegalEntity(), sb.toString(), runId, true);
-			}
+			}*/
 		}
 		Map<String, String> mp = new HashMap<String, String>();
 		mp = getItemOfferingListData();
@@ -300,15 +312,6 @@ public class NewOfferingServlet {
 			logger.error("XML transformation Exception in class NewOfferingServlet --> method generateNewOfferingReport() --> " + e.getMessage());
 		}
 
-		List<OfferingListId> saveList = new ArrayList<OfferingListId>();
-		for (Offering offering : dataList) {
-			OfferingListId oli = new OfferingListId();
-			oli.setOfferingId(offering.getId());
-			oli.setLegalEntity(legalEntity);
-			saveList.add(oli);
-		}
-		offeringlistidservice.save(saveList);
-
 		ReportInfo rinfo = new ReportInfo();
 		rinfo.setDate(date);
 		rinfo.setCreatedDate(new Date(System.currentTimeMillis()));
@@ -318,6 +321,18 @@ public class NewOfferingServlet {
 			rinfo.setLegalEntity(legalEntity);
 		rinfo.setReportType(NEW_OFFERING);
 		reportInfoService.save(rinfo);
+		logger.error("report ingo id" + rinfo.getId());
+		//
+		List<OfferingListId> saveList = new ArrayList<OfferingListId>();
+		for (Offering offering : dataList) {
+			OfferingListId oli = new OfferingListId();
+			oli.setOfferingId(offering.getId());
+			oli.setLegalEntity(legalEntity);
+			oli.setReportId(rinfo.getId());
+			saveList.add(oli);
+		}
+		offeringlistidservice.save(saveList);
+		//
 		batman.removeAttribute(NEW_OFFERING_LIST);
 		batman.removeAttribute(OFFERING_ID_MAP);
 		byte[] array = bos.toByteArray();

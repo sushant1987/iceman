@@ -28,6 +28,7 @@ import com.sap.hcp.successfactors.lms.extensionfw.pojo.Instructor;
 import com.sap.hcp.successfactors.lms.extensionfw.pojo.InstructorDetail;
 import com.sap.hcp.successfactors.lms.extensionfw.pojo.Item;
 import com.sap.hcp.successfactors.lms.extensionfw.pojo.Offering;
+import com.sap.hcp.successfactors.lms.extensionfw.pojo.OfferingListId;
 import com.sap.hcp.successfactors.lms.extensionfw.pojo.Parametrised;
 import com.sap.hcp.successfactors.lms.extensionfw.reporting.ODataToListConverter;
 
@@ -370,6 +371,52 @@ public class NewOfferingServiceImpl implements NewOfferingService {
 
 		return true;
 
+	}
+	
+	@Override
+	public List<Offering> getOfferingByOfferingIds(List<Long> offeringIds) {
+		List<Offering> offeringList = new ArrayList<Offering>();
+
+		
+		if (offeringIds.isEmpty())
+			return offeringList;
+		try {
+			ODataClientService oDataAccess = getODataService();
+			ODataFeed feed;
+			List<ODataFeed> bigfeed = new ArrayList<ODataFeed>();
+			StringBuilder sb = new StringBuilder();
+			boolean whetherFirst = true;
+			int count = 0;
+			for(Long offeringId : offeringIds) {
+				if(!whetherFirst) {
+					sb.append(" or Id eq ");
+					sb.append(offeringId);
+				} else {
+					sb.append("Id eq ");
+					sb.append(offeringId);
+					whetherFirst = false;
+				}
+				count++;
+				if(count == 10){
+					String filter = sb.toString();
+					feed = oDataAccess.readFeed(XS_OFFERING_TABLE, null, filter, null);
+					bigfeed.add(feed);
+					sb = new StringBuilder();
+					whetherFirst = true;
+					count = 0;
+				}
+			}
+			for(ODataFeed finalfeed : bigfeed){
+				
+				offeringList.addAll(ODataToListConverter.convertToOfferingList(finalfeed));
+				
+			}
+		} catch (IOException | NamingException | ODataException e) {
+			logger.error("Something wrong getting Employee Data by ID's", e);
+		}
+		return offeringList;
+		
+	
 	}
 
 }

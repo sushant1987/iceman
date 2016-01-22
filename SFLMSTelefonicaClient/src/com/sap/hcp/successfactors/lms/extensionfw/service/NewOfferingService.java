@@ -15,4 +15,5 @@ public interface NewOfferingService {
 	ODataFeed getOfferingData();
 	
 	List<Offering> getInvalidOfferingData(String code, List <Parametrised> param);
+	List<Offering> getOfferingByOfferingIds(List<Long> offeringIds);
 }

@@ -11,5 +11,7 @@ public interface OfferingListIdService {
 	public void save(List<OfferingListId> list);
 
 	void delete();
+
+	List<OfferingListId> getByReportId(Long runId);
 	
 }

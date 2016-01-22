@@ -36,5 +36,12 @@ public class OfferingListIdServiceImpl implements OfferingListIdService{
 	public void delete() {
 		entityManager.createQuery("delete from OfferingListId offeringlistid").executeUpdate();
 	}
+	
+	@Override
+	public List<OfferingListId> getByReportId(Long runId){
+		Query query=entityManager.createQuery("Select offeringlistid from OfferingListId offeringlistid where offeringlistid.reportId='"+runId+"'");
+	    List<OfferingListId> queryofferinglistid=query.getResultList();
+		return queryofferinglistid;
+	} 
 
 }

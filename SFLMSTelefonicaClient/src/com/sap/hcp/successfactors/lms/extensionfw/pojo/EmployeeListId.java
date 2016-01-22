@@ -20,6 +20,9 @@ public class EmployeeListId {
 	
 	@Column(name = "EMPLOYEE_ID")
 	private String employeeId;
+	
+	@Column(name = "REPORT_ID")
+	private Long reportId;
 
 	public Long getId() {
 		return id;
@@ -35,6 +38,14 @@ public class EmployeeListId {
 
 	public void setEmployeeId(String employeeId) {
 		this.employeeId = employeeId;
+	}
+
+	public Long getReportId() {
+		return reportId;
+	}
+
+	public void setReportId(Long reportId) {
+		this.reportId = reportId;
 	}
 	
 }

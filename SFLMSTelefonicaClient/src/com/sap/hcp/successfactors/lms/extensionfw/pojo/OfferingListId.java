@@ -23,6 +23,9 @@ public class OfferingListId {
 	
 	@Column(name = "LEGAL_ENTITY")
 	private String legalEntity;
+	
+	@Column(name = "REPORT_ID")
+	private Long reportId;
 
 	public Long getId() {
 		return id;
@@ -46,6 +49,14 @@ public class OfferingListId {
 
 	public void setLegalEntity(String legalEntity) {
 		this.legalEntity = legalEntity;
+	}
+
+	public Long getReportId() {
+		return reportId;
+	}
+
+	public void setReportId(Long reportId) {
+		this.reportId = reportId;
 	}
 	
 }
