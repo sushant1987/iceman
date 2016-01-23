@@ -507,11 +507,11 @@ public class NewOfferingServlet {
 					} else {
 						dte=formtCet
 								.format(offer.getFirstDayMorningEndDateTime());
-						if("04:00".equals(dte)) {
-							jsonobject.addProperty("firstDayAfternoonStartDateTime","03:01");
+						if("16:00".equals(dte)) {
+							jsonobject.addProperty("firstDayAfternoonStartDateTime","15:01");
 							jsonobject.addProperty("firstDayAfternoonEndDateTime",
-									"04:00");
-							dte = "03:00";
+									"16:00");
+							dte = "15:00";
 						}
 					}
 					jsonobject
@@ -546,11 +546,11 @@ public class NewOfferingServlet {
 					} else {
 						dte=formtCet
 								.format(offer.getOnlineFirstDayMorningEndDateTime());
-						if("04:00".equals(dte)) {
-							jsonobject.addProperty("onlineFirstDayAfternoonStartDateTime","03:01");
+						if("16:00".equals(dte)) {
+							jsonobject.addProperty("onlineFirstDayAfternoonStartDateTime","15:01");
 							jsonobject.addProperty("onlineFirstDayAfternoonEndDateTime",
-									"04:00");
-							dte = "03:00";
+									"16:00");
+							dte = "15:00";
 						}
 					}
 					jsonobject

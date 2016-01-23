@@ -258,14 +258,14 @@ public class GenerateReportForNewOffering {
 				} else {
 					String dte = ItemUtil.dateConvertCet(entry.getFirstDayMorningEndDateTime());
 					
-					if("04:00".equals(dte)) {
+					if("16:00".equals(dte)) {
 						Element startAfter = document.createElement("horaInicioTarde");  
-						startAfter.appendChild(document.createTextNode("03:01"));
+						startAfter.appendChild(document.createTextNode("15:01"));
 						schedule.appendChild(startAfter);
 						Element endAfter = document.createElement("horaFinTarde");
-						endAfter.appendChild(document.createTextNode("04:00"));
+						endAfter.appendChild(document.createTextNode("16:00"));
 						schedule.appendChild(endAfter);
-						dte = "03:00";
+						dte = "15:00";
 					}
 					endtime.appendChild(document.createTextNode(dte));
 					
@@ -382,14 +382,14 @@ public class GenerateReportForNewOffering {
 			} else {
 				String dte = ItemUtil.dateConvertCet(entry.getOnlineFirstDayMorningEndDateTime());
 				
-				if("04:00".equals(dte)) {
+				if("16:00".equals(dte)) {
 					Element startAfter = document.createElement("horaInicioTarde");  
-					startAfter.appendChild(document.createTextNode("03:01"));
+					startAfter.appendChild(document.createTextNode("15:01"));
 					schedule.appendChild(startAfter);
 					Element endAfter = document.createElement("horaFinTarde");
-					endAfter.appendChild(document.createTextNode("04:00"));
+					endAfter.appendChild(document.createTextNode("16:00"));
 					schedule.appendChild(endAfter);
-					dte = "03:00";
+					dte = "15:00";
 				}
 				endtime.appendChild(document.createTextNode(dte));
 			}
