@@ -253,23 +253,7 @@ public class GenerateReportForNewOffering {
 			
 			if(entry.getFirstDayMorningEndDateTime() != null){
 				Element endtime = document.createElement("horaFinMañana");
-				if(entry.getFirstDayAfternoonStartDateTime() != null) {
-					endtime.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getFirstDayMorningEndDateTime())));
-				} else {
-					String dte = ItemUtil.dateConvertCet(entry.getFirstDayMorningEndDateTime());
-					
-					if("16:00".equals(dte)) {
-						Element startAfter = document.createElement("horaInicioTarde");  
-						startAfter.appendChild(document.createTextNode("15:01"));
-						schedule.appendChild(startAfter);
-						Element endAfter = document.createElement("horaFinTarde");
-						endAfter.appendChild(document.createTextNode("16:00"));
-						schedule.appendChild(endAfter);
-						dte = "15:00";
-					}
-					endtime.appendChild(document.createTextNode(dte));
-					
-				}
+				endtime.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getFirstDayMorningEndDateTime())));
 				schedule.appendChild(endtime);
 			}
 			
@@ -377,22 +361,7 @@ public class GenerateReportForNewOffering {
 			
 			if(entry.getOnlineFirstDayMorningEndDateTime() != null){
 			Element endtime = document.createElement("horaFinMañana");
-			if(entry.getFirstDayAfternoonStartDateTime() != null) {
-				endtime.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getOnlineFirstDayMorningEndDateTime())));
-			} else {
-				String dte = ItemUtil.dateConvertCet(entry.getOnlineFirstDayMorningEndDateTime());
-				
-				if("16:00".equals(dte)) {
-					Element startAfter = document.createElement("horaInicioTarde");  
-					startAfter.appendChild(document.createTextNode("15:01"));
-					schedule.appendChild(startAfter);
-					Element endAfter = document.createElement("horaFinTarde");
-					endAfter.appendChild(document.createTextNode("16:00"));
-					schedule.appendChild(endAfter);
-					dte = "15:00";
-				}
-				endtime.appendChild(document.createTextNode(dte));
-			}
+			endtime.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getOnlineFirstDayMorningEndDateTime())));
 			schedule.appendChild(endtime);
 			}
 			if(entry.getOnlineFirstDayAfternoonStartDateTime() != null){

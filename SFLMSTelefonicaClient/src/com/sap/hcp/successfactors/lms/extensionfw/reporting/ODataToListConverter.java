@@ -142,12 +142,30 @@ public class ODataToListConverter {
 			offeringData.setFirstDayAfternoonStartDateTime(afterNoonStartDate.getTime());
 		}
 		if(morningEndDate!= null) {
+			if(afterNoonStartDate == null) {
+				Calendar c = (Calendar) morningEndDate.clone();
+				c.set(Calendar.HOUR, 5);
+				if(c.before(morningEndDate)){
+					offeringData.setFirstDayMorningEndDateTime(c.getTime());
+					Calendar c1 = (Calendar) c.clone();
+					c1.add(Calendar.MINUTE, 1);
+					offeringData.setFirstDayAfternoonStartDateTime(c1.getTime());
+					offeringData.setFirstDayAfternoonEndDateTime(morningEndDate.getTime());
+				} else {
+					offeringData.setFirstDayMorningEndDateTime(morningEndDate.getTime());
+				}
+			} else {
+				offeringData.setFirstDayMorningEndDateTime(morningEndDate.getTime());
+			}
+			
 			//morningEndDate.add(Calendar.HOUR, 2);
-			offeringData.setFirstDayMorningEndDateTime(morningEndDate.getTime());
+			
+			
 		}
 		if(morningStartDate!= null) {
 			//morningStartDate.add(Calendar.HOUR, 2);
 			offeringData.setFirstDayMorningStartDateTime(morningStartDate.getTime());
+			
 		}
 		if("ONLINE".equals(offeringData.getDeliveryMethod())){
 			offeringData.setNumberOfParticipants(80);
