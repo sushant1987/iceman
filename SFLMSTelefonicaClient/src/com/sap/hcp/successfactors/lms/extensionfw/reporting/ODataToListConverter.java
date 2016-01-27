@@ -188,8 +188,8 @@ public class ODataToListConverter {
 			offeringData.setInstructorLName((String) entryDetails.get("InstructorLName"));
 			offeringData.setInstructorMName((String) entryDetails.get("InstructorMName"));
 		}*/
-		
-		offeringData.setInstructor(getInstructor((ODataFeed)entry.getProperties().get("InstructorDetails")) );
+		offeringData.setInterInsIndicator("true");
+		offeringData.setInstructor(getInstructor((ODataFeed)entry.getProperties().get("InstructorDetails"), offeringData) );
 		offeringData.setLegalEntity((String) entryDetails.get("LegalEntity"));
 		offeringData.setLocationName((String) entryDetails.get("LocationName"));
 		offeringData.setObservations((String) entryDetails.get("Observations"));
@@ -202,7 +202,7 @@ public class ODataToListConverter {
 		offeringData.setUpdatedOn(new Date((new Date()).getTime() - (1000 * 60 * 60 * 5)));
 		offeringData.setOfferingId((String) entryDetails.get("OfferingID"));
 		String instIndicator = (String) entryDetails.get("InterInsIndicator");
-		if("yes".equals(instIndicator)) {
+		/*if("yes".equals(instIndicator)) {
 			offeringData.setExtInsIndicator("true");
 			offeringData.setInterInsIndicator("false");
 		} else if("no".equals(instIndicator)) {
@@ -211,23 +211,23 @@ public class ODataToListConverter {
 		} else {
 			offeringData.setInterInsIndicator("true");
 			offeringData.setExtInsIndicator("true");
-		}
+		}*/
 		offeringData.setItemSecondaryID((String) entryDetails.get("ItemSecondaryID"));
 		return offeringData;
 	}
 	
-	private static List<Instructor> getInstructor(ODataFeed feed) {
+	private static List<Instructor> getInstructor(ODataFeed feed, Offering offer) {
 		List<Instructor> instructorList = new ArrayList<Instructor>();
 		if (feed != null) {
 			for (ODataEntry entry : feed.getEntries()) {
-				Instructor instructor = oDataEntryToInstructorData(entry);
+				Instructor instructor = oDataEntryToInstructorData(entry, offer);
 				instructorList.add(instructor);
 			}
 		} 
 		return instructorList;
 	}
 	
-	private static Instructor oDataEntryToInstructorData(ODataEntry entry) {
+	private static Instructor oDataEntryToInstructorData(ODataEntry entry, Offering offer) {
 		Map<String, Object> entryDetails = entry.getProperties();
 		Instructor inst = new Instructor();
 		inst.setHoursPerInstructor((String) entryDetails.get("HoursPerInstructor"));
@@ -235,6 +235,11 @@ public class ODataToListConverter {
 		inst.setInstructorID((String) entryDetails.get("InstructorID"));
 		inst.setInstructorLName((String) entryDetails.get("InstructorLName"));
 		inst.setInstructorMName((String) entryDetails.get("InstructorMName"));
+		if("true".equals(offer.getInstructor())) {
+			if(checkExternal(inst.getInstructorID())) {
+				offer.setInterInsIndicator("false");
+			}
+		}
 		return inst;
 	}
 
@@ -277,6 +282,11 @@ public class ODataToListConverter {
 				.get("CustomData"));
 
 		return offeringParticipantData;
+	}
+	
+	private static boolean checkExternal(String instructorId) {
+		return instructorId.length() == 7 && Character.isLetter(instructorId.charAt(instructorId.length()-1));
+		
 	}
 
 }
