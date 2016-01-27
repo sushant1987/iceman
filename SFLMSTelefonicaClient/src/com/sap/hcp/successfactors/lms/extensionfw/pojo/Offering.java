@@ -69,6 +69,8 @@ public class Offering {
 	private Double contactHours;
 
 	private Date updatedOn;
+	
+	private boolean cetFlag;
 
 	public Long getId() {
 		return id;
@@ -497,6 +499,14 @@ public class Offering {
 
 	public void setItemTitle(String itemTitle) {
 		this.itemTitle = itemTitle;
+	}
+
+	public boolean isCetFlag() {
+		return cetFlag;
+	}
+
+	public void setCetFlag(boolean cetFlag) {
+		this.cetFlag = cetFlag;
 	}
 
 	

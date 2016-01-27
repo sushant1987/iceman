@@ -120,7 +120,11 @@ public class GenerateReportForNewOffering {
 		}*/
 		if(entry.getInterInsIndicator() != null){
 			Element intInst = document.createElement("medios");
-			intInst.appendChild(document.createTextNode("Propios"));
+			if("true".equals(entry.getInterInsIndicator())) {
+				intInst.appendChild(document.createTextNode("Centro"));
+			} else{
+				intInst.appendChild(document.createTextNode("Propios"));
+			}
 			trainingInfo.appendChild(intInst);
 		}
 		/*if(parameter.get("PrivateContribution") != null) {
@@ -253,7 +257,12 @@ public class GenerateReportForNewOffering {
 			
 			if(entry.getFirstDayMorningEndDateTime() != null){
 				Element endtime = document.createElement("horaFinMañana");
-				endtime.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getFirstDayMorningEndDateTime())));
+				if(entry.isCetFlag()) {
+					endtime.appendChild(document.createTextNode(ItemUtil.dateConvertCet(entry.getFirstDayMorningEndDateTime())));
+				} else {
+					
+					endtime.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getFirstDayMorningEndDateTime())));
+				}
 				schedule.appendChild(endtime);
 			}
 			

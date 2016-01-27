@@ -144,13 +144,14 @@ public class ODataToListConverter {
 		if(morningEndDate!= null) {
 			if(afterNoonStartDate == null) {
 				Calendar c = (Calendar) morningEndDate.clone();
-				c.set(Calendar.HOUR, 5);
+				c.set(Calendar.HOUR, 15);
 				if(c.before(morningEndDate)){
 					offeringData.setFirstDayMorningEndDateTime(c.getTime());
 					Calendar c1 = (Calendar) c.clone();
 					c1.add(Calendar.MINUTE, 1);
 					offeringData.setFirstDayAfternoonStartDateTime(c1.getTime());
 					offeringData.setFirstDayAfternoonEndDateTime(morningEndDate.getTime());
+					offeringData.setCetFlag(true);
 				} else {
 					offeringData.setFirstDayMorningEndDateTime(morningEndDate.getTime());
 				}

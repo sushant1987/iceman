@@ -500,7 +500,12 @@ public class NewOfferingServlet {
 					jsonobject.addProperty("firstDayMorningStartDateTime",dte);
 				}
 				if (offer.getFirstDayMorningEndDateTime() != null) {
-					String dte=formt.format(offer.getFirstDayMorningStartDateTime());
+					String dte;
+					if(offer.isCetFlag()) {
+						dte=formtCet.format(offer.getFirstDayMorningEndDateTime());
+					} else {
+						dte=formt.format(offer.getFirstDayMorningEndDateTime());
+					}
 					jsonobject.addProperty("firstDayMorningEndDateTime",dte);
 					
 				}
@@ -586,7 +591,11 @@ public class NewOfferingServlet {
 			jsonobject.addProperty("contactHours", offer.getContactHours());
 			jsonobject.addProperty("offeringid", offer.getOfferingId());
 			jsonobject.addProperty("itemSecondaryID", offer.getItemSecondaryID());
-			jsonobject.addProperty("interInsIndicator", "Propios");
+			if("true".equals(offer.getInterInsIndicator())) {
+				jsonobject.addProperty("interInsIndicator", "Centro");
+			} else {
+				jsonobject.addProperty("interInsIndicator", "Propios");
+			}
 			//jsonobject.addProperty("interInstructor", offer.getExtInsIndicator());
 			
 			if (offer.getUpdatedOn() != null) {
