@@ -64,7 +64,7 @@ public class ItemServiceImpl implements ItemService{
 							null);
 					bigFeed.add(feed);
 				} else {
-					filter = "LegalEntity eq 'FT'";
+					filter = "LegalEntity eq 'FT'"; 
 					int skip = 0;
 					do{
 						feed = oDataAccess.readFeed(XS_ITEM_TABLE, null, filter,
