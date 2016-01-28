@@ -55,21 +55,32 @@ public class ItemServiceImpl implements ItemService{
 			List<Item> allItemData = new ArrayList<Item>();
 			try { 
 				ODataClientService oDataAccess = getODataService();
-				ODataFeed feed;
+				List <ODataFeed> bigFeed = new ArrayList<ODataFeed>();
+				ODataFeed feed = null;
 				String filter = null;
 				if(!"none".equals(id)) {
 					filter = "ItemCode1 eq '" + id + "'";
 					feed = oDataAccess.readFeed(XS_ITEM_TABLE, null, filter,
 							null);
+					bigFeed.add(feed);
 				} else {
 					filter = "LegalEntity eq 'FT'";
-					feed = oDataAccess.readFeed(XS_ITEM_TABLE, null, filter,
-							null);
+					int skip = 0;
+					do{
+						feed = oDataAccess.readFeed(XS_ITEM_TABLE, null, filter,
+								null,null,500,skip);
+						skip = skip + 500;
+						bigFeed.add(feed);
+					}while(feed != null);
 				}
+				logger.error("ck1"+String.valueOf(bigFeed.size()));		
 				List<Item> meriList = new ArrayList<Item>();
 				//if(runId != null)
 					//if(runId.equalsIgnoreCase("none"))
-						meriList = removeDuplicates(feed);
+				for(ODataFeed tempFeed: bigFeed) {
+					meriList.addAll(removeDuplicates(tempFeed));
+				}
+				logger.error("ck2"+String.valueOf(meriList.size()));		
 				//if(runId == null)
 					//meriList = removeDuplicates(feed);
 				if(meriList != null) {
@@ -91,7 +102,7 @@ public class ItemServiceImpl implements ItemService{
 			} catch (IOException | NamingException | ODataException e) {
 				logger.error("Something wrong getting OData ref", e);
 			}
-
+			logger.error("ck3"+String.valueOf(allItemData.size()));		
 			return allItemData;
 	}
 	
