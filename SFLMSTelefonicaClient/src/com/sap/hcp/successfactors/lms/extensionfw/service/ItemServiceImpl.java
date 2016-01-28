@@ -71,7 +71,7 @@ public class ItemServiceImpl implements ItemService{
 								null,null,500,skip);
 						skip = skip + 500;
 						bigFeed.add(feed);
-					}while(feed != null);
+					}while(feed.getEntries().size() > 0);
 				}
 				logger.error("ck1"+String.valueOf(bigFeed.size()));		
 				List<Item> meriList = new ArrayList<Item>();
