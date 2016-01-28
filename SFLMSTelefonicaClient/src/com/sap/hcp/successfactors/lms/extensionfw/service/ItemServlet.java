@@ -40,7 +40,7 @@ import com.sap.hcp.successfactors.lms.extensionfw.pojo.Offering;
 import com.sap.hcp.successfactors.lms.extensionfw.pojo.OverviewScreen;
 import com.sap.hcp.successfactors.lms.extensionfw.pojo.Parametrised;
 import com.sap.hcp.successfactors.lms.extensionfw.pojo.ReportInfo;
-import com.sap.hcp.successfactors.lms.extensionfw.reporting.GenerateReportFotItem;
+import com.sap.hcp.successfactors.lms.extensionfw.reporting.GenerateReportFotItem;  
 
 @Controller
 public class ItemServlet {
