@@ -55,31 +55,34 @@ public class ItemServiceImpl implements ItemService{
 			List<Item> allItemData = new ArrayList<Item>();
 			try { 
 				ODataClientService oDataAccess = getODataService();
-				List <ODataFeed> bigFeed = new ArrayList<ODataFeed>();
+				//List <ODataFeed> bigFeed = new ArrayList<ODataFeed>();
 				ODataFeed feed = null;
 				String filter = null;
 				if(!"none".equals(id)) {
 					filter = "ItemCode1 eq '" + id + "'";
 					feed = oDataAccess.readFeed(XS_ITEM_TABLE, null, filter,
 							null);
-					bigFeed.add(feed);
+					//bigFeed.add(feed);
 				} else {
-					filter = "LegalEntity eq 'FT'"; 
-					int skip = 0;
+					filter = "LegalEntity eq 'FT'";
+					feed = oDataAccess.readFeed(XS_ITEM_TABLE, null, filter,
+							null,null,1000);
+					/*int skip = 0;
 					do{
 						feed = oDataAccess.readFeed(XS_ITEM_TABLE, null, filter,
 								null,null,500,skip);
 						skip = skip + 500;
 						bigFeed.add(feed);
-					}while(feed.getEntries().size() > 0);
+					}while(feed != null);*/
 				}
-				logger.error("ck1"+String.valueOf(bigFeed.size()));		
+				//logger.error("ck1"+String.valueOf(bigFeed.size()));		
 				List<Item> meriList = new ArrayList<Item>();
+				removeDuplicates(feed);
 				//if(runId != null)
 					//if(runId.equalsIgnoreCase("none"))
-				for(ODataFeed tempFeed: bigFeed) {
+				/*for(ODataFeed tempFeed: bigFeed) {
 					meriList.addAll(removeDuplicates(tempFeed));
-				}
+				}*/
 				logger.error("ck2"+String.valueOf(meriList.size()));		
 				//if(runId == null)
 					//meriList = removeDuplicates(feed);
