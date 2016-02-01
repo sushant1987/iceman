@@ -250,7 +250,7 @@ public class GenerateReportForNewOffering {
 			}
 			
 			if(entry.getFirstDayMorningStartDateTime() != null){
-				Element startTime = document.createElement("horaInicioMañana");
+				Element startTime = document.createElement("horaInicioMañana"); 
 				startTime.appendChild(document.createTextNode(ItemUtil.dateConvertCet(entry.getFirstDayMorningStartDateTime())));
 				schedule.appendChild(startTime);
 			}
