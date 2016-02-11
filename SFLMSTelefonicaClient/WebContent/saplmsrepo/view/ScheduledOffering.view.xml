@@ -32,7 +32,7 @@
                            visibleRowCount="7"> 
 
                            <columns>
-                                  <Column width="11rem">
+                                  <Column width="11rem" sortProperty="itemCode1">
                                          <m:Label text="{i18n>ItemSecondaryID}"/>
                                          <template>
                                                 <m:Text text="{itemCode1}"/>
@@ -111,7 +111,7 @@
                            selectionMode="MultiToggle"
                            visibleRowCount="7">
                            <columns>
-                                  <Column width="11rem">
+                                  <Column width="11rem" sortProperty="itemCode1">
                                          <m:Label text="{i18n>ItemSecondaryID}"/>
                                          <template>
                                                 <m:Text text="{itemCode1}"/>
@@ -202,7 +202,7 @@
                            selectionMode="MultiToggle"
                            visibleRowCount="7">
                            <columns>
-                                  <Column width="11rem">
+                                  <Column width="11rem" sortProperty="itemCode1">
                                          <m:Label text="{i18n>ItemSecondaryID}"/>
                                          <template>
                                                 <m:Text text="{itemCode1}"/>
@@ -268,7 +268,7 @@
                            selectionMode="MultiToggle"
                            visibleRowCount="7">
                            <columns>
-                                  <Column width="11rem">
+                                  <Column width="11rem" sortProperty="itemCode1">
                                          <m:Label text="{i18n>ItemSecondaryID}"/>
                                          <template>
                                                 <m:Text text="{itemCode1}"/>
@@ -347,7 +347,7 @@
                            selectionMode="MultiToggle"
                            visibleRowCount="7">	
                            <columns>
-                                  <Column width="11rem">
+                                  <Column width="11rem" sortProperty="itemCode1">
                                          <m:Label text="{i18n>ItemSecondaryID}"/>
                                          <template>
                                                 <m:Text text="{itemCode1}"/>
@@ -414,7 +414,7 @@
                            selectionMode="Single"
                            visibleRowCount="7">
                            <columns>
-                                  <Column width="11rem">
+                                  <Column width="11rem" sortProperty="itemCode1">
                                          <m:Label text="{i18n>ItemSecondaryID}"/>
                                          <template>
                                                 <m:Text text="{itemCode1}"/>

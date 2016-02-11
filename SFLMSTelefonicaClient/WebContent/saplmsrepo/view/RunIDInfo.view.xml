@@ -18,44 +18,35 @@
 				</f:content>
 			</f:SimpleForm>
 			<m:Panel id="__panel0">
-				<m:Table id="overviewTable" itemPress="onNavOfferring" items="{/}" selectionMode="Single">
-					<m:columns>
-						<m:Column sortProperty="RunId"> 
-							<m:header>
-								<m:Label text="{i18n>RunId}"/>
-							</m:header>
-						</m:Column>
-						<m:Column >
-							<m:header>
-								<m:Label text="{i18n>DatetimeStmp}"/>
-							</m:header>
-						</m:Column>
-						<m:Column>
-							<m:header>
-								<m:Label text="{i18n>ReportTypeID}"/>
-							</m:header>
-						</m:Column>
-						<m:Column>
-							<m:header>
-								<m:Label text="{i18n>LegalEntity}"/>
-							</m:header>
-						</m:Column>
-					</m:columns>
-					<m:items>
-						<m:ColumnListItem type="Navigation">
-							<m:cells>
-								<!--<m:Text text="{RunId}"/>-->
-								<!--<m:Text text="{DatetimeStmp} "/>-->
-								<!--<m:Text text="{XMLType} "/>-->
-								<!--<m:Text text="{LegalEntity} "/>-->
+			
+			<Table id="overviewTable"  selectionMode="Single" visibleRowCount="5">
+					<columns>
+						<Column width="11rem" sortProperty="ReportTypeID">
+							<m:Label text="{i18n>RunId}"/>
+							<template>
 								<m:Text text="{id}"/>
-								<m:Text text="{createdDate} "/>
+							</template>  
+						</Column>
+						<Column width="11rem">
+							<m:Label text="{i18n>DatetimeStmp}"/>
+						<template>
+							<m:Text text="{createdDate} "/>
+						</template> 
+						</Column>
+						<Column width="11rem">
+								<m:Label text="{i18n>ReportTypeID}"/>
+							<template>
 								<m:Text text="{reportType} "/>
-								<m:Text text="{legalEntity} "/>
-							</m:cells>
-						</m:ColumnListItem>
-					</m:items>
-				</m:Table>
+							</template>   
+						</Column>
+						<Column width="11rem">
+							<m:Label text="{i18n>LegalEntity}"/>
+							<template>
+								<m:Text text="{LegalEntity}"/>
+							</template>   
+						</Column>
+			      </columns>  
+				</Table>
 				<!--<Table id="overviewTable" itemPress="onNavOfferring" selectionMode="MultiToggle" title="{i18n>RunIDInfo}" visibleRowCount="4">-->
 				<!--	<columns>-->
 				<!--		<Column >-->
@@ -94,5 +85,14 @@
 				<!--</Table>-->
 			</m:Panel>
 		</m:content>
+		<m:footer id="detailFooter">
+			<m:Toolbar id="detailToolbar">
+				<m:content>
+					<m:ToolbarSpacer id="toolbarSpacer"/>
+					<!--<m:Button icon="sap-icon://action" id="actionButton" press="onGenerateReport" text="{i18n>GenerateReport}"/>-->
+					<m:Button icon="sap-icon://action" id="showReport" press="onNavOfferring" text="{i18n>DisplayRecords}"/>
+				</m:content>
+			</m:Toolbar>
+		</m:footer>
 	</m:Page>
 </mvc:View>

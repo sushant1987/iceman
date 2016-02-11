@@ -161,16 +161,16 @@ public class NewOfferingServlet {
 		}
 		Map<String, String> mp = new HashMap<String, String>();
 		mp = getItemOfferingListData();
-		logger.error("L4"+mp.size());
+	//	logger.error("L4"+mp.size());
 		List<Offering> finalDataList = new ArrayList<Offering>();
-		logger.error("V1datalist ka size"+dataList.size());
+	//	logger.error("V1datalist ka size"+dataList.size());
 		for (Offering offering : dataList) {
 			String bool = null;
 			bool = mp.get(offering.getItemCode());
-			logger.error("V2bool"+bool);
+		//	logger.error("V2bool"+bool);
 			if (bool != null && "true".equals(bool)){
 				offering.setItemCode1(mayankkamap.get(offering.getItemCode()).getItemCode1());
-				logger.error("V3"+offering.getItemCode1());
+			//	logger.error("V3"+offering.getItemCode1());
 				offering.setItemTitle(mayankkamap.get(offering.getItemCode()).getItemTitle());
 			}
 				finalDataList.add(offering);
@@ -196,14 +196,14 @@ public class NewOfferingServlet {
 				days, true);
 		logger.error("M1 is back after datalist"+ "  "+dataList.size());
 		Map<String, String> mp = getItemOfferingListData();
-		logger.error("M2 is back after itemData"+ "  "+mp.size());
+		 logger.error("M2 is back after itemData"+ "  "+mp.size());
 		//logger.error("mp size"+mp.size());
 		List<Offering> finalDataList = new ArrayList<Offering>();
 		//for working 1 feb 2016
 		for (Offering offer : dataList) {
 			String bool;
 			bool = mp.get(offer.getItemCode());
-			logger.error("lenevo"+bool);
+			//logger.error("lenevo"+bool);
 			if (bool != null && "true".equals(bool)){
 				finalDataList.add(offer);
 			}
@@ -219,7 +219,7 @@ public class NewOfferingServlet {
 		
 		finalDataList.addAll(finalDataList);
 		//
-		logger.error("mayank2"+ "  "+finalDataList.size());
+	  logger.error("mayank2"+ "  "+finalDataList.size());
 		HttpSession batman = request.getSession(true);
 		batman.setAttribute(NEW_OFFERING_LIST, finalDataList);
 		List<OfferingListId> offeringlistid;
@@ -305,6 +305,7 @@ public class NewOfferingServlet {
 				
 				//change name of map
 				offer.setItemCode1(mayankkamap.get(offer.getItemCode()).getItemCode1());
+				offer.setItemTitle(mayankkamap.get(offer.getItemCode()).getItemTitle());
 				finalDataList.add(offer);
 		}
 
@@ -396,12 +397,15 @@ public class NewOfferingServlet {
 		OverviewScreen overviewScreen3 = new OverviewScreen();
 		overviewScreen1.setReportType(NEW_OFFERING);
 		overviewScreen1.setLegalEntity("Tsol");
+		logger.error("Tsol" + offeringTsol.size());
 		overviewScreen1.setNoUnRepRec(offeringTsol.size());
 		overviewScreen2.setReportType(NEW_OFFERING);
 		overviewScreen2.setLegalEntity("TdE");
+		logger.error("TDE" + offeringTsol.size());
 		overviewScreen2.setNoUnRepRec(offeringTdE.size());
 		overviewScreen3.setReportType(NEW_OFFERING);
 		overviewScreen3.setLegalEntity("TME");
+		logger.error("TME" + offeringTsol.size());
 		overviewScreen3.setNoUnRepRec(offeringTME.size());
 		if ("TME".equals(legalEntity) && !offeringTME.isEmpty()) {
 			overviewScreenList.add(overviewScreen3);
@@ -464,14 +468,14 @@ public class NewOfferingServlet {
 
 	private Map<String, String> getItemOfferingListData() {
 		// by default " FT" legal entity is being passed
-		logger.error("dps1");
+		//logger.error("dps1");
 		List<Item> itemDataList = itemservice.getItemData("none", "none", "none", "none");
-		logger.error("L1"+itemDataList.size());
+	//	logger.error("L1"+itemDataList.size());
 		Map<String, String> mp = new HashMap<String, String>();
 		for (Item item : itemDataList) {
-			logger.error("L2"+item.getItemCode());
+			//logger.error("L2"+item.getItemCode());
 			mp.put((String)item.getItemCode(), "true");
-			mayankkamap.put((String)item.getItemCode(), item);
+			//mayankkamap.put((String)item.getItemCode(), item);
 		}
 	//	logger.error("L3"+mp.size());
 		return mp;
@@ -633,10 +637,10 @@ public class NewOfferingServlet {
 			jsonobject.addProperty("offeringid", offer.getOfferingId());
 			jsonobject.addProperty("itemSecondaryID", offer.getItemSecondaryID());
 			if("true".equals(offer.getInterInsIndicator())) {
-				logger.error("white4"+offer.getItemCode1());
+				//ogger.error("white4"+offer.getItemCode1());
 				jsonobject.addProperty("interInsIndicator", "Propios");
 			} else {
-				logger.error("white5"+offer.getItemCode1());
+				//logger.error("white5"+offer.getItemCode1());
 				jsonobject.addProperty("interInsIndicator", "Centro");
 			}
 			//jsonobject.addProperty("interInstructor", offer.getExtInsIndicator());

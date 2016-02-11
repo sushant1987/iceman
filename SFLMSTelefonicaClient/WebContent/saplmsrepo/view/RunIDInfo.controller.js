@@ -3,8 +3,6 @@
 jQuery.sap.require("sap.ui.core.mvc.Controller");
 jQuery.sap.require("sap.ui.table.SortOrder");
 jQuery.sap.require("sap.ui.model.Sorter"); 
-
-jQuery.sap.require("sap.ui.model.Sorter");
 sap.ui.core.mvc.Controller
 		.extend(
 				"LMS_ODATA3.view.RunIDInfo",

@@ -37,7 +37,6 @@ xmlns="sap.m"-->
 				id="itemTable"
 				rows="{/}"
 				selectionMode="MultiToggle"
-				sort="sortItemCode"
 				visibleRowCount="7">	
 
 				<columns> 
@@ -91,7 +90,7 @@ xmlns="sap.m"-->
 				selectionMode="MultiToggle"
 				visibleRowCount="7">
 				<columns>
-					<Column width="11rem">
+					<Column width="11rem" sortProperty="itemCode1">
 						<m:Label text="{i18n>ItemsCode}"/>
 						<template>
 							<m:Text text="{itemCode1}"/>
@@ -139,7 +138,7 @@ xmlns="sap.m"-->
 				selectionMode="MultiToggle"
 				visibleRowCount="7">
 				<columns>
-					<Column width="11rem">
+					<Column width="11rem" sortProperty="itemCode1">
 						<m:Label text="{i18n>ItemsCode}"/>
 						<template>
 							<m:Text text="{itemCode1}"/>
@@ -187,7 +186,7 @@ xmlns="sap.m"-->
 				selectionMode="MultiToggle"
 				visibleRowCount="7">
 				<columns>
-					<Column width="11rem">
+					<Column width="11rem" sortProperty="itemCode1">
 						<m:Label text="{i18n>ItemsCode}"/>
 						<template>
 							<m:Text text="{itemCode1}"/>

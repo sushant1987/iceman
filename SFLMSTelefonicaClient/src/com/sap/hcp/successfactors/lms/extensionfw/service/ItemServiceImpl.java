@@ -54,7 +54,7 @@ public class ItemServiceImpl implements ItemService{
 	@Override
 	public List<Item> getItemData(String id, String legalEntity, String date, String runId) {
 			List<Item> allItemData = new ArrayList<Item>();
-			logger.error("inside getItemData");
+			//logger.error("inside getItemData");
 			try { 
 				ODataClientService oDataAccess = getODataService();
 				List <ODataFeed> bigFeed = new ArrayList<ODataFeed>();
@@ -92,24 +92,24 @@ public class ItemServiceImpl implements ItemService{
 //						if(cnt==5)
 //							break;
 						 flag=0;
-						logger.error("we are IN");
+					//	logger.error("we are IN");
 						for(ODataEntry entry:feed.getEntries()){
-							logger.error("inside the loop");
+							//logger.error("inside the loop");
 							flag=1;
-							Item item=ODataToListConverter.oDataEntryToItemData(entry);
-							logger.error("Itemcode"+item.getItemCode());;
-							if(item.getItemCode().length()!=7){
-								logger.error("we are inside");
-								//flag=1;
-						}
+////							Item item=ODataToListConverter.oDataEntryToItemData(entry);
+////						//	logger.error("Itemcode"+item.getItemCode());;
+////							if(item.getItemCode().length()!=7){
+////							//	logger.error("we are inside");
+////								//flag=1;
+//						}
 							
 						}
-						logger.error("we are out");
+						//logger.error("we are out");
 						
 						
 					}while(flag==1);
 				}
-				logger.error("R2"+bigFeed.size());	
+			//	logger.error("R2"+bigFeed.size());	
 				List<Item> meriList = new ArrayList<Item>();
 				meriList=removeDuplicates(bigFeed);
 				//if(runId != null)
@@ -120,7 +120,7 @@ public class ItemServiceImpl implements ItemService{
 //				}
 				
 				
-				logger.error("ck2"+String.valueOf(meriList.size()));		
+			//	logger.error("ck2"+String.valueOf(meriList.size()));		
 				//if(runId == null)
 					//meriList = removeDuplicates(feed);
 				if(meriList != null) {
@@ -142,7 +142,7 @@ public class ItemServiceImpl implements ItemService{
 			} catch (IOException | NamingException | ODataException e) {
 				logger.error("Something wrong getting OData ref", e);
 			}
-			logger.error("ck3"+String.valueOf(allItemData.size()));		
+			//logger.error("ck3"+String.valueOf(allItemData.size()));		
 			return allItemData;
 	}
 	

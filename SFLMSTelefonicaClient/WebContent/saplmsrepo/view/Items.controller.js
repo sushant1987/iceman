@@ -1,3 +1,6 @@
+jQuery.sap.require("sap.ui.core.mvc.Controller");
+jQuery.sap.require("sap.ui.table.SortOrder");
+jQuery.sap.require("sap.ui.model.Sorter"); 
 jQuery.sap.require("sap.ui.core.format.DateFormat");
 sap.ui.core.mvc.Controller.extend("LMS_ODATA3.view.Items", {
 
@@ -84,12 +87,12 @@ sap.ui.core.mvc.Controller.extend("LMS_ODATA3.view.Items", {
 		return val;
 	},
 	
-	sortItemCode : function(oEvent){
-		var oView = this.getView();
-		var oTable = oView.byId("itemTable");
-		oTable.sort(oView.byId("itemcode"), SortOrder.Ascending, false);
-//		oTable.sort(oView.byId("name"), SortOrder.Ascending, true);
-	},
+//	sortItemCode : function(oEvent){
+//		var oView = this.getView();
+//		var oTable = oView.byId("itemTable");
+//		oTable.sort(oView.byId("itemcode"), SortOrder.Ascending, false);
+////		oTable.sort(oView.byId("name"), SortOrder.Ascending, true);
+//	},
 	
 	onPress: function(){
 		var fileURL = this.getOwnerComponent().setURLParameters("/SFLMSTelefonicaClient/a/ItemReport/{legalEntity}/{id}/{date}/{runid}",[this._queryInfo.legalEntity, 

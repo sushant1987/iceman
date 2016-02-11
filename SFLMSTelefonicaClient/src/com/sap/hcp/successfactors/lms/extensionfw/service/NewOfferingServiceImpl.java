@@ -208,13 +208,17 @@ public class NewOfferingServiceImpl implements NewOfferingService {
 		for(Offering offering : offeringlist){
 			if(map.get(offering.getOfferingCode()) == null){
 				map.put(offering.getOfferingCode(), offering);
+				logger.error("offeringCode1"+offering.getOfferingCode());
 			}
 			else{
 				if(map.get(offering.getOfferingCode()).getCreationDate().compareTo(offering.getCreationDate()) > 0){
+					logger.error("offeringCode2"+offering.getOfferingCode());
 					continue;
 				}
 				else{
+					map.remove(offering.getOfferingCode()); 
 					map.put(offering.getOfferingCode(), offering);
+					logger.error("offeringCode3"+offering.getOfferingCode());
 				}
 			}
 		}
