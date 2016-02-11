@@ -215,7 +215,7 @@ public class NewOfferingServiceImpl implements NewOfferingService {
 					logger.error("offeringCode2"+offering.getOfferingCode());
 					continue;
 				}
-				else{
+				else{ 
 					map.remove(String.valueOf(offering.getOfferingCode())); 
 					map.put(String.valueOf(offering.getOfferingCode()), offering);
 					logger.error("offeringCode3"+offering.getOfferingCode());
