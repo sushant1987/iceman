@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -53,36 +54,72 @@ public class ItemServiceImpl implements ItemService{
 	@Override
 	public List<Item> getItemData(String id, String legalEntity, String date, String runId) {
 			List<Item> allItemData = new ArrayList<Item>();
+			logger.error("inside getItemData");
 			try { 
 				ODataClientService oDataAccess = getODataService();
-				//List <ODataFeed> bigFeed = new ArrayList<ODataFeed>();
+				List <ODataFeed> bigFeed = new ArrayList<ODataFeed>();
 				ODataFeed feed = null;
 				String filter = null;
+				int flag=0;
+				int secondflag=0;
 				if(!"none".equals(id)) {
 					filter = "ItemCode1 eq '" + id + "'";
 					feed = oDataAccess.readFeed(XS_ITEM_TABLE, null, filter,
 							null);
-					//bigFeed.add(feed);
+					bigFeed.add(feed);
 				} else {
-					filter = "LegalEntity eq 'FT'";
+					
+					//filter = "LegalEntity eq 'FT'";
+					SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					Date today = Calendar.getInstance().getTime();
+					String lastScheduleDate = formatter.format(today);
+				    //filter= "UpdatedOn eq lastScheduleDate";
+				    //filter="UpdatedOn eq '2016-02-08T05:00:00'";
+					//filter="UpdatedOn%20eq%20datetime%272016-02-08T05:00:00%27";
+					filter="UpdatedOn eq datetime'9999-12-31T05:00:00' and LegalEntity eq 'FT'";
 					feed = oDataAccess.readFeed(XS_ITEM_TABLE, null, filter,
 							null,null,1000);
-					/*int skip = 0;
+					int skip = 1000;
+					int cnt=0;
 					do{
+					    feed = null;
 						feed = oDataAccess.readFeed(XS_ITEM_TABLE, null, filter,
-								null,null,500,skip);
-						skip = skip + 500;
+								null,null,1000,skip);
+						skip = skip + 1000;
 						bigFeed.add(feed);
-					}while(feed != null);*/
+						logger.error("R1"+bigFeed.size());
+						cnt++;
+//						if(cnt==5)
+//							break;
+						 flag=0;
+						logger.error("we are IN");
+						for(ODataEntry entry:feed.getEntries()){
+							logger.error("inside the loop");
+							flag=1;
+							Item item=ODataToListConverter.oDataEntryToItemData(entry);
+							logger.error("Itemcode"+item.getItemCode());;
+							if(item.getItemCode().length()!=7){
+								logger.error("we are inside");
+								//flag=1;
+						}
+							
+						}
+						logger.error("we are out");
+						
+						
+					}while(flag==1);
 				}
-				//logger.error("ck1"+String.valueOf(bigFeed.size()));		
+				logger.error("R2"+bigFeed.size());	
 				List<Item> meriList = new ArrayList<Item>();
-				removeDuplicates(feed);
+				meriList=removeDuplicates(bigFeed);
 				//if(runId != null)
 					//if(runId.equalsIgnoreCase("none"))
-				/*for(ODataFeed tempFeed: bigFeed) {
-					meriList.addAll(removeDuplicates(tempFeed));
-				}*/
+				
+//				for(ODataFeed tempFeed: bigFeed) {
+//					meriList.addAll(removeDuplicates(tempFeed));
+//				}
+				
+				
 				logger.error("ck2"+String.valueOf(meriList.size()));		
 				//if(runId == null)
 					//meriList = removeDuplicates(feed);
@@ -109,11 +146,14 @@ public class ItemServiceImpl implements ItemService{
 			return allItemData;
 	}
 	
-	private List<Item> removeDuplicates(ODataFeed feed){
+	private List<Item> removeDuplicates(List<ODataFeed> bigFeed){
 		List<Item> itemList = new ArrayList<Item>();
+		for(ODataFeed feed:bigFeed)
+		{
 		for (ODataEntry entry : feed.getEntries()){
 			Item itemData = ODataToListConverter.oDataEntryToItemData(entry);
 			itemList.add(itemData);
+		}
 		}
 		Map<String, Item> map = new HashMap<String, Item>();
 		List<Item> tempList = new ArrayList<Item>();

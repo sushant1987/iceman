@@ -161,12 +161,16 @@ public class NewOfferingServlet {
 		}
 		Map<String, String> mp = new HashMap<String, String>();
 		mp = getItemOfferingListData();
+		logger.error("L4"+mp.size());
 		List<Offering> finalDataList = new ArrayList<Offering>();
+		logger.error("V1datalist ka size"+dataList.size());
 		for (Offering offering : dataList) {
 			String bool = null;
 			bool = mp.get(offering.getItemCode());
+			logger.error("V2bool"+bool);
 			if (bool != null && "true".equals(bool)){
 				offering.setItemCode1(mayankkamap.get(offering.getItemCode()).getItemCode1());
+				logger.error("V3"+offering.getItemCode1());
 				offering.setItemTitle(mayankkamap.get(offering.getItemCode()).getItemTitle());
 			}
 				finalDataList.add(offering);
@@ -190,14 +194,32 @@ public class NewOfferingServlet {
 		List<Offering> dataList;
 		dataList = newofferingservice.getOfferingData(id, legalEntity, date,
 				days, true);
+		logger.error("M1 is back after datalist"+ "  "+dataList.size());
 		Map<String, String> mp = getItemOfferingListData();
+		logger.error("M2 is back after itemData"+ "  "+mp.size());
+		//logger.error("mp size"+mp.size());
 		List<Offering> finalDataList = new ArrayList<Offering>();
+		//for working 1 feb 2016
 		for (Offering offer : dataList) {
 			String bool;
 			bool = mp.get(offer.getItemCode());
-			if (bool != null && "true".equals(bool))
+			logger.error("lenevo"+bool);
+			if (bool != null && "true".equals(bool)){
 				finalDataList.add(offer);
+			}
 		}
+		
+		//for testing 2 feb 2016
+//		for(Offering offer :dataList){
+//			String bool;
+//			bool=mp.get(offer.getItemCode());
+//			logger.error("bool"+bool);
+//		//	logger.error("offer ka item code"+offer.getItemCode());
+//		}
+		
+		finalDataList.addAll(finalDataList);
+		//
+		logger.error("mayank2"+ "  "+finalDataList.size());
 		HttpSession batman = request.getSession(true);
 		batman.setAttribute(NEW_OFFERING_LIST, finalDataList);
 		List<OfferingListId> offeringlistid;
@@ -206,8 +228,10 @@ public class NewOfferingServlet {
 		offeringidmap = convertListToMap(offeringlistid);
 		batman.setAttribute(OFFERING_ID_MAP, offeringidmap);
 		List<OverviewScreen> overviewScreenList = new ArrayList<OverviewScreen>();
+		logger.error("mayank3"+ "  "+finalDataList.size());
 		createOverviewList(finalDataList, overviewScreenList, legalEntity, offeringidmap);
 		response.setContentType("application/json; charset=utf-8");
+		logger.error("mayank0"+ "  "+overviewScreenList.size());
 		return gson.toJson(overviewScreenList);
 	}
 
@@ -381,21 +405,28 @@ public class NewOfferingServlet {
 		overviewScreen3.setNoUnRepRec(offeringTME.size());
 		if ("TME".equals(legalEntity) && !offeringTME.isEmpty()) {
 			overviewScreenList.add(overviewScreen3);
+			//logger.error("mayank4"+ "  "+overviewScreenList.size());
 		} else if ("TdE".equals(legalEntity) && !offeringTdE.isEmpty()) {
 			overviewScreenList.add(overviewScreen2);
+			//logger.error("mayank5"+ "  "+overviewScreenList.size());
 		} else if ("Tsol".equals(legalEntity) && !offeringTsol.isEmpty()) {
 			overviewScreenList.add(overviewScreen1);
+			///logger.error("mayank6"+ "  "+overviewScreenList.size());
 		} else if ("none".equals(legalEntity)) {
 			if (!offeringTsol.isEmpty()) {
 				overviewScreenList.add(overviewScreen1);
+			//	logger.error("mayank7"+ "  "+overviewScreenList.size());
 			}
 			if (!offeringTdE.isEmpty()) {
 				overviewScreenList.add(overviewScreen2);
+			//	logger.error("mayank8"+ "  "+overviewScreenList.size());
 			}
 			if (!offeringTME.isEmpty()) {
 				overviewScreenList.add(overviewScreen3);
+			//	logger.error("mayank9"+ "  "+overviewScreenList.size());
 			}
 		}
+		
 		
 	}
 
@@ -410,12 +441,15 @@ public class NewOfferingServlet {
 		List<Parametrised> param = parameterised.getAllParametrisedData();
 		List<Offering> dataList;
 		dataList = newofferingservice.getInvalidOfferingData(code, param);
+	//	logger.error("sp1"+"  "+dataList.size());
 		Map<String, String> mp = new HashMap<String, String>();
 		mp = getItemOfferingListData();
+		//logger.error("L4"+mp.size());
 		List<Offering> finalDataList = new ArrayList<Offering>();
 		for (Offering offering : dataList) {
 			String bool = null;
 			bool = mp.get(offering.getItemCode());
+		//	logger.error("sp2"+"  "+bool);
 			if (bool != null && "true".equals(bool)){
 				offering.setItemCode1(mayankkamap.get(offering.getItemCode()).getItemCode1());
 				offering.setItemTitle(mayankkamap.get(offering.getItemCode()).getItemTitle());
@@ -423,19 +457,23 @@ public class NewOfferingServlet {
 				finalDataList.add(offering);
 		}
 		dataList = null;
+		//logger.error("sp3"+"  "+finalDataList.size());
 		response.setContentType("application/json; charset=utf-8");
-		return gson.toJson(dataList);
+		return gson.toJson(finalDataList);
 	}
 
 	private Map<String, String> getItemOfferingListData() {
 		// by default " FT" legal entity is being passed
+		logger.error("dps1");
 		List<Item> itemDataList = itemservice.getItemData("none", "none", "none", "none");
+		logger.error("L1"+itemDataList.size());
 		Map<String, String> mp = new HashMap<String, String>();
 		for (Item item : itemDataList) {
+			logger.error("L2"+item.getItemCode());
 			mp.put((String)item.getItemCode(), "true");
 			mayankkamap.put((String)item.getItemCode(), item);
 		}
-
+	//	logger.error("L3"+mp.size());
 		return mp;
 
 	}
@@ -501,16 +539,19 @@ public class NewOfferingServlet {
 				}
 				if (offer.getFirstDayMorningEndDateTime() != null) {
 					String dte;
-					if(offer.isCetFlag()) {
+				//	if(offer.isCetFlag()) 
+					{
 						dte=formtCet.format(offer.getFirstDayMorningEndDateTime());
-					} else {
-						dte=formt.format(offer.getFirstDayMorningEndDateTime());
 					}
+//					//else 
+//					{
+//						dte=formtCet.format(offer.getFirstDayMorningEndDateTime());
+//					}
 					jsonobject.addProperty("firstDayMorningEndDateTime",dte);
 					
 				}
 				if (offer.getFirstDayAfternoonStartDateTime() != null) {
-					String dte=formt.format(offer
+					String dte=formtCet.format(offer
 							.getFirstDayAfternoonStartDateTime());
 					jsonobject.addProperty("firstDayAfternoonStartDateTime",dte);
 				}
@@ -531,12 +572,12 @@ public class NewOfferingServlet {
 					jsonobject.addProperty("onlineFirstDayMorningStartDateTime",dte);
 				}
 				if (offer.getOnlineFirstDayMorningEndDateTime() != null) {
-					String dte = formt.format(offer.getOnlineFirstDayMorningEndDateTime());
+					String dte = formtCet.format(offer.getOnlineFirstDayMorningEndDateTime());
 					jsonobject
 					.addProperty("onlineFirstDayMorningEndDateTime", dte);
 				}
 				if (offer.getFirstDayAfternoonStartDateTime() != null) {
-					String dte=formt.format(offer
+					String dte=formtCet.format(offer
 							.getFirstDayAfternoonStartDateTime());
 					jsonobject.addProperty("onlineFirstDayAfternoonStartDateTime",dte);
 				}
@@ -592,9 +633,11 @@ public class NewOfferingServlet {
 			jsonobject.addProperty("offeringid", offer.getOfferingId());
 			jsonobject.addProperty("itemSecondaryID", offer.getItemSecondaryID());
 			if("true".equals(offer.getInterInsIndicator())) {
-				jsonobject.addProperty("interInsIndicator", "Centro");
-			} else {
+				logger.error("white4"+offer.getItemCode1());
 				jsonobject.addProperty("interInsIndicator", "Propios");
+			} else {
+				logger.error("white5"+offer.getItemCode1());
+				jsonobject.addProperty("interInsIndicator", "Centro");
 			}
 			//jsonobject.addProperty("interInstructor", offer.getExtInsIndicator());
 			

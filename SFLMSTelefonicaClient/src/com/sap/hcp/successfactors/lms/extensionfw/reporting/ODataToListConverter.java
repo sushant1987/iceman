@@ -188,8 +188,41 @@ public class ODataToListConverter {
 			offeringData.setInstructorLName((String) entryDetails.get("InstructorLName"));
 			offeringData.setInstructorMName((String) entryDetails.get("InstructorMName"));
 		}*/
-		offeringData.setInterInsIndicator("true");
+		//offeringData.setInterInsIndicator("true");
+		//2 feb 
+		 offeringData.setInterInsIndicator("false");
+		//
 		offeringData.setInstructor(getInstructor((ODataFeed)entry.getProperties().get("InstructorDetails"), offeringData) );
+		//logger.error("SetInstructor"+offeringData.getInstructor()+offeringData.getInstructor());
+		//5 feb
+		int flag=0;
+		if(offeringData.getInstructor()!=null){
+			//logger.error("BIT2me is here");
+			List<Instructor> instructor=offeringData.getInstructor();
+			for(Instructor in:instructor){
+				
+				if(checkInternal(in.getInstructorID())){
+					flag=1;
+				//	logger.error("white1");
+				}
+			}
+			if(flag==1){
+				offeringData.setInterInsIndicator("true");
+				//logger.error("white2");
+			}
+		}
+		else
+		{
+			offeringData.setInterInsIndicator("NOT");
+		}
+		
+		
+		
+		
+		
+		
+		
+		//
 		offeringData.setLegalEntity((String) entryDetails.get("LegalEntity"));
 		offeringData.setLocationName((String) entryDetails.get("LocationName"));
 		offeringData.setObservations((String) entryDetails.get("Observations"));
@@ -235,11 +268,35 @@ public class ODataToListConverter {
 		inst.setInstructorID((String) entryDetails.get("InstructorID"));
 		inst.setInstructorLName((String) entryDetails.get("InstructorLName"));
 		inst.setInstructorMName((String) entryDetails.get("InstructorMName"));
-		if("true".equals(offer.getInstructor())) {
-			if(checkExternal(inst.getInstructorID())) {
-				offer.setInterInsIndicator("false");
-			}
-		}
+//		int flag=0;
+//		logger.error("BIT1it is here ");
+//		if("true".equals(offer.getInstructor())) {
+//			logger.error("BIT2it is here ");
+//			//if(checkExternal(inst.getInstructorID())) {
+//				//offer.setInterInsIndicator("false");
+//			//}
+//		}
+//		//2 feb mayank
+//		
+//		if(offer.getInstructor()!=null){
+//			logger.error("BIT2me is here");
+//			List<Instructor> instructor=offer.getInstructor();
+//			for(Instructor in:instructor){
+//				logger.error("offerid"+offer.getId());
+//				logger.error("offeritemcode"+" "+offer.getItemCode());
+//				logger.error("Instructor Id"+"   "+ in.getInstructorID());
+//				if(checkInternal(in.getInstructorID())){
+//					flag=1;
+//					logger.error("white1");
+//				}
+//			}
+//			if(flag==1){
+//				offer.setInterInsIndicator("true");
+//				logger.error("white2");
+//			}
+//		}
+		//
+		
 		return inst;
 	}
 
@@ -284,9 +341,24 @@ public class ODataToListConverter {
 		return offeringParticipantData;
 	}
 	
-	private static boolean checkExternal(String instructorId) {
-		return instructorId.length() == 7 && Character.isLetter(instructorId.charAt(instructorId.length()-1));
-		
+//	private static boolean checkExternal(String instructorId) {
+//		if(instructorId.length() != 7)
+//			return true;
+//		else
+//			return false;
+//	}
+	
+	//2 feb
+	private static boolean checkInternal(String instructorId) {
+		if(instructorId.length() == 7){
+		//	logger.error("white3"+"  "+instructorId.length());
+			return true;
+		}
+		else{
+		//	logger.error("white8"+instructorId);
+			return false;
+		}
 	}
+	//
 
 }

@@ -11,19 +11,21 @@
 					<m:Label class="selectionLabel" id="__labe11" text="{i18n>RunIdInfoID}"/>
 					<m:Input id="i_RunIdInfoID" value="{/id}" width="49%" maxLength='15'/>
 					<m:Label class="selectionLabel" id="__label1" text="{i18n>DatetimeStmp}"/>
-					<m:DateRangeSelection change="handleChange" class="sapUiMediumMarginBottom" value="{/date}"/>
+					
+					<m:DateRangeSelection change="handleChange" class="sapUiMediumMarginBottom" value="{/date}" valueFormat="dd/MM/yyyy"/>
+					
 					<m:Button activeIcon="sap-icon://search" icon="sap-icon://search" id="__button0" press="onSearch" text="{i18n>Search}" width="100px"/>
 				</f:content>
 			</f:SimpleForm>
 			<m:Panel id="__panel0">
 				<m:Table id="overviewTable" itemPress="onNavOfferring" items="{/}" selectionMode="Single">
 					<m:columns>
-						<m:Column>
+						<m:Column sortProperty="RunId"> 
 							<m:header>
 								<m:Label text="{i18n>RunId}"/>
 							</m:header>
 						</m:Column>
-						<m:Column>
+						<m:Column >
 							<m:header>
 								<m:Label text="{i18n>DatetimeStmp}"/>
 							</m:header>

@@ -330,16 +330,18 @@ public class NewOfferingServiceImpl implements NewOfferingService {
 
 					Offering offeringData = ODataToListConverter
 							.oDataEntryToOfferingData(entry);
+					//logger.error("invalid1"+offeringData.getItemCode());
 					if (!validate(offeringData, code, param)) {
 						allOfferingData.add(offeringData);
+						//logger.error("invalid1 MAYANK   "+"  "+allOfferingData.size());
 					}
 				}
 			}
 
 		} catch (IOException | NamingException | ODataException e) {
-			logger.error("Something wrong getting OData ref", e);
+		//	logger.error("Something wrong getting OData ref", e);
 		}
-
+         //  logger.error("final size of invalid offeirng "+allOfferingData.size());
 		return allOfferingData;
 
 	}
@@ -352,6 +354,7 @@ public class NewOfferingServiceImpl implements NewOfferingService {
 		}
 		if ("04".equals(code)) {
 			if (offeringData.getInstructorID() == null) {
+				logger.error("no instructor id being passed");
 				return false;
 			}
 		} else if ("05".equals(code)) {
@@ -399,7 +402,7 @@ public class NewOfferingServiceImpl implements NewOfferingService {
 				count++;
 				if(count == 10){
 					String filter = sb.toString();
-					feed = oDataAccess.readFeed(XS_OFFERING_TABLE, null, filter, null);
+					feed = oDataAccess.readFeed(XS_OFFERING_TABLE, "InstructorDetails", filter, null);
 					bigfeed.add(feed);
 					sb = new StringBuilder();
 					whetherFirst = true;

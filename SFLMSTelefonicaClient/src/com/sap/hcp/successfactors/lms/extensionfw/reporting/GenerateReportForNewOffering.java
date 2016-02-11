@@ -121,9 +121,9 @@ public class GenerateReportForNewOffering {
 		if(entry.getInterInsIndicator() != null){
 			Element intInst = document.createElement("medios");
 			if("true".equals(entry.getInterInsIndicator())) {
-				intInst.appendChild(document.createTextNode("Centro"));
-			} else{
 				intInst.appendChild(document.createTextNode("Propios"));
+			} else{
+				intInst.appendChild(document.createTextNode("Centro"));
 			}
 			trainingInfo.appendChild(intInst);
 		}
@@ -261,14 +261,14 @@ public class GenerateReportForNewOffering {
 					endtime.appendChild(document.createTextNode(ItemUtil.dateConvertCet(entry.getFirstDayMorningEndDateTime())));
 				} else {
 					
-					endtime.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getFirstDayMorningEndDateTime())));
+					endtime.appendChild(document.createTextNode(ItemUtil.dateConvertCet(entry.getFirstDayMorningEndDateTime())));
 				}
 				schedule.appendChild(endtime);
 			}
 			
 			if(entry.getFirstDayAfternoonStartDateTime() != null){
 				Element startAfter = document.createElement("horaInicioTarde");  
-				startAfter.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getFirstDayAfternoonStartDateTime())));
+				startAfter.appendChild(document.createTextNode(ItemUtil.dateConvertCet(entry.getFirstDayAfternoonStartDateTime())));
 				schedule.appendChild(startAfter);
 			}
 			
@@ -370,12 +370,12 @@ public class GenerateReportForNewOffering {
 			
 			if(entry.getOnlineFirstDayMorningEndDateTime() != null){
 			Element endtime = document.createElement("horaFinMañana");
-			endtime.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getOnlineFirstDayMorningEndDateTime())));
+			endtime.appendChild(document.createTextNode(ItemUtil.dateConvertCet(entry.getOnlineFirstDayMorningEndDateTime())));
 			schedule.appendChild(endtime);
 			}
 			if(entry.getOnlineFirstDayAfternoonStartDateTime() != null){
 				Element startAfter = document.createElement("horaInicioTarde");
-				startAfter.appendChild(document.createTextNode(ItemUtil.dateConvert(entry.getOnlineFirstDayAfternoonStartDateTime())));
+				startAfter.appendChild(document.createTextNode(ItemUtil.dateConvertCet(entry.getOnlineFirstDayAfternoonStartDateTime())));
 				schedule.appendChild(startAfter);
 			}
 			

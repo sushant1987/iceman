@@ -42,7 +42,20 @@ public class OfferingUtil {
 				f6 = 1;
 			}
 		}
-		return daysWorked.toString();
+		StringBuilder dayWorkedDisplayed=new StringBuilder();
+		if(f2==1)
+			dayWorkedDisplayed.append("L");
+		if(f3==1)
+			dayWorkedDisplayed.append("M");
+		if(f4==1)
+			dayWorkedDisplayed.append("X");
+		if(f5==1)
+			dayWorkedDisplayed.append("J");
+		if(f6==1)
+			dayWorkedDisplayed.append("V");
+	
+		
+		return dayWorkedDisplayed.toString();
 	}
 
 	public static String getHour(String hour) {

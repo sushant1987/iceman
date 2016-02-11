@@ -11,13 +11,13 @@
 							<!--<m:Select items="{ path: '/OfferingScheduledNewSet' }" press= "onSelect">-->
 							<m:Select items="item" change= "onSelect" includeItemInSelection="true" id="ErrorID" selectedItem="">
 								<core:Item key="" text="" />
-								<core:Item key="04" text="Instructor not defined" />
-								<core:Item key="05" text="Center not defined" />
-								<core:Item key="06" text="Facility not defined" />
-								<core:Item key="07" text="Offering duration not equal Item Length" />
-								<core:Item key="08" text= "Undefined error when generating New Offering XML File" />
-								<core:Item key="09" text="SCHEDULED ONLY + ONSITE Completed Offering with over 25 participants" />
-								<core:Item key="10" text="Undefined error when generating Completed Offering XML File" />
+								<core:Item key="04" text="04 Instructor not defined" />
+								<core:Item key="05" text="05 Center not defined" />
+								<core:Item key="06" text="06 Facility not defined" />
+								<core:Item key="07" text="07 Offering duration not equal Item Length" />
+								<core:Item key="08" text= "08 Undefined error when generating New Offering XML File" />
+								<core:Item key="09" text="09 SCHEDULED ONLY + ONSITE Completed Offering with over 25 participants" />
+								<core:Item key="10" text="10 Undefined error when generating Completed Offering XML File" />
 							</m:Select>
 						</m:content>
 					</m:Panel>
