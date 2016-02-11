@@ -169,9 +169,8 @@ public class NewOfferingServlet {
 			bool = mp.get(offering.getItemCode());
 		//	logger.error("V2bool"+bool);
 			if (bool != null && "true".equals(bool)){
-				offering.setItemCode1(mayankkamap.get(offering.getItemCode()).getItemCode1());
-			//	logger.error("V3"+offering.getItemCode1());
-				offering.setItemTitle(mayankkamap.get(offering.getItemCode()).getItemTitle());
+					offering.setItemCode1(mayankkamap.get(offering.getItemCode()).getItemCode1());
+					offering.setItemTitle(mayankkamap.get(offering.getItemCode()).getItemTitle());
 			}
 				finalDataList.add(offering);
 		}
@@ -304,8 +303,8 @@ public class NewOfferingServlet {
 			if (bool != null && "true".equals(bool))
 				
 				//change name of map
-				offer.setItemCode1(mayankkamap.get(offer.getItemCode()).getItemCode1());
-				offer.setItemTitle(mayankkamap.get(offer.getItemCode()).getItemTitle());
+					offer.setItemCode1(mayankkamap.get(offer.getItemCode()).getItemCode1());
+					offer.setItemTitle(mayankkamap.get(offer.getItemCode()).getItemTitle());
 				finalDataList.add(offer);
 		}
 
@@ -475,7 +474,7 @@ public class NewOfferingServlet {
 		for (Item item : itemDataList) {
 			//logger.error("L2"+item.getItemCode());
 			mp.put((String)item.getItemCode(), "true");
-			//mayankkamap.put((String)item.getItemCode(), item);
+			mayankkamap.put((String)item.getItemCode(), item);
 		}
 	//	logger.error("L3"+mp.size());
 		return mp;
