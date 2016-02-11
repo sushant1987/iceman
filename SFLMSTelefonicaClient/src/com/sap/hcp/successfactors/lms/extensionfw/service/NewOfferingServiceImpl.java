@@ -203,11 +203,11 @@ public class NewOfferingServiceImpl implements NewOfferingService {
 			Offering offeringData = ODataToListConverter.oDataEntryToOfferingData(entry);
 			offeringlist.add(offeringData);
 		}
-		Map<Integer, Offering> map = new HashMap<Integer, Offering>();
+		Map<String, Offering> map = new HashMap<String, Offering>();
 		List<Offering> tempList = new ArrayList<Offering>();
 		for(Offering offering : offeringlist){
-			if(map.get(offering.getOfferingCode()) == null){
-				map.put(offering.getOfferingCode(), offering);
+			if(map.get(String.valueOf(offering.getOfferingCode())) == null){
+				map.put(String.valueOf(offering.getOfferingCode()), offering);
 				logger.error("offeringCode1"+offering.getOfferingCode());
 			}
 			else{
@@ -217,12 +217,12 @@ public class NewOfferingServiceImpl implements NewOfferingService {
 				}
 				else{
 					map.remove(offering.getOfferingCode()); 
-					map.put(offering.getOfferingCode(), offering);
+					map.put(String.valueOf(offering.getOfferingCode()), offering);
 					logger.error("offeringCode3"+offering.getOfferingCode());
 				}
 			}
 		}
-		for(Map.Entry<Integer, Offering> entry : map.entrySet()){
+		for(Map.Entry<String, Offering> entry : map.entrySet()){
 			tempList.add(entry.getValue());
 		}
 		return tempList;
