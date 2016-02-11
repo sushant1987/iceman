@@ -211,12 +211,12 @@ public class NewOfferingServiceImpl implements NewOfferingService {
 				logger.error("offeringCode1"+offering.getOfferingCode());
 			}
 			else{
-				if(map.get(offering.getOfferingCode()).getCreationDate().compareTo(offering.getCreationDate()) > 0){
+				if(map.get(String.valueOf(offering.getOfferingCode())).getCreationDate().compareTo(offering.getCreationDate()) > 0){
 					logger.error("offeringCode2"+offering.getOfferingCode());
 					continue;
 				}
 				else{
-					map.remove(offering.getOfferingCode()); 
+					map.remove(String.valueOf(offering.getOfferingCode())); 
 					map.put(String.valueOf(offering.getOfferingCode()), offering);
 					logger.error("offeringCode3"+offering.getOfferingCode());
 				}
