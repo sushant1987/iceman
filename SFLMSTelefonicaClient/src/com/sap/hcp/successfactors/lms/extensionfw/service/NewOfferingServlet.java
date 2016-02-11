@@ -294,7 +294,7 @@ public class NewOfferingServlet {
 			}*/
 		}
 		Map<String, String> mp = new HashMap<String, String>();
-		mp = getItemOfferingListData();
+		mp = getItemOfferingListData(); 
 
 		List<Offering> finalDataList = new ArrayList<Offering>();
 		for (Offering offer : dataList) {
