@@ -1,6 +1,16 @@
-<mvc:View controllerName="LMS_ODATA3.view.RunIDInfo" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+<mvc:View
+	xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:m="sap.m"
+	xmlns:ui="sap.ca.ui"
+	controllerName="LMS_ODATA3.view.RunIDInfo">
+
+<!-- <mvc:View controllerName="LMS_ODATA3.view.RunIDInfo" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
 	xmlns:m="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable"
-	xmlns="sap.ui.table">
+	xmlns="sap.ui.table"> -->
 	<m:Page id="detailPage" navButtonPress="onNavBack" showNavButton="{device&gt;/isPhone}" title="{i18n&gt;detailTitle}">
 		<m:content>
 			<f:SimpleForm editable="false" id="selOptionForm" layout="ResponsiveGridLayout">
@@ -42,7 +52,7 @@
 						<Column width="11rem">
 							<m:Label text="{i18n>LegalEntity}"/>
 							<template>
-								<m:Text text="{LegalEntity}"/>
+								<m:Text text="{legalEntity}"/>
 							</template>   
 						</Column>
 			      </columns>  

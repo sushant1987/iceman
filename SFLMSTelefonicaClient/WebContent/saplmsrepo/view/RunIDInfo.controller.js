@@ -46,19 +46,22 @@ sap.ui.core.mvc.Controller
 						var context = oEvent.getParameters().srcControl;
 						var overviewTableModel = oEvent.getSource().getModel();
 
-						// var xmltype =
-						// overviewTableModel.getProperty(context.getBindingContextPath()).XMLType;
-						// var legalEntity =
-						// overviewTableModel.getProperty(context.getBindingContextPath()).LegalEntity;
-						// var runid =
-						// overviewTableModel.getProperty(context.getBindingContextPath()).RunId;
+						var overviewTable = this.getView().byId("overviewTable");
+						var selectedIndex = overviewTable.getSelectedIndex();
+						var selectedPath = overviewTable.getRows()[selectedIndex]
+								.getBindingContext().sPath;
+						var rowNo = selectedPath.match("/\\d+$")[0].replace(
+								"/", "");
+						var legalEntity = overviewTable.getModel().getData()[rowNo].legalEntity;
+						var xmltype     = overviewTable.getModel().getData()[rowNo].reportType;
+						var runid       = overviewTable.getModel().getData()[rowNo].id;
 
-						var xmltype = overviewTableModel.getProperty(context
-								.getBindingContextPath()).reportType;
-						var legalEntity = overviewTableModel
-								.getProperty(context.getBindingContextPath()).legalEntity;
-						var runid = overviewTableModel.getProperty(context
-								.getBindingContextPath()).id;
+//						var xmltype = overviewTableModel.getProperty(context
+//								.getBindingContextPath()).reportType;
+//						var legalEntity = overviewTableModel
+//								.getProperty(context.getBindingContextPath()).legalEntity;
+//						var runid = overviewTableModel.getProperty(context
+//								.getBindingContextPath()).id;
 						// var date =
 						// overviewTableModel.getProperty(context.getBindingContextPath()).createdDate;
 
@@ -163,6 +166,9 @@ sap.ui.core.mvc.Controller
 							ovTable.setBusy(false);
 						});
 						ovTable.setModel(ojsonModel);
+						this.getView().byId("overviewTable").bindRows({
+							path : "/"
+						}); 
 //						 var oTable = this.getView().byId("overviewTable");
 //						 oTable.bindItems({
 //						 path:"/"
