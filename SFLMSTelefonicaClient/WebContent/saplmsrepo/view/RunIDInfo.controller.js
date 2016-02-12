@@ -168,7 +168,7 @@ sap.ui.core.mvc.Controller
 						ovTable.setModel(ojsonModel);
 						this.getView().byId("overviewTable").bindRows({
 							path : "/"
-						});
+						}); 
 //						 var oTable = this.getView().byId("overviewTable");
 //						 oTable.bindItems({
 //						 path:"/"
