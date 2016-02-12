@@ -37,6 +37,7 @@ import com.google.gson.JsonObject;
 import com.sap.hcp.successfactors.lms.extensionfw.pojo.Item;
 import com.sap.hcp.successfactors.lms.extensionfw.pojo.ItemListId;
 import com.sap.hcp.successfactors.lms.extensionfw.pojo.Offering;
+import com.sap.hcp.successfactors.lms.extensionfw.pojo.OfferingListId;
 import com.sap.hcp.successfactors.lms.extensionfw.pojo.OverviewScreen;
 import com.sap.hcp.successfactors.lms.extensionfw.pojo.Parametrised;
 import com.sap.hcp.successfactors.lms.extensionfw.pojo.ReportInfo;
@@ -160,25 +161,23 @@ public class ItemServlet {
 		// reportInfo table
 
 		ReportInfo rinfo = new ReportInfo();
+		rinfo.setDate(date);
 		rinfo.setCreatedDate(new Date(System.currentTimeMillis()));
 		if (id != null)
 			rinfo.setCriteriaId(id);
 		if (legalEntity != null)
 			rinfo.setLegalEntity(legalEntity);
 		rinfo.setReportType("Item");
-		rinfo.setDate(date);
 		reportInfoService.save(rinfo);
-
-		// create entry in itemlistid
-		List<ItemListId> list = new ArrayList<ItemListId>();
+		List<ItemListId> saveList = new ArrayList<ItemListId>();
 		for (Item item : itemList) {
-			boolean flag = true;
-			ItemListId obj = new ItemListId();
-			obj.setItemId(item.getId());
-			obj.setLegalEntity(legalEntity.toLowerCase());
-			list.add(obj);
+			ItemListId ili = new ItemListId();
+			ili.setItemId(item.getId());
+			ili.setLegalEntity(legalEntity);
+			ili.setReportId(rinfo.getId());
+			saveList.add(ili);
 		}
-		itemListIdService.save(list);
+		itemListIdService.save(saveList);
 		batman.removeAttribute("itemList");
 		batman.removeAttribute("itemidmap");
 		byte[] array = bos.toByteArray();
