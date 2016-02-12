@@ -31,7 +31,7 @@
 			
 			<Table id="overviewTable"  selectionMode="Single" visibleRowCount="5">
 					<columns>
-						<Column width="11rem" sortProperty="ReportTypeID">
+						<Column width="11rem" sortProperty="id">
 							<m:Label text="{i18n>RunId}"/>
 							<template>
 								<m:Text text="{id}"/>
