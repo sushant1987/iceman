@@ -117,7 +117,7 @@ public class ItemServlet {
 			for(ItemListId itemListId : itemListIds) {
 				itemIds.add(itemListId.getItemId());
 			}
-			itemList = itemListIdService.getItemByItemIds(itemIds);
+			itemList = itemservice.getItemByItemIds(itemIds);
 		
 			itemList = getListData(itemList);
 			itemList = getListFinalData(itemList);

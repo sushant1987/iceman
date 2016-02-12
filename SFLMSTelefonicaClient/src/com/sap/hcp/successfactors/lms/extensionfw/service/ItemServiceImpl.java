@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sap.hcp.successfactors.lms.extensionfw.pojo.Item;
+import com.sap.hcp.successfactors.lms.extensionfw.pojo.Offering;
 import com.sap.hcp.successfactors.lms.extensionfw.reporting.ItemUtil;
 import com.sap.hcp.successfactors.lms.extensionfw.reporting.ODataToListConverter;
 import com.sap.hcp.successfactors.lms.extensionfw.multitenancy.CurrentTenantResolver;
@@ -276,6 +277,52 @@ public class ItemServiceImpl implements ItemService{
 		odata.put("CustomData", itemCustomvalue.getCustomData());
 		odata.put("Id", itemCustomvalue.getId());
 		return odata;
+	}
+	
+	@Override
+	public List<Item> getItemByItemIds(List<Long> itemIds) {
+		List<Item> itemList = new ArrayList<Item>();
+
+		
+		if (itemIds.isEmpty())
+			return itemList;
+		try {
+			ODataClientService oDataAccess = getODataService();
+			ODataFeed feed;
+			List<ODataFeed> bigfeed = new ArrayList<ODataFeed>();
+			StringBuilder sb = new StringBuilder();
+			boolean whetherFirst = true;
+			int count = 0;
+			for(Long itemId : itemIds) {
+				if(!whetherFirst) {
+					sb.append(" or Id eq ");
+					sb.append(itemId);
+				} else {
+					sb.append("Id eq ");
+					sb.append(itemId);
+					whetherFirst = false;
+				}
+				count++;
+				if(count == 10){
+					String filter = sb.toString();
+					feed = oDataAccess.readFeed(XS_ITEM_TABLE, null, filter, null);
+					bigfeed.add(feed);
+					sb = new StringBuilder();
+					whetherFirst = true;
+					count = 0;
+				}
+			}
+			for(ODataFeed finalfeed : bigfeed){
+				
+				itemList.addAll(ODataToListConverter.convertToItemList(finalfeed));
+				
+			}
+		} catch (IOException | NamingException | ODataException e) {
+			logger.error("Something wrong getting Item Data by ID's", e);
+		}
+		return itemList;
+		
+	
 	}
 	
 }

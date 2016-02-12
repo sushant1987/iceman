@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sap.hcp.successfactors.lms.extensionfw.pojo.ItemListId;
-import com.sap.hcp.successfactors.lms.extensionfw.pojo.ReportInfo;
 
 @Service
 @Transactional
@@ -37,5 +36,12 @@ public class ItemListIdServiceImpl implements ItemListIdService{
 	public void delete(){
 		entityManager.createQuery("delete from ItemListId itemlistid").executeUpdate();
 	}
+	
+	@Override
+	public List<ItemListId> getByReportId(Long runId){
+		Query query=entityManager.createQuery("Select itemlistid from ItemListId itemlistid where itemlistid.reportId='"+runId+"'");
+	    List<ItemListId> queryitemlistid=query.getResultList();
+		return queryitemlistid;
+	} 
 
 }

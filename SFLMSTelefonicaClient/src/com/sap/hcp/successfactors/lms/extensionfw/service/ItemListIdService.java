@@ -12,4 +12,6 @@ public interface ItemListIdService {
 
 	void delete();
 
+	List<ItemListId> getByReportId(Long runId);
+
 }
