@@ -198,7 +198,7 @@ public class NewOfferingServlet {
 			logger.error("D1"+offer.getOfferingId()); 
 		}
 		Map<String, String> mp = getItemOfferingListData();
-		 logger.error("M2 is back after itemData"+ "  "+mp.size());
+		 logger.error("M2 is back after itemData"+ "  "+mp.size());  
 		//logger.error("mp size"+mp.size());
 		List<Offering> finalDataList = new ArrayList<Offering>();
 		//for working 1 feb 2016
