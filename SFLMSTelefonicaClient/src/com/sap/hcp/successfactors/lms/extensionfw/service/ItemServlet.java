@@ -112,18 +112,12 @@ public class ItemServlet {
 				}
 			}
 		} else {
-			ReportInfo obj = reportInfoService.getById(Long.parseLong(runId));
-			if(!date.equalsIgnoreCase("none") && date!= null){
-				itemList = itemservice.getItemData(obj.getCriteriaId(), obj.getLegalEntity(), obj.getDate(), runId);
+			List<ItemListId> itemListIds = itemListIdService.getByReportId(Long.parseLong(runId));
+			List<Long> itemIds = new ArrayList<Long>();
+			for(ItemListId itemListId : itemListIds) {
+				itemIds.add(itemListId.getItemId());
 			}
-			else{
-				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-				String date2 = formatter.format(obj.getCreatedDate());
-				StringBuilder sb = new StringBuilder();
-				sb.append("15-08-1947-");
-				sb.append(date2);
-				itemList = itemservice.getItemData(obj.getCriteriaId(), obj.getLegalEntity(), sb.toString(), runId);
-			}
+			itemList = itemListIdService.getItemByItemIds(itemIds);
 		
 			itemList = getListData(itemList);
 			itemList = getListFinalData(itemList);
