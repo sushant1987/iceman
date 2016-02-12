@@ -114,9 +114,11 @@ public class NewOfferingServlet {
 		HttpSession batman = request.getSession(false);
 		if("none".equalsIgnoreCase(runId)){
 			if(batman.getAttribute(NEW_OFFERING_LIST) != null){
+				logger.error("data is coming from session");
 				dataList = (List<Offering>)batman.getAttribute(NEW_OFFERING_LIST);
 			}
 			else{
+				logger.error("data is coming from database");
 				dataList = newofferingservice.getOfferingData(id, legalEntity, date, days, true);
 			}
 			if(batman.getAttribute(OFFERING_ID_MAP) != null){
@@ -226,9 +228,11 @@ public class NewOfferingServlet {
 		HttpSession batman = request.getSession(false);
 		if("none".equalsIgnoreCase(runId)){
 			if(batman.getAttribute(NEW_OFFERING_LIST) != null){
+				logger.error("data is coming from session");
 				dataList = (List<Offering>)batman.getAttribute(NEW_OFFERING_LIST);
 			}
 			else{
+				logger.error("data is coming from database");
 				dataList = newofferingservice.getOfferingData(id, legalEntity, date, days, true);
 			}
 			if(batman.getAttribute(OFFERING_ID_MAP) != null){
