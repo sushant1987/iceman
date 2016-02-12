@@ -146,28 +146,13 @@ public class NewOfferingServlet {
 				offringIds.add(offeringListId.getOfferingId());
 			}
 			dataList = newofferingservice.getOfferingByOfferingIds(offringIds);
-			/*ReportInfo obj = reportInfoService.getById(Long.parseLong(runId));
-			if(!date.equalsIgnoreCase("none") && date!= null){
-				dataList = newofferingservice.getOfferingData(obj.getCriteriaId(), obj.getLegalEntity(), obj.getDate(), runId, true);
-			}
-			else{
-				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-				String date2 = formatter.format(obj.getCreatedDate());
-				StringBuilder sb = new StringBuilder();
-				sb.append("15-08-1947-");
-				sb.append(date2);
-				dataList = newofferingservice.getOfferingData(obj.getCriteriaId(), obj.getLegalEntity(), sb.toString(), runId, true);
-			}*/
 		}
 		Map<String, String> mp = new HashMap<String, String>();
 		mp = getItemOfferingListData();
-	//	logger.error("L4"+mp.size());
 		List<Offering> finalDataList = new ArrayList<Offering>();
-	//	logger.error("V1datalist ka size"+dataList.size());
 		for (Offering offering : dataList) {
 			String bool = null;
 			bool = mp.get(offering.getItemCode());
-		//	logger.error("V2bool"+bool);
 			if (bool != null && "true".equals(bool)){
 					offering.setItemCode1(mayankkamap.get(offering.getItemCode()).getItemCode1());
 					offering.setItemTitle(mayankkamap.get(offering.getItemCode()).getItemTitle());
@@ -211,17 +196,7 @@ public class NewOfferingServlet {
 			}
 		}
 		
-		//for testing 2 feb 2016
-//		for(Offering offer :dataList){
-//			String bool;
-//			bool=mp.get(offer.getItemCode());
-//			logger.error("bool"+bool);
-//		//	logger.error("offer ka item code"+offer.getItemCode());
-//		}
-		
-		finalDataList.addAll(finalDataList);
-		//
-	  logger.error("mayank2"+ "  "+finalDataList.size());
+		logger.error("mayank2"+ "  "+finalDataList.size());
 		HttpSession batman = request.getSession(true);
 		batman.setAttribute(NEW_OFFERING_LIST, finalDataList);
 		List<OfferingListId> offeringlistid;
