@@ -194,6 +194,9 @@ public class NewOfferingServlet {
 		dataList = newofferingservice.getOfferingData(id, legalEntity, date,
 				days, true);
 		logger.error("M1 is back after datalist"+ "  "+dataList.size());
+		for(Offering offer :dataList){
+			logger.error("D1"+offer.getOfferingId());
+		}
 		Map<String, String> mp = getItemOfferingListData();
 		 logger.error("M2 is back after itemData"+ "  "+mp.size());
 		//logger.error("mp size"+mp.size());
