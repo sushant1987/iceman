@@ -163,6 +163,9 @@ sap.ui.core.mvc.Controller
 							ovTable.setBusy(false);
 						});
 						ovTable.setModel(ojsonModel);
+						this.getView().byId("overviewTable").bindRows({
+							path : "/"
+						});
 //						 var oTable = this.getView().byId("overviewTable");
 //						 oTable.bindItems({
 //						 path:"/"
