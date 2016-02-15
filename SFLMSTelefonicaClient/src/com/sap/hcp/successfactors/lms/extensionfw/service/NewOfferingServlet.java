@@ -174,6 +174,7 @@ public class NewOfferingServlet {
 			@PathVariable String legalEntity, @PathVariable String date,
 			@PathVariable String days, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
+		logger.error("offering time marker 0: "+new Date(System.currentTimeMillis()));
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.registerTypeAdapter(Date.class,
 				new UTCDateTypeAdapter()).create();
@@ -198,7 +199,6 @@ public class NewOfferingServlet {
 			}
 		}
 		
-		logger.error("mayank2"+ "  "+finalDataList.size());
 		HttpSession batman = request.getSession(true);
 		batman.setAttribute(NEW_OFFERING_LIST, finalDataList);
 		List<OfferingListId> offeringlistid;
@@ -207,10 +207,9 @@ public class NewOfferingServlet {
 		offeringidmap = convertListToMap(offeringlistid);
 		batman.setAttribute(OFFERING_ID_MAP, offeringidmap);
 		List<OverviewScreen> overviewScreenList = new ArrayList<OverviewScreen>();
-		logger.error("mayank3"+ "  "+finalDataList.size());
 		createOverviewList(finalDataList, overviewScreenList, legalEntity, offeringidmap);
+		logger.error("offering time marker 3: "+new Date(System.currentTimeMillis()));
 		response.setContentType("application/json; charset=utf-8");
-		logger.error("mayank0"+ "  "+overviewScreenList.size());
 		return gson.toJson(overviewScreenList);
 	}
 
