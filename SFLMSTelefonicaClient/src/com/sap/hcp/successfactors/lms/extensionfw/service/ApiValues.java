@@ -45,14 +45,9 @@ public class ApiValues {
 	public static final String INVALIDNEWOFFERING = "/Validation/NewOffering/{code}";
 	public static final String INVALIDCOMPLETEDOFFERING = "/Validation/CompletedOffering/{code}";
 
-	/**
-	 * url pattern for custom field
-	 */
 	public static final String CUSTOM_FIELD_CONFIG = "/CustomFieldConfig";
 	public static final String CUSTOM_FIELD_EMLOYEE_DATA = "/EmployeeData/{companyCode}";
 
-	public static final String DUMMY_REPORT = "/dummyReport";
-	public static final String DUMMY_REPORTA = "/dummyReporta";
 
 	public static final String REPORT_INFO_GET = "/reportinfoget/{id}";
 	public static final String REPORT_INFO_GET_BY_TYPE = "/reportinfogetbyId/{reportType}";

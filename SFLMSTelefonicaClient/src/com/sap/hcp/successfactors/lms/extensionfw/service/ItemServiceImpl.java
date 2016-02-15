@@ -22,7 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sap.hcp.successfactors.lms.extensionfw.pojo.Item;
-import com.sap.hcp.successfactors.lms.extensionfw.pojo.Offering;
 import com.sap.hcp.successfactors.lms.extensionfw.reporting.ItemUtil;
 import com.sap.hcp.successfactors.lms.extensionfw.reporting.ODataToListConverter;
 import com.sap.hcp.successfactors.lms.extensionfw.multitenancy.CurrentTenantResolver;
@@ -69,14 +68,9 @@ public class ItemServiceImpl implements ItemService{
 							null);
 					bigFeed.add(feed);
 				} else {
-					
-					//filter = "LegalEntity eq 'FT'";
 					SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					Date today = Calendar.getInstance().getTime();
 					String lastScheduleDate = formatter.format(today);
-				    //filter= "UpdatedOn eq lastScheduleDate";
-				    //filter="UpdatedOn eq '2016-02-08T05:00:00'";
-					//filter="UpdatedOn%20eq%20datetime%272016-02-08T05:00:00%27";
 					filter="UpdatedOn eq datetime'9999-12-31T05:00:00' and LegalEntity eq 'FT'";
 					feed = oDataAccess.readFeed(XS_ITEM_TABLE, null, filter,
 							null,null,1000);
@@ -88,53 +82,23 @@ public class ItemServiceImpl implements ItemService{
 								null,null,1000,skip);
 						skip = skip + 1000;
 						bigFeed.add(feed);
-						logger.error("R1"+bigFeed.size());
 						cnt++;
-//						if(cnt==5)
-//							break;
-						 flag=0;
-					//	logger.error("we are IN");
-						for(ODataEntry entry:feed.getEntries()){
-							//logger.error("inside the loop");
-							flag=1;
-////							Item item=ODataToListConverter.oDataEntryToItemData(entry);
-////						//	logger.error("Itemcode"+item.getItemCode());;
-////							if(item.getItemCode().length()!=7){
-////							//	logger.error("we are inside");
-////								//flag=1;
-//						}
-							
-						}
-						//logger.error("we are out");
-						
-						
+						flag=0;
+						if(feed.getEntries().size() != 0)
+							flag = 1;
 					}while(flag==1);
 				}
-			//	logger.error("R2"+bigFeed.size());	
 				List<Item> meriList = new ArrayList<Item>();
 				meriList=removeDuplicates(bigFeed);
-				//if(runId != null)
-					//if(runId.equalsIgnoreCase("none"))
-				
-//				for(ODataFeed tempFeed: bigFeed) {
-//					meriList.addAll(removeDuplicates(tempFeed));
-//				}
-				
-				
-			//	logger.error("ck2"+String.valueOf(meriList.size()));		
-				//if(runId == null)
-					//meriList = removeDuplicates(feed);
 				if(meriList != null) {
 					for (Item item : meriList) {
 
 						if(validate(id, legalEntity, date, item)) {
-							if(validateItem(item) == true){
-								if(item.getLegalEntity()!= null && item.getLegalEntity().equalsIgnoreCase("FT")){
+							if(item.getLegalEntity()!= null && item.getLegalEntity().equalsIgnoreCase("FT")){
 									String deliveryCode = ItemUtil.getDeliveryMethod(item.getDelMethod());
 									item.setDelMethod(deliveryCode); 
 									allItemData.add(item);
 								}
-							}
 						}
 						
 					}
@@ -143,7 +107,6 @@ public class ItemServiceImpl implements ItemService{
 			} catch (IOException | NamingException | ODataException e) {
 				logger.error("Something wrong getting OData ref", e);
 			}
-			//logger.error("ck3"+String.valueOf(allItemData.size()));		
 			return allItemData;
 	}
 	
@@ -187,18 +150,6 @@ public class ItemServiceImpl implements ItemService{
 			return validateDate(date, itemData);
 		}
 		
-	}
-	
-	private boolean validateItem(Item obj){
-		/*if(obj.getItemLength() != (obj.getCreditHoursOnline()+ obj.getCreditHoursScheduled()))
-			return false;
-		// check for type of item to be passed
-		if(!((String)map.get("delMethod")).equalsIgnoreCase("onsite") || !((String)map.get("delMethod")).equalsIgnoreCase("onsite"))
-			return false;
-		// check for item length
-		if(obj.getItemLength() < 2)
-			return false;*/
-		return true;
 	}
 	
 	private boolean validateDate(String date, Item itemData) {
