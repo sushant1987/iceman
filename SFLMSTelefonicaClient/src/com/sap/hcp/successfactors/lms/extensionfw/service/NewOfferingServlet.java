@@ -181,24 +181,15 @@ public class NewOfferingServlet {
 		List<Offering> dataList;
 		dataList = newofferingservice.getOfferingData(id, legalEntity, date,
 				days, true);
-		logger.error("M1 is back after datalist"+ "  "+dataList.size());
-		for(Offering offer :dataList){ 
-			logger.error("D1"+offer.getOfferingId()); 
-		}  
 		Map<String, String> mp = getItemOfferingListData();
-		 logger.error("M2 is back after itemData"+ "  "+mp.size());     
-		//logger.error("mp size"+mp.size());
 		List<Offering> finalDataList = new ArrayList<Offering>();
-		//for working 1 feb 2016
 		for (Offering offer : dataList) {
 			String bool;
 			bool = mp.get(offer.getItemCode());
-			//logger.error("lenevo"+bool);
 			if (bool != null && "true".equals(bool)){
 				finalDataList.add(offer);
 			}
 		}
-		
 		HttpSession batman = request.getSession(true);
 		batman.setAttribute(NEW_OFFERING_LIST, finalDataList);
 		List<OfferingListId> offeringlistid;

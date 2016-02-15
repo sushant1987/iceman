@@ -97,9 +97,10 @@ public class NewOfferingServiceImpl implements NewOfferingService {
 
 				}
 				if(checkForInstructor) {
+					logger.error("employee time marker 1: "+new Date(System.currentTimeMillis()));
 					Map<String, String> empIdAndCustom13 = employeeService.getEmployeeById(empIds);
+					logger.error("employee time marker 2: "+new Date(System.currentTimeMillis()));
 					for(Offering offer: allOfferingData){
-						
 						if("true".equals(offer.getInterInsIndicator())) {
 							for(Instructor instructor : offer.getInstructor()) {
 								instructor.setInstructorID(empIdAndCustom13.get(instructor.getInstructorID()));
