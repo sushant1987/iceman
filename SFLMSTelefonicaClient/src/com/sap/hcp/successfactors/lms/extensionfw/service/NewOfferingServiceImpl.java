@@ -25,10 +25,7 @@ import com.sap.hcp.successfactors.lms.extensionfw.multitenancy.CurrentTenantReso
 import com.sap.hcp.successfactors.lms.extensionfw.odata.ODataClientService;
 import com.sap.hcp.successfactors.lms.extensionfw.odata.ODataClientServiceImpl;
 import com.sap.hcp.successfactors.lms.extensionfw.pojo.Instructor;
-import com.sap.hcp.successfactors.lms.extensionfw.pojo.InstructorDetail;
-import com.sap.hcp.successfactors.lms.extensionfw.pojo.Item;
 import com.sap.hcp.successfactors.lms.extensionfw.pojo.Offering;
-import com.sap.hcp.successfactors.lms.extensionfw.pojo.OfferingListId;
 import com.sap.hcp.successfactors.lms.extensionfw.pojo.Parametrised;
 import com.sap.hcp.successfactors.lms.extensionfw.reporting.ODataToListConverter;
 
@@ -333,10 +330,8 @@ public class NewOfferingServiceImpl implements NewOfferingService {
 
 					Offering offeringData = ODataToListConverter
 							.oDataEntryToOfferingData(entry);
-					//logger.error("invalid1"+offeringData.getItemCode());
 					if (!validate(offeringData, code, param)) {
 						allOfferingData.add(offeringData);
-						//logger.error("invalid1 MAYANK   "+"  "+allOfferingData.size());
 					}
 				}
 			}

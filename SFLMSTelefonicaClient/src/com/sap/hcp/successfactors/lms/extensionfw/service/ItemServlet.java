@@ -246,6 +246,7 @@ public class ItemServlet {
 			@PathVariable String legalEntity, @PathVariable String date,
 			HttpServletResponse response, HttpServletRequest request)
 			throws IOException {
+		logger.error("item time marker 0: "+new Date(System.currentTimeMillis()));
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.registerTypeAdapter(Date.class,
 				new UTCDateTypeAdapter()).create();
@@ -263,6 +264,7 @@ public class ItemServlet {
 		itemDataList = getListData(itemDataList);
 		itemDataList = getListFinalData(itemDataList);
 		createOverviewList(itemDataList, overviewScreenList, legalEntity, itemidmap);
+		logger.error("item time marker 3: "+new Date(System.currentTimeMillis()));
 		response.setContentType("application/json; charset=utf-8");
 		return gson.toJson(overviewScreenList);
 	}

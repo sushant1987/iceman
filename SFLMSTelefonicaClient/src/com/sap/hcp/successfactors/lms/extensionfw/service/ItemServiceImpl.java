@@ -51,7 +51,6 @@ public class ItemServiceImpl implements ItemService{
 	@Override
 	public List<Item> getItemData(String id, String legalEntity, String date, String runId) {
 			List<Item> allItemData = new ArrayList<Item>();
-			//logger.error("inside getItemData");
 			try { 
 				ODataClientService oDataAccess = getODataService();
 				List <ODataFeed> bigFeed = new ArrayList<ODataFeed>();
