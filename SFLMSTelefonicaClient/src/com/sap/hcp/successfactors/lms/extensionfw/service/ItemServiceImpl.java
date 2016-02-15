@@ -4,14 +4,11 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.naming.NamingException;
-
 import org.apache.olingo.odata2.api.ep.EntityProviderException;
 import org.apache.olingo.odata2.api.ep.entry.ODataEntry;
 import org.apache.olingo.odata2.api.ep.feed.ODataFeed;
@@ -61,49 +58,42 @@ public class ItemServiceImpl implements ItemService{
 				ODataFeed feed = null;
 				String filter = null;
 				int flag=0;
-				int secondflag=0;
 				if(!"none".equals(id)) {
 					filter = "ItemCode1 eq '" + id + "'";
 					feed = oDataAccess.readFeed(XS_ITEM_TABLE, null, filter,
 							null);
 					bigFeed.add(feed);
 				} else {
-					SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					Date today = Calendar.getInstance().getTime();
-					String lastScheduleDate = formatter.format(today);
+					logger.error("item time marker 1: "+new Date(System.currentTimeMillis()));
 					filter="UpdatedOn eq datetime'9999-12-31T05:00:00' and LegalEntity eq 'FT'";
 					feed = oDataAccess.readFeed(XS_ITEM_TABLE, null, filter,
 							null,null,1000);
 					int skip = 1000;
-					int cnt=0;
 					do{
 					    feed = null;
 						feed = oDataAccess.readFeed(XS_ITEM_TABLE, null, filter,
 								null,null,1000,skip);
 						skip = skip + 1000;
 						bigFeed.add(feed);
-						cnt++;
 						flag=0;
 						if(feed.getEntries().size() != 0)
 							flag = 1;
 					}while(flag==1);
 				}
+				logger.error("item time marker 2: "+new Date(System.currentTimeMillis()));
 				List<Item> meriList = new ArrayList<Item>();
 				meriList=removeDuplicates(bigFeed);
 				if(meriList != null) {
 					for (Item item : meriList) {
-
 						if(validate(id, legalEntity, date, item)) {
 							if(item.getLegalEntity()!= null && item.getLegalEntity().equalsIgnoreCase("FT")){
 									String deliveryCode = ItemUtil.getDeliveryMethod(item.getDelMethod());
 									item.setDelMethod(deliveryCode); 
 									allItemData.add(item);
-								}
+							}
 						}
-						
 					}
 				}
-				
 			} catch (IOException | NamingException | ODataException e) {
 				logger.error("Something wrong getting OData ref", e);
 			}
