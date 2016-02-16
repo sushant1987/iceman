@@ -146,10 +146,12 @@ sap.ui.core.mvc.Controller
 						var runid = opt.id;
 						var dateSel = opt.date;
 						if (dateSel) {
-							var from = dateSel.split("-")[0].replace(
-									/[(^\s+)(\s+$)]/g, "");
-							var to = dateSel.split("-")[1].replace(
-									/[(^\s+)(\s+$)]/g, "");
+							var from = dateSel.split("-")[0];
+//							.replace(
+//									/[(^\s+)(\s+$)]/g, "");
+							var to = dateSel.split("-")[1];
+//							.replace(
+//									/[(^\s+)(\s+$)]/g, "");
 							var df1 = sap.ui.core.format.DateFormat
 									.getDateInstance();
 							var df2 = sap.ui.core.format.DateFormat
