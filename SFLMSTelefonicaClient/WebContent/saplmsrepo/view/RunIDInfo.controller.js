@@ -44,18 +44,18 @@ sap.ui.core.mvc.Controller
 					},
 					onNavOfferring : function(oEvent) {
 
-						var context = oEvent.getParameters().srcControl;
-						var overviewTableModel = oEvent.getSource().getModel();
+//						var context = oEvent.getParameters().srcControl;
+//						var overviewTableModel = oEvent.getSource().getModel();
 
-						var overviewTable = this.getView().byId("overviewTable");
-						var selectedIndex = overviewTable.getSelectedIndex();
-						var selectedPath = overviewTable.getRows()[selectedIndex]
-								.getBindingContext().sPath;
-						var rowNo = selectedPath.match("/\\d+$")[0].replace(
-								"/", "");
-						var legalEntity = overviewTable.getModel().getData()[rowNo].legalEntity;
-						var xmltype     = overviewTable.getModel().getData()[rowNo].reportType;
-						var runid       = overviewTable.getModel().getData()[rowNo].id;
+//						var overviewTable = this.getView().byId("overviewTable");
+//						var selectedIndex = overviewTable.getSelectedIndex();
+//						var selectedPath = overviewTable.getRows()[selectedIndex]
+//								.getBindingContext().sPath;
+//						var rowNo = selectedPath.match("/\\d+$")[0].replace(
+//								"/", "");
+//						var legalEntity = overviewTable.getModel().getData()[rowNo].legalEntity;
+//						var xmltype     = overviewTable.getModel().getData()[rowNo].reportType;
+//						var runid       = overviewTable.getModel().getData()[rowNo].id;
 
 //						var xmltype = overviewTableModel.getProperty(context
 //								.getBindingContextPath()).reportType;
@@ -65,7 +65,14 @@ sap.ui.core.mvc.Controller
 //								.getBindingContextPath()).id;
 						// var date =
 						// overviewTableModel.getProperty(context.getBindingContextPath()).createdDate;
-
+						
+						var overviewTable = this.getView().byId("overviewTable");
+						var selectedIndex = overviewTable.getSelectedIndex();
+						var selectedPath  = overviewTable.getModel().getData()[selectedIndex];
+						var legalEntity   = selectedPath.legalEntity;
+						var xmltype       = selectedPath.reportType;
+						var runid 		  = selectedPath.id;
+						 
 						if (legalEntity) {
 							var LE = legalEntity;
 						} else {
