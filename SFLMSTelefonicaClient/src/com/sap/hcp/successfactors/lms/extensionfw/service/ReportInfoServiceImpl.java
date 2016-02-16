@@ -113,7 +113,7 @@ private static final Logger logger = LoggerFactory.getLogger(ReportInfoServiceIm
 				e.printStackTrace();
 			}
 			if(startDate != null && endDate != null)
-				queryBuilder.append(" and reportInfo.createdDate between '"+startDate+"' and '"+endDate+"'");
+				queryBuilder.append(" and reportInfo.createdDate >= '"+startDate+"' and reportInfo.createdDate <= '"+endDate+"'"); 
 		}
 		Query query=entityManager.createQuery(queryBuilder.toString());
 	    List<ReportInfo> queryReportInfo=query.getResultList();
