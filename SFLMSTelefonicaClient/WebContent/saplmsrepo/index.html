@@ -17,9 +17,27 @@
               </script>
 
               <link rel="stylesheet" type="text/css" href="css/style.css">
+               
+               <!-- include the Cross Platform UI service -->
+                <script src="https://webidetesting0066952-fiori.dispatcher.neo.ondemand.com/webapp/lib/CPU.js"></script>
+                
+                <style>
+                                .sapMDialog {
+                                    opacity: 1 !important;
+                                    top: 50% !important;
+                                    left: 50% !important;
+                                }
+                </style>
+              
 
               <script>
                      sap.ui.getCore().attachInit(function() {
+                    	 CPU.init({
+                             consumer: "successfactors",
+                             theme: "sap_bluecrystal"
+             });
+
+
                            new sap.m.Shell({
                                   app: new sap.ui.core.ComponentContainer({
                                          height : "100%",
