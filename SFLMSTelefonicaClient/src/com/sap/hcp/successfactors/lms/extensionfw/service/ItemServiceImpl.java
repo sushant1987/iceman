@@ -66,6 +66,8 @@ public class ItemServiceImpl implements ItemService{
 					logger.error("item time marker 1: "+new Date(System.currentTimeMillis()));
 					filter="UpdatedOn eq datetime'9999-12-31T05:00:00' and LegalEntity eq 'FT'";
 					feed = oDataAccess.readFeed(XS_ITEM_TABLE, null, filter,
+							null);
+				/*	feed = oDataAccess.readFeed(XS_ITEM_TABLE, null, filter,
 							null,null,1000);
 					int skip = 1000;
 					do{
@@ -77,7 +79,7 @@ public class ItemServiceImpl implements ItemService{
 						flag=0;
 						if(feed.getEntries().size() != 0)
 							flag = 1;
-					}while(flag==1);
+					}while(flag==1);*/
 				}
 				logger.error("item time marker 2: "+new Date(System.currentTimeMillis()));
 				List<Item> meriList = new ArrayList<Item>();
