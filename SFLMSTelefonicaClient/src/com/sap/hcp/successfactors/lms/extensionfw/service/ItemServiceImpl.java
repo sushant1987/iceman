@@ -69,7 +69,7 @@ public class ItemServiceImpl implements ItemService{
 							null);
 				/*	feed = oDataAccess.readFeed(XS_ITEM_TABLE, null, filter,
 							null,null,1000);
-					int skip = 1000;
+					int skip = 1000; 
 					do{
 					    feed = null;
 						feed = oDataAccess.readFeed(XS_ITEM_TABLE, null, filter,
