@@ -112,15 +112,36 @@ public class ItemServlet {
 				}
 			}
 		} else {
-			List<ItemListId> itemListIds = itemListIdService.getByReportId(Long.parseLong(runId));
-			List<Long> itemIds = new ArrayList<Long>();
-			for(ItemListId itemListId : itemListIds) {
-				itemIds.add(itemListId.getItemId());
+			ReportInfo obj = reportInfoService.getById(Long.parseLong(runId));
+			//if(date != null && !date.equalsIgnoreCase("none"))
+//			{
+//				itemList = itemservice.getItemData(obj.getCriteriaId(), obj.getLegalEntity(), obj.getDate(), runId);
+//			}
+//			else
+			{
+				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+				String date2 = formatter.format(obj.getCreatedDate());
+				StringBuilder sb = new StringBuilder();
+				sb.append("15-08-1947-");
+				sb.append(date2);
+				itemList = itemservice.getItemData(obj.getCriteriaId(), obj.getLegalEntity(), sb.toString(), runId);
 			}
-			itemList = itemservice.getItemByItemIds(itemIds);
 		
 			itemList = getListData(itemList);
 			itemList = getListFinalData(itemList);
+		/*	List<ItemListId> itemListIds = itemListIdService.getByReportId(Long.parseLong(runId));
+			List<Long> itemIds = new ArrayList<Long>();
+			logger.error("M1"+itemListIds.size());
+			for(ItemListId itemListId : itemListIds) {
+				itemIds.add(itemListId.getItemId());
+			}
+			logger.error("M2"+itemIds.size());
+			itemList = itemservice.getItemByItemIds(itemIds);
+			logger.error("M3"+itemList.size());
+			itemList = getListData(itemList);
+			logger.error("M4"+itemList.size());
+			itemList = getListFinalData(itemList);
+			logger.error("M5"+itemList.size());*/
 		}
 
 		parameterizedList = parameterised.getAllParametrisedData();
